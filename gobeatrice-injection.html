@@ -558,7 +558,7 @@ trackerEl.innerHTML=tHtml;
 }).catch(function() {});
 });
 /* master folder button, inserted under the how-it-works phases image */
-(function(){
+document.addEventListener('DOMContentLoaded',function(){
 var imgs=document.querySelectorAll('img');
 for(var i=0;i<imgs.length;i++){
 var s=imgs[i].getAttribute('src')||'';
@@ -576,5 +576,5 @@ wrap.parentNode.insertBefore(d,wrap.nextSibling);
 break;
 }
 }
-})();
+});
 </script>
