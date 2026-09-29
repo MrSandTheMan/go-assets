@@ -79,6 +79,20 @@
     "#go-root .go-stat span{font-size:12px;color:#999;}" +
     "#go-root .go-statsnote{color:#999;font-size:13px;line-height:1.6;margin:0 0 16px;" +
     "text-align:center;}" +
+    /* task checklists (Judy's / Sandy's) */
+    "#go-root .go-tasks{display:grid;grid-template-columns:1fr 1fr;gap:10px;" +
+    "margin:0 0 16px;}" +
+    "#go-root .go-taskcard{background:#111;border:1px solid #2a2a2a;border-radius:12px;" +
+    "padding:14px;}" +
+    "#go-root .go-taskcard h3{font-family:Archivo,Inter,sans-serif;font-size:13px;" +
+    "font-weight:800;margin:0 0 6px;}" +
+    "#go-root .go-task{display:flex;gap:9px;align-items:flex-start;font-size:13px;" +
+    "color:#ccc;padding:7px 0;border-top:1px solid #1f1f1f;line-height:1.45;}" +
+    "#go-root .go-task .box{width:16px;height:16px;border:1.5px solid #666;" +
+    "border-radius:4px;flex-shrink:0;margin-top:2px;}" +
+    "#go-root .go-task.done .box{background:#E00020;border-color:#E00020;}" +
+    "#go-root .go-task.done span{color:#666;text-decoration:line-through;}" +
+    "@media(max-width:640px){#go-root .go-tasks{grid-template-columns:1fr;}}" +
     "@media(max-width:640px){#go-root .go-stats{grid-template-columns:repeat(2,1fr);}}" +
     /* role advert modal */
     "#go-root .go-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;" +
@@ -277,6 +291,22 @@
         esc(ap.text).replace(/\n/g, "<br><br>") + "</p>" +
         '<button class="go-btn" data-advert="1">' + esc(ap.cta) + "</button></div>";
     });
+
+    /* tasks: Judy's checklist and Sandy's checklist */
+    if (c.tasks && (c.tasks.judy || c.tasks.sandy)) {
+      h += '<div class="go-sect">' + esc(c.tasks.heading || "Tasks") + "</div>" +
+        '<div class="go-tasks">';
+      [["judy"], ["sandy"]].forEach(function (k) {
+        var col = c.tasks[k[0]];
+        if (!col || !col.items || !col.items.length) return;
+        h += '<div class="go-taskcard"><h3>' + esc(col.label) + "</h3>" +
+          col.items.map(function (t) {
+            return '<div class="go-task' + (t.done ? " done" : "") + '">' +
+              '<span class="box"></span><span>' + esc(t.text) + "</span></div>";
+          }).join("") + "</div>";
+      });
+      h += "</div>";
+    }
 
     /* advertising track */
     if (c.advertising) {
