@@ -3,7 +3,7 @@
    copy updates are data-only (edit state, run go-tracker.py update gokramer).
    Local source: ~/workspace/client-tracker/gokramer-injection.js */
 (function () {
-  var GIST_URL = "https://gist.githubusercontent.com/MrSandTheMan/bdcb880a4a68a4c945cc0e35b4a39c65/raw/a5a33a8f2a8c938a7f3bcf53602dee76968b53c7/gokramer-tracker.json";
+  var GIST_URL = "https://gist.githubusercontent.com/MrSandTheMan/bdcb880a4a68a4c945cc0e35b4a39c65/raw/gokramer-tracker.json";
   var RED = "#E00020";
 
   function esc(s) {
