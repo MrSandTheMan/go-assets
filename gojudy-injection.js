@@ -35,6 +35,7 @@
     "#go-root .go-btn.ghost{background:transparent;border:1px solid #555;color:#fff;}" +
     "#go-root .go-btn.armed{background:#fff;color:#000;}" +
     "#go-root .go-btn:disabled{opacity:.55;cursor:default;}" +
+    "#go-root .go-btn.yellow{background:#FFD60A;color:#111;margin-bottom:14px;}" +
     "#go-root .go-done{color:#5ce08a;font-weight:700;}" +
     "#go-root .go-pp{display:flex;justify-content:center;margin:0 0 18px;}" +
     "#go-root .go-pp img{width:104px;height:104px;border-radius:50%;object-fit:cover;" +
@@ -317,7 +318,12 @@
     /* head-hunting track */
     if (c.headhunt) {
       h += '<div class="go-sect">Head-hunting</div><div class="go-card"><p>' +
-        esc(c.headhunt.text || "") + "</p>" + renderTrackList(c.headhunt.items) + "</div>";
+        esc(c.headhunt.text || "") + "</p>";
+      if (c.headhunt.resource && c.headhunt.resource.url) {
+        h += '<a class="go-btn yellow" href="' + esc(c.headhunt.resource.url) +
+          '" target="_blank" rel="noopener">' + esc(c.headhunt.resource.label) + "</a>";
+      }
+      h += renderTrackList(c.headhunt.items) + "</div>";
     }
 
     /* role advert v3 modal */
