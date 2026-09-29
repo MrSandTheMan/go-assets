@@ -110,7 +110,13 @@
     "background:rgba(224,0,32,.12);}" +
     "#go-modal .go-acc .go-nonelabel{color:#5ce08a;font-size:13px;font-weight:700;" +
     "margin-left:10px;display:none;}" +
-    /* reshoot form (inline) */
+    /* show/hide password toggle inside password fields */
+    "#go-modal .go-passwrap{position:relative;margin:0 0 8px;}" +
+    "#go-modal .go-passwrap .acc-pass{margin:0;padding-right:62px;}" +
+    "#go-modal .go-showpass{position:absolute;right:6px;top:50%;transform:translateY(-50%);" +
+    "background:none;border:0;color:#999;font-size:13px;font-weight:600;cursor:pointer;" +
+    "font-family:inherit;padding:8px 6px;}" +
+    "#go-modal .go-showpass:disabled{opacity:.3;cursor:default;}" +
     "#go-root .go-field{margin:0 0 12px;}" +
     "#go-root .go-field label{display:block;font-size:13px;color:#999;margin:0 0 6px;" +
     "letter-spacing:.04em;}" +
@@ -283,7 +289,8 @@
       html += '<div class="go-acc" data-p="' + esc(p) + '">' +
         "<b>" + esc(p) + "</b>" +
         '<input type="text" class="acc-user" placeholder="Username" autocomplete="off">' +
-        '<input type="password" class="acc-pass" placeholder="Password" autocomplete="off">' +
+        '<div class="go-passwrap"><input type="password" class="acc-pass" placeholder="Password" autocomplete="off">' +
+        '<button class="go-showpass" type="button" aria-label="Show password">Show</button></div>' +
         '<button class="go-nonebtn" type="button">Don\'t have one</button>' +
         '<span class="go-nonelabel">No account — noted.</span></div>';
     });
@@ -295,13 +302,24 @@
       var noneBtn = row.querySelector(".go-nonebtn");
       var user = row.querySelector(".acc-user");
       var pass = row.querySelector(".acc-pass");
+      var showBtn = row.querySelector(".go-showpass");
       var label = row.querySelector(".go-nonelabel");
+      showBtn.addEventListener("click", function () {
+        var showing = pass.type === "text";
+        pass.type = showing ? "password" : "text";
+        showBtn.textContent = showing ? "Show" : "Hide";
+        showBtn.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+      });
       noneBtn.addEventListener("click", function () {
         var on = noneBtn.classList.toggle("on");
-        user.disabled = on; pass.disabled = on;
+        user.disabled = on; pass.disabled = on; showBtn.disabled = on;
         label.style.display = on ? "inline" : "none";
         noneBtn.textContent = on ? "Undo" : "Don't have one";
-        if (on) { user.value = ""; pass.value = ""; }
+        if (on) {
+          user.value = ""; pass.value = "";
+          pass.type = "password"; showBtn.textContent = "Show";
+          showBtn.setAttribute("aria-label", "Show password");
+        }
       });
     });
 
