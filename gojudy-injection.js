@@ -69,6 +69,17 @@
     "#go-root .go-pill.blue{background:rgba(0,120,255,.12);border:1px solid #2f6fd0;color:#8ab8ff;}" +
     "#go-root .go-pill.red{background:rgba(224,0,32,.12);border:1px solid " + RED + ";color:#ff6b81;}" +
     "#go-root .go-pill.green{background:rgba(0,200,80,.10);border:1px solid #1d9e57;color:#5ce08a;}" +
+    /* stat grid (head-hunt funnel, below how it works) */
+    "#go-root .go-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;" +
+    "margin:0 0 16px;}" +
+    "#go-root .go-stat{background:#111;border:1px solid #2a2a2a;border-radius:12px;" +
+    "padding:14px 10px;text-align:center;}" +
+    "#go-root .go-stat b{display:block;font-family:Archivo,Inter,sans-serif;" +
+    "font-size:26px;font-weight:800;}" +
+    "#go-root .go-stat span{font-size:12px;color:#999;}" +
+    "#go-root .go-statsnote{color:#999;font-size:13px;line-height:1.6;margin:0 0 16px;" +
+    "text-align:center;}" +
+    "@media(max-width:640px){#go-root .go-stats{grid-template-columns:repeat(2,1fr);}}" +
     /* role advert modal */
     "#go-root .go-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;" +
     "display:none;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;}" +
@@ -250,6 +261,14 @@
       h += '<div class="go-hiw"><h2 class="go-hiw-h">' + esc(c.how_it_works.heading || "How it works") + "</h2>" +
         '<img loading="lazy" src="' + esc(c.how_it_works.image) + '" alt="' +
         esc(c.how_it_works.alt || "How your project moves") + '"></div>';
+    }
+
+    /* head-hunt funnel stats, right under how it works */
+    if (c.stats && c.stats.length) {
+      h += '<div class="go-stats">' + c.stats.map(function (s) {
+        return '<div class="go-stat"><b>' + esc(s.value) + "</b><span>" + esc(s.label) + "</span></div>";
+      }).join("") + "</div>";
+      if (c.stats_note) h += '<p class="go-statsnote">' + esc(c.stats_note) + "</p>";
     }
 
     /* priority card: opens the Role Advert v3 popup */
