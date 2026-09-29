@@ -527,6 +527,13 @@ lis[m].innerHTML='Ad Landing Page<span class="t">In production</span>';
 break;
 }
 }
+/* deliverables override: Edit 2 approved, only Edit 1 awaits approval (2026-09-29) */
+for(var m2=0;m2<lis.length;m2++) {
+if(lis[m2].textContent.indexOf('Edits 1 and 2')!==-1) {
+lis[m2].innerHTML='Edit 1<span class="t">With you for approval</span>';
+break;
+}
+}
 var tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);
 var tn;
 while((tn=tw.nextNode())) {
