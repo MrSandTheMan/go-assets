@@ -39,14 +39,12 @@
     "#go-root .go-pp{display:flex;justify-content:center;margin:0 0 18px;}" +
     "#go-root .go-pp img{width:104px;height:104px;border-radius:50%;object-fit:cover;" +
     "border:3px solid " + RED + ";}" +
-    /* how it works steps */
-    "#go-root .go-steps{list-style:none;margin:0;padding:0;}" +
-    "#go-root .go-steps li{display:flex;gap:12px;margin:0 0 14px;}" +
-    "#go-root .go-steps li:last-child{margin-bottom:0;}" +
-    "#go-root .go-steps .go-num{flex:0 0 28px;height:28px;border-radius:50%;background:" + RED +
-    ";color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;}" +
-    "#go-root .go-steps b{display:block;font-size:15px;margin-bottom:2px;}" +
-    "#go-root .go-steps span{color:#ccc;font-size:14px;line-height:1.5;}" +
+    /* how it works phases image */
+    "#go-root .go-hiw{margin:0 0 16px;text-align:center;}" +
+    "#go-root .go-hiw-h{font-family:Archivo,Inter,sans-serif;font-size:13px;" +
+    "letter-spacing:.25em;text-transform:uppercase;color:#888;margin:0 0 12px;" +
+    "font-weight:600;}" +
+    "#go-root .go-hiw img{width:100%;border-radius:16px;display:block;}" +
     /* homescreen: two phone-type buttons, guide swaps (Beatrice pattern) */
     "#go-root .go-hs{background:#111;border:1px solid #2a2a2a;border-radius:16px;" +
     "padding:22px;margin:0 0 16px;text-align:center;}" +
@@ -353,14 +351,11 @@
     h += '<p class="go-eyebrow">' + esc(c.eyebrow) + "</p><h1>" + esc(c.title) + "</h1>" +
       '<p class="go-sub">' + esc(c.subtitle) + "</p>";
 
-    /* how it works (up top) */
-    if (c.how_it_works && c.how_it_works.steps) {
-      h += '<div class="go-card"><h2>' + esc(c.how_it_works.heading || "How it works") + '</h2><ol class="go-steps">';
-      c.how_it_works.steps.forEach(function (s, i) {
-        h += '<li><span class="go-num">' + (i + 1) + "</span><div><b>" + esc(s.t) + "</b><span>" +
-          esc(s.d) + "</span></div></li>";
-      });
-      h += "</ol></div>";
+    /* how it works (up top): project phases image */
+    if (c.how_it_works && c.how_it_works.image) {
+      h += '<div class="go-hiw"><h2 class="go-hiw-h">' + esc(c.how_it_works.heading || "How it works") + "</h2>" +
+        '<img loading="lazy" src="' + esc(c.how_it_works.image) + '" alt="' +
+        esc(c.how_it_works.alt || "How your project moves") + '"></div>';
     }
 
     /* approvals: rough draft review */
