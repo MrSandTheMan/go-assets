@@ -286,6 +286,13 @@
       if (c.stats_note) h += '<p class="go-statsnote">' + esc(c.stats_note) + "</p>";
     }
 
+    /* master folder button: under stats, above the priority card */
+    if (c.resource && c.resource.url) {
+      h += '<div style="text-align:center;"><a class="go-btn yellow" href="' +
+        esc(c.resource.url) + '" target="_blank" rel="noopener">' +
+        esc(c.resource.label) + "</a></div>";
+    }
+
     /* priority card: opens the Role Advert v3 popup */
     (c.approvals || []).forEach(function (ap) {
       h += '<div class="go-card"><h2>' + esc(ap.title) + "</h2><p>" +
@@ -318,12 +325,7 @@
     /* head-hunting track */
     if (c.headhunt) {
       h += '<div class="go-sect">Head-hunting</div><div class="go-card"><p>' +
-        esc(c.headhunt.text || "") + "</p>";
-      if (c.headhunt.resource && c.headhunt.resource.url) {
-        h += '<a class="go-btn yellow" href="' + esc(c.headhunt.resource.url) +
-          '" target="_blank" rel="noopener">' + esc(c.headhunt.resource.label) + "</a>";
-      }
-      h += renderTrackList(c.headhunt.items) + "</div>";
+        esc(c.headhunt.text || "") + "</p>" + renderTrackList(c.headhunt.items) + "</div>";
     }
 
     /* role advert v3 modal */
