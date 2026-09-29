@@ -55,17 +55,31 @@
     "letter-spacing:.08em;text-transform:uppercase;border-radius:999px;" +
     "padding:6px 16px;margin:2px 0 4px;}" +
     "#go-root .go-sub3{color:#999;font-size:13px;margin:8px 0 0;line-height:1.5;}" +
-    /* review player + notes (inline cards) */
-    "#go-root .rv-player{position:relative;background:#000;border-radius:12px;" +
-    "overflow:hidden;cursor:pointer;margin:10px 0;}" +
-    "#go-root .rv-player video{width:100%;aspect-ratio:16/9;display:block;" +
-    "background:#000;border-radius:12px;}" +
-    "#go-root .rv-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);" +
-    "width:68px;height:68px;border-radius:50%;border:0;background:rgba(0,0,0,.55);" +
-    "color:#fff;font-size:24px;cursor:pointer;}" +
-    "#go-root .rv-progress{position:absolute;left:0;right:0;bottom:0;height:5px;" +
-    "background:rgba(255,255,255,.25);cursor:pointer;}" +
-    "#go-root .rv-progress-fill{height:100%;width:0%;background:" + RED + ";}" +
+    /* track lists (advertising / head-hunting) */
+    "#go-root .go-track{list-style:none;margin:0;padding:0;}" +
+    "#go-root .go-track li{padding:12px 0;border-bottom:1px solid #222;}" +
+    "#go-root .go-track li:last-child{border-bottom:0;}" +
+    "#go-root .go-track .t-label{font-weight:700;font-size:15px;margin:0;}" +
+    "#go-root .go-track .t-note{color:#999;font-size:13px;margin:6px 0 0;line-height:1.5;}" +
+    "#go-root .go-pill{display:inline-block;font-size:11px;font-weight:700;" +
+    "letter-spacing:.08em;text-transform:uppercase;border-radius:999px;" +
+    "padding:5px 14px;margin-left:8px;vertical-align:middle;}" +
+    "#go-root .go-pill.gold{background:rgba(255,180,0,.10);border:1px solid #a88400;color:#ffd75e;}" +
+    "#go-root .go-pill.gray{background:rgba(150,150,150,.10);border:1px solid #555;color:#aaa;}" +
+    "#go-root .go-pill.blue{background:rgba(0,120,255,.12);border:1px solid #2f6fd0;color:#8ab8ff;}" +
+    "#go-root .go-pill.red{background:rgba(224,0,32,.12);border:1px solid " + RED + ";color:#ff6b81;}" +
+    "#go-root .go-pill.green{background:rgba(0,200,80,.10);border:1px solid #1d9e57;color:#5ce08a;}" +
+    /* role advert modal */
+    "#go-root .go-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;" +
+    "display:none;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;}" +
+    "#go-root .go-modal-overlay.open{display:flex;}" +
+    "#go-root .go-modal{background:#141414;border:1px solid #333;border-radius:16px;" +
+    "max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:26px;box-sizing:border-box;}" +
+    "#go-root .go-modal h2{font-family:Archivo,Inter,sans-serif;font-size:20px;margin:0 0 10px;}" +
+    "#go-root .go-modal .go-modal-close{float:right;background:none;border:0;color:#999;" +
+    "font-size:26px;line-height:1;cursor:pointer;padding:0 0 8px 8px;}" +
+    "#go-root .go-modal .advert-head{color:#fff;font-weight:700;font-size:16px;margin:0 0 12px;}" +
+    "#go-root .go-modal .advert-body{color:#ddd;line-height:1.65;font-size:15px;}" +
     "#go-root textarea{width:100%;box-sizing:border-box;background:#0a0a0a;" +
     "border:1px solid #333;border-radius:10px;color:#fff;padding:12px;font-size:15px;" +
     "font-family:inherit;min-height:70px;margin:10px 0;}" +
@@ -128,52 +142,55 @@
   }
 
   /* ---------- review cards (inline, one per video) ---------- */
-  function wireReviewRow(row, v) {
-    if (v.status === "in_production") return; // badge only, nothing to wire
-    var label = v.label || ("Edit " + v.n);
-    var labelLower = label.toLowerCase();
-    var nativeVideo = row.querySelector("video");
-    var playBtn = row.querySelector(".rv-play");
-    var progBar = row.querySelector(".rv-progress");
-    var progFill = row.querySelector(".rv-progress-fill");
+  /* ---------- status pills ---------- */
+  var PILL_LABEL = {
+    in_planning: "In planning", not_started: "Not started", in_progress: "In progress",
+    awaiting_approval: "Needs your approval", live: "Live"
+  };
+  var PILL_CLASS = {
+    in_planning: "gold", not_started: "gray", in_progress: "blue",
+    awaiting_approval: "red", live: "green"
+  };
+  function pill(status) {
+    var s = status || "not_started";
+    return '<span class="go-pill ' + (PILL_CLASS[s] || "gray") + '">' +
+      esc(PILL_LABEL[s] || s) + "</span>";
+  }
 
-    var togglePlay = function () {
-      if (!nativeVideo.getAttribute("src")) nativeVideo.setAttribute("src", nativeVideo.getAttribute("data-src"));
-      if (nativeVideo.paused) {
-        var pr = nativeVideo.play();
-        if (pr && pr.catch) pr.catch(function () {});
-      } else {
-        nativeVideo.pause();
-      }
-    };
-    nativeVideo.addEventListener("click", togglePlay);
-    playBtn.addEventListener("click", function (e) { e.stopPropagation(); togglePlay(); });
-    nativeVideo.addEventListener("play", function () { playBtn.style.display = "none"; });
-    nativeVideo.addEventListener("pause", function () { playBtn.style.display = ""; });
-    nativeVideo.addEventListener("timeupdate", function () {
-      if (nativeVideo.duration) progFill.style.width = (nativeVideo.currentTime / nativeVideo.duration * 100) + "%";
-    });
-    progBar.addEventListener("click", function (e) {
-      e.stopPropagation();
-      if (!nativeVideo.getAttribute("src")) nativeVideo.setAttribute("src", nativeVideo.getAttribute("data-src"));
-      var r = progBar.getBoundingClientRect();
-      var ratio = (e.clientX - r.left) / r.width;
-      if (ratio < 0) ratio = 0;
-      if (ratio > 1) ratio = 1;
-      if (nativeVideo.duration) nativeVideo.currentTime = ratio * nativeVideo.duration;
-    });
+  /* ---------- role advert modal ---------- */
+  function openModal(id) {
+    document.getElementById(id).classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function closeModal(el) {
+    el.classList.remove("open");
+    document.body.style.overflow = "";
+  }
 
-    var approveBtn = row.querySelector(".rv-approve");
-    var notesArea = row.querySelector(".rv-notes");
-    var notesBtn = row.querySelector(".rv-notesbtn");
-    var msg = row.querySelector(".rv-msg");
-    var key = "gojudy_approval_edit" + v.n;
+  function wireAdvertModal(root, ra) {
+    var overlay = root.querySelector("#go-advert-modal");
+    var approveBtn = overlay.querySelector(".go-advert-approve");
+    var notesArea = overlay.querySelector(".go-advert-notes");
+    var notesBtn = overlay.querySelector(".go-advert-notesbtn");
+    var msg = overlay.querySelector(".go-advert-msg");
+    var key = "gojudy_approval_advert3";
+    var heading = (ra && ra.heading) || "";
+    var bodyText = (ra && ra.body) || "";
+
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay || e.target.getAttribute("data-close") !== null) closeModal(overlay);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && overlay.classList.contains("open")) closeModal(overlay);
+    });
 
     if (approveBtn) {
-      twoTap(approveBtn, "Approve " + labelLower, function (doneFn, fail) {
-        post({ action: "approval", subject: "Judy approved " + label + ": " + (v.title || ""), item: "edit-" + v.n, body: "Approved " + label + "." })
+      twoTap(approveBtn, "Approve Role Advert v3", function (doneFn, fail) {
+        post({ action: "approval", subject: "Judy approved Role Advert 3",
+               item: "role-advert-3",
+               body: "Judy approved Role Advert v3 as-is.\n\nHeading: " + heading })
           .then(function () {
-            localStorage.setItem(key, JSON.stringify({ date: today() }));
+            try { localStorage.setItem(key, JSON.stringify({ date: today() })); } catch (e) {}
             doneFn("Approved, thank you!");
           })
           .catch(fail);
@@ -183,7 +200,8 @@
       var t = notesArea.value.trim();
       if (!t) { notesArea.focus(); return; }
       notesBtn.disabled = true; notesBtn.textContent = "Sending...";
-      post({ action: "notes", subject: "Notes on " + label + ": " + (v.title || ""), item: "edit-" + v.n, body: t })
+      post({ action: "notes", subject: "Notes on Role Advert 3 from Judy",
+             item: "role-advert-3", body: t })
         .then(function () {
           msg.textContent = "Notes sent, thank you!";
           notesArea.value = "";
@@ -194,6 +212,24 @@
           notesBtn.disabled = false; notesBtn.textContent = "Send notes";
         });
     });
+  }
+
+  function advertBody(t) {
+    return esc(t || "").split(/\n+/).map(function (p) {
+      var line = p.trim();
+      if (!line) return "";
+      var isHead = line.length < 40 && line === line.toUpperCase();
+      return (isHead ? "<strong>" : "") + line + (isHead ? "</strong>" : "") + "<br><br>";
+    }).join("");
+  }
+
+  function renderTrackList(items) {
+    var h = '<ul class="go-track">';
+    (items || []).forEach(function (it) {
+      h += "<li><p class=\"t-label\">" + esc(it.label) + pill(it.status) + "</p>" +
+        (it.note ? '<p class="t-note">' + esc(it.note) + "</p>" : "") + "</li>";
+    });
+    return h + "</ul>";
   }
 
   /* ---------- render ---------- */
@@ -216,42 +252,44 @@
         esc(c.how_it_works.alt || "How your project moves") + '"></div>';
     }
 
-    /* priority card */
+    /* priority card: opens the Role Advert v3 popup */
     (c.approvals || []).forEach(function (ap) {
       h += '<div class="go-card"><h2>' + esc(ap.title) + "</h2><p>" +
         esc(ap.text).replace(/\n/g, "<br><br>") + "</p>" +
-        '<button class="go-btn" data-scrollto="go-reviews">' + esc(ap.cta) + "</button></div>";
+        '<button class="go-btn" data-advert="1">' + esc(ap.cta) + "</button></div>";
     });
 
-    /* review section: one card per video */
-    h += '<div class="go-sect" id="go-reviews">Your edits</div>';
-    var videos = (c.review_videos || []).filter(function (v) { return v.status !== "approved"; });
-    videos.forEach(function (v) {
-      var label = v.label || ("Edit " + v.n);
-      h += '<div class="go-card go-review" data-n="' + v.n + '"><h2>' + esc(label) +
-        ' <span style="color:#999;font-size:15px;font-weight:400;">' + esc(v.title || "") + "</span></h2>";
-      if (v.status === "in_production") {
-        h += '<p><span class="go-ipbadge">In production</span></p>' +
-          '<p class="go-sub3">This edit is being cut now. It will appear here for your review when it is ready.</p>';
-      } else {
-        var key = "gojudy_approval_edit" + v.n;
-        var done = null;
-        try {
-          var vs = JSON.parse(localStorage.getItem(key) || "null");
-          if (vs && vs.date) done = vs.date;
-        } catch (e) {}
-        h += '<div class="rv-player"><video playsinline preload="none" data-src="' + esc(v.src) + '"></video>' +
-          '<button class="rv-play" aria-label="Play video">&#9654;</button>' +
-          '<div class="rv-progress"><div class="rv-progress-fill"></div></div></div>' +
-          (done
-            ? '<p class="go-done">Approved ' + esc(done) + ", thank you.</p>"
-            : '<button class="go-btn rv-approve">Approve ' + esc(label.toLowerCase()) + "</button>") +
-          '<textarea class="rv-notes" rows="2" placeholder="Want changes to ' + esc(label.toLowerCase()) + '? Write them here..."></textarea>' +
-          '<button class="go-btn ghost go-notesbtn rv-notesbtn">Send notes</button>' +
-          '<p class="go-msg rv-msg"></p>';
-      }
-      h += "</div>";
-    });
+    /* advertising track */
+    if (c.advertising) {
+      h += '<div class="go-sect">Advertising</div><div class="go-card"><p>' +
+        esc(c.advertising.text || "") + "</p>" + renderTrackList(c.advertising.steps) + "</div>";
+    }
+
+    /* head-hunting track */
+    if (c.headhunt) {
+      h += '<div class="go-sect">Head-hunting</div><div class="go-card"><p>' +
+        esc(c.headhunt.text || "") + "</p>" + renderTrackList(c.headhunt.items) + "</div>";
+    }
+
+    /* role advert v3 modal */
+    var ra = c.role_advert_3 || {};
+    var doneAdvert = null;
+    try {
+      var avs = JSON.parse(localStorage.getItem("gojudy_approval_advert3") || "null");
+      if (avs && avs.date) doneAdvert = avs.date;
+    } catch (e) {}
+    h += '<div class="go-modal-overlay" id="go-advert-modal"><div class="go-modal">' +
+      '<button class="go-modal-close" data-close="1" aria-label="Close">&times;</button>' +
+      "<h2>" + esc(ra.title || "Role Advert v3") + "</h2>" +
+      '<p class="advert-head">' + esc(ra.heading || "") + "</p>" +
+      '<div class="advert-body">' + advertBody(ra.body) + "</div>" +
+      (doneAdvert
+        ? '<p class="go-done">Approved ' + esc(doneAdvert) + ", thank you.</p>"
+        : '<button class="go-btn go-advert-approve" style="margin-top:16px;">Approve Role Advert v3</button>') +
+      '<textarea class="go-advert-notes" rows="2" placeholder="Want changes to the advert? Write them here..."></textarea>' +
+      '<button class="go-btn ghost go-notesbtn go-advert-notesbtn">Send notes</button>' +
+      '<p class="go-msg go-advert-msg"></p>' +
+      "</div></div>";
 
     h += '<p class="go-footer">Questions? Email <a href="mailto:' + esc(c.footer_email) + '">' +
       esc(c.footer_email) + "</a><br>This page updates live as your project moves.</p>";
@@ -273,18 +311,13 @@
     var mount = document.querySelector("main") || document.getElementById("page") || document.body;
     mount.insertBefore(root, mount.firstChild);
 
-    /* wire review cards */
-    root.querySelectorAll(".go-review").forEach(function (row, i) {
-      wireReviewRow(row, videos[i]);
+    /* priority-card CTA opens the advert popup */
+    root.querySelectorAll("[data-advert]").forEach(function (b) {
+      b.addEventListener("click", function () { openModal("go-advert-modal"); });
     });
 
-    /* priority-card CTA scroll buttons */
-    root.querySelectorAll("[data-scrollto]").forEach(function (b) {
-      b.addEventListener("click", function () {
-        var t = document.getElementById(b.getAttribute("data-scrollto"));
-        if (t && t.scrollIntoView) t.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    });
+    /* wire the advert modal (approve + notes) */
+    wireAdvertModal(root, ra);
 
     /* homescreen buttons */
     var hsEl = root.querySelector(".go-hs");
