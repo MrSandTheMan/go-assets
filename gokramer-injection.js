@@ -39,6 +39,14 @@
     "#go-root .go-pp{display:flex;justify-content:center;margin:0 0 18px;}" +
     "#go-root .go-pp img{width:104px;height:104px;border-radius:50%;object-fit:cover;" +
     "border:3px solid " + RED + ";}" +
+    /* how it works steps */
+    "#go-root .go-steps{list-style:none;margin:0;padding:0;}" +
+    "#go-root .go-steps li{display:flex;gap:12px;margin:0 0 14px;}" +
+    "#go-root .go-steps li:last-child{margin-bottom:0;}" +
+    "#go-root .go-steps .go-num{flex:0 0 28px;height:28px;border-radius:50%;background:" + RED +
+    ";color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;}" +
+    "#go-root .go-steps b{display:block;font-size:15px;margin-bottom:2px;}" +
+    "#go-root .go-steps span{color:#ccc;font-size:14px;line-height:1.5;}" +
     /* homescreen: two phone-type buttons, guide swaps (Beatrice pattern) */
     "#go-root .go-hs{background:#111;border:1px solid #2a2a2a;border-radius:16px;" +
     "padding:22px;margin:0 0 16px;text-align:center;}" +
@@ -345,10 +353,21 @@
     h += '<p class="go-eyebrow">' + esc(c.eyebrow) + "</p><h1>" + esc(c.title) + "</h1>" +
       '<p class="go-sub">' + esc(c.subtitle) + "</p>";
 
+    /* how it works (up top) */
+    if (c.how_it_works && c.how_it_works.steps) {
+      h += '<div class="go-card"><h2>' + esc(c.how_it_works.heading || "How it works") + '</h2><ol class="go-steps">';
+      c.how_it_works.steps.forEach(function (s, i) {
+        h += '<li><span class="go-num">' + (i + 1) + "</span><div><b>" + esc(s.t) + "</b><span>" +
+          esc(s.d) + "</span></div></li>";
+      });
+      h += "</ol></div>";
+    }
+
     /* approvals: rough draft review */
     h += '<div class="go-sect">Needs your approval</div>';
     c.approvals.forEach(function (ap) {
-      h += '<div class="go-card"><h2>' + esc(ap.title) + "</h2><p>" + esc(ap.text) + "</p>" +
+      h += '<div class="go-card"><h2>' + esc(ap.title) + "</h2><p>" +
+        esc(ap.text).replace(/\n/g, "<br><br>") + "</p>" +
         '<button class="go-btn" data-ap="' + esc(ap.id) + '">' + esc(ap.cta) + "</button></div>";
     });
 
