@@ -1,5 +1,5 @@
 <script>
-/* GoJudy — The Go page for Judy Zhou. Renders from the public gist; all
+/* GoJudy: The Go page for Judy Zhou. Renders from the public gist; all
    copy updates are data-only (edit state, run go-tracker.py update gojudy).
    Local source: ~/workspace/client-tracker/gojudy-injection.js */
 (function () {
@@ -174,7 +174,7 @@
         post({ action: "approval", subject: "Judy approved " + label + ": " + (v.title || ""), item: "edit-" + v.n, body: "Approved " + label + "." })
           .then(function () {
             localStorage.setItem(key, JSON.stringify({ date: today() }));
-            doneFn("Approved — thank you!");
+            doneFn("Approved, thank you!");
           })
           .catch(fail);
       });
@@ -185,12 +185,12 @@
       notesBtn.disabled = true; notesBtn.textContent = "Sending...";
       post({ action: "notes", subject: "Notes on " + label + ": " + (v.title || ""), item: "edit-" + v.n, body: t })
         .then(function () {
-          msg.textContent = "Notes sent — thank you!";
+          msg.textContent = "Notes sent, thank you!";
           notesArea.value = "";
           notesBtn.disabled = false; notesBtn.textContent = "Send notes";
         })
         .catch(function () {
-          msg.textContent = "Something went wrong — try again.";
+          msg.textContent = "Something went wrong. Try again.";
           notesBtn.disabled = false; notesBtn.textContent = "Send notes";
         });
     });
@@ -216,8 +216,15 @@
         esc(c.how_it_works.alt || "How your project moves") + '"></div>';
     }
 
+    /* priority card */
+    (c.approvals || []).forEach(function (ap) {
+      h += '<div class="go-card"><h2>' + esc(ap.title) + "</h2><p>" +
+        esc(ap.text).replace(/\n/g, "<br><br>") + "</p>" +
+        '<button class="go-btn" data-scrollto="go-reviews">' + esc(ap.cta) + "</button></div>";
+    });
+
     /* review section: one card per video */
-    h += '<div class="go-sect">Your edits</div>';
+    h += '<div class="go-sect" id="go-reviews">Your edits</div>';
     var videos = (c.review_videos || []).filter(function (v) { return v.status !== "approved"; });
     videos.forEach(function (v) {
       var label = v.label || ("Edit " + v.n);
@@ -237,7 +244,7 @@
           '<button class="rv-play" aria-label="Play video">&#9654;</button>' +
           '<div class="rv-progress"><div class="rv-progress-fill"></div></div></div>' +
           (done
-            ? '<p class="go-done">Approved ' + esc(done) + " — thank you.</p>"
+            ? '<p class="go-done">Approved ' + esc(done) + ", thank you.</p>"
             : '<button class="go-btn rv-approve">Approve ' + esc(label.toLowerCase()) + "</button>") +
           '<textarea class="rv-notes" rows="2" placeholder="Want changes to ' + esc(label.toLowerCase()) + '? Write them here..."></textarea>' +
           '<button class="go-btn ghost go-notesbtn rv-notesbtn">Send notes</button>' +
@@ -269,6 +276,14 @@
     /* wire review cards */
     root.querySelectorAll(".go-review").forEach(function (row, i) {
       wireReviewRow(row, videos[i]);
+    });
+
+    /* priority-card CTA scroll buttons */
+    root.querySelectorAll("[data-scrollto]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var t = document.getElementById(b.getAttribute("data-scrollto"));
+        if (t && t.scrollIntoView) t.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
     });
 
     /* homescreen buttons */
