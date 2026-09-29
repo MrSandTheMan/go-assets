@@ -45,6 +45,10 @@
     "letter-spacing:.25em;text-transform:uppercase;color:#888;margin:0 0 12px;" +
     "font-weight:600;}" +
     "#go-root .go-hiw img{width:100%;border-radius:16px;display:block;}" +
+    /* test mode banner */
+    "#go-root .go-testbanner{background:#3a2c00;border:1px solid #8a6d00;color:#ffd75e;" +
+    "border-radius:12px;padding:10px 16px;font-size:13px;font-weight:600;text-align:center;" +
+    "margin:0 0 16px;}" +
     /* homescreen: two phone-type buttons, guide swaps (Beatrice pattern) */
     "#go-root .go-hs{background:#111;border:1px solid #2a2a2a;border-radius:16px;" +
     "padding:22px;margin:0 0 16px;text-align:center;}" +
@@ -127,11 +131,19 @@
     "@media(max-width:560px){#go-root .go-formrow{grid-template-columns:1fr;}}";
 
   var BACKEND = null;
+  /* test mode: open the page with ?test=1 and every submission is tagged [TEST]
+     in the notification email, so tests are never confused with real client submissions */
+  var TEST_MODE = /(?:\?|&)test=1(?:&|$)/.test(window.location.search);
   function post(payload) {
+    var p = Object.assign({ token: BACKEND.token }, payload);
+    if (TEST_MODE) {
+      p.subject = "[TEST] " + (p.subject || p.action || "");
+      p.body = "TEST SUBMISSION - sent from a ?test=1 page load, not by the client.\n\n" + (p.body || "");
+    }
     return fetch(BACKEND.url, {
       method: "POST",
       headers: { "Content-Type": "text/plain" },
-      body: JSON.stringify(Object.assign({ token: BACKEND.token }, payload))
+      body: JSON.stringify(p)
     }).then(function (r) { return r.json(); });
   }
 
@@ -423,6 +435,9 @@
 
     var root = document.createElement("div");
     root.id = "go-root";
+    if (TEST_MODE) {
+      h = '<div class="go-testbanner">TEST MODE - submissions from this visit will be tagged [TEST] in the notification email.</div>' + h;
+    }
     root.innerHTML = h;
     var mount = document.querySelector("main") || document.getElementById("page") || document.body;
     mount.insertBefore(root, mount.firstChild);
