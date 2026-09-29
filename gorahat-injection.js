@@ -35,6 +35,7 @@
     "#go-root .go-btn.ghost{background:transparent;border:1px solid #555;color:#fff;}" +
     "#go-root .go-btn.armed{background:#fff;color:#000;}" +
     "#go-root .go-btn:disabled{opacity:.55;cursor:default;}" +
+    "#go-root .go-btn.go-master-btn{background:#FFD60A!important;color:#111!important;}" +
     "#go-root .go-done{color:#5ce08a;font-weight:700;}" +
     "#go-root .go-pp{display:flex;justify-content:center;margin:0 0 18px;}" +
     "#go-root .go-pp img{width:104px;height:104px;border-radius:50%;object-fit:cover;" +
@@ -315,7 +316,9 @@
     if (c.how_it_works && c.how_it_works.image) {
       h += '<div class="go-hiw"><h2 class="go-hiw-h">' + esc(c.how_it_works.heading || "How it works") + "</h2>" +
         '<img loading="lazy" src="' + esc(c.how_it_works.image) + '" alt="' +
-        esc(c.how_it_works.alt || "How your project moves") + '"></div>';
+        esc(c.how_it_works.alt || "How your project moves") + '"></div>' +
+      '<div style="text-align:center;margin:8px 0 20px;">' +
+      '<a class="go-btn go-master-btn" href="https://drive.google.com/drive/folders/1fICnaPE8NX3gweGzrQ6LbZbaNX9EL66L?usp=sharing" target="_blank" rel="noopener">Open the master folder</a></div>';
     }
 
     /* approvals: rough draft review */
