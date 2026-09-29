@@ -1,0 +1,580 @@
+<!-- GoBeatrice header injection, pulled verbatim from the live Squarespace page
+     (GoBeatrice > Page Settings > Advanced) on 2026-09-28. Read-only copy.
+     Reusable skeleton for future Go client pages. -->
+<style>
+/* --- GoBeatrice page patches --- */
+.hero h1{font-size:clamp(24px,4.2vw,40px); }
+.page-text p{line-height:1.75; }
+.btn{display:inline-block;margin-top:14px;padding:13px 26px;border-radius:999px;
+background:#e8323c;color:#fff!important;text-decoration:none;font-weight:700; }
+.btn.go-master-btn{background:#FFD60A;color:#111!important; }
+.btn.approve{
+background:transparent;
+border:1.5px solid #4ade80;
+color:#4ade80;
+}
+.btn.approve:hover{background:rgba(74,222,128,0.10);text-decoration:none; }
+.btn.approve.armed{
+background:#4ade80;
+border-color:#4ade80;
+color:#0b0b0c;
+}
+.btn.approve.done{
+border-color:#232327;
+cursor:default;
+}
+.homescreen-prompt{
+max-width:680px;
+margin:0 auto;
+padding:36px 24px 72px;
+text-align:center;
+}
+.hs-title{
+font-family:Georgia,"Times New Roman",serif;
+font-style:italic;
+font-size:17px;
+color:#f5f5f5;
+margin:0 0 18px;
+}
+.hs-btns{
+display:flex;
+gap:12px;
+justify-content:center;
+margin-bottom:22px;
+}
+.hs-btns .btn.hs-opt{
+margin-top:0;
+flex:0 1 200px;
+background:transparent;
+border:1.5px solid #3a3a3f;
+color:#c9c9cd;
+}
+.hs-btns .btn.hs-opt:hover{
+border-color:#e8323c;
+color:#ffffff;
+text-decoration:none;
+}
+.hs-btns .btn.hs-opt.active{
+background:rgba(232,50,60,0.12);
+}
+.hs-guide img{
+display:block;
+width:100%;
+max-width:440px;
+margin:0 auto;
+border-radius:14px;
+border:1px solid #232327;
+box-shadow:0 12px 40px rgba(0,0,0,0.45);
+}
+.review-modal{
+position:fixed;
+top:0;left:0;right:0;bottom:0;
+background:rgba(0,0,0,0.65);
+z-index:9999;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:16px;
+}
+.review-card{
+background:#121214;
+border-radius:16px;
+padding:24px;
+width:min(680px,100%);
+max-height:88vh;
+overflow-y:auto;
+position:relative;
+color:#f5f5f5;
+}
+.review-close{
+position:absolute;
+top:6px;
+right:12px;
+background:none;
+border:0;
+color:#8a8a8e;
+font-size:30px;
+line-height:1;
+cursor:pointer;
+padding:4px 8px;
+}
+.review-close:hover{color:#ffffff; }
+.review-title{
+text-align:center;
+font-size:20px;
+margin:0 0 20px;
+color:#f5f5f5;
+}
+.rv{margin-bottom:28px; }
+.rv:last-child{margin-bottom:0; }
+.rv-title{
+font-weight:700;
+font-size:16px;
+margin:0 0 12px;
+}
+.rv-title span{font-weight:400;color:#8a8a8e; }
+.rv-player{display:flex;justify-content:center;background:#000;border-radius:12px;position:relative;
+overflow:hidden;cursor:pointer; }
+.rv-player iframe{height:min(60vh,177.78vw);aspect-ratio:9/16;width:auto;max-width:100%;border:0;border-radius:12px; }
+.rv-player video{height:min(60vh,177.78vw);aspect-ratio:9/16;width:auto;max-width:100%;border-radius:12px;background:#000; }
+.rv-fs-block{position:absolute;top:0;left:0;right:0;height:64px;z-index:5; }
+.rv-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;border:0;background:rgba(0,0,0,0.55);color:#fff;font-size:26px;cursor:pointer; }
+.rv-progress{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.25);cursor:pointer; }
+.rv-progress-fill{height:100%;width:0%;background:#fff; }
+.btn.rv-approve{margin-top:12px; }
+.guide-toggle{background:transparent;border:1px solid #3a3a3f;color:#c9c9cd;border-radius:999px;padding:10px 22px;font:inherit;font-size:14px;font-weight:600;cursor:pointer; }
+.guide-toggle:hover{border-color:#e8323c;color:#ffffff; }
+.guide-toggle.open{border-color:#e8323c;color:#ffffff;background:rgba(232,50,60,0.12); }
+.audio-guide-wrap{margin-top:16px;text-align:center; }
+.audio-guide-panel{margin-top:12px; }
+.audio-guide-panel img{display:block;width:100%;max-width:520px;margin:0 auto;border-radius:12px; }
+.rv-guide-wrap{margin-top:12px; }
+.rv-guide-panel{margin-top:12px; }
+.rv-guide-panel img{display:block;width:100%;border-radius:12px; }
+.rv-upload-block{margin-top:16px;background:#0b0b0c;border:1px solid #232327;border-radius:12px;padding:18px; }
+.rv-upload-title{font-size:16px;font-weight:700;margin:0 0 12px;color:#f5f5f5;text-align:center; }
+.rv-upload-done{display:none;text-align:center;font-size:14px;color:#4ade80;margin:0 0 12px; }
+.rv-file-row{display:flex;align-items:center;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:12px; }
+.rv-file-label{display:inline-block;padding:10px 20px;border-radius:999px;border:1.5px solid #3a3a3f;color:#c9c9cd;font-size:14px;font-weight:600;cursor:pointer; }
+.rv-file-label:hover{border-color:#e8323c;color:#ffffff; }
+.rv-file-name{font-size:13px;color:#8a8a8e;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
+.rv-send-btn{display:block;width:100%;margin-top:4px;padding:13px 26px;border-radius:999px;border:0;background:#E00020;color:#fff;font:inherit;font-weight:700;font-size:15px;cursor:pointer; }
+.rv-send-btn:disabled{background:#3a3a3f;color:#8a8a8e;cursor:not-allowed; }
+.rv-send-btn:not(:disabled):hover{background:#ff1a33; }
+.rv-upload-status{text-align:center;font-size:13px;margin:10px 0 0;color:#8a8a8e;min-height:18px; }
+.rv-upload-status.ok{color:#4ade80; }
+.rv-upload-status.err{color:#ff6b6b; }
+.rv-form-alt{text-align:center;font-size:13px;margin:12px 0 0;color:#8a8a8e; }
+.rv-form-alt a{color:#f5f5f5; }
+.rv-notes textarea{
+width:100%;
+padding:10px 12px;
+border-radius:10px;
+font:inherit;
+font-size:14px;
+background:#0b0b0c;
+border:1px solid #232327;
+color:#f5f5f5;
+resize:vertical;
+box-sizing:border-box;
+}
+.btn.rv-notes-btn{
+margin-top:8px;
+background:transparent;
+border:1.5px solid #3a3a3f;
+color:#c9c9cd;
+}
+.btn.rv-notes-btn:hover{
+border-color:#e8323c;
+color:#ffffff;
+text-decoration:none;
+}
+.rv-msg{
+font-size:13px;
+text-align:center;
+margin:10px 0 0;
+color:#8a8a8e;
+}
+.review-drive{
+text-align:center;
+margin:16px 0 0;
+font-size:14px;
+color:#8a8a8e;
+}
+.review-drive a{color:#f5f5f5; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function() {
+var GIST_URL='https://gist.githubusercontent.com/MrSandTheMan/45bda61d8b76598ff5da58e562463889/raw/gobeatrice-tracker.json';
+fetch(GIST_URL).then(function(r){return r.json(); }).then(function(data) {
+var card=data&&data.card;
+if(!card)return;
+var GUIDE_IMG_FALLBACK='https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/gobeatrice/audio-guide.png';
+var guideImgUrl=(card.audio_upload&&card.audio_upload.guide_img)||GUIDE_IMG_FALLBACK;
+var paras=document.querySelectorAll('.priority p');
+for(var i=0;i<paras.length;i++) {
+if(paras[i].textContent.indexOf('Five video edits')!==-1) {
+paras[i].innerHTML='<b>'+card.priority_heading+'</b> '+card.priority;
+var n=paras[i].nextElementSibling;
+var btn=(n&&n.classList&&n.classList.contains('btn'))?n:document.createElement('a');
+btn.className='btn';
+btn.href=card.button_url;
+btn.target='_blank';
+btn.textContent=card.button_label;
+if(!btn.parentNode)paras[i].insertAdjacentElement('afterend',btn);
+if(!document.querySelector('.audio-guide-wrap')) {
+var agWrap=document.createElement('div');
+agWrap.className='audio-guide-wrap';
+agWrap.innerHTML='<button class="guide-toggle audio-guide-toggle" type="button">How to record your audio</button>'+'<div class="audio-guide-panel" style="display:none"><img data-src="'+guideImgUrl+'" alt="How to record your audio"></div>';
+btn.insertAdjacentElement('afterend',agWrap);
+var agToggle=agWrap.querySelector('.audio-guide-toggle');
+var agPanel=agWrap.querySelector('.audio-guide-panel');
+var agImg=agWrap.querySelector('img');
+agToggle.addEventListener('click',function() {
+var show=agPanel.style.display==='none';
+agPanel.style.display=show?'block':'none';
+agToggle.classList.toggle('open',show);
+if(show&&!agImg.getAttribute('src')){agImg.setAttribute('src',agImg.getAttribute('data-src')); }
+});
+}
+break;
+}
+}
+var FORM_URL='https://docs.google.com/forms/d/e/1FAIpQLSdW9j54E6vjADcqOxfzOmtwRrT-_3xHbzhoJliYasM5OhSXXQ/formResponse';
+var ENTRY_NAME='entry.2011448184';
+var ENTRY_DETAILS='entry.1964542888';
+var ENTRY_VIDEO='entry.698383654';
+var ENTRY_TYPE='entry.655208910';
+var CLIENT_NAME='Beatrice Caponnetti Jackson';
+var pending=(card.review_videos||[]).filter(function(v) {return v.status!=='approved'; });
+if(pending.length>0) {
+var modal=document.createElement('div');
+modal.className='review-modal';
+modal.id='reviewModal';
+modal.style.display='none';
+var listHtml='';
+for(var qi=0;qi<pending.length;qi++) {
+var qv=pending[qi];
+var qlabel=qv.label||('Edit '+qv.n);
+var qlower=qlabel.toLowerCase();
+var playerHtml;
+if(qv.src) {
+playerHtml='<div class="rv-player"><video playsinline preload="none" data-src="'+qv.src+'"></video>'+'<button class="rv-play" aria-label="Play video">&#9654;</button>'+'<div class="rv-progress"><div class="rv-progress-fill"></div></div></div>';
+}else{
+playerHtml='<div class="rv-player"><iframe data-src="https://drive.google.com/file/d/'+qv.drive_id+'/preview" title="'+qlabel+' preview"></iframe><div class="rv-fs-block" aria-hidden="true"></div></div>';
+}
+var actionHtml;
+if(qv.status==='needs_audio'&&card.audio_upload&&card.audio_upload.enabled) {
+var formViewUrl=card.audio_upload.form_url;
+actionHtml='<div class="rv-guide-wrap">'+'<button class="guide-toggle rv-guide-toggle" type="button">How to record your audio</button>'+'<div class="rv-guide-panel" style="display:none"><img data-guide-src="'+guideImgUrl+'" alt="How to record your audio"></div>'+'</div>'+'<div class="rv-upload-block">'+'<p class="rv-upload-title">Upload your audio</p>'+'<p class="rv-upload-done" style="display:none"></p>'+'<div class="rv-file-row">'+'<label class="rv-file-label" for="rv-file-'+qv.n+'">Choose audio file</label>'+'<input type="file" id="rv-file-'+qv.n+'" accept="audio/*" style="display:none">'+'<span class="rv-file-name">No file chosen</span>'+'</div>'+'<button class="rv-send-btn" type="button" disabled>Send audio</button>'+'<p class="rv-upload-status"></p>'+'<p class="rv-form-alt"><a href="'+formViewUrl+'" target="_blank" rel="noopener">Having trouble? Open the upload form in a new tab</a></p>'+'</div>';
+}else{
+actionHtml='<a class="btn rv-approve approve" href="#">Approve '+qlower+'</a>';
+}
+listHtml+='<div class="rv" data-n="'+qv.n+'">'+'<p class="rv-title">'+qlabel+' <span>'+(qv.title||'')+'</span></p>'+playerHtml+actionHtml+'<div class="rv-notes"><textarea rows="2" placeholder="Want changes to '+qlower+'? Write them here..."></textarea>'+'<a class="btn rv-notes-btn" href="#">Send notes</a></div>'+'<p class="rv-msg" style="display:none"></p></div>';
+}
+modal.innerHTML='<div class="review-card"><button class="review-close" aria-label="Close">×</button>'+'<h3 class="review-title">Review your edits</h3><div class="review-list">'+listHtml+'</div>'+'<p class="review-drive">Prefer Drive? <a href="'+card.button_url+'" target="_blank" rel="noopener">'+'Open edits 1 & 2 in Google Drive</a></p></div>';
+document.body.appendChild(modal);
+var rvEls=modal.querySelectorAll('.rv');
+for(var wi=0;wi<rvEls.length;wi++) {
+(function(rvEl,v) {
+var label=v.label||('Edit '+v.n);
+var labelLower=label.toLowerCase();
+var nativeVideo=rvEl.querySelector('.rv-player video');
+var playerFrame=rvEl.querySelector('.rv-player iframe');
+var playerEl=nativeVideo||playerFrame;
+if(v.aspect&&playerEl) {playerEl.style.aspectRatio=v.aspect.replace(':','/'); }
+if(nativeVideo) {
+var playBtn=rvEl.querySelector('.rv-play');
+var progBar=rvEl.querySelector('.rv-progress');
+var progFill=rvEl.querySelector('.rv-progress-fill');
+var togglePlay=function() {
+if(nativeVideo.paused) {
+var pr=nativeVideo.play();
+if(pr&&pr.catch) {pr.catch(function(){}); }
+}else{
+nativeVideo.pause();
+}
+};
+nativeVideo.addEventListener('click',togglePlay);
+playBtn.addEventListener('click',togglePlay);
+nativeVideo.addEventListener('play',function() {playBtn.style.display='none'; });
+nativeVideo.addEventListener('pause',function() {playBtn.style.display=''; });
+nativeVideo.addEventListener('timeupdate',function() {
+if(nativeVideo.duration) {progFill.style.width=(nativeVideo.currentTime/nativeVideo.duration*100)+'%'; }
+});
+progBar.addEventListener('click',function(e) {
+var r=progBar.getBoundingClientRect();
+var ratio=(e.clientX-r.left)/r.width;
+if(ratio<0) {ratio=0; }
+if(ratio>1) {ratio=1; }
+if(nativeVideo.duration) {nativeVideo.currentTime=ratio*nativeVideo.duration; }
+});
+}
+var rvGuideToggle=rvEl.querySelector('.rv-guide-toggle');
+if(rvGuideToggle) {
+var rvGuidePanel=rvEl.querySelector('.rv-guide-panel');
+var rvGuideImg=rvEl.querySelector('.rv-guide-panel img');
+rvGuideToggle.addEventListener('click',function() {
+var show=rvGuidePanel.style.display==='none';
+rvGuidePanel.style.display=show?'block':'none';
+rvGuideToggle.classList.toggle('open',show);
+if(show&&rvGuideImg&&!rvGuideImg.getAttribute('src')) {
+rvGuideImg.setAttribute('src',rvGuideImg.getAttribute('data-guide-src'));
+}
+});
+}
+var upBlock=rvEl.querySelector('.rv-upload-block');
+if(upBlock) {
+var fileInput=upBlock.querySelector('input[type="file"]');
+var fileNameEl=upBlock.querySelector('.rv-file-name');
+var sendBtn=upBlock.querySelector('.rv-send-btn');
+var upStatus=upBlock.querySelector('.rv-upload-status');
+var upDone=upBlock.querySelector('.rv-upload-done');
+var UPLOAD_URL='https://script.google.com/macros/s/AKfycbzH1wPmGiuxW84_xJHIhkqEkckyUucx0wsUFIWZo0dRqOix0Bh_HG_nM7E8wm9jiT2p6g/exec';
+var UPLOAD_TOKEN='aK7zR4Qw2XpL9mN3cV8fT6dH1sY5eU0b';
+var LS_KEY='gobeatrice_audio_edit'+v.n;
+try{
+var storedAudio=localStorage.getItem(LS_KEY);
+if(storedAudio){
+upDone.textContent='Audio received on '+storedAudio;
+upDone.style.display='block';
+fileInput.disabled=true;
+sendBtn.disabled=true;
+}
+}catch(e){}
+fileInput.addEventListener('change',function(){
+var f=fileInput.files&&fileInput.files[0];
+if(f){
+fileNameEl.textContent=f.name;
+sendBtn.disabled=false;
+upStatus.textContent='';
+upStatus.className='rv-upload-status';
+}else{
+fileNameEl.textContent='No file chosen';
+sendBtn.disabled=true;
+}
+});
+sendBtn.addEventListener('click',function(){
+var f=fileInput.files&&fileInput.files[0];
+if(!f)return;
+sendBtn.disabled=true;
+upStatus.textContent='Uploading...';
+upStatus.className='rv-upload-status';
+var reader=new FileReader();
+reader.onload=function(){
+var dataUrl=String(reader.result||'');
+var base64=dataUrl.indexOf(',')!==-1?dataUrl.split(',')[1]:'';
+fetch(UPLOAD_URL,{
+method:'POST',
+headers:{'Content-Type':'text/plain;charset=UTF-8'},
+body:JSON.stringify({
+token:UPLOAD_TOKEN,
+clientName:'Beatrice Caponnetti Jackson',
+editLabel:label,
+fileName:f.name,
+mimeType:f.type||'audio/mp4',
+fileBase64:base64
+})
+}).then(function(resp){return resp.json();})
+.then(function(d){
+if(d&&d.ok){
+var dt=new Date();
+var ds=(dt.getMonth()+1)+'/'+dt.getDate()+'/'+dt.getFullYear();
+try{localStorage.setItem(LS_KEY,ds);}catch(e){}
+upStatus.textContent='Audio received. Thank you.';
+upStatus.className='rv-upload-status ok';
+upDone.textContent='Audio received on '+ds;
+upDone.style.display='block';
+fileInput.disabled=true;
+sendBtn.disabled=true;
+}else{
+upStatus.textContent='Upload failed, please try again or use the form link below.';
+upStatus.className='rv-upload-status err';
+sendBtn.disabled=false;
+}
+}).catch(function(){
+upStatus.textContent='Upload failed, please try again or use the form link below.';
+upStatus.className='rv-upload-status err';
+sendBtn.disabled=false;
+});
+};
+reader.onerror=function(){
+upStatus.textContent='Upload failed, please try again or use the form link below.';
+upStatus.className='rv-upload-status err';
+sendBtn.disabled=false;
+};
+reader.readAsDataURL(f);
+});
+}
+var approveBtn=rvEl.querySelector('.rv-approve');
+var notesArea=rvEl.querySelector('.rv-notes textarea');
+var notesBtn=rvEl.querySelector('.rv-notes-btn');
+var msg=rvEl.querySelector('.rv-msg');
+var vDone=null;
+if(v.status==='approved') {
+vDone=v.approved_date||'';
+}else{
+try{
+var vs=JSON.parse(localStorage.getItem('gobeatrice_approval_edit'+v.n)||'null');
+if(vs&&vs.date)vDone=vs.date;
+}catch(e) {}
+}
+if(approveBtn) {
+if(vDone!==null) {
+approveBtn.textContent='Approved '+vDone+' — thank you!';
+approveBtn.classList.add('done');
+}
+var vArmed=false,vArmTimer=null;
+approveBtn.addEventListener('click',function(e) {
+e.preventDefault();
+if(approveBtn.classList.contains('done'))return;
+if(!vArmed) {
+vArmed=true;
+approveBtn.textContent='Tap again to confirm';
+approveBtn.classList.add('armed');
+vArmTimer=setTimeout(function() {
+vArmed=false;
+approveBtn.classList.remove('armed');
+approveBtn.textContent='Approve '+labelLower;
+},12000);
+}else{
+clearTimeout(vArmTimer);
+vArmed=false;
+approveBtn.textContent='Sending...';
+var abody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent('I approve '+labelLower+' as final.')+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(label)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Approval');
+fetch(FORM_URL, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:abody}).then(function() {
+var d=new Date();
+var vd=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
+try{localStorage.setItem('gobeatrice_approval_edit'+v.n,JSON.stringify({date:vd})); }catch(e) {}
+approveBtn.textContent='Approved '+vd+' — thank you!';
+approveBtn.classList.remove('armed');
+approveBtn.classList.add('done');
+}).catch(function() {
+approveBtn.textContent='Something went wrong — tap to retry';
+vArmed=false;
+});
+}
+});
+}
+notesBtn.addEventListener('click',function(e) {
+e.preventDefault();
+var noteText=notesArea.value.trim();
+if(!noteText) {
+msg.textContent='Write your notes first.';
+msg.style.display='block';
+return;
+}
+notesBtn.textContent='Sending...';
+var nbody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent(noteText)+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(label)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Revision notes');
+fetch(FORM_URL, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:nbody}).then(function() {
+msg.textContent='Notes sent — thank you!';
+msg.style.display='block';
+notesArea.value='';
+notesBtn.textContent='Send notes';
+}).catch(function() {
+msg.textContent='Something went wrong — try again.';
+msg.style.display='block';
+notesBtn.textContent='Send notes';
+});
+});
+})(rvEls[wi],pending[wi]);
+}
+var openReview=function() {
+var frs=modal.querySelectorAll('iframe[data-src], video[data-src]');
+for(var fi=0;fi<frs.length;fi++) {
+if(!frs[fi].getAttribute('src'))frs[fi].setAttribute('src',frs[fi].getAttribute('data-src'));
+}
+var gimgs=modal.querySelectorAll('img[data-src]');
+for(var gi=0;gi<gimgs.length;gi++) {
+if(!gimgs[gi].getAttribute('src'))gimgs[gi].setAttribute('src',gimgs[gi].getAttribute('data-src'));
+}
+modal.style.display='flex';
+document.body.style.overflow='hidden';
+};
+var closeReview=function() {
+modal.style.display='none';
+document.body.style.overflow='';
+document.querySelectorAll('#reviewModal .rv-player iframe').forEach(function(f){f.removeAttribute('src'); });
+document.querySelectorAll('#reviewModal .rv-player video').forEach(function(vd){try{vd.pause(); }catch(e){} vd.removeAttribute('src'); vd.load(); });
+};
+btn.addEventListener('click',function(e) {
+e.preventDefault();
+openReview();
+});
+modal.querySelector('.review-close').addEventListener('click',closeReview);
+modal.addEventListener('click',function(e) {
+if(e.target===modal)closeReview();
+});
+document.addEventListener('keydown',function(e) {
+if(e.key==='Escape'&&modal.style.display!=='none')closeReview();
+});
+}
+if(card.homescreen&&card.homescreen.enabled) {
+var hs=document.createElement('div');
+hs.className='homescreen-prompt';
+hs.innerHTML='<p class="hs-title">Want to add this page to your home screen?</p>'+'<div class="hs-btns"><a class="btn hs-opt" href="#" data-guide="iphone">iPhone</a>'+'<a class="btn hs-opt" href="#" data-guide="android">Android</a></div>'+'<div class="hs-guide" style="display:none"><img alt="Add to home screen guide"></div>';
+var ftr=document.querySelector('footer');
+if(ftr) {ftr.insertAdjacentElement('afterend',hs); }else{document.body.appendChild(hs); }
+var guideBox=hs.querySelector('.hs-guide');
+var guideImg=hs.querySelector('.hs-guide img');
+var current=null;
+hs.querySelectorAll('.hs-opt').forEach(function(b) {
+b.addEventListener('click',function(e) {
+e.preventDefault();
+var which=b.getAttribute('data-guide');
+if(current===which) {guideBox.style.display='none';current=null;b.classList.remove('active');return; }
+guideImg.src=which==='iphone'?card.homescreen.iphone_img:card.homescreen.android_img;
+guideImg.alt=(which==='iphone'?'iPhone':'Android')+' add to home screen guide';
+guideBox.style.display='block';
+hs.querySelectorAll('.hs-opt').forEach(function(o) {o.classList.remove('active'); });
+b.classList.add('active');
+});
+});
+}
+var bottles=document.querySelectorAll('.bottle');
+if(bottles.length&&card.bottlenecks&&card.bottlenecks.length) {
+var html='';
+for(var b=0;b<card.bottlenecks.length;b++) {
+html+='<div class="bottle"><div class="box"></div><div>'+card.bottlenecks[b].t+'<span class="d">'+card.bottlenecks[b].d+'</span></div>';
+}
+bottles[0].insertAdjacentHTML('beforebegin',html);
+for(var k=0;k<bottles.length;k++) {bottles[k].remove(); }
+}
+var lis=document.querySelectorAll('li');
+for(var m=0;m<lis.length;m++) {
+if(lis[m].textContent.indexOf('bcjteam.com v2')!==-1) {
+lis[m].innerHTML='Ad Landing Page<span class="t">In production</span>';
+break;
+}
+}
+var tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);
+var tn;
+while((tn=tw.nextNode())) {
+if(/text sandy/i.test(tn.nodeValue)) {
+var pel=tn.parentElement;
+while(pel&&!/^(P|DIV|LI|FOOTER)$/.test(pel.tagName)) {pel=pel.parentElement; }
+if(pel) {pel.innerHTML='Questions? Email <a href="mailto:team@goanomalous.com">team@goanomalous.com</a>'; }
+break;
+}
+}
+var trackerEl=document.getElementById('tracker');
+if(trackerEl&&data.projects&&data.projects.length) {
+var phaseClass={
+'kickoff':'p-kickoff',
+'in production':'p-production',
+'in review':'p-review',
+'delivered':'p-delivered',
+'on hold':'p-hold'
+};
+var tHtml='';
+for(var t=0;t<data.projects.length;t++) {
+var pj=data.projects[t];
+var pc=phaseClass[String(pj.phase).toLowerCase()]||'p-kickoff';
+if(pj.project==='5 video edits') {pj.milestone='Edits 3-5 approved, edit 1 needs audio'; }
+tHtml+='<div class="row"><div class="row-top"><div class="row-title">'+pj.project+'</div>'+'<span class="pill '+pc+'">'+pj.phase+'</span></div>'+'<div class="row-meta">Next milestone: <b>'+pj.milestone+'</b> &middot; Updated '+pj.updated+'</div></div>';
+}
+trackerEl.innerHTML=tHtml;
+}
+}).catch(function() {});
+});
+/* master folder button, inserted under the how-it-works phases image */
+(function(){
+var imgs=document.querySelectorAll('img');
+for(var i=0;i<imgs.length;i++){
+var s=imgs[i].getAttribute('src')||'';
+if(s.indexOf('anomalous-tracker-phases')!==-1){
+var wrap=imgs[i].closest('figure')||imgs[i].parentElement;
+var d=document.createElement('div');
+d.style.textAlign='center';d.style.margin='8px 0 20px';
+var a=document.createElement('a');
+a.className='btn go-master-btn';
+a.href='https://drive.google.com/drive/folders/1D8uo_r4UU2_FDflEsqM3gAasBkKYmVNV?usp=drive_link';
+a.target='_blank';a.rel='noopener';
+a.textContent='Open the master folder';
+d.appendChild(a);
+wrap.parentNode.insertBefore(d,wrap.nextSibling);
+break;
+}
+}
+})();
+</script>
