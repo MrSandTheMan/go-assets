@@ -515,7 +515,7 @@ var bottles=document.querySelectorAll('.bottle');
 if(bottles.length&&card.bottlenecks&&card.bottlenecks.length) {
 var html='';
 for(var b=0;b<card.bottlenecks.length;b++) {
-html+='<div class="bottle"><div class="box"></div><div>'+card.bottlenecks[b].t+'<span class="d">'+card.bottlenecks[b].d+'</span></div>';
+html+='<div class="bottle"><div class="box"></div><div>'+card.bottlenecks[b].t+'<span class="d">'+card.bottlenecks[b].d+'</span></div></div>';
 }
 bottles[0].insertAdjacentHTML('beforebegin',html);
 for(var k=0;k<bottles.length;k++) {bottles[k].remove(); }
