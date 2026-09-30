@@ -143,6 +143,13 @@
 
   
   .bcj-landing .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  .bcj-landing .video-grid.finals{grid-template-columns:repeat(3,1fr);gap:26px}
+  .bcj-landing .final-video{margin:0}
+  .bcj-landing .final-video video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;display:block}
+  .bcj-landing .final-video figcaption{padding:14px 2px 0}
+  .bcj-landing .final-video .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .bcj-landing .final-video h3{font-size:19px;color:var(--ink);font-family:var(--serif)}
+  @media(max-width:720px){.bcj-landing .video-grid.finals{grid-template-columns:1fr;max-width:340px;margin:0 auto}}
   .bcj-landing .video-card{position:relative;overflow:hidden;background:var(--ink);aspect-ratio:16/9;display:flex;align-items:flex-end;text-decoration:none}
   .bcj-landing .video-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1);opacity:.62}
   .bcj-landing .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:74px;height:74px;border:1px solid var(--ivory);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ivory);font-size:20px;background:rgba(14,14,14,.45)}
@@ -281,7 +288,7 @@
     </div>
     <div class="hero-video rv">
       <video id="v5" controls playsinline preload="metadata" poster="https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/02cf67a9-27b7-4178-8276-ffe1d3db6cf0/sch00-25.jpg" aria-label="Beatrice Caponnetti: The most expensive word is fine">
-        <source src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/gobeatrice/edit5.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/gobeatrice/edit5-final.mp4" type="video/mp4">
       </video>
       <div class="video-fallback" id="v5fallback" hidden>
         <h3>Video drops soon.</h3>
@@ -461,19 +468,21 @@
       <div class="rule"></div>
       <p class="lede">Short, straight-talking takes on the New York market — what to know before you buy, sell, or sign.</p>
     </div>
-    <div class="video-grid">
-      <a class="video-card rv" href="#watch" aria-label="Watch Beatrice's newest video">
-        <img src="https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/02cf67a9-27b7-4178-8276-ffe1d3db6cf0/sch00-25.jpg" alt="Beatrice Caponnetti on camera in New York">
-        <div class="play">&#9654;</div>
-        <div class="video-meta"><p>Watch Now</p><h3>The Most Expensive Word Is &ldquo;Fine&rdquo;</h3></div>
-      </a>
-      <a class="video-card rv" href="#contact" aria-label="Ask Beatrice for the full video library">
-        <img src="https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/1764089166996-BPAVMSO3X7DNUYMWRDO5/unsplash-image-vHf7WRNcgws.jpg" alt="Video thumbnail">
-        <div class="play">&#9654;</div>
-        <div class="video-meta"><p>Buyer Guidance</p><h3>The Rich Don&rsquo;t Buy Homes</h3></div>
-      </a>
+    <div class="video-grid finals">
+      <figure class="final-video rv">
+        <video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/gobeatrice/edit2-final.mp4" aria-label="Beatrice Caponnetti: The rich don't buy homes like everyone else"></video>
+        <figcaption><p class="eyebrow">Buyer Guidance</p><h3>The Rich Don&rsquo;t Buy Homes Like Everyone Else</h3></figcaption>
+      </figure>
+      <figure class="final-video rv">
+        <video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/gobeatrice/edit3-final.mp4" aria-label="Beatrice Caponnetti: The building no one talks about"></video>
+        <figcaption><p class="eyebrow">Market Intel</p><h3>The Building No One Talks About</h3></figcaption>
+      </figure>
+      <figure class="final-video rv">
+        <video controls playsinline preload="metadata" src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/gobeatrice/edit4-final.mp4" aria-label="Beatrice Caponnetti: What every CEO understands"></video>
+        <figcaption><p class="eyebrow">Investor Mindset</p><h3>What Every CEO Understands</h3></figcaption>
+      </figure>
     </div>
-    <p class="video-note rv" style="margin-top:28px;font-size:14.5px;color:var(--ink)">Full video library and social links on request — <a href="#contact">just ask</a>.</p>
+    <p class="video-note rv" style="margin-top:28px;font-size:14.5px;color:var(--ink)">One more on the way — the $500k mistake, once the final audio lands. <a href="#contact">Ask for the full library</a>.</p>
     <div class="sec-cta rv">
       <a class="btn dark" href="#valuation">Get a Free Home Valuation</a>
       <a class="btn oline" href="#contact">Book a Private Consultation</a>
