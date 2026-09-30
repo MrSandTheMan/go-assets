@@ -138,6 +138,12 @@
   /* test mode: open the page with ?test=1 and every submission is tagged [TEST]
      in the notification email, so tests are never confused with real client submissions */
   var TEST_MODE = /(?:\?|&)test=1(?:&|$)/.test(window.location.search);
+  /* ?test=1&clear=1 wipes test approval stamps so a test browser returns to the unapproved state */
+  if (TEST_MODE && /(?:\?|&)clear=1(?:&|$)/.test(window.location.search)) {
+    Object.keys(localStorage).forEach(function (k) {
+      if (k.indexOf("gocorestone_approved_") === 0) localStorage.removeItem(k);
+    });
+  }
   function post(payload) {
     var p = Object.assign({ token: BACKEND.token }, payload);
     if (TEST_MODE) {
