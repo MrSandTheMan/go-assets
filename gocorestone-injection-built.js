@@ -386,6 +386,7 @@
     }).join("") + "</div>";
 
     /* priority */
+    if (c.priority) {
     var replyDone = localStorage.getItem("gocorestone_reply_sent");
     h += '<div class="go-card"><h2>' + esc(c.priority.heading) + "</h2>" +
       "<p>" + esc(c.priority.text) + "</p>";
@@ -396,6 +397,7 @@
         '<button class="go-btn" id="go-replysend">Send reply</button>';
     }
     h += "</div>";
+    }
 
     /* approvals, above bottlenecks */
     h += '<div class="go-sect">Needs your approval</div>';
