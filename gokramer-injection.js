@@ -203,7 +203,7 @@
     var html = "<h2>Review your rough drafts</h2>" +
       "<p>Tap play on each trim. Approve the ones you love, or send notes on what to change.</p>";
     pending.forEach(function (v) {
-      var key = "gokramer_approval_trim" + v.n;
+      var key = "gokramer_appr2_trim" + v.n;
       var done = null;
       try {
         var vs = JSON.parse(localStorage.getItem(key) || "null");
@@ -265,7 +265,7 @@
     var notesArea = row.querySelector(".rv-notes");
     var notesBtn = row.querySelector(".rv-notesbtn");
     var msg = row.querySelector(".rv-msg");
-    var key = "gokramer_approval_trim" + v.n;
+    var key = "gokramer_appr2_trim" + v.n;
 
     if (approveBtn) {
       twoTap(approveBtn, "Approve " + labelLower, function (doneFn, fail) {
@@ -402,18 +402,14 @@
       '<button class="go-btn" id="go-accountsbtn">' + esc(c.accounts.cta) + "</button></div>";
 
     /* part 2 shoot form */
-    var rDone = localStorage.getItem("gokramer_reshoot_sent");
+    var rDone = localStorage.getItem("gokramer_reshoot_sent2");
     h += '<div class="go-sect">Part 2 shoot</div>' +
       '<div class="go-card"><h2>' + esc(c.reshoot.title) + "</h2><p>" + esc(c.reshoot.text) + "</p>";
     if (rDone) {
       h += '<p class="go-done">Received ' + esc(rDone) + " — thank you.</p>";
     } else {
       h += '<div class="go-formrow">' +
-        '<div class="go-field"><label>Possible day 1</label><input id="go-day1" placeholder="e.g. Tue Oct 6"></div>' +
-        '<div class="go-field"><label>Possible day 2</label><input id="go-day2" placeholder="e.g. Thu Oct 8"></div></div>' +
-        '<div class="go-formrow">' +
-        '<div class="go-field"><label>Shoot location 1</label><input id="go-loc1" placeholder="Address or place name"></div>' +
-        '<div class="go-field"><label>Shoot location 2</label><input id="go-loc2" placeholder="Address or place name"></div></div>' +
+        '<div class="go-field"><label>Start time</label><input id="go-time" placeholder="e.g. 10:00 AM"></div></div>' +
         '<div class="go-formrow">' +
         '<div class="go-field"><label>Guest name 1</label><input id="go-guest1" placeholder="Full name"></div>' +
         '<div class="go-field"><label>Guest name 2</label><input id="go-guest2" placeholder="Full name"></div></div>' +
@@ -482,10 +478,8 @@
       rsBtn.addEventListener("click", function () {
         var msg = root.querySelector("#go-reshootmsg");
         var vals = {
-          "Possible day 1": root.querySelector("#go-day1").value.trim(),
-          "Possible day 2": root.querySelector("#go-day2").value.trim(),
-          "Location 1": root.querySelector("#go-loc1").value.trim(),
-          "Location 2": root.querySelector("#go-loc2").value.trim(),
+          "Shoot day": "Thursday, Oct 8",
+          "Start time": root.querySelector("#go-time").value.trim(),
           "Guest 1": root.querySelector("#go-guest1").value.trim(),
           "Guest 2": root.querySelector("#go-guest2").value.trim()
         };
@@ -495,7 +489,7 @@
         var body = Object.keys(vals).map(function (k) { return k + ": " + (vals[k] || "-"); }).join("\n");
         post({ action: "reshoot", subject: "Steven sent part 2 shoot details", item: "reshoot", body: body })
           .then(function () {
-            localStorage.setItem("gokramer_reshoot_sent", today());
+            localStorage.setItem("gokramer_reshoot_sent2", today());
             rsBtn.outerHTML = '<p class="go-done">Received — thank you.</p>';
             msg.textContent = "";
           })
