@@ -1,5 +1,5 @@
 <script>
-/* GoRahme: The Go page for Fouad Rahme (Rahme Team, Compass).
+/* GoRahme: The Go page for Fouad Rahmé (Rahmé Team, Compass).
    Renders the 60-day Instagram audit natively from the public gist; all
    copy updates are data-only (edit state, run go-tracker.py update gorahme).
    Local source: ~/workspace/client-tracker/gorahme-injection.js */
@@ -19,6 +19,9 @@
     "font-family:Inter,-apple-system,'Segoe UI',sans-serif;}" +
     "#go-root .go-eyebrow{letter-spacing:.25em;font-size:12px;color:#999;" +
     "text-transform:uppercase;margin:0 0 8px;text-align:center;}" +
+    "#go-root .go-profile-pic{display:block;width:104px;height:104px;" +
+    "border-radius:50%;object-fit:cover;border:3px solid " + RED + ";" +
+    "margin:0 auto 16px;}" +
     "#go-root h1{font-family:Archivo,Inter,sans-serif;font-weight:800;" +
     "font-size:clamp(28px,5vw,44px);margin:0 0 6px;text-align:center;}" +
     "#go-root .go-sub{text-align:center;color:#999;font-size:15px;margin:0 0 28px;" +
@@ -118,6 +121,10 @@
     var c = d.card;
     var h = "";
 
+    if (c.profile_pic) {
+      h += '<img class="go-profile-pic" src="' + esc(c.profile_pic) + '" alt="' +
+        esc(c.profile_pic_alt || c.title) + '" loading="lazy">';
+    }
     h += '<p class="go-eyebrow">' + esc(c.eyebrow) + "</p><h1>" + esc(c.title) + "</h1>" +
       '<p class="go-sub">' + esc(c.subtitle) + "</p>";
 
