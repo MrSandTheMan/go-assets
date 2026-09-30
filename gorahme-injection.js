@@ -41,6 +41,9 @@
     "#go-root .go-btn.ghost{background:transparent;border:1px solid #555;color:#fff;}" +
     "#go-root .go-btn.active{border-color:" + RED + ";color:#fff;" +
     "background:rgba(224,0,32,.12);}" +
+    "#go-root .go-btn:disabled{opacity:.6;cursor:default;}" +
+    "#go-root .go-ctasent{color:#5ce08a;font-weight:700;font-size:16px;margin:0;}" +
+    "#go-root .go-ctaerr{color:#ff6b6b;font-size:14px;margin:10px 0 0;}" +
     /* KPI stat grid */
     "#go-root .go-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;" +
     "margin:0 0 16px;}" +
@@ -117,6 +120,13 @@
     }).join("");
   }
 
+  function fmtDate(iso) {
+    try {
+      var d = new Date(iso);
+      return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    } catch (e) { return String(iso); }
+  }
+
   function render(d) {
     var c = d.card;
     var h = "";
@@ -191,11 +201,24 @@
         esc(c.gap.text) + "</p></div>";
     }
 
-    /* CTA: the Script Scan ask */
+    /* CTA: the Script Scan ask: posts to the backend, saves the sent date on the page */
     if (c.cta) {
+      var sentAt = null;
+      try { sentAt = localStorage.getItem("gorahme_script_ask"); } catch (e) { sentAt = null; }
       h += '<div class="go-cta"><h2>' + esc(c.cta.heading) + "</h2><p>" +
-        esc(c.cta.text) + '</p><a class="go-btn yellow" href="' + esc(c.cta.href) + '">' +
-        esc(c.cta.button) + "</a></div>";
+        esc(c.cta.text) + "</p>";
+      if (c.backend && c.backend.url) {
+        if (sentAt) {
+          h += '<p class="go-ctasent">' + esc(c.cta.sent_text || "Script ask received") +
+            " on " + esc(fmtDate(sentAt)) + ".</p>";
+        } else {
+          h += '<button class="go-btn yellow" id="go-scriptask">' + esc(c.cta.button) + "</button>" +
+            '<p class="go-ctaerr" style="display:none"></p>';
+        }
+      } else {
+        h += '<a class="go-btn yellow" href="' + esc(c.cta.href) + '">' + esc(c.cta.button) + "</a>";
+      }
+      h += "</div>";
     }
 
     h += '<p class="go-footer">Questions? Email <a href="mailto:' + esc(c.footer_email) + '">' +
@@ -235,6 +258,43 @@
           b.classList.add("active");
           current = which;
         });
+      });
+    }
+
+    /* Script Scan ask button: one tap notifies team@ and stamps the sent date */
+    var askBtn = root.querySelector("#go-scriptask");
+    if (askBtn && c.backend && c.backend.url) {
+      var askLabel = c.cta.button;
+      askBtn.addEventListener("click", function () {
+        askBtn.disabled = true;
+        askBtn.textContent = "Sending...";
+        var isTest = /[?&]test=1/.test(window.location.search);
+        var payload = { token: c.backend.token, action: "script_ask" };
+        if (isTest) { payload.test = true; }
+        fetch(c.backend.url, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain" },
+          body: JSON.stringify(payload)
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (!(res && res.ok)) { throw new Error("bad response"); }
+            var now = new Date().toISOString();
+            try { localStorage.setItem("gorahme_script_ask", now); } catch (e) {}
+            var sent = document.createElement("p");
+            sent.className = "go-ctasent";
+            sent.textContent = (c.cta.sent_text || "Script ask received") + " on " + fmtDate(now) + ".";
+            askBtn.parentNode.replaceChild(sent, askBtn);
+          })
+          .catch(function () {
+            askBtn.disabled = false;
+            askBtn.textContent = askLabel;
+            var err = root.querySelector(".go-ctaerr");
+            if (err) {
+              err.style.display = "block";
+              err.textContent = "Something went wrong. Please try again or email team@goanomalous.com.";
+            }
+          });
       });
     }
   }
