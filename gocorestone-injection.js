@@ -298,6 +298,33 @@
     }
   }
 
+  function openAudit(ap) {
+    var key = "gocorestone_approved_audit";
+    var done = localStorage.getItem(key);
+    var html = "<h2>" + esc(ap.title) + "</h2><p>" + esc(ap.text) + "</p>";
+    (ap.groups || []).forEach(function (g) {
+      html += '<div class="go-item"><b>' + esc(g.heading) + "</b><p>" +
+        (g.items || []).map(function (it) { return "· " + esc(it); }).join("<br>") + "</p></div>";
+    });
+    html += done
+      ? '<p class="go-done">Approved ' + esc(done) + "</p>"
+      : '<button class="go-btn" id="go-approveaudit">Approve the audit</button>';
+    html += notesBlock("audit", "Corestone audit");
+    var box = openModal(html);
+    wireNotes("audit", "Corestone audit");
+    var btn = box.querySelector("#go-approveaudit");
+    if (btn) {
+      twoTap(btn, "Approve the audit", function (doneFn, fail) {
+        post({ action: "approval", subject: "Moshe approved the Corestone audit", item: "audit", body: "Approved." })
+          .then(function () {
+            localStorage.setItem(key, today());
+            doneFn("Approved");
+          })
+          .catch(fail);
+      });
+    }
+  }
+
   /* ---------- render ---------- */
   function pill(status) {
     var cls = "planned";
@@ -491,6 +518,7 @@
         if (id === "lead-magnet") openLeadMagnets(ap);
         else if (id === "film-email") openFilmEmail(ap);
         else if (id === "fav-properties") openFavProperties(ap);
+        else if (id === "audit") openAudit(ap);
       });
     });
   }
