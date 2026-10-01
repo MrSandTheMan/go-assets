@@ -1,0 +1,593 @@
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Squarespace embed: collapse the section padding around this block */
+.page-section .content-wrapper{padding-top:0 !important;padding-bottom:0 !important}
+</style>
+<style>
+  .bcj-landing{
+    --ink:#0e0e0e;        
+    --ink-2:#272727;      
+    --ivory:#f6f6f6;      
+    --ivory-2:#efefec;    
+    --paper:#ffffff;
+    --line:#d9d9d6;       
+    --body-dk:#2b2b2b;    
+    --muted-lt:#c9c9c9;   
+    --serif:'Marcellus',serif;
+    --body:'PT Serif',Georgia,serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  .bcj-landing, .bcj-landing *{margin:0;padding:0;box-sizing:border-box}
+  .bcj-landing{scroll-behavior:smooth}
+  .bcj-landing{font-family:var(--body);color:var(--body-dk);background:var(--ivory);line-height:1.7;font-size:17px;-webkit-font-smoothing:antialiased}
+  .bcj-landing img{max-width:100%;display:block}
+  .bcj-landing a{color:inherit}
+  .bcj-landing .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .bcj-landing h1, .bcj-landing h2, .bcj-landing h3{font-family:var(--serif);font-weight:400;line-height:1.2}
+
+  
+  .bcj-landing .eyebrow{font-family:var(--serif);font-size:12px;letter-spacing:.38em;text-transform:uppercase;color:var(--ink);margin-bottom:18px}
+  .bcj-landing .eyebrow.on-dark{color:var(--ivory)}
+  .bcj-landing .lede{font-size:19px;max-width:640px}
+
+  
+  .bcj-landing header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(14,14,14,.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .bcj-landing .nav{display:flex;align-items:center;justify-content:space-between;height:74px;max-width:1280px;margin:0 auto;padding:0 28px}
+  .bcj-landing .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+  .bcj-landing .brand img{height:44px;width:auto}
+  .bcj-landing .brand .name{font-family:var(--serif);color:var(--ivory);font-size:17px;letter-spacing:.14em;text-transform:uppercase}
+  .bcj-landing nav.links{display:flex;gap:26px}
+  .bcj-landing nav.links a{color:var(--ivory);text-decoration:none;font-family:var(--serif);font-size:13px;letter-spacing:.16em;text-transform:uppercase;opacity:.92;transition:opacity .25s}
+  .bcj-landing nav.links a:hover{opacity:1;text-decoration:underline;text-underline-offset:6px}
+  .bcj-landing .nav-cta{border:1px solid var(--ivory);color:var(--ivory);text-decoration:none;font-family:var(--serif);font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:11px 22px;transition:all .3s var(--ease)}
+  .bcj-landing .nav-cta:hover{background:var(--ivory);color:var(--ink)}
+  .bcj-landing .burger{display:none;background:none;border:0;cursor:pointer;padding:10px}
+  .bcj-landing .burger span{display:block;width:26px;height:2px;background:var(--ivory);margin:6px 0;transition:.3s var(--ease)}
+  .bcj-landing .mobile-menu{display:none}
+  @media(max-width:1020px){
+    .bcj-landing nav.links, .bcj-landing .nav-cta{display:none}
+    .bcj-landing .burger{display:block}
+    .bcj-landing .mobile-menu{display:block;position:fixed;top:74px;left:0;right:0;background:var(--ink);z-index:99;max-height:0;overflow:hidden;transition:max-height .45s var(--ease);border-bottom:1px solid rgba(255,255,255,.08)}
+    .bcj-landing .mobile-menu.open{max-height:520px}
+    .bcj-landing .mobile-menu a{display:block;color:var(--ivory);text-decoration:none;font-family:var(--serif);font-size:15px;letter-spacing:.14em;text-transform:uppercase;padding:15px 28px;border-top:1px solid rgba(255,255,255,.07)}
+  }
+
+  
+  .bcj-landing .hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ivory);background:var(--ink);overflow:hidden}
+  .bcj-landing .hero-bg{position:absolute;inset:0;background:url('https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/02cf67a9-27b7-4178-8276-ffe1d3db6cf0/sch00-25.jpg') center/cover no-repeat;opacity:.42;filter:grayscale(1) contrast(1.05)}
+  .bcj-landing .hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.55),rgba(14,14,14,.82))}
+  .bcj-landing .hero-inner{position:relative;z-index:2;padding:130px 28px 90px;max-width:920px}
+  .bcj-landing .hero .monogram{height:86px;width:auto;margin:0 auto 26px}
+  .bcj-landing .hero .eyebrow{color:var(--ivory)}
+  .bcj-landing .hero h1{font-size:clamp(42px,7vw,84px);margin:0 0 22px}
+  .bcj-landing .hero p{font-size:19px;color:var(--muted-lt);max-width:620px;margin:0 auto 38px}
+  .bcj-landing .btn-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .bcj-landing .btn{font-family:var(--serif);font-size:14px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:16px 36px;border:1px solid var(--ivory);display:inline-block;transition:all .3s var(--ease);cursor:pointer}
+  .bcj-landing .btn.solid{background:var(--ivory);color:var(--ink)}
+  .bcj-landing .btn.solid:hover{background:transparent;color:var(--ivory)}
+  .bcj-landing .btn.ghost{background:transparent;color:var(--ivory)}
+  .bcj-landing .btn.ghost:hover{background:var(--ivory);color:var(--ink)}
+  .bcj-landing .btn.dark{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+  .bcj-landing .btn.dark:hover{background:transparent;color:var(--ink)}
+  .bcj-landing .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--muted-lt);font-size:11px;letter-spacing:.32em;text-transform:uppercase;font-family:var(--serif)}
+
+  
+  .bcj-landing section{padding:110px 0}
+  .bcj-landing .dark{background:var(--ink);color:var(--ivory)}
+  .bcj-landing .dark p{color:var(--muted-lt)}
+  .bcj-landing .alt{background:var(--ivory-2)}
+  .bcj-landing .sec-head{max-width:720px;margin-bottom:60px}
+  .bcj-landing .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .bcj-landing .sec-head h2{font-size:clamp(32px,4.4vw,52px);margin-bottom:16px}
+  .bcj-landing .rule{width:64px;height:1px;background:var(--ink);margin:26px 0}
+  .bcj-landing .dark .rule{background:var(--ivory)}
+  .bcj-landing .sec-head.center .rule{margin-left:auto;margin-right:auto}
+
+  
+  .bcj-landing .stats{background:var(--ivory);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:64px 0}
+  .bcj-landing .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center}
+  .bcj-landing .stat-num{font-family:var(--serif);font-size:clamp(38px,4.6vw,58px);color:var(--ink);line-height:1.1}
+  .bcj-landing .stat-lbl{font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);margin-top:10px;font-family:var(--serif)}
+  @media(max-width:720px){.bcj-landing .stats-grid{grid-template-columns:1fr;gap:36px}}
+
+  
+  .bcj-landing .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .bcj-landing .about-img{overflow:hidden}
+  .bcj-landing .about-img img{width:100%;height:560px;object-fit:cover;filter:grayscale(1)}
+  .bcj-landing .about-copy h2{font-size:clamp(32px,4.4vw,50px);margin-bottom:20px}
+  .bcj-landing .about-copy p{margin-bottom:20px}
+  .bcj-landing .pull{font-family:var(--serif);font-size:23px;line-height:1.55;color:var(--ink);border-left:2px solid var(--ink);padding-left:24px;margin:34px 0;font-style:normal}
+  @media(max-width:900px){.bcj-landing .about-grid{grid-template-columns:1fr;gap:44px}.bcj-landing .about-img img{height:380px}}
+
+  
+  .bcj-landing .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line)}
+  .bcj-landing .pillar{background:var(--paper);padding:46px 38px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .35s var(--ease)}
+  .bcj-landing .pillar:hover{background:var(--ink)}
+  .bcj-landing .pillar:hover h3, .bcj-landing .pillar:hover p{color:var(--ivory)}
+  .bcj-landing .pillar:hover .p-num{color:var(--muted-lt)}
+  .bcj-landing .p-num{font-family:var(--serif);font-size:15px;letter-spacing:.3em;color:var(--ink);margin-bottom:16px}
+  .bcj-landing .pillar h3{font-size:24px;margin-bottom:14px;color:var(--ink)}
+  .bcj-landing .pillar p{font-size:15.5px}
+  @media(max-width:900px){.bcj-landing .pillars{grid-template-columns:1fr 1fr}}
+  @media(max-width:620px){.bcj-landing .pillars{grid-template-columns:1fr}.bcj-landing .pillar{border-right:0}}
+
+  
+  .bcj-landing .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .bcj-landing .card{background:var(--paper);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column}
+  .bcj-landing .card .ph{aspect-ratio:4/3;overflow:hidden;background:var(--ink-2)}
+  .bcj-landing .card .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:transform .8s var(--ease)}
+  .bcj-landing .card:hover .ph img{transform:scale(1.05)}
+  .bcj-landing .card-body{padding:30px 28px;flex:1;display:flex;flex-direction:column}
+  .bcj-landing .card-tag{font-family:var(--serif);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);margin-bottom:12px}
+  .bcj-landing .card h3{font-size:24px;color:var(--ink);margin-bottom:10px}
+  .bcj-landing .card p{font-size:15.5px;margin-bottom:22px;flex:1}
+  .bcj-landing .card a.cta-link{font-family:var(--serif);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:4px;align-self:flex-start}
+  @media(max-width:900px){.bcj-landing .cards{grid-template-columns:1fr 1fr}}
+  @media(max-width:620px){.bcj-landing .cards{grid-template-columns:1fr}}
+
+  
+  .bcj-landing .slider{position:relative;max-width:820px;margin:0 auto;overflow:hidden}
+  .bcj-landing .slides{display:flex;transition:transform .6s var(--ease)}
+  .bcj-landing .slide{min-width:100%;padding:10px 46px;text-align:center}
+  .bcj-landing .slide blockquote{font-family:var(--serif);font-size:clamp(20px,2.6vw,27px);line-height:1.6;color:var(--ivory);margin-bottom:26px}
+  .bcj-landing .slide cite{font-style:normal;font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted-lt);font-family:var(--serif)}
+  .bcj-landing .s-arrow{position:absolute;top:38%;background:none;border:1px solid rgba(255,255,255,.35);color:var(--ivory);width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:18px;transition:all .3s}
+  .bcj-landing .s-arrow:hover{background:var(--ivory);color:var(--ink)}
+  .bcj-landing .s-prev{left:0}.bcj-landing .s-next{right:0}
+  .bcj-landing .dots{display:flex;gap:10px;justify-content:center;margin-top:34px}
+  .bcj-landing .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28);border:0;cursor:pointer;padding:0}
+  .bcj-landing .dot.active{background:var(--ivory)}
+
+  
+  .bcj-landing .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  .bcj-landing .video-grid.finals{grid-template-columns:repeat(3,1fr);gap:26px}
+  .bcj-landing .final-video{margin:0}
+  .bcj-landing .final-video video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;display:block}
+  .bcj-landing .final-video figcaption{padding:14px 2px 0}
+  .bcj-landing .final-video .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .bcj-landing .final-video h3{font-size:19px;color:var(--ink);font-family:var(--serif)}
+  @media(max-width:720px){.bcj-landing .video-grid.finals{grid-template-columns:1fr;max-width:340px;margin:0 auto}}
+  .bcj-landing .video-card{position:relative;overflow:hidden;background:var(--ink);aspect-ratio:16/9;display:flex;align-items:flex-end;text-decoration:none}
+  .bcj-landing .video-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1);opacity:.62}
+  .bcj-landing .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:74px;height:74px;border:1px solid var(--ivory);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ivory);font-size:20px;background:rgba(14,14,14,.45)}
+  .bcj-landing .video-meta{position:relative;z-index:2;padding:26px;color:var(--ivory);text-shadow:0 1px 10px rgba(0,0,0,.65)}
+  .bcj-landing .video-meta h3{font-size:22px;margin-bottom:6px}
+  .bcj-landing .video-meta p{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-lt);font-family:var(--serif)}
+  .bcj-landing .video-note a{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+  @media(max-width:720px){.bcj-landing .video-grid{grid-template-columns:1fr}}
+
+  
+  .bcj-landing .val-band{background:var(--ivory-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .bcj-landing .val-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .bcj-landing .val-inner h2{font-size:clamp(30px,4vw,46px);margin-bottom:16px;color:var(--ink)}
+  .bcj-landing .val-form{background:var(--paper);border:1px solid var(--line);padding:40px 36px}
+  @media(max-width:900px){.bcj-landing .val-inner{grid-template-columns:1fr;gap:40px}}
+
+  
+  .bcj-landing .field{margin-bottom:18px}
+  .bcj-landing .field label{display:block;font-family:var(--serif);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
+  .bcj-landing .field input, .bcj-landing .field textarea{width:100%;border:1px solid var(--line);background:var(--ivory);padding:14px 16px;font-family:var(--body);font-size:16px;color:var(--ink)}
+  .bcj-landing .field input:focus, .bcj-landing .field textarea:focus{outline:2px solid var(--ink);outline-offset:-1px}
+  .bcj-landing .form-note{font-size:13.5px;color:var(--ink);margin-top:16px}
+  .bcj-landing .form-ok{display:none;background:var(--ink);color:var(--ivory);padding:26px;font-family:var(--serif);font-size:17px;letter-spacing:.04em}
+
+  
+  .bcj-landing .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:70px;align-items:start}
+  .bcj-landing .contact-info h2{font-size:clamp(32px,4.4vw,50px);margin-bottom:18px;color:var(--ivory)}
+  .bcj-landing .contact-line{display:flex;gap:16px;align-items:baseline;margin:22px 0;font-size:17px}
+  .bcj-landing .contact-line .k{font-family:var(--serif);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ivory);min-width:74px}
+  .bcj-landing .contact-line a{color:var(--ivory);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+  .bcj-landing .contact-form{background:var(--ivory);padding:44px 40px}
+  .bcj-landing .contact-form .field input, .bcj-landing .contact-form .field textarea{background:#fff}
+  @media(max-width:900px){.bcj-landing .contact-grid{grid-template-columns:1fr;gap:46px}}
+
+  
+  .bcj-landing footer{background:#080808;color:var(--muted-lt);padding:64px 0 40px;font-size:14px}
+  .bcj-landing .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:44px;margin-bottom:44px}
+  .bcj-landing .foot-grid h4{font-family:var(--serif);font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--ivory);margin-bottom:18px}
+  .bcj-landing .foot-grid a{color:var(--muted-lt);text-decoration:none;display:block;margin-bottom:10px}
+  .bcj-landing .foot-grid a:hover{color:var(--ivory)}
+  .bcj-landing .foot-brand img{height:52px;width:auto;margin-bottom:16px}
+  .bcj-landing .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:28px;font-size:13px;line-height:1.8}
+  @media(max-width:800px){.bcj-landing .foot-grid{grid-template-columns:1fr}}
+
+  
+  .bcj-landing .watch{background:var(--ink);color:var(--ivory)}
+  .bcj-landing .watch .eyebrow{color:var(--ivory)}
+  .bcj-landing .watch h2{font-size:clamp(30px,4.6vw,54px);margin-bottom:16px}
+  .bcj-landing .watch h2 em{font-style:italic}
+  .bcj-landing .watch .lede{color:var(--muted-lt)}
+  .bcj-landing .hero-video{max-width:400px;margin:0 auto}
+  .bcj-landing .hero-video video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;display:block}
+  .bcj-landing .video-fallback{border:1px solid rgba(255,255,255,.2);padding:44px 34px;text-align:center}
+  .bcj-landing .video-fallback h3{font-family:var(--serif);font-size:26px;margin-bottom:14px;color:var(--ivory)}
+  .bcj-landing .video-fallback p{color:var(--muted-lt);margin-bottom:26px;font-size:16px}
+  .bcj-landing .sec-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:60px}
+  .bcj-landing .btn.oline{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .bcj-landing .btn.oline:hover{background:var(--ink);color:var(--ivory)}
+  .bcj-landing .proof-mini{display:flex;gap:34px;flex-wrap:wrap;margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
+  .bcj-landing .proof-mini .pm-item{font-family:var(--serif);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+  .bcj-landing .proof-mini .pm-item span{display:block;font-size:30px;letter-spacing:0;margin-bottom:6px}
+  .bcj-landing .proof-line{margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16);color:var(--muted-lt);font-size:14.5px;letter-spacing:.04em}
+  .bcj-landing .sticky-cta{display:none}
+  @media(max-width:720px){
+    .bcj-landing .sticky-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(14,14,14,.97);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.14);padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:10px}
+    .bcj-landing .sticky-cta a{flex:1;text-align:center;font-family:var(--serif);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:15px 6px;transition:all .25s var(--ease)}
+    .bcj-landing .sticky-cta .sc-call{background:var(--ivory);color:var(--ink)}
+    .bcj-landing .sticky-cta .sc-val{border:1px solid var(--ivory);color:var(--ivory)}
+    .bcj-landing{padding-bottom:70px}
+  }
+
+  
+  .bcj-landing .rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .bcj-landing .rv.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.bcj-landing .rv{opacity:1;transform:none;transition:none}.bcj-landing{scroll-behavior:auto}}
+  .bcj-landing section{scroll-margin-top:74px}
+</style>
+<div class="bcj-landing">
+<header>
+  <div class="nav">
+    <a class="brand" href="#top">
+      <img src="https://static1.squarespace.com/static/644d1f49d794ea4583156c94/t/6a622766532a4912730262a4/1784817510978/Beatrice+Caponnetti+Stirbling_Monogram_White.png?format=1500w" alt="Beatrice Caponnetti monogram">
+      <span class="name">Beatrice Caponnetti</span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#watch">Watch</a>
+      <a href="#help">How I Help</a>
+      <a href="#listings">Listings</a>
+      <a href="#sales">Sales</a>
+      <a href="#clients">Clients</a>
+      <a href="#valuation">Valuation</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Contact</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#watch">Watch</a>
+  <a href="#help">How I Help</a>
+  <a href="#listings">Listings</a>
+  <a href="#sales">Sales</a>
+  <a href="#clients">Clients</a>
+  <a href="#valuation">Valuation</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero-bg" role="img" aria-label="New York City skyline"></div>
+  <div class="hero-shade"></div>
+  <div class="hero-inner">
+    <img class="monogram" src="https://static1.squarespace.com/static/644d1f49d794ea4583156c94/t/6a622766532a4912730262a4/1784817510978/Beatrice+Caponnetti+Stirbling_Monogram_White.png?format=1500w" alt="Beatrice Caponnetti monogram">
+    <p class="eyebrow">Beatrice Caponnetti &nbsp;·&nbsp; Compass &nbsp;·&nbsp; New York</p>
+    <h1>Don&rsquo;t settle for less than you deserve.</h1>
+    <p>New York real estate, guided by a decade-plus of experience, $200M+ in career sales, and an advisor&rsquo;s discipline.</p>
+    <div class="btn-row">
+      <a class="btn solid" href="#valuation">Get a Free Home Valuation</a>
+      <a class="btn ghost" href="#contact">Book a Private Consultation</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ================= WATCH (Video 5) ================= -->
+<section class="watch" id="watch">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <p class="eyebrow">Watch &middot; 60 Seconds</p>
+      <h2>The most expensive word is <em>&ldquo;fine.&rdquo;</em></h2>
+      <div class="rule"></div>
+      <p class="lede" style="margin:0 auto">Beatrice, straight to camera, on the costliest word in New York real estate. This is how she talks about your money.</p>
+    </div>
+    <div class="hero-video rv">
+      <video id="v5" controls playsinline preload="metadata" poster="https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/02cf67a9-27b7-4178-8276-ffe1d3db6cf0/sch00-25.jpg" aria-label="Beatrice Caponnetti: The most expensive word is fine">
+        <source src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/gobeatrice/edit5-final.mp4" type="video/mp4">
+      </video>
+      <div class="video-fallback" id="v5fallback" hidden>
+        <h3>Video drops soon.</h3>
+        <p>Beatrice&rsquo;s newest sixty-second take lands here first. Don&rsquo;t wait for it &mdash; talk to her now.</p>
+        <div class="btn-row">
+          <a class="btn solid" href="https://instagram.com/beainnyc" target="_blank" rel="noopener">DM @beainnyc</a>
+          <a class="btn ghost" href="#contact">Book a Consultation</a>
+        </div>
+      </div>
+    </div>
+    <div class="sec-cta rv">
+      <a class="btn solid" href="#valuation">Get a Free Home Valuation</a>
+      <a class="btn ghost" href="#contact">Book a Private Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="rv"><div class="stat-num">$200M+</div><div class="stat-lbl">Career Sales</div></div>
+    <div class="rv"><div class="stat-num">Decade+</div><div class="stat-lbl">NYC Experience</div></div>
+    <div class="rv"><div class="stat-num">#1</div><div class="stat-lbl">Brokerage in the U.S. — Compass</div></div>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-img rv">
+      <img src="https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/1e895b93-182c-4cc5-938c-37d95abb0561/156994-Trieste-Province.webp" alt="Trieste, Italy — Beatrice's hometown">
+    </div>
+    <div class="about-copy rv">
+      <p class="eyebrow">About Beatrice</p>
+      <h2>Rooted in Italy.<br>Refined in New York.</h2>
+      <div class="rule"></div>
+      <p>Born in Trieste, Italy, Beatrice brings a European sensibility — and a passion for architecture and design — to every home she represents in New York.</p>
+      <p>For more than a decade, she has guided buyers and sellers through New York&rsquo;s most competitive markets with a calm, strategic hand — through Compass, the #1 brokerage in the U.S., pairing deep local knowledge with national reach.</p>
+      <p class="pull">&ldquo;Real estate is about far more than finding the right property — it&rsquo;s about making the right decision.&rdquo;</p>
+    </div>
+  </div>
+    <div class="sec-cta rv">
+      <a class="btn dark" href="#valuation">Get a Free Home Valuation</a>
+      <a class="btn oline" href="#contact">Book a Private Consultation</a>
+    </div>
+</section>
+
+<!-- ================= HOW I HELP ================= -->
+<section class="alt" id="help">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <p class="eyebrow">Services</p>
+      <h2>Here&rsquo;s how I help.</h2>
+      <div class="rule"></div>
+      <p class="lede" style="margin:0 auto">Buying your first apartment or selling a landmark home — one advisor, fully in your corner, from first conversation to final signature.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar rv"><div class="p-num">01</div><h3>Strategic Expertise</h3><p>Every price and offer built on sharp market analysis and disciplined negotiation — a decade-plus and $200M+ in sales behind each move, timed and priced with intent.</p></div>
+      <div class="pillar rv"><div class="p-num">02</div><h3>A True Buyer&rsquo;s Advisor</h3><p>The goal is the <em>right</em> property, not just any property. Patient guidance, a clear-eyed read on value — and honest counsel on when to walk away. Never pressure.</p></div>
+      <div class="pillar rv"><div class="p-num">03</div><h3>International Perspective</h3><p>Born in Trieste and at home in New York, Beatrice guides global buyers from first search to board approval — currency, relocation, co-ops — in their own language.</p></div>
+      <div class="pillar rv"><div class="p-num">04</div><h3>Neighborhood Insight</h3><p>Tribeca lofts, Upper East Side classics, Brooklyn brownstones — block-by-block knowledge of buildings, boards, and what each street actually sells for.</p></div>
+      <div class="pillar rv"><div class="p-num">05</div><h3>Full Support</h3><p>From financing strategy to the closing table — one point of contact coordinating lender, attorney, and board, so nothing falls through the cracks.</p></div>
+      <div class="pillar rv" style="background:var(--ink)">
+        <div class="p-num" style="color:var(--muted-lt)">—</div>
+        <h3 style="color:var(--ivory)">Start the conversation</h3>
+        <p style="color:var(--muted-lt);margin-bottom:24px">Tell me what you&rsquo;re working toward — buying, selling, or planning ahead. I&rsquo;ll be in touch shortly.</p>
+        <a class="btn ghost" href="#contact">Book a Private Consultation</a>
+      </div>
+    </div>
+    <div class="sec-cta rv">
+      <a class="btn dark" href="#valuation">Get a Free Home Valuation</a>
+      <a class="btn oline" href="#contact">Book a Private Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LISTINGS ================= -->
+<section id="listings">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Currently Listed</p>
+      <h2>Available Properties</h2>
+      <div class="rule"></div>
+      <p class="lede">A selection of residences currently represented. For floor plans, pricing, and private showings, get in touch.</p>
+    </div>
+    <div class="cards">
+      <div class="card rv">
+        <div class="ph"><img src="https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/1764089166996-BPAVMSO3X7DNUYMWRDO5/unsplash-image-vHf7WRNcgws.jpg" alt="Featured listing interior"></div>
+        <div class="card-body"><div class="card-tag">Available Now</div><h3>Details on Request</h3><p>Currently listed through Compass. Inquire for pricing, availability, and a private showing.</p><a class="cta-link" href="#contact">Inquire for Details</a></div>
+      </div>
+      <div class="card rv">
+        <div class="ph"><img src="https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/02cf67a9-27b7-4178-8276-ffe1d3db6cf0/sch00-25.jpg" alt="New York City residence"></div>
+        <div class="card-body"><div class="card-tag">Available Now</div><h3>Details on Request</h3><p>From downtown lofts to uptown classics — each listing receives bespoke marketing and strategic positioning.</p><a class="cta-link" href="#contact">Inquire for Details</a></div>
+      </div>
+      <div class="card rv">
+        <div class="ph"><img src="https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/1e895b93-182c-4cc5-938c-37d95abb0561/156994-Trieste-Province.webp" alt="European-inspired residence"></div>
+        <div class="card-body"><div class="card-tag">Available Now</div><h3>Details on Request</h3><p>Homes with architectural character, represented by an advisor with a designer&rsquo;s eye.</p><a class="cta-link" href="#contact">Inquire for Details</a></div>
+      </div>
+    </div>
+    <div class="sec-cta rv">
+      <a class="btn dark" href="#valuation">Get a Free Home Valuation</a>
+      <a class="btn oline" href="#contact">Book a Private Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RECENT SALES ================= -->
+<section class="dark" id="sales">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow on-dark">Track Record</p>
+      <h2>Recent Sales</h2>
+      <div class="rule"></div>
+      <p class="lede">Representative closings across Manhattan and Brooklyn — specific addresses and figures shared privately with clients.</p>
+    </div>
+    <div class="cards">
+      <div class="card rv" style="background:var(--ink-2);border-color:rgba(255,255,255,.14)">
+        <div class="ph"><img src="https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/02cf67a9-27b7-4178-8276-ffe1d3db6cf0/sch00-25.jpg" alt="Recently sold residence"></div>
+        <div class="card-body"><div class="card-tag" style="color:var(--ivory)">Recently Sold</div><h3 style="color:var(--ivory)">Manhattan</h3><p style="color:var(--muted-lt)">Represented the seller — priced with intent, negotiated with discipline, and closed without a hitch.</p></div>
+      </div>
+      <div class="card rv" style="background:var(--ink-2);border-color:rgba(255,255,255,.14)">
+        <div class="ph"><img src="https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/1764089166996-BPAVMSO3X7DNUYMWRDO5/unsplash-image-vHf7WRNcgws.jpg" alt="Recently sold residence"></div>
+        <div class="card-body"><div class="card-tag" style="color:var(--ivory)">Recently Sold</div><h3 style="color:var(--ivory)">Brooklyn</h3><p style="color:var(--muted-lt)">Guided the buyer to the right home — the right property, the right decision — in a competitive market.</p></div>
+      </div>
+      <div class="card rv" style="background:var(--ink-2);border-color:rgba(255,255,255,.14)">
+        <div class="ph"><img src="https://images.squarespace-cdn.com/content/v1/644d1f49d794ea4583156c94/1e895b93-182c-4cc5-938c-37d95abb0561/156994-Trieste-Province.webp" alt="Recently sold residence"></div>
+        <div class="card-body"><div class="card-tag" style="color:var(--ivory)">Recently Sold</div><h3 style="color:var(--ivory)">Upper East Side</h3><p style="color:var(--muted-lt)">Strategic pricing and presentation that delivered for the seller — from first showing to final signature.</p></div>
+      </div>
+    </div>
+    <div class="sec-cta rv">
+      <a class="btn solid" href="#valuation">Get a Free Home Valuation</a>
+      <a class="btn ghost" href="#contact">Book a Private Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="dark" id="clients" style="background:#141414">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <p class="eyebrow on-dark">In Their Words</p>
+      <h2>Clients who didn&rsquo;t settle.</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="slider rv" id="tSlider">
+      <div class="slides" id="tSlides">
+        <div class="slide">
+          <blockquote>&ldquo;Thanks a lot Beatrice and Daniella for the <strong>fantastic job in finding me this apartment</strong> and supporting me in this process.&rdquo;</blockquote>
+          <cite>Federico U.</cite>
+        </div>
+        <div class="slide">
+          <blockquote>&ldquo;We cannot thank you enough, I can&rsquo;t believe <strong>we bought our new home!</strong> We couldn&rsquo;t have done it without you.&rdquo;</blockquote>
+          <cite>Elizabeth L.</cite>
+        </div>
+        <div class="slide">
+          <blockquote>&ldquo;You have <strong>made this process so easy</strong> for me. Thank you!&rdquo;</blockquote>
+          <cite>Abigail G.</cite>
+        </div>
+      </div>
+      <button class="s-arrow s-prev" id="tPrev" aria-label="Previous testimonial">&#8592;</button>
+      <button class="s-arrow s-next" id="tNext" aria-label="Next testimonial">&#8594;</button>
+      <div class="dots" id="tDots"></div>
+    </div>
+    <div class="sec-cta rv">
+      <a class="btn solid" href="#valuation">Get a Free Home Valuation</a>
+      <a class="btn ghost" href="#contact">Book a Private Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VALUATION ================= -->
+<section class="val-band" id="valuation">
+  <div class="wrap val-inner">
+    <div class="rv">
+      <p class="eyebrow">Sellers</p>
+      <h2>What&rsquo;s your home&rsquo;s value in today&rsquo;s market?</h2>
+      <div class="rule"></div>
+      <p class="lede">A complimentary, no-obligation valuation — grounded in current market data and a decade of New York pricing experience. Not just an algorithm&rsquo;s guess: a realistic range based on your home specifically. No sales pitch required.</p>
+      <div class="proof-mini rv">
+        <div class="pm-item"><span>$200M+</span>Career sales</div>
+        <div class="pm-item"><span>10+ yrs</span>NYC only</div>
+        <div class="pm-item"><span>#1</span>Brokerage &mdash; Compass</div>
+      </div>
+    </div>
+    <form class="val-form rv" id="valForm">
+      <div class="field"><label for="v-addr">Property address</label><input id="v-addr" name="address" type="text" required autocomplete="street-address"></div>
+      <div class="field"><label for="v-name">Name</label><input id="v-name" name="name" type="text" required autocomplete="name"></div>
+      <div class="field"><label for="v-email">Email</label><input id="v-email" name="email" type="email" required autocomplete="email"></div>
+      <button class="btn dark" type="submit" style="width:100%">Get My Free Valuation</button>
+      <p class="form-note">No spam, no obligation — just your home&rsquo;s value, personally prepared.</p>
+      <div class="form-ok" id="valOk">Thank you — your valuation request has been received. Beatrice will be in touch shortly.</div>
+    </form>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="dark" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info rv">
+      <p class="eyebrow on-dark">Contact</p>
+      <h2>Let&rsquo;s work together.</h2>
+      <div class="rule"></div>
+      <p class="lede">Buying, selling, or just thinking it through — tell me where you&rsquo;re headed. I&rsquo;ll be in touch shortly.</p>
+      <p class="proof-line">$200M+ in career sales &middot; A decade in New York &middot; Compass, the #1 brokerage in the U.S.</p>
+      <div class="contact-line"><span class="k">Phone</span><a href="tel:+16464205705">646.420.5705</a></div>
+      <div class="contact-line"><span class="k">Email</span><a href="mailto:Beatrice.jackson@compass.com">Beatrice.jackson@compass.com</a></div>
+      <div class="contact-line"><span class="k">Office</span><span style="color:var(--ivory)">Compass &mdash; New York, NY</span></div>
+    </div>
+    <form class="contact-form rv" id="contactForm">
+      <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" type="text" required autocomplete="name"></div>
+      <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" required autocomplete="email"></div>
+      <div class="field"><label for="c-phone">Phone</label><input id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" rows="5" required></textarea></div>
+      <button class="btn dark" type="submit" style="width:100%">Start the Conversation</button>
+      <p class="form-note">This form is a front-end demo — connect it to your inbox or CRM before launch.</p>
+      <div class="form-ok" id="contactOk">Message received — thank you. We&rsquo;ll be in touch shortly.</div>
+    </form>
+  </div>
+</section>
+
+<div class="sticky-cta" role="navigation" aria-label="Quick contact">
+  <a class="sc-call" href="tel:+16464205705">Call Beatrice</a>
+  <a class="sc-val" href="#valuation">Free Valuation</a>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="https://static1.squarespace.com/static/644d1f49d794ea4583156c94/t/6a622766532a4912730262a4/1784817510978/Beatrice+Caponnetti+Stirbling_Monogram_White.png?format=1500w" alt="Beatrice Caponnetti monogram">
+        <p>Beatrice Caponnetti<br>Licensed Real Estate Salesperson<br>Compass — New York, NY</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#about">About</a><a href="#help">How I Help</a><a href="#listings">Listings</a><a href="#sales">Recent Sales</a><a href="#valuation">Free Valuation</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:+16464205705">646.420.5705</a>
+        <a href="mailto:Beatrice.jackson@compass.com">Beatrice.jackson@compass.com</a>
+        <a href="#contact">Work With Beatrice</a>
+      </div>
+    </div>
+    <div class="legal">
+      Beatrice Caponnetti is a licensed real estate salesperson affiliated with Compass. Equal Housing Opportunity.<br>
+      &copy; 2026 Beatrice Caponnetti / Compass. Demo rebuild for review — not affiliated with the live bcjteam.com site.
+    </div>
+  </div>
+</footer>
+</div>
+<script>
+(function(){
+  // v4: lazy-load below-fold images for speed
+  document.querySelectorAll('.bcj-landing img').forEach(function(img){
+    if(!img.closest('.hero')&&!img.closest('header')){img.loading='lazy';img.decoding='async';}
+  });
+  // v4: Video 5 fallback until edit5.mp4 is uploaded to go-assets
+  (function(){
+    var v=document.getElementById('v5'),f=document.getElementById('v5fallback');
+    if(!v||!f)return;
+    function show(){v.style.display='none';f.hidden=false;}
+    v.addEventListener('error',show,true);
+  })();
+  // Mobile menu
+  var burger=document.getElementById('burger'),menu=document.getElementById('mobileMenu');
+  burger.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded',open);
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');});
+  });
+
+  // Reveal on scroll
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.bcj-landing .rv').forEach(function(el){io.observe(el);});
+
+  // Testimonial slider
+  var slides=document.getElementById('tSlides'),dots=document.getElementById('tDots');
+  var n=slides.children.length,idx=0,timer;
+  for(var i=0;i<n;i++){var d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.setAttribute('aria-label','Go to testimonial '+(i+1));(function(k){d.addEventListener('click',function(){go(k);reset();});})(i);dots.appendChild(d);}
+  function go(k){idx=(k+n)%n;slides.style.transform='translateX(-'+idx*100+'%)';dots.querySelectorAll('.dot').forEach(function(dd,j){dd.classList.toggle('active',j===idx);});}
+  function reset(){clearInterval(timer);timer=setInterval(function(){go(idx+1);},7000);}
+  document.getElementById('tPrev').addEventListener('click',function(){go(idx-1);reset();});
+  document.getElementById('tNext').addEventListener('click',function(){go(idx+1);reset();});
+  reset();
+
+  // Demo forms
+  function wire(id,okId){
+    var f=document.getElementById(id);
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      f.querySelectorAll('input,textarea,button').forEach(function(el){el.style.display='none';});
+      var ok=document.getElementById(okId);ok.style.display='block';
+    });
+  }
+  wire('valForm','valOk');wire('contactForm','contactOk');
+})();
+</script>
+  
+  
