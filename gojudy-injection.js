@@ -131,6 +131,13 @@
   /* test mode: open the page with ?test=1 and every submission is tagged [TEST]
      in the notification email, so tests are never confused with real client submissions */
   var TEST_MODE = /(?:\?|&)test=1(?:&|$)/.test(window.location.search);
+  /* self-clean: ?test=1&clear=1 removes test approval stamps so the card
+     returns to its unapproved state after a test */
+  if (/(?:\?|&)clear=1(?:&|$)/.test(window.location.search)) {
+    ["gojudy_approval_advert3", "gojudy_approval_outreachemail"].forEach(function (k) {
+      try { localStorage.removeItem(k); } catch (e) {}
+    });
+  }
   function post(payload) {
     var p = Object.assign({ token: BACKEND.token }, payload);
     if (TEST_MODE) {
