@@ -365,7 +365,7 @@ abInner+='<p class="lp-sub">'+(ab.sub||'What monthly ad budget should we plan ar
 abInner+='<input class="ab-input" type="text" inputmode="decimal" placeholder="e.g. 2000 / month" aria-label="Monthly ad budget">';
 abInner+='<a class="btn ab-send" href="#">Send budget</a><p class="rv-msg ab-msg" style="display:none"></p>';
 }else{
-abInner+='<p class="lp-sub">Budget received '+abReceived+' — thank you!</p>';
+abInner+='<p class="lp-sub">Budget received '+abReceived+', thank you!</p>';
 }
 abInner+='</div>';
 abSec.innerHTML=abInner;
@@ -381,25 +381,29 @@ if(!abReceived) {
 var abInput=abSec.querySelector('.ab-input');
 var abSend=abSec.querySelector('.ab-send');
 var abMsg=abSec.querySelector('.ab-msg');
+var abSending=false;
 abSend.addEventListener('click',function(e) {
 e.preventDefault();
+if(abSending)return;
 var abVal=abInput.value.trim();
 if(!abVal) {
 abMsg.textContent='Type your budget first.';
 abMsg.style.display='block';
 return;
 }
+abSending=true;
 abSend.textContent='Sending...';
 goPost({action:'Budget',subject:'Beatrice shared her ad budget',item:'Ad budget',body:'Monthly ad budget: '+abVal}).then(function() {
 var d=new Date();
 var ld=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
 try{localStorage.setItem('gobeatrice_budget',JSON.stringify({date:ld,value:abVal})); }catch(e) {}
-abMsg.textContent='Budget received '+ld+' — thank you!';
+abMsg.textContent='Budget received '+ld+', thank you!';
 abMsg.style.display='block';
 abInput.style.display='none';
 abSend.style.display='none';
 }).catch(function() {
-abMsg.textContent='Something went wrong — tap to retry';
+abSending=false;
+abMsg.textContent='Something went wrong, tap to retry';
 abMsg.style.display='block';
 abSend.textContent='Send budget';
 });
