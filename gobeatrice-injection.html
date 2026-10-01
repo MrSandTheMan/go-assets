@@ -187,6 +187,22 @@ color:#8a8a8e;
 .lp-review .lp-sub{color:#c9c9cd;font-size:15px;margin:0 0 6px;line-height:1.6; }
 .lp-review .btn{margin:10px 10px 0 0; }
 .lp-review .rv-notes{margin-top:14px; }
+.ab-input{
+width:100%;
+padding:13px 14px;
+border-radius:10px;
+font:inherit;
+font-size:15px;
+background:#0b0b0c;
+border:1px solid #232327;
+color:#f5f5f5;
+box-sizing:border-box;
+margin:10px 0 0;
+}
+.ab-input:focus{outline:none;border-color:#e8323c; }
+.ab-input::placeholder{color:#6a6a6e; }
+.btn.ab-send{background:#E00020;color:#fff;border:0;font-weight:700; }
+.btn.ab-send:hover{background:#ff1a33;text-decoration:none; }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded',function() {
@@ -329,6 +345,63 @@ lpNotesBtn.textContent='Send notes';
 lpMsg.textContent='Something went wrong — try again.';
 lpMsg.style.display='block';
 lpNotesBtn.textContent='Send notes';
+});
+});
+}
+}
+/* --- Ad budget section (gated by card.ad_budget) --- */
+var ab=card.ad_budget;
+if(ab&&ab.enabled) {
+var abSec=document.createElement('section');
+abSec.className='lp-section ab-section';
+var abReceived=null;
+if(ab.status==='received') {abReceived=ab.received_date||''; }
+else {
+try{var abs=JSON.parse(localStorage.getItem('gobeatrice_budget')||'null'); if(abs&&abs.date)abReceived=abs.date; }catch(e) {}
+}
+var abInner='<h2>'+(ab.label||'Ad budget')+'</h2><div class="lp-review">';
+if(!abReceived) {
+abInner+='<p class="lp-sub">'+(ab.sub||'What monthly ad budget should we plan around?')+'</p>';
+abInner+='<input class="ab-input" type="text" inputmode="decimal" placeholder="e.g. 2000 / month" aria-label="Monthly ad budget">';
+abInner+='<a class="btn ab-send" href="#">Send budget</a><p class="rv-msg ab-msg" style="display:none"></p>';
+}else{
+abInner+='<p class="lp-sub">Budget received '+abReceived+' — thank you!</p>';
+}
+abInner+='</div>';
+abSec.innerHTML=abInner;
+var lpSecEl=document.querySelector('.lp-section:not(.ab-section)');
+if(lpSecEl&&lpSecEl.parentNode) {lpSecEl.insertAdjacentElement('afterend',abSec); }
+else {
+var abPriPara=document.querySelector('.priority p');
+var abPriSec=(abPriPara&&abPriPara.closest)?abPriPara.closest('section'):null;
+if(abPriSec&&abPriSec.parentNode) {abPriSec.insertAdjacentElement('afterend',abSec); }
+else {document.body.appendChild(abSec); }
+}
+if(!abReceived) {
+var abInput=abSec.querySelector('.ab-input');
+var abSend=abSec.querySelector('.ab-send');
+var abMsg=abSec.querySelector('.ab-msg');
+abSend.addEventListener('click',function(e) {
+e.preventDefault();
+var abVal=abInput.value.trim();
+if(!abVal) {
+abMsg.textContent='Type your budget first.';
+abMsg.style.display='block';
+return;
+}
+abSend.textContent='Sending...';
+goPost({action:'Budget',subject:'Beatrice shared her ad budget',item:'Ad budget',body:'Monthly ad budget: '+abVal}).then(function() {
+var d=new Date();
+var ld=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
+try{localStorage.setItem('gobeatrice_budget',JSON.stringify({date:ld,value:abVal})); }catch(e) {}
+abMsg.textContent='Budget received '+ld+' — thank you!';
+abMsg.style.display='block';
+abInput.style.display='none';
+abSend.style.display='none';
+}).catch(function() {
+abMsg.textContent='Something went wrong — tap to retry';
+abMsg.style.display='block';
+abSend.textContent='Send budget';
 });
 });
 }
