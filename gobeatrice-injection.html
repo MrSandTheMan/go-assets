@@ -182,11 +182,16 @@ font-size:14px;
 color:#8a8a8e;
 }
 .review-drive a{color:#f5f5f5; }
+.go-testbanner{background:#E00020;color:#fff;font-weight:700;text-align:center;padding:10px 16px;font-size:14px; }
+.lp-review{background:#121214;border:1px solid #232327;border-radius:12px;padding:22px 20px; }
+.lp-review .lp-sub{color:#c9c9cd;font-size:15px;margin:0 0 6px;line-height:1.6; }
+.lp-review .btn{margin:10px 10px 0 0; }
+.lp-review .rv-notes{margin-top:14px; }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded',function() {
 var GIST_URL='https://gist.githubusercontent.com/MrSandTheMan/45bda61d8b76598ff5da58e562463889/raw/gobeatrice-tracker.json';
-fetch(GIST_URL).then(function(r){return r.json(); }).then(function(data) {
+fetch(GIST_URL+'?t='+Date.now()).then(function(r){return r.json(); }).then(function(data) {
 var card=data&&data.card;
 if(!card)return;
 var GUIDE_IMG_FALLBACK='https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/gobeatrice/audio-guide.png';
@@ -226,6 +231,104 @@ var ENTRY_DETAILS='entry.1964542888';
 var ENTRY_VIDEO='entry.698383654';
 var ENTRY_TYPE='entry.655208910';
 var CLIENT_NAME='Beatrice Caponnetti Jackson';
+var TEST_MODE=/(?:\?|&)test=1(?:&|$)/.test(window.location.search);
+if(/(?:\?|&)clear=1(?:&|$)/.test(window.location.search)) {
+try{localStorage.removeItem('gobeatrice_approval_landing'); }catch(e) {}
+}
+function testTag(s){return TEST_MODE?'[TEST] '+s:s; }
+if(TEST_MODE) {
+var tb=document.createElement('div');
+tb.className='go-testbanner';
+tb.textContent='TEST MODE — approvals and notes from this visit are tagged [TEST] and do not count.';
+document.body.insertBefore(tb,document.body.firstChild);
+}
+/* --- Landing page review section (gated by card.landing_review) --- */
+var lp=card.landing_review;
+if(lp&&lp.enabled) {
+var lpUrl=lp.url||'https://www.bcjteam.com/help';
+var lpLabel=lp.label||'Ad landing page';
+var lpSec=document.createElement('section');
+lpSec.className='lp-section';
+var lpApprovedDate=null;
+if(lp.status==='approved') {lpApprovedDate=lp.approved_date||''; }
+else {
+try{var lps=JSON.parse(localStorage.getItem('gobeatrice_approval_landing')||'null'); if(lps&&lps.date)lpApprovedDate=lps.date; }catch(e) {}
+}
+var lpInner='<h2>'+lpLabel+'</h2><div class="lp-review">';
+if(!lpApprovedDate) {
+lpInner+='<p class="lp-sub">This is the page your ads will send people to. Look it over, then approve it or send notes below.</p>';
+lpInner+='<a class="btn" href="'+lpUrl+'" target="_blank" rel="noopener">View landing page</a>';
+lpInner+='<a class="btn approve lp-approve" href="#">Approve landing page</a>';
+lpInner+='<div class="rv-notes"><textarea rows="2" placeholder="Want changes to the landing page? Write them here..."></textarea><a class="btn rv-notes-btn lp-notes-btn" href="#">Send notes</a></div><p class="rv-msg lp-msg" style="display:none"></p>';
+}else{
+lpInner+='<p class="lp-sub">Approved '+lpApprovedDate+' — thank you!</p>';
+lpInner+='<a class="btn" href="'+lpUrl+'" target="_blank" rel="noopener">View landing page</a>';
+}
+lpInner+='</div>';
+lpSec.innerHTML=lpInner;
+var priPara=document.querySelector('.priority p');
+var priSec=(priPara&&priPara.closest)?priPara.closest('section'):null;
+if(priSec&&priSec.parentNode) {priSec.insertAdjacentElement('afterend',lpSec); }
+else {document.body.appendChild(lpSec); }
+if(!lpApprovedDate) {
+var lpApproveBtn=lpSec.querySelector('.lp-approve');
+var lpNotesArea=lpSec.querySelector('.rv-notes textarea');
+var lpNotesBtn=lpSec.querySelector('.lp-notes-btn');
+var lpMsg=lpSec.querySelector('.lp-msg');
+var lpArmed=false,lpArmTimer=null;
+lpApproveBtn.addEventListener('click',function(e) {
+e.preventDefault();
+if(lpApproveBtn.classList.contains('done'))return;
+if(!lpArmed) {
+lpArmed=true;
+lpApproveBtn.textContent='Tap again to confirm';
+lpApproveBtn.classList.add('armed');
+lpArmTimer=setTimeout(function() {
+lpArmed=false;
+lpApproveBtn.classList.remove('armed');
+lpApproveBtn.textContent='Approve landing page';
+},12000);
+}else{
+clearTimeout(lpArmTimer);
+lpArmed=false;
+lpApproveBtn.textContent='Sending...';
+var lpBody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent(testTag('I approve the '+lpLabel.toLowerCase()+' as final.'))+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(lpLabel)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Approval');
+fetch(FORM_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:lpBody}).then(function() {
+var d=new Date();
+var ld=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
+try{localStorage.setItem('gobeatrice_approval_landing',JSON.stringify({date:ld})); }catch(e) {}
+lpApproveBtn.textContent='Approved '+ld+' — thank you!';
+lpApproveBtn.classList.remove('armed');
+lpApproveBtn.classList.add('done');
+}).catch(function() {
+lpApproveBtn.textContent='Something went wrong — tap to retry';
+lpArmed=false;
+});
+}
+});
+lpNotesBtn.addEventListener('click',function(e) {
+e.preventDefault();
+var noteText=lpNotesArea.value.trim();
+if(!noteText) {
+lpMsg.textContent='Write your notes first.';
+lpMsg.style.display='block';
+return;
+}
+lpNotesBtn.textContent='Sending...';
+var lnBody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent(testTag(noteText))+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(lpLabel)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Revision notes');
+fetch(FORM_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:lnBody}).then(function() {
+lpMsg.textContent='Notes sent — thank you!';
+lpMsg.style.display='block';
+lpNotesArea.value='';
+lpNotesBtn.textContent='Send notes';
+}).catch(function() {
+lpMsg.textContent='Something went wrong — try again.';
+lpMsg.style.display='block';
+lpNotesBtn.textContent='Send notes';
+});
+});
+}
+}
 var pending=(card.review_videos||[]).filter(function(v) {return v.status!=='approved'; });
 if(pending.length>0) {
 var modal=document.createElement('div');
@@ -421,7 +524,7 @@ approveBtn.textContent='Approve '+labelLower;
 clearTimeout(vArmTimer);
 vArmed=false;
 approveBtn.textContent='Sending...';
-var abody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent('I approve '+labelLower+' as final.')+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(label)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Approval');
+var abody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent(testTag('I approve '+labelLower+' as final.'))+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(label)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Approval');
 fetch(FORM_URL, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:abody}).then(function() {
 var d=new Date();
 var vd=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
@@ -445,7 +548,7 @@ msg.style.display='block';
 return;
 }
 notesBtn.textContent='Sending...';
-var nbody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent(noteText)+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(label)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Revision notes');
+var nbody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent(testTag(noteText))+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(label)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Revision notes');
 fetch(FORM_URL, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:nbody}).then(function() {
 msg.textContent='Notes sent — thank you!';
 msg.style.display='block';
@@ -512,18 +615,24 @@ b.classList.add('active');
 });
 }
 var bottles=document.querySelectorAll('.bottle');
-if(bottles.length&&card.bottlenecks&&card.bottlenecks.length) {
+if(bottles.length&&card.bottlenecks&&Array.isArray(card.bottlenecks)) {
+var host=bottles[0].parentElement;
 var html='';
 for(var b=0;b<card.bottlenecks.length;b++) {
-html+='<div class="bottle"><div class="box"></div><div>'+card.bottlenecks[b].t+'<span class="d">'+card.bottlenecks[b].d+'</span></div></div>';
+var doneCls=card.bottlenecks[b].done?' done':'';
+html+='<div class="bottle"><div class="box'+doneCls+'"></div><div>'+card.bottlenecks[b].t+'<span class="d">'+card.bottlenecks[b].d+'</span></div></div>';
 }
 bottles[0].insertAdjacentHTML('beforebegin',html);
 for(var k=0;k<bottles.length;k++) {bottles[k].remove(); }
+if(!card.bottlenecks.length&&host) {
+var hd=host.querySelector('h2');
+if(hd&&/bottleneck/i.test(hd.textContent)) {hd.style.display='none'; }
+}
 }
 var lis=document.querySelectorAll('li');
 for(var m=0;m<lis.length;m++) {
 if(lis[m].textContent.indexOf('bcjteam.com v2')!==-1) {
-lis[m].innerHTML='Ad Landing Page<span class="t">In production</span>';
+lis[m].innerHTML='Ad Landing Page<span class="t">With you for approval</span>';
 break;
 }
 }
@@ -557,7 +666,7 @@ var tHtml='';
 for(var t=0;t<data.projects.length;t++) {
 var pj=data.projects[t];
 var pc=phaseClass[String(pj.phase).toLowerCase()]||'p-kickoff';
-if(pj.project==='5 video edits') {pj.milestone='Edits 3-5 approved, edit 1 needs audio'; }
+if(pj.project==='5 video edits') {pj.milestone='Edits 2-5 approved, edit 1 v2 with you for approval'; }
 tHtml+='<div class="row"><div class="row-top"><div class="row-title">'+pj.project+'</div>'+'<span class="pill '+pc+'">'+pj.phase+'</span></div>'+'<div class="row-meta">Next milestone: <b>'+pj.milestone+'</b> &middot; Updated '+pj.updated+'</div></div>';
 }
 trackerEl.innerHTML=tHtml;
