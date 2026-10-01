@@ -207,7 +207,7 @@ btn.href=card.button_url;
 btn.target='_blank';
 btn.textContent=card.button_label;
 if(!btn.parentNode)paras[i].insertAdjacentElement('afterend',btn);
-if(!document.querySelector('.audio-guide-wrap')) {
+if(card.audio_upload&&card.audio_upload.enabled&&!document.querySelector('.audio-guide-wrap')) {
 var agWrap=document.createElement('div');
 agWrap.className='audio-guide-wrap';
 agWrap.innerHTML='<button class="guide-toggle audio-guide-toggle" type="button">How to record your audio</button>'+'<div class="audio-guide-panel" style="display:none"><img data-src="'+guideImgUrl+'" alt="How to record your audio"></div>';
