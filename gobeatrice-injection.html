@@ -225,17 +225,23 @@ if(show&&!agImg.getAttribute('src')){agImg.setAttribute('src',agImg.getAttribute
 break;
 }
 }
-var FORM_URL='https://docs.google.com/forms/d/e/1FAIpQLSdW9j54E6vjADcqOxfzOmtwRrT-_3xHbzhoJliYasM5OhSXXQ/formResponse';
-var ENTRY_NAME='entry.2011448184';
-var ENTRY_DETAILS='entry.1964542888';
-var ENTRY_VIDEO='entry.698383654';
-var ENTRY_TYPE='entry.655208910';
+var BACKEND={url:'https://script.google.com/macros/s/AKfycbzrvhRFd9K-zLO_BtmUBAgdWoYlvoKUlcuIF-dInAQ8wwxMLkK4hqiJXCtofsi1wHht/exec',token:'0e5da46e84e4f69a55f413afaed8d348'};
 var CLIENT_NAME='Beatrice Caponnetti Jackson';
 var TEST_MODE=/(?:\?|&)test=1(?:&|$)/.test(window.location.search);
 if(/(?:\?|&)clear=1(?:&|$)/.test(window.location.search)) {
 try{localStorage.removeItem('gobeatrice_approval_landing'); }catch(e) {}
 }
-function testTag(s){return TEST_MODE?'[TEST] '+s:s; }
+/* Go default: every approval and note sends a formatted email to team@ via the
+   backend web app. ?test=1 tags the subject [TEST] so tests never mix with
+   real client submissions. */
+function goPost(payload){
+var p={token:BACKEND.token,action:payload.action,subject:payload.subject,item:payload.item,body:payload.body,from:CLIENT_NAME};
+if(TEST_MODE){
+p.subject='[TEST] '+(p.subject||p.action||'');
+p.body='TEST SUBMISSION - sent from a ?test=1 page load, not by the client.\n\n'+(p.body||'');
+}
+return fetch(BACKEND.url,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(p)}).then(function(r){return r.json();});
+}
 if(TEST_MODE) {
 var tb=document.createElement('div');
 tb.className='go-testbanner';
@@ -292,8 +298,7 @@ lpApproveBtn.textContent='Approve landing page';
 clearTimeout(lpArmTimer);
 lpArmed=false;
 lpApproveBtn.textContent='Sending...';
-var lpBody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent(testTag('I approve the '+lpLabel.toLowerCase()+' as final.'))+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(lpLabel)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Approval');
-fetch(FORM_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:lpBody}).then(function() {
+goPost({action:'Approval',subject:'Beatrice approved the '+lpLabel.toLowerCase(),item:lpLabel,body:'I approve the '+lpLabel.toLowerCase()+' as final.'}).then(function() {
 var d=new Date();
 var ld=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
 try{localStorage.setItem('gobeatrice_approval_landing',JSON.stringify({date:ld})); }catch(e) {}
@@ -315,8 +320,7 @@ lpMsg.style.display='block';
 return;
 }
 lpNotesBtn.textContent='Sending...';
-var lnBody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent(testTag(noteText))+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(lpLabel)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Revision notes');
-fetch(FORM_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:lnBody}).then(function() {
+goPost({action:'Revision notes',subject:'Beatrice sent notes on the '+lpLabel.toLowerCase(),item:lpLabel,body:noteText}).then(function() {
 lpMsg.textContent='Notes sent — thank you!';
 lpMsg.style.display='block';
 lpNotesArea.value='';
@@ -524,8 +528,7 @@ approveBtn.textContent='Approve '+labelLower;
 clearTimeout(vArmTimer);
 vArmed=false;
 approveBtn.textContent='Sending...';
-var abody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent(testTag('I approve '+labelLower+' as final.'))+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(label)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Approval');
-fetch(FORM_URL, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:abody}).then(function() {
+goPost({action:'Approval',subject:'Beatrice approved '+labelLower,item:label,body:'I approve '+labelLower+' as final.'}).then(function() {
 var d=new Date();
 var vd=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
 try{localStorage.setItem('gobeatrice_approval_edit'+v.n,JSON.stringify({date:vd})); }catch(e) {}
@@ -548,8 +551,7 @@ msg.style.display='block';
 return;
 }
 notesBtn.textContent='Sending...';
-var nbody=encodeURIComponent(ENTRY_NAME)+'='+encodeURIComponent(CLIENT_NAME)+'&'+encodeURIComponent(ENTRY_DETAILS)+'='+encodeURIComponent(testTag(noteText))+'&'+encodeURIComponent(ENTRY_VIDEO)+'='+encodeURIComponent(label)+'&'+encodeURIComponent(ENTRY_TYPE)+'='+encodeURIComponent('Revision notes');
-fetch(FORM_URL, {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:nbody}).then(function() {
+goPost({action:'Revision notes',subject:'Beatrice sent notes on '+labelLower,item:label,body:noteText}).then(function() {
 msg.textContent='Notes sent — thank you!';
 msg.style.display='block';
 notesArea.value='';
