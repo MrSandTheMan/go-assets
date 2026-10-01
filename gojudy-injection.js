@@ -240,6 +240,52 @@
     });
   }
 
+  function wireEmailModal(root, em) {
+    var overlay = root.querySelector("#go-email-modal");
+    var approveBtn = overlay.querySelector(".go-email-approve");
+    var notesArea = overlay.querySelector(".go-email-notes");
+    var notesBtn = overlay.querySelector(".go-email-notesbtn");
+    var msg = overlay.querySelector(".go-email-msg");
+    var key = "gojudy_approval_outreachemail";
+    var subject = (em && em.subject) || "";
+
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay || e.target.getAttribute("data-close") !== null) closeModal(overlay);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && overlay.classList.contains("open")) closeModal(overlay);
+    });
+
+    if (approveBtn) {
+      twoTap(approveBtn, "Approve outreach email", function (doneFn, fail) {
+        post({ action: "approval", subject: "Judy approved outreach email template",
+               item: "outreach-email",
+               body: "Judy approved the outreach email template as-is.\n\nSubject: " + subject })
+          .then(function () {
+            try { localStorage.setItem(key, JSON.stringify({ date: today() })); } catch (e) {}
+            doneFn("Approved, thank you!");
+          })
+          .catch(fail);
+      });
+    }
+    notesBtn.addEventListener("click", function () {
+      var t = notesArea.value.trim();
+      if (!t) { notesArea.focus(); return; }
+      notesBtn.disabled = true; notesBtn.textContent = "Sending...";
+      post({ action: "notes", subject: "Notes on outreach email from Judy",
+             item: "outreach-email", body: t })
+        .then(function () {
+          msg.textContent = "Notes sent, thank you!";
+          notesArea.value = "";
+          notesBtn.disabled = false; notesBtn.textContent = "Send notes";
+        })
+        .catch(function () {
+          msg.textContent = "Something went wrong. Try again.";
+          notesBtn.disabled = false; notesBtn.textContent = "Send notes";
+        });
+    });
+  }
+
   function advertBody(t) {
     return esc(t || "").split(/\n+/).map(function (p) {
       var line = p.trim();
@@ -293,11 +339,12 @@
         esc(c.resource.label) + "</a></div>";
     }
 
-    /* priority card: opens the Role Advert v3 popup */
+    /* priority cards: each opens its own approval popup */
     (c.approvals || []).forEach(function (ap) {
       h += '<div class="go-card"><h2>' + esc(ap.title) + "</h2><p>" +
         esc(ap.text).replace(/\n/g, "<br><br>") + "</p>" +
-        '<button class="go-btn" data-advert="1">' + esc(ap.cta) + "</button></div>";
+        '<button class="go-btn" data-modal="' + esc(ap.modal || "go-advert-modal") + '">' +
+        esc(ap.cta) + "</button></div>";
     });
 
     /* tasks: Judy's checklist and Sandy's checklist */
@@ -348,6 +395,35 @@
       '<p class="go-msg go-advert-msg"></p>' +
       "</div></div>";
 
+    /* outreach email modal */
+    var em = c.outreach_email || {};
+    var doneEmail = null;
+    try {
+      var evs = JSON.parse(localStorage.getItem("gojudy_approval_outreachemail") || "null");
+      if (evs && evs.date) doneEmail = evs.date;
+    } catch (e) {}
+    var candList = (em.candidates || []).map(function (n) {
+      return "<li>" + esc(n) + "</li>";
+    }).join("");
+    h += '<div class="go-modal-overlay" id="go-email-modal"><div class="go-modal">' +
+      '<button class="go-modal-close" data-close="1" aria-label="Close">&times;</button>' +
+      "<h2>" + esc(em.title || "Outreach email template") + "</h2>" +
+      '<p class="advert-head">' + esc(em.heading || "") + "</p>" +
+      (candList
+        ? '<p class="advert-body" style="margin-bottom:4px;"><strong>Candidates (' +
+          em.candidates.length + "):</strong></p>" +
+          '<ul class="advert-body" style="margin-top:0;padding-left:20px;">' + candList + "</ul>"
+        : "") +
+      '<p class="advert-head">Subject: ' + esc(em.subject || "") + "</p>" +
+      '<div class="advert-body">' + advertBody(em.body) + "</div>" +
+      (doneEmail
+        ? '<p class="go-done">Approved ' + esc(doneEmail) + ", thank you.</p>"
+        : '<button class="go-btn go-email-approve" style="margin-top:16px;">Approve outreach email</button>') +
+      '<textarea class="go-email-notes" rows="2" placeholder="Want changes to the email? Write them here..."></textarea>' +
+      '<button class="go-btn ghost go-notesbtn go-email-notesbtn">Send notes</button>' +
+      '<p class="go-msg go-email-msg"></p>' +
+      "</div></div>";
+
     h += '<p class="go-footer">Questions? Email <a href="mailto:' + esc(c.footer_email) + '">' +
       esc(c.footer_email) + "</a><br>This page updates live as your project moves.</p>";
 
@@ -368,13 +444,16 @@
     var mount = document.querySelector("main") || document.getElementById("page") || document.body;
     mount.insertBefore(root, mount.firstChild);
 
-    /* priority-card CTA opens the advert popup */
-    root.querySelectorAll("[data-advert]").forEach(function (b) {
-      b.addEventListener("click", function () { openModal("go-advert-modal"); });
+    /* priority-card CTAs open their approval popup */
+    root.querySelectorAll("[data-modal]").forEach(function (b) {
+      b.addEventListener("click", function () { openModal(b.getAttribute("data-modal")); });
     });
 
     /* wire the advert modal (approve + notes) */
     wireAdvertModal(root, ra);
+
+    /* wire the outreach email modal (approve + notes) */
+    wireEmailModal(root, em);
 
     /* homescreen buttons */
     var hsEl = root.querySelector(".go-hs");
