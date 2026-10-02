@@ -28,7 +28,7 @@
     "margin:0 0 10px;}" +
     "#go-root .go-card p{color:#ddd;line-height:1.55;margin:0 0 12px;font-size:15px;}" +
     "#go-root .go-sect{font-family:Archivo,Inter,sans-serif;font-size:13px;" +
-    "letter-spacing:.2em;text-transform:uppercase;color:#888;margin:28px 0 12px;}" +
+    "letter-spacing:.2em;color:#888;margin:28px 0 12px;}" +
     "#go-root .go-btn{display:inline-block;background:" + RED + ";color:#fff;border:0;" +
     "border-radius:999px;padding:12px 26px;font-size:15px;font-weight:700;cursor:pointer;}" +
     "#go-root .go-btn.ghost{background:transparent;border:1px solid #555;color:#fff;}" +
@@ -38,7 +38,7 @@
     "border:1px solid #333;border-radius:10px;color:#fff;padding:12px;font-size:15px;" +
     "font-family:inherit;min-height:84px;margin:0 0 12px;}" +
     "#go-root .go-pill{display:inline-block;font-size:12px;font-weight:700;" +
-    "letter-spacing:.08em;text-transform:uppercase;border-radius:999px;" +
+    "letter-spacing:.08em;border-radius:999px;" +
     "padding:4px 12px;margin:0 0 8px;}" +
     "#go-root .go-pill.waiting{background:#3a2c00;color:#ffcf5c;}" +
     "#go-root .go-pill.blocked{background:#3d0009;color:#ff6b81;}" +
@@ -72,7 +72,7 @@
     "@media(max-width:640px){#go-root .go-stats{grid-template-columns:repeat(2,1fr);}}" +
     /* pillar status bars */
     "#go-root .go-plan{font-family:Archivo,Inter,sans-serif;font-size:13px;" +
-    "letter-spacing:.2em;text-transform:uppercase;color:#888;margin:0 0 10px;}" +
+    "letter-spacing:.2em;color:#888;margin:0 0 10px;}" +
     "#go-root .go-pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;" +
     "margin:0 0 24px;}" +
     "#go-root .go-pillar{display:flex;justify-content:space-between;align-items:center;" +
@@ -112,7 +112,7 @@
     "#go-modal .go-item b{font-size:16px;}" +
     "#go-modal .go-item p{font-size:14px;margin:6px 0 10px;}" +
     "#go-modal .go-tag{display:inline-block;background:" + RED + ";color:#fff;" +
-    "font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;" +
+    "font-size:11px;font-weight:700;letter-spacing:.06em;" +
     "border-radius:999px;padding:3px 10px;margin-left:8px;vertical-align:2px;}" +
     "#go-modal .go-email{background:#0a0a0a;border:1px solid #2c2c2c;border-radius:12px;" +
     "padding:16px;font-size:14px;line-height:1.65;color:#ddd;white-space:pre-wrap;" +
