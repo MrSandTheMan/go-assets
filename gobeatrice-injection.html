@@ -213,12 +213,17 @@ for(var i=0;i<paras.length;i++) {
 if(paras[i].textContent.indexOf('Five video edits')!==-1) {
 paras[i].innerHTML='<b>'+card.priority_heading+'</b> '+card.priority;
 var n=paras[i].nextElementSibling;
-var btn=(n&&n.classList&&n.classList.contains('btn'))?n:document.createElement('a');
+var nIsBtn=n&&n.classList&&n.classList.contains('btn');
+if(card.button_enabled===false){
+if(nIsBtn)n.remove();
+}else{
+var btn=nIsBtn?n:document.createElement('a');
 btn.className='btn';
 btn.href=card.button_url;
 btn.target='_blank';
 btn.textContent=card.button_label;
 if(!btn.parentNode)paras[i].insertAdjacentElement('afterend',btn);
+}
 if(card.audio_upload&&card.audio_upload.enabled&&!document.querySelector('.audio-guide-wrap')) {
 var agWrap=document.createElement('div');
 agWrap.className='audio-guide-wrap';
