@@ -33,7 +33,7 @@
     "#go-root .go-card p{color:#ddd;line-height:1.6;margin:0 0 12px;font-size:15px;}" +
     "#go-root .go-card p:last-child{margin-bottom:0;}" +
     "#go-root .go-sect{font-family:Archivo,Inter,sans-serif;font-size:13px;" +
-    "letter-spacing:.2em;text-transform:uppercase;color:#888;margin:32px 0 12px;}" +
+    "letter-spacing:.2em;color:#888;margin:32px 0 12px;}" +
     "#go-root .go-btn{display:inline-block;background:" + RED + ";color:#fff;border:0;" +
     "border-radius:999px;padding:12px 26px;font-size:15px;font-weight:700;cursor:pointer;" +
     "text-decoration:none;}" +
@@ -80,7 +80,7 @@
     /* top 5 table */
     "#go-root .go-table{width:100%;border-collapse:collapse;font-size:14px;}" +
     "#go-root .go-table th{text-align:left;color:#888;font-size:12px;" +
-    "text-transform:uppercase;letter-spacing:.1em;padding:8px 10px;" +
+    "letter-spacing:.1em;padding:8px 10px;" +
     "border-bottom:1px solid #2a2a2a;font-weight:700;}" +
     "#go-root .go-table td{padding:10px;border-bottom:1px solid #1f1f1f;color:#ddd;}" +
     "#go-root .go-table tr:last-child td{border-bottom:0;}" +
