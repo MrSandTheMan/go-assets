@@ -221,8 +221,8 @@
         '<div class="rv-progress"><div class="rv-progress-fill"></div></div></div>' +
         (done
           ? '<p class="go-done">Approved ' + esc(done) + " — thank you.</p>"
-          : '<button class="go-btn rv-approve">Approve ' + esc((v.label || "").toLowerCase()) + "</button>") +
-        '<textarea class="rv-notes" rows="2" placeholder="Want changes to ' + esc((v.label || "").toLowerCase()) + '? Write them here..."></textarea>' +
+          : '<button class="go-btn rv-approve">Approve ' + esc(v.label || ("Trim " + v.n)) + "</button>") +
+        '<textarea class="rv-notes" rows="2" placeholder="Want changes to ' + esc(v.label || ("Trim " + v.n)) + '? Write them here..."></textarea>' +
         '<button class="go-btn ghost go-notesbtn rv-notesbtn">Send notes</button>' +
         '<p class="go-msg rv-msg"></p></div>';
     });
@@ -235,7 +235,6 @@
 
   function wireReviewRow(row, v) {
     var label = v.label || ("Trim " + v.n);
-    var labelLower = label.toLowerCase();
     var nativeVideo = row.querySelector("video");
     var playBtn = row.querySelector(".rv-play");
     var progBar = row.querySelector(".rv-progress");
@@ -274,7 +273,7 @@
     var key = "gorahat_approval_trim" + v.n;
 
     if (approveBtn) {
-      twoTap(approveBtn, "Approve " + labelLower, function (doneFn, fail) {
+      twoTap(approveBtn, "Approve " + label, function (doneFn, fail) {
         post({ action: "approval", subject: "Rahat approved " + label + ": " + (v.title || ""), item: "trim-" + v.n, body: "Approved " + label + "." })
           .then(function () {
             localStorage.setItem(key, JSON.stringify({ date: today() }));
