@@ -388,6 +388,13 @@
         esc(ap.cta) + "</button></div>";
     });
 
+    /* handshake research button: between approval cards and the Tasks heading */
+    var hrBtn = c.handshake_research || {};
+    if (hrBtn.button_label) {
+      h += '<div style="text-align:center;margin:2px 0 4px;"><button class="go-btn ghost" ' +
+        'data-modal="go-handshake-modal">' + esc(hrBtn.button_label) + "</button></div>";
+    }
+
     /* tasks: Judy's checklist and Sandy's checklist */
     if (c.tasks && (c.tasks.judy || c.tasks.sandy)) {
       h += '<div class="go-sect">' + esc(c.tasks.heading || "Tasks") + "</div>" +
@@ -413,13 +420,7 @@
     /* head-hunting track */
     if (c.headhunt) {
       h += '<div class="go-sect">Head-hunting</div><div class="go-card"><p>' +
-        esc(c.headhunt.text || "") + "</p>" + renderTrackList(c.headhunt.items);
-      var hrBtn = c.handshake_research || {};
-      if (hrBtn.button_label) {
-        h += '<button class="go-btn ghost" data-modal="go-handshake-modal" style="margin-top:12px;">' +
-          esc(hrBtn.button_label) + "</button>";
-      }
-      h += "</div>";
+        esc(c.headhunt.text || "") + "</p>" + renderTrackList(c.headhunt.items) + "</div>";
     }
 
     /* role advert v3 modal */
