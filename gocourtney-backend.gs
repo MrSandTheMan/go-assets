@@ -1,4 +1,4 @@
-/* GoCourtney backend — the "Want me to script them?" Script Scan ask.
+/* GoCourtney backend: the "Want me to script them?" Script Scan ask.
    Deploy as web app: Execute as me (team@goanomalous.com), Who has access: Anyone.
    Page posts JSON with Content-Type: text/plain (avoids CORS preflight).
    Payload: { token, action: "script_ask", subject, item, body, test? }
