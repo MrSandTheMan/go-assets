@@ -1,7 +1,7 @@
 <script>
 /* GoCourtney: The Go page for Courtney Mendez (Serhant).
    Renders the 60-day Instagram audit natively from the public gist; all
-   copy updates are data-only (edit state, run go-tracker.py update gorahme).
+   copy updates are data-only (edit state, run go-tracker.py update gocourtney).
    Local source: ~/workspace/client-tracker/gocourtney-injection.js */
 (function () {
   var GIST_URL = "https://gist.githubusercontent.com/MrSandTheMan/b4c0707b6e5baa036273bea4e93556a1/raw/gocourtney-tracker.json";
