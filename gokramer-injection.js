@@ -406,12 +406,14 @@
     }
 
     /* approvals: rough draft review (legacy; empty unless filled) */
-    h += '<div class="go-sect">Needs your approval</div>';
-    c.approvals.forEach(function (ap) {
-      h += '<div class="go-card"><h2>' + esc(ap.title) + "</h2><p>" +
-        esc(ap.text).replace(/\n/g, "<br><br>") + "</p>" +
-        '<button class="go-btn" data-ap="' + esc(ap.id) + '">' + esc(ap.cta) + "</button></div>";
-    });
+    if (c.approvals && c.approvals.length) {
+      h += '<div class="go-sect">Needs your approval</div>';
+      c.approvals.forEach(function (ap) {
+        h += '<div class="go-card"><h2>' + esc(ap.title) + "</h2><p>" +
+          esc(ap.text).replace(/\n/g, "<br><br>") + "</p>" +
+          '<button class="go-btn" data-ap="' + esc(ap.id) + '">' + esc(ap.cta) + "</button></div>";
+      });
+    }
 
     /* accounts access */
     h += '<div class="go-sect">Account access</div>' +
