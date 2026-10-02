@@ -225,10 +225,11 @@ btn.textContent=card.button_label;
 if(!btn.parentNode)paras[i].insertAdjacentElement('afterend',btn);
 }
 if(card.audio_upload&&card.audio_upload.enabled&&!document.querySelector('.audio-guide-wrap')) {
+var agAnchor=(typeof btn!=='undefined'&&btn&&btn.parentNode)?btn:paras[i];
 var agWrap=document.createElement('div');
 agWrap.className='audio-guide-wrap';
 agWrap.innerHTML='<button class="guide-toggle audio-guide-toggle" type="button">How to record your audio</button>'+'<div class="audio-guide-panel" style="display:none"><img data-src="'+guideImgUrl+'" alt="How to record your audio"></div>';
-btn.insertAdjacentElement('afterend',agWrap);
+agAnchor.insertAdjacentElement('afterend',agWrap);
 var agToggle=agWrap.querySelector('.audio-guide-toggle');
 var agPanel=agWrap.querySelector('.audio-guide-panel');
 var agImg=agWrap.querySelector('img');
@@ -421,7 +422,8 @@ actionHtml='<a class="btn rv-approve approve" href="#">Approve '+qlower+'</a>';
 }
 listHtml+='<div class="rv" data-n="'+qv.n+'">'+'<p class="rv-title">'+qlabel+' <span>'+(qv.title||'')+'</span></p>'+playerHtml+actionHtml+'<div class="rv-notes"><textarea rows="2" placeholder="Want changes to '+qlower+'? Write them here..."></textarea>'+'<a class="btn rv-notes-btn" href="#">Send notes</a></div>'+'<p class="rv-msg" style="display:none"></p></div>';
 }
-modal.innerHTML='<div class="review-card"><button class="review-close" aria-label="Close">×</button>'+'<h3 class="review-title">Review your edits</h3><div class="review-list">'+listHtml+'</div>'+'<p class="review-drive">Prefer Drive? <a href="'+card.button_url+'" target="_blank" rel="noopener">'+'Open edits 1 & 2 in Google Drive</a></p></div>';
+var driveLink=card.button_url?'<p class="review-drive">Prefer Drive? <a href="'+card.button_url+'" target="_blank" rel="noopener">Open edits in Google Drive</a></p>':'';
+modal.innerHTML='<div class="review-card"><button class="review-close" aria-label="Close">×</button>'+'<h3 class="review-title">Review your edits</h3><div class="review-list">'+listHtml+'</div>'+driveLink+'</div>';
 document.body.appendChild(modal);
 var rvEls=modal.querySelectorAll('.rv');
 for(var wi=0;wi<rvEls.length;wi++) {
