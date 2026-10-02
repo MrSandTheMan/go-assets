@@ -29,7 +29,7 @@
     "margin:0 0 10px;}" +
     "#go-root .go-card p{color:#ddd;line-height:1.55;margin:0 0 12px;font-size:15px;}" +
     "#go-root .go-sect{font-family:Archivo,Inter,sans-serif;font-size:13px;" +
-    "letter-spacing:.2em;text-transform:uppercase;color:#888;margin:28px 0 12px;}" +
+    "letter-spacing:.2em;color:#888;margin:28px 0 12px;}" +
     "#go-root .go-btn{display:inline-block;background:" + RED + ";color:#fff;border:0;" +
     "border-radius:999px;padding:12px 26px;font-size:15px;font-weight:700;cursor:pointer;}" +
     "#go-root .go-btn.ghost{background:transparent;border:1px solid #555;color:#fff;}" +
@@ -42,7 +42,7 @@
     /* how it works phases image */
     "#go-root .go-hiw{margin:0 0 16px;text-align:center;}" +
     "#go-root .go-hiw-h{font-family:Archivo,Inter,sans-serif;font-size:13px;" +
-    "letter-spacing:.25em;text-transform:uppercase;color:#888;margin:0 0 12px;" +
+    "letter-spacing:.25em;color:#888;margin:0 0 12px;" +
     "font-weight:600;}" +
     "#go-root .go-hiw img{width:100%;border-radius:16px;display:block;}" +
     /* test mode banner */
