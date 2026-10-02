@@ -19,7 +19,7 @@
     "#go-root{max-width:960px;margin:0 auto;padding:32px 20px 8px;color:#fff;" +
     "font-family:Inter,-apple-system,'Segoe UI',sans-serif;}" +
     "#go-root .go-eyebrow{letter-spacing:.25em;font-size:12px;color:#999;" +
-    "text-transform:uppercase;margin:0 0 8px;text-align:center;}" +
+    "margin:0 0 8px;text-align:center;}" +
     "#go-root h1{font-family:Archivo,Inter,sans-serif;font-weight:800;" +
     "font-size:clamp(28px,5vw,44px);margin:0 0 6px;text-align:center;}" +
     "#go-root .go-sub{text-align:center;color:#999;font-size:15px;margin:0 0 28px;}" +
