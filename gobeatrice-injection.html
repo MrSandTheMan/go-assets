@@ -257,7 +257,7 @@ return fetch(BACKEND.url,{method:'POST',headers:{'Content-Type':'text/plain'},bo
 if(TEST_MODE) {
 var tb=document.createElement('div');
 tb.className='go-testbanner';
-tb.textContent='TEST MODE — approvals and notes from this visit are tagged [TEST] and do not count.';
+tb.textContent='TEST MODE: approvals and notes from this visit are tagged [TEST] and do not count.';
 document.body.insertBefore(tb,document.body.firstChild);
 }
 /* --- Landing page review section (gated by card.landing_review) --- */
@@ -346,11 +346,11 @@ goPost({action:'Approval',subject:'Beatrice approved the '+lpLabel.toLowerCase()
 var d=new Date();
 var ld=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
 try{localStorage.setItem('gobeatrice_approval_landing',JSON.stringify({date:ld})); }catch(e) {}
-lpApproveBtn.textContent='Approved '+ld+' — thank you!';
+lpApproveBtn.textContent='Approved '+ld+'. Thank you!';
 lpApproveBtn.classList.remove('armed');
 lpApproveBtn.classList.add('done');
 }).catch(function() {
-lpApproveBtn.textContent='Something went wrong — tap to retry';
+lpApproveBtn.textContent='Something went wrong. Tap to retry.';
 lpArmed=false;
 });
 }
@@ -377,12 +377,12 @@ atts=atts.filter(function(a){return !!a;});
 var body=noteText||'(No text, images attached.)';
 if(atts.length)body+='\n\n['+atts.length+' image(s) attached: '+atts.map(function(a){return a.name;}).join(', ')+']';
 goPost({action:'Revision notes',subject:'Beatrice sent notes on the '+lpLabel.toLowerCase(),item:lpLabel,body:body,attachments:atts}).then(function() {
-lpMsg.textContent='Notes sent — thank you!';
+lpMsg.textContent='Notes sent. Thank you!';
 lpMsg.style.display='block';
 lpNotesArea.value='';lpFiles=[];renderLpThumbs();
 lpNotesBtn.textContent='Send notes';
 }).catch(function() {
-lpMsg.textContent='Something went wrong — try again.';
+lpMsg.textContent='Something went wrong. Try again.';
 lpMsg.style.display='block';
 lpNotesBtn.textContent='Send notes';
 });
@@ -565,7 +565,7 @@ if(vs&&vs.date)vDone=vs.date;
 }
 if(approveBtn) {
 if(vDone!==null) {
-approveBtn.textContent='Approved '+vDone+' — thank you!';
+approveBtn.textContent='Approved '+vDone+'. Thank you!';
 approveBtn.classList.add('done');
 }
 var vArmed=false,vArmTimer=null;
@@ -589,11 +589,11 @@ goPost({action:'Approval',subject:'Beatrice approved '+labelLower,item:label,bod
 var d=new Date();
 var vd=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
 try{localStorage.setItem('gobeatrice_approval_edit'+v.n,JSON.stringify({date:vd})); }catch(e) {}
-approveBtn.textContent='Approved '+vd+' — thank you!';
+approveBtn.textContent='Approved '+vd+'. Thank you!';
 approveBtn.classList.remove('armed');
 approveBtn.classList.add('done');
 }).catch(function() {
-approveBtn.textContent='Something went wrong — tap to retry';
+approveBtn.textContent='Something went wrong. Tap to retry.';
 vArmed=false;
 });
 }
@@ -609,12 +609,12 @@ return;
 }
 notesBtn.textContent='Sending...';
 goPost({action:'Revision notes',subject:'Beatrice sent notes on '+labelLower,item:label,body:noteText}).then(function() {
-msg.textContent='Notes sent — thank you!';
+msg.textContent='Notes sent. Thank you!';
 msg.style.display='block';
 notesArea.value='';
 notesBtn.textContent='Send notes';
 }).catch(function() {
-msg.textContent='Something went wrong — try again.';
+msg.textContent='Something went wrong. Try again.';
 msg.style.display='block';
 notesBtn.textContent='Send notes';
 });
@@ -695,7 +695,7 @@ lis[m].innerHTML='Ad Landing Page<span class="t">With you for approval</span>';
 break;
 }
 }
-/* deliverables override: Edit 2 approved, only Edit 1 awaits approval (2026-09-29) */
+/* deliverables override: all 5 edits approved (2026-10-02) */
 for(var m2=0;m2<lis.length;m2++) {
 if(lis[m2].textContent.indexOf('Edits 1 and 2')!==-1) {
 lis[m2].innerHTML='All 5 edits<span class="t">Approved</span>';
