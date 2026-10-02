@@ -192,7 +192,9 @@
 
   /* ---------- role advert modal ---------- */
   function openModal(id) {
-    document.getElementById(id).classList.add("open");
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add("open");
     document.body.style.overflow = "hidden";
   }
   function closeModal(el) {
@@ -293,6 +295,38 @@
     });
   }
 
+  function wireHandshakeModal(root, hr) {
+    var overlay = root.querySelector("#go-handshake-modal");
+    if (!overlay) return;
+    var notesArea = overlay.querySelector(".go-handshake-notes");
+    var notesBtn = overlay.querySelector(".go-handshake-notesbtn");
+    var msg = overlay.querySelector(".go-handshake-msg");
+
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay || e.target.getAttribute("data-close") !== null) closeModal(overlay);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && overlay.classList.contains("open")) closeModal(overlay);
+    });
+
+    notesBtn.addEventListener("click", function () {
+      var t = notesArea.value.trim();
+      if (!t) { notesArea.focus(); return; }
+      notesBtn.disabled = true; notesBtn.textContent = "Sending...";
+      post({ action: "notes", subject: "Notes on Handshake research from Judy",
+             item: "handshake-research", body: t })
+        .then(function () {
+          msg.textContent = "Notes sent, thank you!";
+          notesArea.value = "";
+          notesBtn.disabled = false; notesBtn.textContent = "Send notes";
+        })
+        .catch(function () {
+          msg.textContent = "Something went wrong. Try again.";
+          notesBtn.disabled = false; notesBtn.textContent = "Send notes";
+        });
+    });
+  }
+
   function advertBody(t) {
     return esc(t || "").split(/\n+/).map(function (p) {
       var line = p.trim();
@@ -379,7 +413,13 @@
     /* head-hunting track */
     if (c.headhunt) {
       h += '<div class="go-sect">Head-hunting</div><div class="go-card"><p>' +
-        esc(c.headhunt.text || "") + "</p>" + renderTrackList(c.headhunt.items) + "</div>";
+        esc(c.headhunt.text || "") + "</p>" + renderTrackList(c.headhunt.items);
+      var hrBtn = c.handshake_research || {};
+      if (hrBtn.button_label) {
+        h += '<button class="go-btn ghost" data-modal="go-handshake-modal" style="margin-top:12px;">' +
+          esc(hrBtn.button_label) + "</button>";
+      }
+      h += "</div>";
     }
 
     /* role advert v3 modal */
@@ -431,6 +471,20 @@
       '<p class="go-msg go-email-msg"></p>' +
       "</div></div>";
 
+    /* handshake research modal (informational: notes only, no approval button) */
+    var hr = c.handshake_research || {};
+    if (hr.title || hr.body) {
+      h += '<div class="go-modal-overlay" id="go-handshake-modal"><div class="go-modal">' +
+        '<button class="go-modal-close" data-close="1" aria-label="Close">&times;</button>' +
+        "<h2>" + esc(hr.title || "Handshake research") + "</h2>" +
+        '<p class="advert-head">' + esc(hr.heading || "") + "</p>" +
+        '<div class="advert-body">' + advertBody(hr.body) + "</div>" +
+        '<textarea class="go-handshake-notes" rows="2" placeholder="Questions or thoughts on the Handshake research? Write them here..."></textarea>' +
+        '<button class="go-btn ghost go-notesbtn go-handshake-notesbtn">Send notes</button>' +
+        '<p class="go-msg go-handshake-msg"></p>' +
+        "</div></div>";
+    }
+
     h += '<p class="go-footer">Questions? Email <a href="mailto:' + esc(c.footer_email) + '">' +
       esc(c.footer_email) + "</a><br>This page updates live as your project moves.</p>";
 
@@ -461,6 +515,9 @@
 
     /* wire the outreach email modal (approve + notes) */
     wireEmailModal(root, em);
+
+    /* wire the handshake research modal (notes only) */
+    wireHandshakeModal(root, hr);
 
     /* homescreen buttons */
     var hsEl = root.querySelector(".go-hs");
