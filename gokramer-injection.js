@@ -387,7 +387,25 @@
         esc(c.how_it_works.alt || "How your project moves") + '"></div>';
     }
 
-    /* approvals: rough draft review */
+    /* dev rooms: text-based dialogue approval (replaces trim approval cards) */
+    if (c.devrooms && c.devrooms.length) {
+      h += '<div class="go-sect">Dialogue approval</div>';
+      c.devrooms.forEach(function (dr) {
+        h += '<div class="go-card"><h2>' + esc(dr.title) + "</h2><p>" +
+          esc(dr.text).replace(/\n/g, "<br><br>") + "</p>";
+        if (dr.image) {
+          h += '<img loading="lazy" src="' + esc(dr.image) + '" alt="' + esc(dr.image_alt || "") +
+            '" style="width:100%;border-radius:12px;display:block;margin:4px 0 14px;">';
+        }
+        if (dr.doc_url) {
+          h += '<a class="go-btn" href="' + esc(dr.doc_url) + '" target="_blank" rel="noopener" ' +
+            'style="text-decoration:none;">' + esc(dr.doc_cta || "Open the transcript") + "</a>";
+        }
+        h += "</div>";
+      });
+    }
+
+    /* approvals: rough draft review (legacy; empty unless filled) */
     h += '<div class="go-sect">Needs your approval</div>';
     c.approvals.forEach(function (ap) {
       h += '<div class="go-card"><h2>' + esc(ap.title) + "</h2><p>" +
