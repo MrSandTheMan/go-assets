@@ -187,22 +187,18 @@ color:#8a8a8e;
 .lp-review .lp-sub{color:#c9c9cd;font-size:15px;margin:0 0 6px;line-height:1.6; }
 .lp-review .btn{margin:10px 10px 0 0; }
 .lp-review .rv-notes{margin-top:14px; }
-.ab-input{
-width:100%;
-padding:13px 14px;
-border-radius:10px;
-font:inherit;
-font-size:15px;
-background:#0b0b0c;
-border:1px solid #232327;
-color:#f5f5f5;
-box-sizing:border-box;
-margin:10px 0 0;
-}
-.ab-input:focus{outline:none;border-color:#e8323c; }
-.ab-input::placeholder{color:#6a6a6e; }
-.btn.ab-send{background:#E00020;color:#fff;border:0;font-weight:700; }
-.btn.ab-send:hover{background:#ff1a33;text-decoration:none; }
+/* --- Image attach on landing notes --- */
+.lp-img-row{margin-top:10px;}
+.btn.lp-img-btn{margin:0;font-size:13px;padding:10px 20px;}
+.lp-img-thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.lp-img-thumbs:empty{display:none;}
+.lp-img-thumbs img{width:56px;height:56px;object-fit:cover;border-radius:8px;border:1px solid #3a3a3f;cursor:pointer;}
+.lp-img-thumbs img:hover{border-color:#ff6b6b;}
+/* --- Caps normalization (Sandy: no all-caps style, Oct 2026) --- */
+.wrap h2,.wrap .tagline,.wrap .pill,.wrap .kicker,.wrap .priority p,.wrap .priority b,.wrap .btn,.wrap .lp-sub,.wrap footer .go{text-transform:none!important;}
+.wrap h2{letter-spacing:.14em!important;text-indent:0!important;}
+.wrap .priority .kicker{letter-spacing:.14em!important;text-indent:0!important;}
+.wrap footer .go{letter-spacing:.3em!important;text-indent:0!important;}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded',function() {
@@ -251,7 +247,7 @@ try{localStorage.removeItem('gobeatrice_approval_landing'); }catch(e) {}
    backend web app. ?test=1 tags the subject [TEST] so tests never mix with
    real client submissions. */
 function goPost(payload){
-var p={token:BACKEND.token,action:payload.action,subject:payload.subject,item:payload.item,body:payload.body,from:CLIENT_NAME};
+var p={token:BACKEND.token,action:payload.action,subject:payload.subject,item:payload.item,body:payload.body,from:CLIENT_NAME,attachments:payload.attachments||[]};
 if(TEST_MODE){
 p.subject='[TEST] '+(p.subject||p.action||'');
 p.body='TEST SUBMISSION - sent from a ?test=1 page load, not by the client.\n\n'+(p.body||'');
@@ -281,7 +277,11 @@ if(!lpApprovedDate) {
 lpInner+='<p class="lp-sub">This is the page your ads will send people to. Look it over, then approve it or send notes below.</p>';
 lpInner+='<a class="btn" href="'+lpUrl+'" target="_blank" rel="noopener">View landing page</a>';
 lpInner+='<a class="btn approve lp-approve" href="#">Approve landing page</a>';
-lpInner+='<div class="rv-notes"><textarea rows="2" placeholder="Want changes to the landing page? Write them here..."></textarea><a class="btn rv-notes-btn lp-notes-btn" href="#">Send notes</a></div><p class="rv-msg lp-msg" style="display:none"></p>';
+lpInner+='<div class="rv-notes"><textarea rows="2" placeholder="Want changes to the landing page? Write them here..."></textarea>'+
+'<div class="lp-img-row"><label class="btn rv-notes-btn lp-img-btn" for="lp-img-input">Add images</label>'+
+'<input type="file" id="lp-img-input" accept="image/*" multiple style="display:none"></div>'+
+'<div class="lp-img-thumbs"></div>'+
+'<a class="btn rv-notes-btn lp-notes-btn" href="#">Send notes</a></div><p class="rv-msg lp-msg" style="display:none"></p>';
 }else{
 lpInner+='<p class="lp-sub">Approved '+lpApprovedDate+' — thank you!</p>';
 lpInner+='<a class="btn" href="'+lpUrl+'" target="_blank" rel="noopener">View landing page</a>';
@@ -297,6 +297,34 @@ var lpApproveBtn=lpSec.querySelector('.lp-approve');
 var lpNotesArea=lpSec.querySelector('.rv-notes textarea');
 var lpNotesBtn=lpSec.querySelector('.lp-notes-btn');
 var lpMsg=lpSec.querySelector('.lp-msg');
+var lpImgInput=lpSec.querySelector('#lp-img-input');
+var lpThumbs=lpSec.querySelector('.lp-img-thumbs');
+var lpFiles=[];
+function renderLpThumbs(){
+lpThumbs.innerHTML='';
+for(var ti=0;ti<lpFiles.length;ti++){
+(function(f,idx){
+var im=document.createElement('img');
+im.src=URL.createObjectURL(f);
+im.title=f.name+' (tap to remove)';
+im.alt=f.name;
+im.addEventListener('click',function(){lpFiles.splice(idx,1);renderLpThumbs();});
+lpThumbs.appendChild(im);
+})(lpFiles[ti],ti);
+}
+}
+lpImgInput.addEventListener('change',function(){
+var sel=lpImgInput.files||[];
+for(var fi=0;fi<sel.length;fi++){
+var f=sel[fi];
+if(lpFiles.length>=5){lpMsg.textContent='Up to 5 images per note.';lpMsg.style.display='block';break;}
+if(!/^image\//.test(f.type)){continue;}
+if(f.size>8*1024*1024){lpMsg.textContent=f.name+' is too big (8MB max).';lpMsg.style.display='block';continue;}
+lpFiles.push(f);
+}
+lpImgInput.value='';
+renderLpThumbs();
+});
 var lpArmed=false,lpArmTimer=null;
 lpApproveBtn.addEventListener('click',function(e) {
 e.preventDefault();
@@ -330,82 +358,34 @@ lpArmed=false;
 lpNotesBtn.addEventListener('click',function(e) {
 e.preventDefault();
 var noteText=lpNotesArea.value.trim();
-if(!noteText) {
+if(!noteText&&!lpFiles.length) {
 lpMsg.textContent='Write your notes first.';
 lpMsg.style.display='block';
 return;
 }
 lpNotesBtn.textContent='Sending...';
-goPost({action:'Revision notes',subject:'Beatrice sent notes on the '+lpLabel.toLowerCase(),item:lpLabel,body:noteText}).then(function() {
+var reads=lpFiles.map(function(f){
+return new Promise(function(res){
+var r=new FileReader();
+r.onload=function(){var du=String(r.result||'');res({name:f.name,mimeType:f.type||'image/jpeg',base64:du.indexOf(',')>-1?du.split(',')[1]:du});};
+r.onerror=function(){res(null);};
+r.readAsDataURL(f);
+});
+});
+Promise.all(reads).then(function(atts){
+atts=atts.filter(function(a){return !!a;});
+var body=noteText||'(No text, images attached.)';
+if(atts.length)body+='\n\n['+atts.length+' image(s) attached: '+atts.map(function(a){return a.name;}).join(', ')+']';
+goPost({action:'Revision notes',subject:'Beatrice sent notes on the '+lpLabel.toLowerCase(),item:lpLabel,body:body,attachments:atts}).then(function() {
 lpMsg.textContent='Notes sent — thank you!';
 lpMsg.style.display='block';
-lpNotesArea.value='';
+lpNotesArea.value='';lpFiles=[];renderLpThumbs();
 lpNotesBtn.textContent='Send notes';
 }).catch(function() {
 lpMsg.textContent='Something went wrong — try again.';
 lpMsg.style.display='block';
 lpNotesBtn.textContent='Send notes';
 });
-});
-}
-}
-/* --- Ad budget section (gated by card.ad_budget) --- */
-var ab=card.ad_budget;
-if(ab&&ab.enabled) {
-var abSec=document.createElement('section');
-abSec.className='lp-section ab-section';
-var abReceived=null;
-if(ab.status==='received') {abReceived=ab.received_date||''; }
-else {
-try{var abs=JSON.parse(localStorage.getItem('gobeatrice_budget')||'null'); if(abs&&abs.date)abReceived=abs.date; }catch(e) {}
-}
-var abInner='<h2>'+(ab.label||'Ad budget')+'</h2><div class="lp-review">';
-if(!abReceived) {
-abInner+='<p class="lp-sub">'+(ab.sub||'What monthly ad budget should we plan around?')+'</p>';
-abInner+='<input class="ab-input" type="text" inputmode="decimal" placeholder="e.g. 2000 / month" aria-label="Monthly ad budget">';
-abInner+='<a class="btn ab-send" href="#">Send budget</a><p class="rv-msg ab-msg" style="display:none"></p>';
-}else{
-abInner+='<p class="lp-sub">Budget received '+abReceived+', thank you!</p>';
-}
-abInner+='</div>';
-abSec.innerHTML=abInner;
-var lpSecEl=document.querySelector('.lp-section:not(.ab-section)');
-if(lpSecEl&&lpSecEl.parentNode) {lpSecEl.insertAdjacentElement('afterend',abSec); }
-else {
-var abPriPara=document.querySelector('.priority p');
-var abPriSec=(abPriPara&&abPriPara.closest)?abPriPara.closest('section'):null;
-if(abPriSec&&abPriSec.parentNode) {abPriSec.insertAdjacentElement('afterend',abSec); }
-else {document.body.appendChild(abSec); }
-}
-if(!abReceived) {
-var abInput=abSec.querySelector('.ab-input');
-var abSend=abSec.querySelector('.ab-send');
-var abMsg=abSec.querySelector('.ab-msg');
-var abSending=false;
-abSend.addEventListener('click',function(e) {
-e.preventDefault();
-if(abSending)return;
-var abVal=abInput.value.trim();
-if(!abVal) {
-abMsg.textContent='Type your budget first.';
-abMsg.style.display='block';
-return;
-}
-abSending=true;
-abSend.textContent='Sending...';
-goPost({action:'Budget',subject:'Beatrice shared her ad budget',item:'Ad budget',body:'Monthly ad budget: '+abVal}).then(function() {
-var d=new Date();
-var ld=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
-try{localStorage.setItem('gobeatrice_budget',JSON.stringify({date:ld,value:abVal})); }catch(e) {}
-abMsg.textContent='Budget received '+ld+', thank you!';
-abMsg.style.display='block';
-abInput.style.display='none';
-abSend.style.display='none';
-}).catch(function() {
-abSending=false;
-abMsg.textContent='Something went wrong, tap to retry';
-abMsg.style.display='block';
-abSend.textContent='Send budget';
 });
 });
 }
@@ -718,10 +698,12 @@ break;
 /* deliverables override: Edit 2 approved, only Edit 1 awaits approval (2026-09-29) */
 for(var m2=0;m2<lis.length;m2++) {
 if(lis[m2].textContent.indexOf('Edits 1 and 2')!==-1) {
-lis[m2].innerHTML='Edit 1<span class="t">With you for approval</span>';
+lis[m2].innerHTML='All 5 edits<span class="t">Approved</span>';
 break;
 }
 }
+var goEl=document.querySelector('footer .go');
+if(goEl){goEl.textContent='The Go';}
 var tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);
 var tn;
 while((tn=tw.nextNode())) {
@@ -745,7 +727,7 @@ var tHtml='';
 for(var t=0;t<data.projects.length;t++) {
 var pj=data.projects[t];
 var pc=phaseClass[String(pj.phase).toLowerCase()]||'p-kickoff';
-if(pj.project==='5 video edits') {pj.milestone='Edits 2-5 approved, edit 1 v2 with you for approval'; }
+if(pj.project==='5 video edits') {pj.milestone='All 5 edits approved'; }
 tHtml+='<div class="row"><div class="row-top"><div class="row-title">'+pj.project+'</div>'+'<span class="pill '+pc+'">'+pj.phase+'</span></div>'+'<div class="row-meta">Next milestone: <b>'+pj.milestone+'</b> &middot; Updated '+pj.updated+'</div></div>';
 }
 trackerEl.innerHTML=tHtml;
