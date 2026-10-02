@@ -29,7 +29,7 @@
     "margin:0 0 10px;}" +
     "#go-root .go-card p{color:#ddd;line-height:1.55;margin:0 0 12px;font-size:15px;}" +
     "#go-root .go-sect{font-family:Archivo,Inter,sans-serif;font-size:13px;" +
-    "letter-spacing:.2em;text-transform:uppercase;color:#888;margin:28px 0 12px;}" +
+    "letter-spacing:.2em;color:#888;margin:28px 0 12px;}" +
     "#go-root .go-btn{display:inline-block;background:" + RED + ";color:#fff;border:0;" +
     "border-radius:999px;padding:12px 26px;font-size:15px;font-weight:700;cursor:pointer;}" +
     "#go-root .go-btn.ghost{background:transparent;border:1px solid #555;color:#fff;}" +
@@ -43,7 +43,7 @@
     /* how it works phases image */
     "#go-root .go-hiw{margin:0 0 16px;text-align:center;}" +
     "#go-root .go-hiw-h{font-family:Archivo,Inter,sans-serif;font-size:13px;" +
-    "letter-spacing:.25em;text-transform:uppercase;color:#888;margin:0 0 12px;" +
+    "letter-spacing:.25em;color:#888;margin:0 0 12px;" +
     "font-weight:600;}" +
     "#go-root .go-hiw img{width:100%;border-radius:16px;display:block;}" +
     /* test mode banner */
@@ -53,7 +53,7 @@
     /* in-production badge (review cards) */
     "#go-root .go-ipbadge{display:inline-block;background:rgba(255,180,0,.10);" +
     "border:1px solid #a88400;color:#ffd75e;font-size:12px;font-weight:700;" +
-    "letter-spacing:.08em;text-transform:uppercase;border-radius:999px;" +
+    "letter-spacing:.08em;border-radius:999px;" +
     "padding:6px 16px;margin:2px 0 4px;}" +
     "#go-root .go-sub3{color:#999;font-size:13px;margin:8px 0 0;line-height:1.5;}" +
     /* track lists (advertising / head-hunting) */
@@ -63,7 +63,7 @@
     "#go-root .go-track .t-label{font-weight:700;font-size:15px;margin:0;}" +
     "#go-root .go-track .t-note{color:#999;font-size:13px;margin:6px 0 0;line-height:1.5;}" +
     "#go-root .go-pill{display:inline-block;font-size:11px;font-weight:700;" +
-    "letter-spacing:.08em;text-transform:uppercase;border-radius:999px;" +
+    "letter-spacing:.08em;border-radius:999px;" +
     "padding:5px 14px;margin-left:8px;vertical-align:middle;}" +
     "#go-root .go-pill.gold{background:rgba(255,180,0,.10);border:1px solid #a88400;color:#ffd75e;}" +
     "#go-root .go-pill.gray{background:rgba(150,150,150,.10);border:1px solid #555;color:#aaa;}" +
