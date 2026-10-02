@@ -24,7 +24,24 @@ function doPost(e) {
       + "From: " + (data.from || "Beatrice Caponnetti Jackson") + "\n"
       + "Time: " + new Date().toString() + "\n\n"
       + (data.body || "");
-    MailApp.sendEmail(TEAM_EMAIL, subject, body);
+    var files = [];
+    if (data.attachments && data.attachments.length) {
+      for (var i = 0; i < data.attachments.length; i++) {
+        var a = data.attachments[i];
+        if (a && a.base64) {
+          files.push({
+            fileName: a.name || ("image-" + (i + 1) + ".jpg"),
+            content: Utilities.base64Decode(a.base64),
+            mimeType: a.mimeType || "image/jpeg"
+          });
+        }
+      }
+    }
+    if (files.length) {
+      MailApp.sendEmail({ to: TEAM_EMAIL, subject: subject, body: body, attachments: files });
+    } else {
+      MailApp.sendEmail(TEAM_EMAIL, subject, body);
+    }
     return out({ ok: true });
   } catch (err) {
     return out({ ok: false, error: String(err) });
