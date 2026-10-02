@@ -17,8 +17,8 @@
   var CSS =
     "#go-root{max-width:960px;margin:0 auto;padding:32px 20px 8px;color:#fff;" +
     "font-family:Inter,-apple-system,'Segoe UI',sans-serif;}" +
-    "#go-root .go-eyebrow{letter-spacing:.25em;font-size:12px;color:#999;" +
-    "text-transform:uppercase;margin:0 0 8px;text-align:center;}" +
+    "#go-root .go-eyebrow{letter-spacing:.08em;font-size:12px;color:#999;" +
+    "margin:0 0 8px;text-align:center;}" +
     "#go-root .go-profile-pic{display:block;width:104px;height:104px;" +
     "border-radius:50%;object-fit:cover;border:3px solid " + RED + ";" +
     "margin:0 auto 16px;}" +
@@ -32,8 +32,8 @@
     "margin:0 0 10px;}" +
     "#go-root .go-card p{color:#ddd;line-height:1.6;margin:0 0 12px;font-size:15px;}" +
     "#go-root .go-card p:last-child{margin-bottom:0;}" +
-    "#go-root .go-sect{font-family:Archivo,Inter,sans-serif;font-size:13px;" +
-    "letter-spacing:.2em;text-transform:uppercase;color:#888;margin:32px 0 12px;}" +
+    "#go-root .go-sect{font-family:Archivo,Inter,sans-serif;font-size:15px;" +
+    "letter-spacing:.04em;color:#888;margin:32px 0 12px;}" +
     "#go-root .go-btn{display:inline-block;background:" + RED + ";color:#fff;border:0;" +
     "border-radius:999px;padding:12px 26px;font-size:15px;font-weight:700;cursor:pointer;" +
     "text-decoration:none;}" +
@@ -80,7 +80,7 @@
     /* top 5 table */
     "#go-root .go-table{width:100%;border-collapse:collapse;font-size:14px;}" +
     "#go-root .go-table th{text-align:left;color:#888;font-size:12px;" +
-    "text-transform:uppercase;letter-spacing:.1em;padding:8px 10px;" +
+    "letter-spacing:.04em;padding:8px 10px;" +
     "border-bottom:1px solid #2a2a2a;font-weight:700;}" +
     "#go-root .go-table td{padding:10px;border-bottom:1px solid #1f1f1f;color:#ddd;}" +
     "#go-root .go-table tr:last-child td{border-bottom:0;}" +
