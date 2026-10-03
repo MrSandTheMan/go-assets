@@ -457,10 +457,10 @@
     <form class="contact-form rv" id="contactForm">
       <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" type="text" required autocomplete="name"></div>
       <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" required autocomplete="email"></div>
-      <div class="field"><label for="c-phone">Phone</label><input id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="c-phone">Phone</label><input id="c-phone" name="phone" type="tel" required autocomplete="tel"></div>
       <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" rows="5" required></textarea></div>
       <button class="btn dark" type="submit" style="width:100%">Start the Conversation</button>
-      <p class="form-note">This form is a front-end demo — connect it to your inbox or CRM before launch.</p>
+      <p class="form-note">We&rsquo;ll be in touch shortly — usually within one business day.</p>
       <div class="form-ok" id="contactOk">Message received — thank you. We&rsquo;ll be in touch shortly.</div>
     </form>
   </div>
@@ -546,16 +546,35 @@
   document.getElementById('tNext').addEventListener('click',function(){go(idx+1);reset();});
   reset();
 
-  // Demo forms
-  function wire(id,okId){
+  // Landing forms -> BCJ backend (emails Sandy, cc Beatrice). Native
+  // required-field validation runs before this submit handler fires.
+  var BCJ_BACKEND={url:'https://script.google.com/macros/s/AKfycbz-0MPR9SLz3HXyCXD2dR9O0hlfAKthiXTsmXal2MvWHxACoNcmqE1cfdUuFPiu6PwP/exec',token:'dea9bb80cb681bd83e9088344f3ca995'};
+  var BCJ_TEST=/(?:\?|&)test=1(?:&|$)/.test(window.location.search);
+  function bcjPost(action,fields){
+    var p={token:BCJ_BACKEND.token,action:action,fields:fields,subject:action};
+    if(BCJ_TEST){p.subject='[TEST] '+action;}
+    return fetch(BCJ_BACKEND.url,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(p)}).then(function(r){return r.json();});
+  }
+  function wireReal(id,okId,action,fieldIds){
     var f=document.getElementById(id);
+    if(!f)return;
     f.addEventListener('submit',function(e){
       e.preventDefault();
-      f.querySelectorAll('input,textarea,button').forEach(function(el){el.style.display='none';});
-      var ok=document.getElementById(okId);ok.style.display='block';
+      var fields={};
+      fieldIds.forEach(function(fid){var el=document.getElementById(fid);if(el)fields[el.name||fid]=el.value.trim();});
+      var btn=f.querySelector('button[type=submit]');
+      if(btn){btn.disabled=true;btn.textContent='Sending\u2026';}
+      bcjPost(action,fields).then(function(res){
+        if(res&&res.ok){
+          f.querySelectorAll('.field').forEach(function(el){el.style.display='none';});
+          if(btn)btn.style.display='none';
+          var ok=document.getElementById(okId);if(ok)ok.style.display='block';
+        }else if(btn){btn.disabled=false;btn.textContent='Try again';}
+      }).catch(function(){if(btn){btn.disabled=false;btn.textContent='Try again';}});
     });
   }
-  wire('valForm','valOk');wire('contactForm','contactOk');
+  wireReal('valForm','valOk','landing_valuation',['v-addr','v-name','v-email']);
+  wireReal('contactForm','contactOk','landing_contact',['c-name','c-email','c-phone','c-msg']);
 })();
 </script>
   
