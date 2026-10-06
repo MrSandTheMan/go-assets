@@ -1,0 +1,37 @@
+<!-- Meta Pixel for BCJteam.com (Dataset ID 990357597428007) - installed Oct 6, 2026 -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '990357597428007');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=990357597428007&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<script>
+/* Fire Meta Lead event when either landing-page form succeeds.
+   The /help page shows #valOk / #contactOk (display:block) on success. */
+(function(){
+  function fireLead(){ try{ if(window.fbq) fbq('track','Lead'); }catch(e){} }
+  var fired={};
+  function watch(id){
+    var el=document.getElementById(id);
+    if(!el) return;
+    if(el.style.display!=='none' && el.offsetParent!==null && !fired[id]){ fired[id]=true; fireLead(); return; }
+    var obs=new MutationObserver(function(){
+      if(!fired[id] && el.style.display!=='none'){ fired[id]=true; fireLead(); obs.disconnect(); }
+    });
+    obs.observe(el,{attributes:true,attributeFilter:['style']});
+  }
+  function init(){ watch('valOk'); watch('contactOk'); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+</script>
