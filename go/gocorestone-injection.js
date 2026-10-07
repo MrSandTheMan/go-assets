@@ -3,7 +3,7 @@
    copy updates are data-only (edit gocorestone-data.json, run go-tracker.py).
    Local source: ~/workspace/client-tracker/gocorestone-injection.js */
 (function () {
-  var GIST_URL = "__GIST_URL__";
+  var GIST_URL = "https://gist.githubusercontent.com/MrSandTheMan/8618914923f455cf299a62e1ccc07dd1/raw/gobeatrice-tracker.json";
   var RED = "#E00020";
 
   function esc(s) {
