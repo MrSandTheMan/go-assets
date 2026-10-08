@@ -37,6 +37,7 @@
     "border-radius:999px;padding:12px 26px;font-size:15px;font-weight:700;cursor:pointer;" +
     "text-decoration:none;margin:4px 6px 4px 0;}" +
     "#go-root .go-btn.ghost{background:transparent;border:1px solid #555;color:#fff;}" +
+    "#go-root .go-btn.yellow{background:#FFD60A;color:#111;}" +
     "#go-root .go-btn:disabled{opacity:.6;cursor:default;}" +
     "#go-root .go-ctasent{color:#5ce08a;font-weight:700;font-size:16px;margin:12px 0 0;}" +
     "#go-root .go-ctaerr{color:#ff6b6b;font-size:14px;margin:10px 0 0;}" +
@@ -65,11 +66,6 @@
     "width:48px;height:48px;border-radius:50%;}" +
     "#go-lightbox .go-lb-prev{left:16px;}" +
     "#go-lightbox .go-lb-next{right:16px;}" +
-    /* bottlenecks */
-    "#go-root .go-bott{list-style:none;margin:0;padding:0;}" +
-    "#go-root .go-bott li{background:#111;border:1px solid #2a2a2a;border-radius:12px;" +
-    "padding:14px 16px;margin:0 0 8px;font-size:14px;color:#ddd;}" +
-    "#go-root .go-bott li:before{content:'▸ ';color:" + RED + ";font-weight:800;}" +
     /* notes modal */
     "#go-modal{text-transform:none;position:fixed;inset:0;background:rgba(0,0,0,.82);" +
     "z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}" +
@@ -155,6 +151,13 @@
     h += '<p class="go-eyebrow">' + esc(c.eyebrow) + "</p><h1>" + esc(c.title) + "</h1>" +
       '<p class="go-sub">' + esc(c.subtitle) + "</p>";
 
+    /* master folder up top in yellow */
+    if (c.master_folder) {
+      h += '<div style="text-align:center;margin:0 0 24px;">' +
+        '<a class="go-btn yellow" href="' + esc(c.master_folder.url) + '" target="_blank">' +
+        esc(c.master_folder.label) + "</a></div>";
+    }
+
     /* to-do tracker up top */
     if (c.tracker && c.tracker.items && c.tracker.items.length) {
       h += '<div class="go-card"><h2>' + esc(c.tracker.heading || "To do") + "</h2>" +
@@ -188,22 +191,10 @@
         }).join("") + "</div>";
     }
 
-    /* bottlenecks */
-    if (c.bottlenecks && c.bottlenecks.length) {
-      h += '<div class="go-sect">Bottlenecks</div><ul class="go-bott">' +
-        c.bottlenecks.map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") +
-        "</ul>";
-    }
-
     /* shoot info */
     if (c.shoot) {
       h += '<div class="go-card"><h2>' + esc(c.shoot.heading) + "</h2><p>" +
-        esc(c.shoot.text) + "</p>";
-      if (c.master_folder) {
-        h += '<a class="go-btn ghost" href="' + esc(c.master_folder.url) + '" target="_blank">' +
-          esc(c.master_folder.label) + "</a>";
-      }
-      h += "</div>";
+        esc(c.shoot.text) + "</p></div>";
     }
 
     h += '<p class="go-footer">Questions? Email <a href="mailto:' + esc(c.footer_email) + '">' +
