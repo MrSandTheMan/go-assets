@@ -4,7 +4,7 @@
    Payload: { token, action: "approve_favorites"|"photo_notes", subject, item, from, body, test? }
    test:true skips the email (pipeline checks). The page prefixes [TEST] to the
    subject on ?test=1 loads so test submissions arrive as tagged emails. */
-var SHARED_TOKEN=<redacted>
+var SHARED_TOKEN = "5b875a96303df094884e69832b757659";
 var TEAM_EMAIL = "team@goanomalous.com";
 
 function doPost(e) {
