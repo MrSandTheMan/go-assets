@@ -66,6 +66,9 @@
     "width:48px;height:48px;border-radius:50%;}" +
     "#go-lightbox .go-lb-prev{left:16px;}" +
     "#go-lightbox .go-lb-next{right:16px;}" +
+    "#go-lightbox .go-lb-dl{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);" +
+    "background:#FFD60A;color:#111;font-weight:700;font-size:14px;padding:10px 24px;" +
+    "border-radius:999px;text-decoration:none;}" +
     /* notes modal */
     "#go-modal{text-transform:none;position:fixed;inset:0;background:rgba(0,0,0,.82);" +
     "z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}" +
@@ -212,6 +215,7 @@
     h += '<div id="go-lightbox"><button class="go-lb-close">&times;</button>' +
       '<button class="go-lb-nav go-lb-prev">&#8249;</button>' +
       '<img><p class="go-lb-label"></p>' +
+      '<a class="go-lb-dl" href="#" target="_blank" download>Download</a>' +
       '<button class="go-lb-nav go-lb-next">&#8250;</button></div>';
 
     /* notes modal */
@@ -232,11 +236,13 @@
     var lb = root.querySelector("#go-lightbox");
     var lbImg = lb.querySelector("img");
     var lbLabel = lb.querySelector(".go-lb-label");
+    var lbDl = lb.querySelector(".go-lb-dl");
     var lbIdx = 0;
     function showLb(i) {
       lbIdx = (i + gallery.length) % gallery.length;
       lbImg.src = gallery[lbIdx].src;
       lbLabel.textContent = gallery[lbIdx].label + " (" + (lbIdx + 1) + " of " + gallery.length + ")";
+      lbDl.href = gallery[lbIdx].src;
       lb.classList.add("open");
     }
     root.querySelectorAll(".go-photo").forEach(function (el) {
@@ -291,11 +297,11 @@
         postToBackend({
           token: c.backend.token,
           action: "approve_favorites",
-          subject: (TEST_MODE ? "[TEST] " : "") + "John approved the 14 favorites",
+          subject: (TEST_MODE ? "[TEST] " : "") + "John approved the 28 favorites",
           item: "Favorites approval",
           from: "John Henry",
           body: (TEST_MODE ? "TEST SUBMISSION - sent from a ?test=1 page load.\n\n" : "") +
-            "John Henry approved the 14 favorites from the Oct 8 NYU shoot.\n" +
+            "John Henry approved the 28 favorites from the Oct 8 NYU shoot.\n" +
             "Next: deliver final high-res exports.\n" +
             "Page: https://www.goanomalous.com/gojohn"
         }, function () {
@@ -309,7 +315,7 @@
           if (nb) nb.remove();
         }, function () {
           approveBtn.disabled = false;
-          approveBtn.textContent = "Approve the 14 favorites";
+          approveBtn.textContent = "Approve the 28 favorites";
           approveBtn.setAttribute("data-confirm", "0");
           errMsg("Something went wrong. Please try again or email team@goanomalous.com.");
         });
