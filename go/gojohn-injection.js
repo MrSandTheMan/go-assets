@@ -32,7 +32,7 @@
     "#go-root .go-card p{color:#ddd;line-height:1.6;margin:0 0 12px;font-size:15px;}" +
     "#go-root .go-card p:last-child{margin-bottom:0;}" +
     "#go-root .go-sect{font-family:Archivo,Inter,sans-serif;font-size:13px;" +
-    "letter-spacing:.14em;color:#888;margin:32px 0 12px;text-transform:uppercase;}" +
+    "letter-spacing:.14em;color:#888;margin:32px 0 12px;}" +
     "#go-root .go-btn{display:inline-block;background:" + RED + ";color:#fff;border:0;" +
     "border-radius:999px;padding:12px 26px;font-size:15px;font-weight:700;cursor:pointer;" +
     "text-decoration:none;margin:4px 6px 4px 0;}" +
@@ -281,8 +281,8 @@
         .then(function (res) { if (res && res.ok) onOk(); else onErr(); })
         .catch(onErr);
     }
-    function errMsg(msg) {
-      var err = root.querySelector(".go-ctaerr");
+    function errMsg(msg, scope) {
+      var err = (scope || root).querySelector(".go-ctaerr");
       if (err) { err.style.display = "block"; err.textContent = msg; }
     }
 
@@ -339,7 +339,7 @@
     if (sendBtn && c.backend && c.backend.url && c.backend.url.indexOf("REPLACE") !== 0) {
       sendBtn.addEventListener("click", function () {
         var text = root.querySelector("#go-notes-text").value.trim();
-        if (!text) { errMsg("Write your notes first."); return; }
+        if (!text) { errMsg("Write your notes first.", modal); return; }
         sendBtn.disabled = true;
         sendBtn.textContent = "Sending...";
         postToBackend({
@@ -353,6 +353,7 @@
             "Page: https://www.goanomalous.com/gojohn"
         }, function () {
           modal.classList.remove("open");
+          root.querySelector("#go-notes-text").value = "";
           var sent = document.createElement("p");
           sent.className = "go-ctasent";
           sent.textContent = "Notes sent. We'll follow up shortly.";
@@ -360,7 +361,7 @@
         }, function () {
           sendBtn.disabled = false;
           sendBtn.textContent = "Send notes";
-          errMsg("Something went wrong. Please try again or email team@goanomalous.com.");
+          errMsg("Something went wrong. Please try again or email team@goanomalous.com.", modal);
         });
       });
     }
