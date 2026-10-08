@@ -185,7 +185,7 @@
 
     /* photo gallery */
     if (c.gallery && c.gallery.length) {
-      h += '<div class="go-sect">The favorites (' + c.gallery.length + ")</div>" +
+      h += '<div class="go-sect">The favorites (' + (c.gallery.length / 2) + ")</div>" +
         '<div class="go-gallery">' +
         c.gallery.map(function (g, i) {
           return '<div class="go-photo" data-idx="' + i + '">' +
@@ -297,11 +297,11 @@
         postToBackend({
           token: c.backend.token,
           action: "approve_favorites",
-          subject: (TEST_MODE ? "[TEST] " : "") + "John approved the 28 favorites",
+          subject: (TEST_MODE ? "[TEST] " : "") + "John approved the 14 favorites",
           item: "Favorites approval",
           from: "John Henry",
           body: (TEST_MODE ? "TEST SUBMISSION - sent from a ?test=1 page load.\n\n" : "") +
-            "John Henry approved the 28 favorites from the Oct 8 NYU shoot.\n" +
+            "John Henry approved the 14 favorites from the Oct 8 NYU shoot.\n" +
             "Next: deliver final high-res exports.\n" +
             "Page: https://www.goanomalous.com/gojohn"
         }, function () {
@@ -315,7 +315,7 @@
           if (nb) nb.remove();
         }, function () {
           approveBtn.disabled = false;
-          approveBtn.textContent = "Approve the 28 favorites";
+          approveBtn.textContent = "Approve the 14 favorites";
           approveBtn.setAttribute("data-confirm", "0");
           errMsg("Something went wrong. Please try again or email team@goanomalous.com.");
         });
