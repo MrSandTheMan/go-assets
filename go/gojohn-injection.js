@@ -38,6 +38,17 @@
     "text-decoration:none;margin:4px 6px 4px 0;}" +
     "#go-root .go-btn.ghost{background:transparent;border:1px solid #555;color:#fff;}" +
     "#go-root .go-btn.yellow{background:#FFD60A;color:#111;}" +
+    /* reel moments */
+    "#go-root .go-reels{margin:16px 0;}" +
+    "#go-root .go-reel{display:flex;gap:12px;padding:14px;border:1px solid #2a2a2a;" +
+    "border-radius:12px;margin:0 0 10px;cursor:pointer;background:#111;}" +
+    "#go-root .go-reel:has(input:checked){border-color:" + RED + ";background:#1a0f12;}" +
+    "#go-root .go-reel-check{width:20px;height:20px;margin-top:2px;flex-shrink:0;accent-color:" + RED + ";}" +
+    "#go-root .go-reel-body{font-size:14px;line-height:1.6;color:#ddd;}" +
+    "#go-root .go-reel-body strong{color:#fff;}" +
+    "#go-root .go-reel-tc{color:#888;font-size:12px;}" +
+    "#go-root .go-reel-note{color:#999;font-size:13px;}" +
+    "#go-root .go-reel-sent{color:#5ce08a;font-size:14px;margin-top:12px;}" +
     "#go-root .go-btn:disabled{opacity:.6;cursor:default;}" +
     "#go-root .go-ctasent{color:#5ce08a;font-weight:700;font-size:16px;margin:12px 0 0;}" +
     "#go-root .go-ctaerr{color:#ff6b6b;font-size:14px;margin:10px 0 0;}" +
@@ -200,6 +211,23 @@
         esc(c.shoot.text) + "</p></div>";
     }
 
+    /* reel moments with pick-your-favorites */
+    if (c.reel_moments && c.reel_moments.items && c.reel_moments.items.length) {
+      h += '<div class="go-card"><h2>' + esc(c.reel_moments.heading) + "</h2><p>" +
+        esc(c.reel_moments.text) + "</p>" +
+        '<div class="go-reels">' +
+        c.reel_moments.items.map(function (m) {
+          return '<label class="go-reel"><input type="checkbox" class="go-reel-check" value="' + m.n + '">' +
+            '<span class="go-reel-body"><strong>' + m.n + ". " + esc(m.title) + '</strong> ' +
+            '<span class="go-reel-tc">' + esc(m.tc) + "</span><br>" +
+            "<em>&ldquo;" + esc(m.quote) + "&rdquo;</em><br>" +
+            '<span class="go-reel-note">' + esc(m.note) + "</span></span></label>";
+        }).join("") + "</div>" +
+        '<button class="go-btn" id="go-reel-send">Send my picks</button>' +
+        '<p class="go-ctaerr" style="display:none;"></p>' +
+        '<p class="go-reel-sent" style="display:none;"></p></div>';
+    }
+
     h += '<p class="go-footer">Questions? Email <a href="mailto:' + esc(c.footer_email) + '">' +
       esc(c.footer_email) + "</a><br>This page updates live as your project moves.</p>";
 
@@ -359,6 +387,49 @@
           sendBtn.disabled = false;
           sendBtn.textContent = "Send notes";
           errMsg("Something went wrong. Please try again or email team@goanomalous.com.", modal);
+        });
+      });
+    }
+
+    /* reel picks send */
+    var reelSend = root.querySelector("#go-reel-send");
+    if (reelSend && c.backend && c.backend.url && c.backend.url.indexOf("REPLACE") !== 0) {
+      reelSend.addEventListener("click", function () {
+        var checked = root.querySelectorAll(".go-reel-check:checked");
+        var err = reelSend.parentNode.querySelector(".go-ctaerr");
+        var sentMsg = reelSend.parentNode.querySelector(".go-reel-sent");
+        if (!checked.length) {
+          err.style.display = "block";
+          err.textContent = "Pick at least one moment first.";
+          return;
+        }
+        err.style.display = "none";
+        var picks = [];
+        checked.forEach(function (cb) {
+          var n = parseInt(cb.value, 10);
+          var m = (c.reel_moments.items || [])[n - 1];
+          if (m) picks.push(n + ". " + m.title + " (" + m.tc + ")");
+        });
+        reelSend.disabled = true;
+        reelSend.textContent = "Sending...";
+        postToBackend({
+          token: c.backend.token,
+          action: "reel_picks",
+          subject: (TEST_MODE ? "[TEST] " : "") + "John picked " + picks.length + " reel moments",
+          item: "Reel picks",
+          from: "John Henry",
+          body: (TEST_MODE ? "TEST SUBMISSION - sent from a ?test=1 page load.\n\n" : "") +
+            "John Henry picked these reel moments:\n\n" + picks.join("\n") + "\n\n" +
+            "Page: https://www.goanomalous.com/gojohn"
+        }, function () {
+          reelSend.style.display = "none";
+          sentMsg.style.display = "block";
+          sentMsg.textContent = "Picks sent. We'll cut them first.";
+        }, function () {
+          reelSend.disabled = false;
+          reelSend.textContent = "Send my picks";
+          err.style.display = "block";
+          err.textContent = "Something went wrong. Please try again or email team@goanomalous.com.";
         });
       });
     }
