@@ -1,6 +1,8 @@
 
   
     
+  
+    
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -181,7 +183,7 @@
 
   
   .bcj-landing .field{margin-bottom:18px}
-  .bcj-landing .field label{display:block;font-family:var(--serif);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
+  .bcj-landing .field label{display:block;font-family:var(--serif);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}.bcj-landing .field label .opt{font-size:10px;letter-spacing:.18em;opacity:.55}
   .bcj-landing .field input, .bcj-landing .field textarea{width:100%;border:1px solid var(--line);background:var(--ivory);padding:14px 16px;font-family:var(--body);font-size:16px;color:var(--ink)}
   .bcj-landing .field input:focus, .bcj-landing .field textarea:focus{outline:2px solid var(--ink);outline-offset:-1px}
   .bcj-landing .form-note{font-size:13.5px;color:var(--ink);margin-top:16px}
@@ -459,7 +461,7 @@
     <form class="contact-form rv" id="contactForm">
       <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" type="text" required autocomplete="name"></div>
       <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" required autocomplete="email"></div>
-      <div class="field"><label for="c-phone">Phone</label><input id="c-phone" name="phone" type="tel" required autocomplete="tel"></div>
+      <div class="field"><label for="c-phone">Phone <span class="opt">(optional)</span></label><input id="c-phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional"></div>
       <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" rows="5" required></textarea></div>
       <button class="btn dark" type="submit" style="width:100%">Start the Conversation</button>
       <p class="form-note">We&rsquo;ll be in touch shortly — usually within one business day.</p>
@@ -581,6 +583,11 @@
 </script>
   
   
+  
+  
+
+
+
   
   
 
