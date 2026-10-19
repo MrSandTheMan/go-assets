@@ -221,6 +221,15 @@
       h += "</div>";
     }
 
+    /* Playbook: link to the personalized 5-script playbook page */
+    if (c.playbook_url) {
+      h += '<div class="go-card" style="text-align:center;background:#0a1628;border-color:#2a3f5f;">' +
+        '<h2 style="color:#fff;">' + esc(c.playbook_label || "Your 5 scripts are ready") + "</h2>" +
+        '<p style="color:#b8c5d6;">' + esc(c.playbook_sub || "Tap to open your personalized script playbook.") + "</p>" +
+        '<a class="go-btn yellow" href="' + esc(c.playbook_url) + '" target="_blank" rel="noopener">Open your playbook</a>' +
+        "</div>";
+    }
+
     h += '<p class="go-footer">Questions? Email <a href="mailto:' + esc(c.footer_email) + '">' +
       esc(c.footer_email) + "</a><br>This page updates live as your project moves.</p>";
 
