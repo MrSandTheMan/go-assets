@@ -109,7 +109,67 @@
     "margin:14px auto 0;border:1px solid #333;display:block;}" +
     "#go-root .go-footer{text-align:center;color:#888;font-size:14px;" +
     "margin:32px 0 8px;line-height:1.7;}" +
-    "#go-root .go-footer a{color:#fff;}";
+    "#go-root .go-footer a{color:#fff;}" +
+    /* analytics modal */
+    "#go-modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;" +
+    "background:rgba(0,0,0,.82);z-index:9999;display:none;" +
+    "align-items:flex-start;justify-content:center;overflow-y:auto;padding:32px 16px;}" +
+    "#go-modal-overlay.go-open{display:flex;}" +
+    "#go-modal{position:relative;background:#0d0d0d;border:1px solid #2a2a2a;" +
+    "border-radius:16px;max-width:800px;width:100%;padding:28px 24px;" +
+    "color:#fff;font-family:Inter,-apple-system,'Segoe UI',sans-serif;}" +
+    "#go-modal .go-modal-close{position:absolute;top:12px;right:12px;" +
+    "background:transparent;border:1px solid #555;color:#fff;border-radius:50%;" +
+    "width:36px;height:36px;font-size:18px;line-height:1;cursor:pointer;}" +
+    "#go-modal .go-modal-close:hover{border-color:#fff;}" +
+    "#go-modal .go-modal-title{font-family:Archivo,Inter,sans-serif;font-size:24px;" +
+    "font-weight:800;margin:0 0 20px;padding-right:40px;}" +
+    "#go-modal .go-card{background:#111;border:1px solid #2a2a2a;border-radius:16px;" +
+    "padding:22px;margin:0 0 16px;}" +
+    "#go-modal .go-card h2{font-family:Archivo,Inter,sans-serif;font-size:20px;" +
+    "margin:0 0 10px;}" +
+    "#go-modal .go-card p{color:#ddd;line-height:1.6;margin:0 0 12px;font-size:15px;}" +
+    "#go-modal .go-card p:last-child{margin-bottom:0;}" +
+    "#go-modal .go-sect{font-family:Archivo,Inter,sans-serif;font-size:15px;" +
+    "letter-spacing:.04em;color:#888;margin:32px 0 12px;}" +
+    "#go-modal .go-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;" +
+    "margin:0 0 16px;}" +
+    "#go-modal .go-minicard{background:#111;border:1px solid #2a2a2a;border-radius:12px;" +
+    "padding:16px;}" +
+    "#go-modal .go-minicard h3{font-family:Archivo,Inter,sans-serif;font-size:15px;" +
+    "font-weight:800;margin:0 0 8px;}" +
+    "#go-modal .go-minicard p{color:#bbb;font-size:14px;line-height:1.55;margin:0;}" +
+    "#go-modal .go-minicard .go-tick{color:#5ce08a;font-weight:800;margin-right:6px;}" +
+    "#go-modal .go-minicard .go-cross{color:" + RED + ";font-weight:800;margin-right:6px;}" +
+    "@media(max-width:640px){#go-modal .go-cols{grid-template-columns:1fr;}}" +
+    "#go-modal .go-chart{background:#111;border:1px solid #2a2a2a;border-radius:16px;" +
+    "padding:22px;margin:0 0 16px;}" +
+    "#go-modal .go-chart h2{font-family:Archivo,Inter,sans-serif;font-size:20px;" +
+    "margin:0 0 4px;}" +
+    "#go-modal .go-chart .go-chartsub{color:#999;font-size:13px;margin:0 0 16px;}" +
+    "#go-modal .go-bar-row{display:flex;align-items:center;gap:10px;margin:0 0 10px;}" +
+    "#go-modal .go-bar-label{width:44%;font-size:13px;color:#ccc;text-align:right;" +
+    "flex-shrink:0;line-height:1.35;}" +
+    "#go-modal .go-bar-track{flex:1;background:#222;border-radius:6px;height:22px;" +
+    "position:relative;overflow:hidden;}" +
+    "#go-modal .go-bar-fill{height:100%;border-radius:6px;}" +
+    "#go-modal .go-bar-val{font-size:13px;font-weight:700;color:#fff;min-width:34px;}" +
+    "#go-modal .go-table{width:100%;border-collapse:collapse;font-size:14px;}" +
+    "#go-modal .go-table th{text-align:left;color:#888;font-size:12px;" +
+    "letter-spacing:.04em;padding:8px 10px;" +
+    "border-bottom:1px solid #2a2a2a;font-weight:700;}" +
+    "#go-modal .go-table td{padding:10px;border-bottom:1px solid #1f1f1f;color:#ddd;}" +
+    "#go-modal .go-table tr:last-child td{border-bottom:0;}" +
+    "#go-modal .go-table td.go-num{font-weight:800;color:#fff;white-space:nowrap;}" +
+    "#go-modal .go-table td.go-rank{color:#888;font-weight:700;}" +
+    "#go-modal .go-gap{background:rgba(255,214,10,.06);border:1px solid " + YELLOW + ";" +
+    "border-radius:16px;padding:22px;margin:0 0 16px;}" +
+    "#go-modal .go-gap h2{font-family:Archivo,Inter,sans-serif;font-size:20px;" +
+    "margin:0 0 10px;color:" + YELLOW + ";}" +
+    "#go-modal .go-gap p{color:#eee;line-height:1.65;font-size:15px;margin:0;}" +
+    /* playbook + analytics button row */
+    "#go-root .go-topbtns{display:flex;flex-direction:column;gap:12px;align-items:center;" +
+    "margin:0 0 16px;}";
 
   function bars(items, max, color) {
     return items.map(function (it) {
@@ -145,90 +205,73 @@
       }).join("") + "</div>";
     }
 
-    /* snapshot */
-    if (c.snapshot) {
-      h += '<div class="go-card"><h2>Snapshot</h2><p>' + esc(c.snapshot) + "</p></div>";
+    /* Playbook: prominent yellow button right after the hero */
+    if (c.playbook_url) {
+      h += '<div class="go-topbtns">' +
+        '<a class="go-btn yellow" href="' + esc(c.playbook_url) + '" target="_blank" rel="noopener" ' +
+        'style="font-size:17px;padding:14px 34px;">' + esc(c.playbook_label || "Your 5 scripts are ready") + "</a>" +
+        '<p style="color:#b8c5d6;font-size:14px;margin:0;text-align:center;max-width:520px;">' +
+        esc(c.playbook_sub || "Tap to open your personalized script playbook.") + "</p>" +
+        '<button class="go-btn ghost" id="go-analytics-btn">View your analytics report</button>' +
+        "</div>";
+    } else {
+      h += '<div class="go-topbtns">' +
+        '<button class="go-btn ghost" id="go-analytics-btn">View your analytics report</button>' +
+        "</div>";
     }
 
-    /* what is working */
+    /* Build the audit HTML for the modal (snapshot through gap) */
+    var mh = "";
+    if (c.snapshot) {
+      mh += '<div class="go-card"><h2>Snapshot</h2><p>' + esc(c.snapshot) + "</p></div>";
+    }
     if (c.works && c.works.length) {
-      h += '<div class="go-sect">What is working</div><div class="go-cols">' +
+      mh += '<div class="go-sect">What is working</div><div class="go-cols">' +
         c.works.map(function (w) {
           return '<div class="go-minicard"><h3><span class="go-tick">&#10003;</span>' +
             esc(w.t) + "</h3><p>" + esc(w.d) + "</p></div>";
         }).join("") + "</div>";
     }
-
-    /* content mix chart */
     if (c.mix && c.mix.length) {
       var mixMax = Math.max.apply(null, c.mix.map(function (m) { return m.value; }));
-      h += '<div class="go-chart"><h2>Content mix</h2>' +
+      mh += '<div class="go-chart"><h2>Content mix</h2>' +
         '<p class="go-chartsub">11 posts in 60 days; 5 in her own voice.</p>' +
         bars(c.mix, mixMax, RED) + "</div>";
     }
-
-    /* top 5 by likes chart */
     if (c.top5 && c.top5.length) {
       var topMax = Math.max.apply(null, c.top5.map(function (t) { return t.likes; }));
-      h += '<div class="go-chart"><h2>Top 5 posts by likes</h2>' +
+      mh += '<div class="go-chart"><h2>Top 5 posts by likes</h2>' +
         '<p class="go-chartsub">60-day window, Aug 3 to Oct 2, 2026.</p>' +
         bars(c.top5.map(function (t) { return { label: t.post, value: t.likes }; }), topMax, YELLOW) +
         "</div>";
     }
-
-    /* top 5 table */
     if (c.top5 && c.top5.length) {
-      h += '<div class="go-card"><h2>Top 5 posts</h2>' +
+      mh += '<div class="go-card"><h2>Top 5 posts</h2>' +
         '<table class="go-table"><thead><tr><th></th><th>Post</th><th>Likes</th><th>Comments</th></tr></thead><tbody>' +
         c.top5.map(function (t, i) {
           return "<tr><td class=\"go-rank\">" + (i + 1) + "</td><td>" + esc(t.post) +
             "</td><td class=\"go-num\">" + t.likes + "</td><td class=\"go-num\">" + t.comments + "</td></tr>";
         }).join("") + "</tbody></table></div>";
     }
-
-    /* what is not working */
     if (c.nots && c.nots.length) {
-      h += '<div class="go-sect">What is not working</div><div class="go-cols">' +
+      mh += '<div class="go-sect">What is not working</div><div class="go-cols">' +
         c.nots.map(function (n) {
           return '<div class="go-minicard"><h3><span class="go-cross">&times;</span>' +
             esc(n.t) + "</h3><p>" + esc(n.d) + "</p></div>";
         }).join("") + "</div>";
     }
-
-    /* the one gap */
     if (c.gap) {
-      h += '<div class="go-gap"><h2>' + esc(c.gap.heading) + "</h2><p>" +
+      mh += '<div class="go-gap"><h2>' + esc(c.gap.heading) + "</h2><p>" +
         esc(c.gap.text) + "</p></div>";
     }
 
-    /* CTA: the Script Scan ask: posts to the backend, saves the sent date on the page */
-    if (c.cta) {
-      var sentAt = null;
-      try { sentAt = localStorage.getItem("gocourtney_script_ask"); } catch (e) { sentAt = null; }
-      h += '<div class="go-cta"><h2>' + esc(c.cta.heading) + "</h2><p>" +
-        esc(c.cta.text) + "</p>";
-      if (c.backend && c.backend.url) {
-        if (sentAt) {
-          h += '<p class="go-ctasent">' + esc(c.cta.sent_text || "Script ask received") +
-            " on " + esc(fmtDate(sentAt)) + ".</p>";
-        } else {
-          h += '<button class="go-btn yellow" id="go-scriptask">' + esc(c.cta.button) + "</button>" +
-            '<p class="go-ctaerr" style="display:none"></p>';
-        }
-      } else {
-        h += '<a class="go-btn yellow" href="' + esc(c.cta.href) + '">' + esc(c.cta.button) + "</a>";
-      }
-      h += "</div>";
-    }
-
-    /* Playbook: link to the personalized 5-script playbook page */
-    if (c.playbook_url) {
-      h += '<div class="go-card" style="text-align:center;background:#0a1628;border-color:#2a3f5f;">' +
-        '<h2 style="color:#fff;">' + esc(c.playbook_label || "Your 5 scripts are ready") + "</h2>" +
-        '<p style="color:#b8c5d6;">' + esc(c.playbook_sub || "Tap to open your personalized script playbook.") + "</p>" +
-        '<a class="go-btn yellow" href="' + esc(c.playbook_url) + '" target="_blank" rel="noopener">Open your playbook</a>' +
-        "</div>";
-    }
+    /* Analytics modal: overlay + content + close button */
+    h += '<div id="go-modal-overlay">' +
+      '<div id="go-modal" role="dialog" aria-modal="true" aria-label="Analytics report">' +
+      '<button class="go-modal-close" id="go-modal-close" aria-label="Close">&times;</button>' +
+      '<div class="go-modal-title">Your 60-day analytics report</div>' +
+      mh +
+      "</div></div>";
 
     h += '<p class="go-footer">Questions? Email <a href="mailto:' + esc(c.footer_email) + '">' +
       esc(c.footer_email) + "</a><br>This page updates live as your project moves.</p>";
@@ -270,58 +313,39 @@
       });
     }
 
-    /* Script Scan ask button: one tap notifies team@ and stamps the sent date.
-       ?test=1 tags the email [TEST] (it still sends, so the pipeline is verified). */
+    /* Analytics modal: open via button, close via X / overlay click / Escape */
     var TEST_MODE = /[?&]test=1/.test(window.location.search);
-    var askBtn = root.querySelector("#go-scriptask");
     if (TEST_MODE) {
       var tb = document.createElement("div");
       tb.style.cssText = "background:#E00020;color:#fff;font-weight:700;text-align:center;padding:10px 16px;font-size:14px;";
       tb.textContent = "TEST MODE: submissions from this visit are tagged [TEST] and do not count.";
       root.insertBefore(tb, root.firstChild);
     }
-    if (askBtn && c.backend && c.backend.url) {
-      var askLabel = c.cta.button;
-      askBtn.addEventListener("click", function () {
-        askBtn.disabled = true;
-        askBtn.textContent = "Sending...";
-        var payload = {
-          token: c.backend.token,
-          action: "script_ask",
-          subject: (TEST_MODE ? "[TEST] " : "") + "Courtney wants the scripts",
-          item: "Script ask",
-          from: "Courtney Mendez",
-          body: (TEST_MODE ? "TEST SUBMISSION - sent from a ?test=1 page load, not by the client.\n\n" : "") +
-            "Courtney Mendez clicked \"Want me to script them?\" on the GoCourtney page.\n" +
-            "Next: run the Script Scan (5 personalized scripts) for @your_nyc_realtor.\n" +
-            "Page: https://www.goanomalous.com/gocourtney"
-        };
-        fetch(c.backend.url, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain" },
-          body: JSON.stringify(payload)
-        })
-          .then(function (r) { return r.json(); })
-          .then(function (res) {
-            if (!(res && res.ok)) { throw new Error("bad response"); }
-            var now = new Date().toISOString();
-            try { localStorage.setItem("gocourtney_script_ask", now); } catch (e) {}
-            var sent = document.createElement("p");
-            sent.className = "go-ctasent";
-            sent.textContent = (c.cta.sent_text || "Script ask received") + " on " + fmtDate(now) + ".";
-            askBtn.parentNode.replaceChild(sent, askBtn);
-          })
-          .catch(function () {
-            askBtn.disabled = false;
-            askBtn.textContent = askLabel;
-            var err = root.querySelector(".go-ctaerr");
-            if (err) {
-              err.style.display = "block";
-              err.textContent = "Something went wrong. Please try again or email team@goanomalous.com.";
-            }
-          });
+    var modalOverlay = root.querySelector("#go-modal-overlay");
+    var analyticsBtn = root.querySelector("#go-analytics-btn");
+    var modalClose = root.querySelector("#go-modal-close");
+    function openModal() {
+      if (modalOverlay) {
+        modalOverlay.classList.add("go-open");
+        document.body.style.overflow = "hidden";
+      }
+    }
+    function closeModal() {
+      if (modalOverlay) {
+        modalOverlay.classList.remove("go-open");
+        document.body.style.overflow = "";
+      }
+    }
+    if (analyticsBtn) { analyticsBtn.addEventListener("click", openModal); }
+    if (modalClose) { modalClose.addEventListener("click", closeModal); }
+    if (modalOverlay) {
+      modalOverlay.addEventListener("click", function (e) {
+        if (e.target === modalOverlay) { closeModal(); }
       });
     }
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" || e.keyCode === 27) { closeModal(); }
+    });
   }
 
   function init() {
