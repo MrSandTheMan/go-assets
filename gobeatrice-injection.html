@@ -697,15 +697,8 @@ if(hd&&/bottleneck/i.test(hd.textContent)) {hd.style.display='none'; }
 }
 var lis=document.querySelectorAll('li');
 for(var m=0;m<lis.length;m++) {
-if(lis[m].textContent.indexOf('bcjteam.com v2')!==-1) {
-lis[m].innerHTML='Ad Landing Page<span class="t">With you for approval</span>';
-break;
-}
-}
-/* deliverables override: all 5 edits approved (2026-10-02) */
-for(var m2=0;m2<lis.length;m2++) {
-if(lis[m2].textContent.indexOf('Edits 1 and 2')!==-1) {
-lis[m2].innerHTML='All 5 edits<span class="t">Approved</span>';
+if(lis[m].textContent.indexOf('Edits 1 and 2')!==-1) {
+lis[m].innerHTML='All 5 edits<span class="t">Approved</span>';
 break;
 }
 }
