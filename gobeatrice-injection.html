@@ -704,6 +704,14 @@ break;
 }
 var goEl=document.querySelector('footer .go');
 if(goEl){goEl.textContent='The Go';}
+/* header subtitle override: landing page phase is over (2026-10-20) */
+var metaSpans=document.querySelectorAll('.meta span');
+for(var ms=0;ms<metaSpans.length;ms++) {
+if(/landing page rebuild/i.test(metaSpans[ms].textContent)) {
+metaSpans[ms].textContent='4 new trims';
+break;
+}
+}
 var tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);
 var tn;
 while((tn=tw.nextNode())) {
