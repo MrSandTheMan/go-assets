@@ -99,6 +99,16 @@
   .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
   .proj{background:#fff;border:1px solid var(--line);border-radius:3px;overflow:hidden;}
   .proj img{width:100%;height:220px;object-fit:cover;display:block;}
+  .p-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#007A7A;font-weight:700;margin:0 0 6px;}
+  .ss{position:relative;height:220px;overflow:hidden;}
+  .ss-track{position:relative;height:100%;}
+  .ss-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease;}
+  .ss-slide.on{opacity:1;}
+  .ss-prev,.ss-next{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,.45);color:#fff;font-size:18px;line-height:1;cursor:pointer;z-index:2;}
+  .ss-prev{left:8px;} .ss-next{right:8px;}
+  .ss-dots{position:absolute;bottom:10px;left:0;right:0;text-align:center;z-index:2;}
+  .ss-dots button{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,.55);margin:0 3px;padding:0;cursor:pointer;}
+  .ss-dots button.on{background:#fff;}
   .proj .p-body{padding:20px 22px;}
   .proj h3{font-size:18.5px;margin-bottom:4px;}
   .proj .loc{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-deep);font-weight:700;margin-bottom:8px;}
@@ -337,20 +347,83 @@
     </div>
     <div class="proj-grid">
       <div class="proj">
-        <img src="images/proj-579.jpg" alt="The finished A-frame at 579 Shore Drive">
-        <div class="p-body"><h3>Modern A-Frame Home</h3><p class="loc">579 Shore Drive · Sullivan County</p><p>A lakeside A-frame taken from raw wooded lot to finished home. Follow the whole build in our Dirt to Dream diary below.</p></div>
+        <div class="ss">
+          <div class="ss-track">
+            <img src="images/ss-579-1.jpg" class="ss-slide on" alt="Front exterior of the finished A-frame at 579 Shore Drive">
+            <img src="images/ss-579-2.jpg" class="ss-slide" alt="Great room of the finished A-frame">
+            <img src="images/ss-579-3.jpg" class="ss-slide" alt="Finished bathroom at 579 Shore Drive">
+            <img src="images/ss-579-4.jpg" class="ss-slide" alt="Twilight aerial of the finished A-frame at 579 Shore Drive">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button><button aria-label="Photo 4"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Custom home</p><h3>Modern A-Frame Home</h3><p class="loc">579 Shore Drive · Sullivan County</p><p>A lakeside A-frame taken from raw wooded lot to finished home. Follow the whole build in our Dirt to Dream diary below.</p></div>
       </div>
       <div class="proj">
-        <img src="images/proj-rte17.jpg" alt="Home at 1268 Old Route 17">
-        <div class="p-body"><h3>1268 Old Route 17</h3><p class="loc">1268 Old Rte 17</p><p>Custom home build on Old Route 17, designed and built by Corestone end to end.</p></div>
+        <div class="ss">
+          <div class="ss-track">
+            <img src="images/ss-736-1.jpg" class="ss-slide on" alt="Backyard pool at 736 Harris Rd">
+            <img src="images/ss-736-2.jpg" class="ss-slide" alt="Spa bathroom at 736 Harris Rd">
+            <img src="images/ss-736-3.jpg" class="ss-slide" alt="Open kitchen at 736 Harris Rd">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Custom home</p><h3>736 Harris Rd</h3><p class="loc">736 Harris Rd</p><p>Custom home with a finished backyard built for evenings outside: pool, spa bath, and an open kitchen at the center.</p></div>
+      </div>
+      <div class="proj">
+        <div class="ss">
+          <div class="ss-track">
+            <img src="images/ss-1268-1.jpg" class="ss-slide on" alt="Bedroom at 1268 Old Route 17">
+            <img src="images/ss-1268-2.jpg" class="ss-slide" alt="Kitchen at 1268 Old Route 17">
+            <img src="images/ss-1268-3.jpg" class="ss-slide" alt="Kitchen island at 1268 Old Route 17">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Custom home</p><h3>1268 Old Route 17</h3><p class="loc">1268 Old Rte 17</p><p>Custom home build on Old Route 17, designed and built by Corestone end to end.</p></div>
+      </div>
+      <div class="proj">
+        <div class="ss">
+          <div class="ss-track">
+            <img src="images/ss-perfection-1.jpg" class="ss-slide on" alt="Dining room of the Modern Perfection home">
+            <img src="images/ss-perfection-2.jpg" class="ss-slide" alt="Living room under a glass gable in the Modern Perfection home">
+            <img src="images/ss-perfection-3.jpg" class="ss-slide" alt="Powder bath in the Modern Perfection home">
+            <img src="images/ss-perfection-4.jpg" class="ss-slide" alt="Marble kitchen counter in the Modern Perfection home">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button><button aria-label="Photo 4"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Custom home</p><h3>Modern Perfection Home</h3><p class="loc">Spring Valley, NY</p><p>A modern custom home finished to a high standard: glass gable living room, cove-lit dining, and marble throughout.</p></div>
+      </div>
+      <div class="proj">
+        <div class="ss">
+          <div class="ss-track">
+            <img src="images/proj-shelys.jpg" class="ss-slide on" alt="Dining room of Shely's Pizza">
+            <img src="images/ss-shelys-2.jpg" class="ss-slide" alt="Window seating at Shely's Pizza">
+            <img src="images/ss-shelys-3.jpg" class="ss-slide" alt="Dining room at Shely's Pizza">
+            <img src="images/ss-shelys-4.jpg" class="ss-slide" alt="Wall detail at Shely's Pizza">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button><button aria-label="Photo 4"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Commercial</p><h3>Shely's Pizza Store</h3><p class="loc">Route 59 · Monsey, NY</p><p>A full restaurant build-out. Commercial work with the same crew, the same standard, and a business that could open on schedule.</p></div>
+      </div>
+      <div class="proj">
+        <div class="ss">
+          <div class="ss-track">
+            <img src="images/ss-teiberg-1.jpg" class="ss-slide on" alt="Pizzeria counter at Teiberg Pizza">
+            <img src="images/ss-teiberg-2.jpg" class="ss-slide" alt="Counter detail at Teiberg Pizza">
+            <img src="images/ss-teiberg-3.jpg" class="ss-slide" alt="Dining room at Teiberg Pizza">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Commercial</p><h3>Teiberg Pizza Store</h3><p class="loc">Swan Lake, NY</p><p>A branded pizzeria build-out in Swan Lake: counter, kitchen line, and dining room ready for opening day.</p></div>
       </div>
       <div class="proj">
         <img src="images/proj-diary.jpg" alt="The A-frame at 579 Shore Drive going up">
-        <div class="p-body"><h3>Dirt to Dream: The Build Diary</h3><p class="loc">579 Shore Drive · In progress photos</p><p>Framing at 579 Shore Drive, mid-build. The diary shows every phase, month by month.</p></div>
-      </div>
-      <div class="proj">
-        <img src="images/proj-shelys.jpg" alt="Shely's Pizza store">
-        <div class="p-body"><h3>Shely's Pizza Store</h3><p class="loc">Route 59 · Monsey, NY</p><p>A full restaurant build-out. Commercial work with the same crew, the same standard, and a business that could open on schedule.</p></div>
+        <div class="p-body"><p class="p-tag">Build diary</p><h3>Dirt to Dream: The Build Diary</h3><p class="loc">579 Shore Drive · In progress photos</p><p>Framing at 579 Shore Drive, mid-build. The diary shows every phase, month by month.</p></div>
       </div>
       <div class="proj" style="background:#1a1a1a;border-color:#1a1a1a;">
         <div class="p-body" style="padding:28px;">
@@ -535,5 +608,14 @@
 </footer>
 
 <!-- published 2026-10-21: triggers Pages rebuild -->
+<script>
+document.querySelectorAll('.ss').forEach(function(box){
+  var slides=box.querySelectorAll('.ss-slide'),dots=box.querySelectorAll('.ss-dots button'),i=0;
+  function go(n){i=(n+slides.length)%slides.length;slides.forEach(function(s2,k){s2.classList.toggle('on',k===i)});dots.forEach(function(d,k){d.classList.toggle('on',k===i)});}
+  box.querySelector('.ss-prev').addEventListener('click',function(){go(i-1)});
+  box.querySelector('.ss-next').addEventListener('click',function(){go(i+1)});
+  dots.forEach(function(d,k){d.addEventListener('click',function(){go(k)})});
+});
+</script>
 </body>
 </html>
