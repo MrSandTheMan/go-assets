@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Land Buyer's Checklist | Corestone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --paper:#fafafa;
+    --brass:#00c4c4;
+    --brass-dark:#007a7a;
+    --ink-soft:#3a3a3a;
+    --muted:#6e6e6e;
+    --line:#d9d9d9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{
+    background:#e5e5e5;
+    color:var(--ink);
+    font-family:'Urbanist','Helvetica Neue',Helvetica,Arial,sans-serif;
+  }
+  .sheet{
+    width:8.5in;height:10.98in;
+    margin:28px auto;
+    background:var(--paper);
+    padding:.52in .6in .5in;
+    box-shadow:0 4px 28px rgba(28,26,23,.28);
+    display:flex;flex-direction:column;
+    overflow:hidden;
+  }
+  /* Header */
+  .brand-row{display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:2px solid var(--ink);padding-bottom:10px;}
+  .wordmark{font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;font-size:13pt;
+    letter-spacing:.4em;text-transform:uppercase;}
+  .brand-tag{font-size:7.5pt;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);}
+  h1{font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;font-weight:400;
+    font-size:29pt;line-height:1.12;margin-top:16px;}
+  .subtitle{font-size:12pt;color:var(--brass-dark);margin-top:5px;
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;font-style:italic;}
+  .intro{font-size:10.5pt;color:var(--ink-soft);margin-top:9px;}
+  /* Checklist columns */
+  .cols{display:flex;gap:.52in;margin-top:18px;}
+  .col{flex:1;}
+  .item{display:flex;gap:11px;padding:9.5px 0;border-bottom:1px solid var(--line);}
+  .item:last-child{border-bottom:0;}
+  .box{flex:none;width:14px;height:14px;border:1.6px solid var(--ink);
+    margin-top:3px;background:#fff;}
+  .item h2{font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;font-weight:700;
+    font-size:11pt;line-height:1.3;}
+  .item h2 .num{color:var(--brass-dark);}
+  .item p{font-size:9.6pt;line-height:1.42;color:var(--ink-soft);margin-top:2.5px;}
+  /* Bottom line */
+  .bottom-line{margin-top:14px;background:#f0f0f0;border-left:4px solid var(--brass);
+    padding:12px 16px;}
+  .bottom-line .bl-label{font-size:8pt;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--brass-dark);font-weight:700;}
+  .bottom-line p{font-size:10.5pt;color:var(--ink-soft);margin-top:4px;line-height:1.5;}
+  /* Footer strip */
+  .footer{margin-top:auto;background:var(--ink);color:var(--paper);
+    display:flex;justify-content:space-between;align-items:center;
+    padding:13px 18px;}
+  .footer .f-text{font-size:10.5pt;}
+  .footer .f-text b{color:var(--brass);font-weight:700;}
+  .footer .f-brand{font-family:'Montserrat Alternates',sans-serif;font-size:11.5pt;
+    letter-spacing:.34em;text-transform:uppercase;white-space:nowrap;margin-left:16px;}
+
+  @page{size:Letter;margin:0;}
+  @media print{
+    body{background:#fff;}
+    .sheet{margin:0;box-shadow:none;}
+  }
+  @media screen and (max-width:760px){
+    .sheet{width:100%;height:auto;padding:30px 20px 24px;margin:14px auto;}
+    .cols{flex-direction:column;gap:0;}
+    .footer{flex-direction:column;gap:8px;text-align:center;margin-top:20px;}
+    h1{font-size:24pt;}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="brand-row">
+    <span class="wordmark">Corestone</span>
+    <span class="brand-tag">Custom Home Builders · Sullivan County, NY</span>
+  </div>
+
+  <h1>The Land Buyer's Checklist</h1>
+  <p class="subtitle">12 things to check before you buy the lot</p>
+  <p class="intro">Before you fall in love with a lot, check these.</p>
+
+  <div class="cols">
+    <div class="col">
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">1.</span> Perc test and septic feasibility</h2>
+          <p>Have the lot perc-tested before you buy, not after. A failed perc test can kill a build or force a $40K+ engineered system. Ask the seller if a test has ever been done.</p>
+        </div>
+      </div>
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">2.</span> Well water: depth and quality</h2>
+          <p>Ask neighbors about their well depth and water quality. Deep wells cost more to drill. Iron or sulfur in the water means filtration systems.</p>
+        </div>
+      </div>
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">3.</span> Zoning and setbacks</h2>
+          <p>Confirm the lot is zoned for what you want to build. Check setback requirements, they determine where the house can actually sit. Some towns have ridgeline or viewshed rules.</p>
+        </div>
+      </div>
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">4.</span> Wetlands and floodplain</h2>
+          <p>Check federal and state wetland maps, then walk the lot after rain. Wetlands restrict where you can build and add permitting time. A cheap lot with wetlands is not a cheap lot.</p>
+        </div>
+      </div>
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">5.</span> Driveway access and road frontage</h2>
+          <p>Confirm legal access. Landlocked parcels or shared driveways without recorded easements are deal-breakers. Long driveways cost $15K to $60K to build.</p>
+        </div>
+      </div>
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">6.</span> Utilities: electric distance</h2>
+          <p>Call the power company and ask what it costs to run electric to the build site. If the nearest pole is 500 feet away, that's real money.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">7.</span> Survey and title</h2>
+          <p>Get a current survey. Confirm acreage, boundaries, and any easements or rights-of-way crossing the lot.</p>
+        </div>
+      </div>
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">8.</span> Cell service and internet</h2>
+          <p>Non-negotiable for remote work. Test it on the lot with your own phone. Ask about fiber or fixed wireless availability.</p>
+        </div>
+      </div>
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">9.</span> Taxes and school district</h2>
+          <p>Sullivan County taxes vary significantly by town. Know the number before you buy, it affects your monthly cost for decades.</p>
+        </div>
+      </div>
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">10.</span> The view at different times of day</h2>
+          <p>Visit morning and evening. A western exposure means sunset views and hot afternoons. Southern exposure means light all day.</p>
+        </div>
+      </div>
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">11.</span> Neighbors and future development</h2>
+          <p>Ask what's around you and what could be built next door. Check for subdivision activity nearby.</p>
+        </div>
+      </div>
+      <div class="item">
+        <span class="box"></span>
+        <div>
+          <h2><span class="num">12.</span> Resale logic</h2>
+          <p>Even if this is your forever home, buy a lot someone else would want. Good lots hold value. Odd lots with problems do not.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-line">
+    <span class="bl-label">The Bottom Line</span>
+    <p>The right lot makes the build easy. The wrong lot makes it expensive. If you want a second set of eyes on a parcel before you commit, that's a conversation worth having.</p>
+  </div>
+
+  <div class="footer">
+    <span class="f-text">Want a second set of eyes on a parcel? <b>845-747-0244</b> / <b>info@corestonedevelopers.com</b> / <b>corestonedevelopers.com</b></span>
+    <span class="f-brand"><img src="images/corestone-logo-teal.svg" alt="Corestone Developers" style="height:20px;width:auto;vertical-align:middle;"></span>
+  </div>
+
+</div>
+
+</body>
+</html>
