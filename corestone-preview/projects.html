@@ -37,6 +37,16 @@
   footer{background:#111;color:#888;font-size:13px;padding:28px 0;text-align:center;}
   footer a{color:#00C4C4;text-decoration:none;}
   @media (max-width:700px){.gal-grid{columns:1;}.gal-head h1{font-size:30px;}.proj-sec h2{font-size:24px;}}
+  .gal-grid img{cursor:zoom-in;}
+  .lb{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;}
+  .lb[hidden]{display:none;}
+  .lb-bg{position:absolute;inset:0;background:rgba(10,10,10,.92);}
+  .lb-img{position:relative;max-width:92vw;max-height:82vh;border-radius:8px;box-shadow:0 20px 80px rgba(0,0,0,.6);}
+  .lb-cap{position:relative;color:#ddd;margin-top:12px;font-size:15px;}
+  .lb button{position:absolute;background:rgba(0,0,0,.55);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:22px;cursor:pointer;line-height:1;z-index:2;}
+  .lb-x{top:18px;right:18px;}
+  .lb-prev{left:18px;top:50%;transform:translateY(-50%);}
+  .lb-next{right:18px;top:50%;transform:translateY(-50%);}
 </style>
 </head>
 <body>
@@ -163,5 +173,44 @@
     <p>Corestone Developers · 1619 NY-52, Liberty, NY 12754 · <a href="tel:+18457470244">845-747-0244</a> · <a href="mailto:info@corestonedevelopers.com">info@corestonedevelopers.com</a></p>
   </div>
 </footer>
+<div class="lb" id="lb" hidden>
+  <div class="lb-bg" id="lbBg"></div>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+  <button class="lb-x" id="lbX" aria-label="Close">&times;</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous photo">&#8249;</button>
+  <button class="lb-next" id="lbNext" aria-label="Next photo">&#8250;</button>
+</div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap');
+  var list=[],i=0;
+  function show(n){
+    i=(n+list.length)%list.length;
+    img.src=list[i].src;img.alt=list[i].alt;cap.textContent=list[i].alt;
+  }
+  document.querySelectorAll('.proj-sec').forEach(function(sec){
+    var imgs=sec.querySelectorAll('.gal-grid img');
+    imgs.forEach(function(im,k){
+      im.addEventListener('click',function(){
+        list=Array.prototype.slice.call(imgs);
+        lb.hidden=false;document.body.style.overflow='hidden';
+        show(k);
+      });
+    });
+  });
+  function close(){lb.hidden=true;document.body.style.overflow='';}
+  document.getElementById('lbX').addEventListener('click',close);
+  document.getElementById('lbBg').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',function(e){e.stopPropagation();show(i-1)});
+  document.getElementById('lbNext').addEventListener('click',function(e){e.stopPropagation();show(i+1)});
+  document.addEventListener('keydown',function(e){
+    if(lb.hidden)return;
+    if(e.key==='Escape')close();
+    if(e.key==='ArrowLeft')show(i-1);
+    if(e.key==='ArrowRight')show(i+1);
+  });
+})();
+</script>
 </body>
 </html>
