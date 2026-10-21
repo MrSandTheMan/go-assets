@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Questions to Ask Any Builder | Corestone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#1a1a1a;
+    --paper:#fafafa;
+    --brass:#00c4c4;
+    --ink:#242424;
+    --muted:#6e6e6e;
+    --line:#d9d9d9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{
+    background:#d9d9d9;
+    font-family:'Urbanist','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color:var(--ink);
+  }
+  .sheet{
+    width:8.5in;
+    height:11in;
+    margin:28px auto;
+    background:var(--paper);
+    box-shadow:0 6px 32px rgba(28,26,23,.28);
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    page-break-inside:avoid;
+  }
+  .sheet:last-child{page-break-after:auto;}
+
+  /* ---------- Cover ---------- */
+  .cover{
+    background:var(--charcoal);
+    color:var(--paper);
+    padding:0.85in 0.8in;
+    display:flex;
+    flex-direction:column;
+  }
+  .wordmark{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-size:15pt;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+  }
+  .wordmark .rule{
+    display:block;
+    width:64px;height:2px;
+    background:var(--brass);
+    margin-top:14px;
+  }
+  .cover-mid{margin-top:1.55in;}
+  .cover-kicker{
+    font-size:10.5pt;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:26px;
+  }
+  .cover h1{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-weight:normal;
+    font-size:47pt;
+    line-height:1.12;
+  }
+  .cover h1 .num{color:var(--brass);}
+  .cover-sub{
+    margin-top:34px;
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-style:italic;
+    font-size:15.5pt;
+    color:#d9d9d9;
+    max-width:5.6in;
+    line-height:1.5;
+  }
+  .cover-foot{
+    margin-top:auto;
+    border-top:1px solid #333333;
+    padding-top:20px;
+    font-size:9.5pt;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:#8a8a8a;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  /* ---------- Question pages ---------- */
+  .qpage{padding:0.62in 0.75in 0.55in;}
+  .page-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    border-bottom:2px solid var(--charcoal);
+    padding-bottom:10px;
+    margin-bottom:8px;
+  }
+  .page-head .brand{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-size:10.5pt;
+    letter-spacing:0.34em;
+    text-transform:uppercase;
+    color:var(--charcoal);
+  }
+  .page-head .doc{
+    font-size:8.5pt;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .q{
+    display:flex;
+    gap:22px;
+    padding:15px 0 13px;
+    border-bottom:1px solid var(--line);
+    page-break-inside:avoid;
+  }
+  .q:last-child{border-bottom:none;}
+  .q-num{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-size:25pt;
+    line-height:1;
+    color:var(--brass);
+    min-width:0.55in;
+    text-align:right;
+    padding-top:2px;
+  }
+  .q-body{flex:1;}
+  .q-text{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-weight:bold;
+    font-size:13.5pt;
+    line-height:1.32;
+    color:var(--charcoal);
+    margin-bottom:7px;
+  }
+  .q p{font-size:10pt;line-height:1.5;color:var(--ink);}
+  .q .lbl{
+    font-size:8pt;
+    font-weight:bold;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:#007a7a;
+  }
+  .q .why{margin-bottom:5px;}
+
+  /* ---------- Closing ---------- */
+  .closing{
+    padding:0.85in 0.8in;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  .closing .wordmark{color:var(--charcoal);}
+  .closing .wordmark .rule{margin-left:auto;margin-right:auto;}
+  .closing-statement{
+    margin-top:1.7in;
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-size:30pt;
+    line-height:1.3;
+    color:var(--charcoal);
+    max-width:5.9in;
+  }
+  .closing-statement .accent{color:var(--brass);}
+  .contact{
+    margin-top:auto;
+    border-top:1px solid var(--line);
+    padding-top:26px;
+    width:100%;
+  }
+  .contact .c-brand{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-size:13pt;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--charcoal);
+    margin-bottom:12px;
+  }
+  .contact p{
+    font-size:11.5pt;
+    line-height:1.7;
+    color:var(--ink);
+  }
+  .contact .lbl{
+    font-size:8pt;
+    font-weight:bold;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#007a7a;
+    margin-right:8px;
+  }
+
+  @page{size:Letter;margin:0;}
+  @media print{
+    body{background:#fff;}
+    .sheet{margin:0;box-shadow:none;}
+  }
+  @media screen and (max-width:900px){
+    .sheet{width:100%;height:auto;min-height:0;margin:0 0 18px;}
+    .cover-mid{margin-top:60px;}
+    .cover h1{font-size:32pt;}
+    .closing-statement{margin-top:60px;font-size:23pt;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1: COVER ================= -->
+<section class="sheet cover">
+  <div class="wordmark"><img src="images/corestone-logo-teal.svg" alt="Corestone Developers" style="height:44px;width:auto;"></div>
+  <div class="cover-mid">
+    <div class="cover-kicker">A Vetting Guide for Custom Home Buyers</div>
+    <h1><span class="num">10</span> Questions<br>to Ask Any<br>Builder</h1>
+    <p class="cover-sub">Before you sign anything. From the team at Corestone.</p>
+  </div>
+  <div class="cover-foot">
+    <span>Corestone</span>
+    <span>Sullivan County, New York</span>
+  </div>
+</section>
+
+<!-- ================= PAGE 2: QUESTIONS 1 TO 5 ================= -->
+<section class="sheet qpage">
+  <div class="page-head">
+    <span class="brand">Corestone</span>
+    <span class="doc">10 Questions to Ask Any Builder</span>
+  </div>
+
+  <div class="q">
+    <div class="q-num">1</div>
+    <div class="q-body">
+      <div class="q-text">How many homes have you completed in the last three years, and can I see them?</div>
+      <p class="why"><span class="lbl">Why it matters</span><br>Volume proves the operation is real. A builder who can't show recent finished work is asking you to fund their learning curve.</p>
+      <p><span class="lbl">Listen for</span><br>Specific addresses, willingness to arrange drive-bys or tours, pride in the work.</p>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-num">2</div>
+    <div class="q-body">
+      <div class="q-text">Who will actually be on my site every day?</div>
+      <p class="why"><span class="lbl">Why it matters</span><br>The person who sells you the job is rarely the person who builds it. You need to know who runs the site, how long they've been with the company, and whether they're an employee or a subcontractor.</p>
+      <p><span class="lbl">Listen for</span><br>A named project manager or lead carpenter, employed directly, with years on the team.</p>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-num">3</div>
+    <div class="q-body">
+      <div class="q-text">How do you handle pricing: fixed bid, cost-plus, or something else? And what exactly is included?</div>
+      <p class="why"><span class="lbl">Why it matters</span><br>Most budget blowups come from what's excluded, not what's included. Allowances for kitchens, baths, and fixtures are where vague contracts hide real costs.</p>
+      <p><span class="lbl">Listen for</span><br>Detailed line items, realistic allowances based on your finish level, and a clear explanation of what triggers a change order.</p>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-num">4</div>
+    <div class="q-body">
+      <div class="q-text">What's your average cost per square foot for a home at my finish level?</div>
+      <p class="why"><span class="lbl">Why it matters</span><br>Any experienced builder knows their numbers. Evasion here means inexperience or a lowball strategy.</p>
+      <p><span class="lbl">Listen for</span><br>A range with an explanation of what moves it up or down, not a single suspiciously low number.</p>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-num">5</div>
+    <div class="q-body">
+      <div class="q-text">How do you handle changes once construction starts?</div>
+      <p class="why"><span class="lbl">Why it matters</span><br>Changes are inevitable. The question is whether they're documented, priced fairly, and approved by you before the work happens.</p>
+      <p><span class="lbl">Listen for</span><br>A written change-order process, pricing before work begins, no surprises on the invoice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 3: QUESTIONS 6 TO 10 ================= -->
+<section class="sheet qpage">
+  <div class="page-head">
+    <span class="brand">Corestone</span>
+    <span class="doc">10 Questions to Ask Any Builder</span>
+  </div>
+
+  <div class="q">
+    <div class="q-num">6</div>
+    <div class="q-body">
+      <div class="q-text">What's your current backlog, and when would my project actually start?</div>
+      <p class="why"><span class="lbl">Why it matters</span><br>A builder who says &ldquo;we can start next month&rdquo; either has no work or is overpromising. Realistic timelines are a sign of an honest operation.</p>
+      <p><span class="lbl">Listen for</span><br>A specific start window and an explanation of what's ahead of you.</p>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-num">7</div>
+    <div class="q-body">
+      <div class="q-text">How do you communicate during the build?</div>
+      <p class="why"><span class="lbl">Why it matters</span><br>You'll live with this project for a year or more. Silence breeds anxiety and disputes.</p>
+      <p><span class="lbl">Listen for</span><br>Regular scheduled updates, photos, a single point of contact, and a system (not just &ldquo;call me anytime&rdquo;).</p>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-num">8</div>
+    <div class="q-body">
+      <div class="q-text">What happens if something goes wrong after move-in?</div>
+      <p class="why"><span class="lbl">Why it matters</span><br>The warranty conversation tells you everything about how a builder thinks about their work long-term.</p>
+      <p><span class="lbl">Listen for</span><br>A written warranty, a clear process for warranty claims, and examples of standing behind past work.</p>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-num">9</div>
+    <div class="q-body">
+      <div class="q-text">Can I talk to three of your past clients, including one from at least two years ago?</div>
+      <p class="why"><span class="lbl">Why it matters</span><br>Recent clients are still in the honeymoon phase. A client from two years ago will tell you how the builder handles problems.</p>
+      <p><span class="lbl">Listen for</span><br>Immediate yes, with names and numbers. Hesitation is the answer.</p>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="q-num">10</div>
+    <div class="q-body">
+      <div class="q-text">Why should I build with you instead of the next builder I interview?</div>
+      <p class="why"><span class="lbl">Why it matters</span><br>This is the only sales question on the list, and it's here on purpose. Watch whether they sell or whether they explain.</p>
+      <p><span class="lbl">Listen for</span><br>Specifics about process, team, and track record. Vagueness here after nine good answers is fine. Vagueness as a pattern is not.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE 4: CLOSING ================= -->
+<section class="sheet closing">
+  <div class="wordmark">Corestone<span class="rule"></span></div>
+  <p class="closing-statement">The right builder <span class="accent">welcomes</span> these questions.</p>
+  <div class="contact">
+    <div class="c-brand">Corestone</div>
+    <p><span class="lbl">Phone</span>845-747-0244</p>
+    <p><span class="lbl">Email</span>info@corestonedevelopers.com</p>
+    <p><span class="lbl">Web</span>corestonedevelopers.com</p>
+  </div>
+</section>
+
+</body>
+</html>
