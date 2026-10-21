@@ -1,0 +1,564 @@
+<!-- TODO: wire capture to Apps Script backend before launch. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>What Can Your Budget Build? | Corestone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #1a1a1a;
+    color: #fafafa;
+    font-family: -apple-system, "Segoe UI", 'Urbanist', Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .brand {
+    font-family: 'Montserrat Alternates', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .brand span { color: #00c4c4; }
+  .startover {
+    background: none;
+    border: none;
+    color: #8a8a8a;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 8px 4px;
+    text-decoration: underline;
+  }
+  .progress-wrap {
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .progress-label {
+    font-size: 12px;
+    color: #8a8a8a;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    min-height: 15px;
+  }
+  .progress-bar { height: 6px; background: #333333; border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: #00c4c4; width: 0%; transition: width 0.35s ease; }
+
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+  .screen { display: none; animation: fadein 0.3s ease; }
+  .screen.active { display: block; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  h1, h2 {
+    font-family: 'Montserrat Alternates', 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+    line-height: 1.2;
+    margin: 0 0 14px;
+  }
+  h1 { font-size: 36px; }
+  h2 { font-size: 27px; }
+  .sub { font-size: 17px; line-height: 1.55; color: #cfcfcf; margin: 0 0 28px; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: #00c4c4; margin: 0 0 10px;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 12px; }
+  .opt {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #242424;
+    border: 1px solid #3a3a3a;
+    border-radius: 10px;
+    color: #fafafa;
+    font-size: 17px;
+    line-height: 1.4;
+    padding: 18px 18px;
+    min-height: 60px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .opt:active, .opt.selected { border-color: #00c4c4; background: #2b2b2b; }
+
+  .cta {
+    display: inline-block;
+    background: #00c4c4;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 16px 30px;
+    min-height: 56px;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+  }
+  .cta:active { background: #009797; }
+  .cta.secondary {
+    background: none;
+    color: #fafafa;
+    border: 1px solid #3a3a3a;
+    font-weight: normal;
+  }
+  .backbtn {
+    background: none; border: none; color: #8a8a8a;
+    font-size: 15px; cursor: pointer; padding: 10px 4px; margin-top: 18px;
+  }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  textarea, input[type="text"], input[type="email"] {
+    width: 100%;
+    background: #242424;
+    border: 1px solid #3a3a3a;
+    border-radius: 10px;
+    color: #fafafa;
+    font-size: 17px;
+    padding: 16px;
+    font-family: inherit;
+    margin-bottom: 14px;
+  }
+  textarea { min-height: 110px; resize: vertical; }
+  textarea:focus, input:focus { outline: none; border-color: #00c4c4; }
+  .hint { font-size: 14px; color: #8a8a8a; line-height: 1.5; margin: 0 0 20px; }
+  .error { color: #ef6461; font-size: 14px; min-height: 20px; margin: 0 0 10px; }
+
+  .profile-card {
+    background: #242424;
+    border: 1px solid #3a3a3a;
+    border-left: 4px solid #00c4c4;
+    border-radius: 10px;
+    padding: 22px;
+    margin-bottom: 24px;
+  }
+  .profile-card h2 { margin-bottom: 10px; }
+  .profile-card p { font-size: 16px; line-height: 1.65; color: #e8e8e8; margin: 0 0 12px; }
+  .profile-card p:last-child { margin-bottom: 0; }
+  .musthave { font-style: italic; color: #cfcfcf; }
+  .fineprint { font-size: 13px; color: #8a8a8a; line-height: 1.5; margin-top: 22px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><img src="images/corestone-logo-teal.svg" alt="Corestone Developers" style="height:26px;width:auto;display:block;"></div>
+  <button class="startover" id="startOverBtn" type="button">Start over</button>
+</header>
+
+<div class="progress-wrap" id="progressWrap">
+  <div class="progress-label" id="progressLabel"></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<main>
+
+  <!-- SCREEN: WELCOME -->
+  <section class="screen" data-screen="welcome">
+    <p class="eyebrow">Corestone · Sullivan County, NY</p>
+    <h1>What can your budget actually build?</h1>
+    <p class="sub">6 questions, 60 seconds, honest answers. Real 2026 numbers for custom homes from $500K to $3M, no sales pitch.</p>
+    <button class="cta" type="button" data-action="start">Start</button>
+    <p class="fineprint">Your answers shape your build profile. A real person reads every response.</p>
+  </section>
+
+  <!-- SCREEN: Q1 BUDGET -->
+  <section class="screen" data-screen="q1">
+    <p class="eyebrow">Question 1 of 6</p>
+    <h2>What's your all-in budget range?</h2>
+    <p class="sub">Land, site work, and the build itself, all in.</p>
+    <div class="options" data-question="budget">
+      <button class="opt" type="button" data-value="b1">$500K to $800K</button>
+      <button class="opt" type="button" data-value="b2">$800K to $1.2M</button>
+      <button class="opt" type="button" data-value="b3">$1.2M to $2M</button>
+      <button class="opt" type="button" data-value="b4">$2M to $3M+</button>
+    </div>
+    <button class="backbtn" type="button" data-action="back">← Back</button>
+  </section>
+
+  <!-- SCREEN: Q2 LOT -->
+  <section class="screen" data-screen="q2">
+    <p class="eyebrow">Question 2 of 6</p>
+    <h2>Do you own your lot yet?</h2>
+    <p class="sub">The lot sets the ceiling for everything after it.</p>
+    <div class="options" data-question="lot">
+      <button class="opt" type="button" data-value="own">Yes, I own it</button>
+      <button class="opt" type="button" data-value="contract">I'm under contract</button>
+      <button class="opt" type="button" data-value="shopping">I'm actively shopping</button>
+      <button class="opt" type="button" data-value="none">Haven't started looking</button>
+    </div>
+    <button class="backbtn" type="button" data-action="back">← Back</button>
+  </section>
+
+  <!-- SCREEN: Q3 SQFT -->
+  <section class="screen" data-screen="q3">
+    <p class="eyebrow">Question 3 of 6</p>
+    <h2>Roughly how much living space are you thinking?</h2>
+    <p class="sub">A ballpark is fine. Size drives cost more than almost anything else.</p>
+    <div class="options" data-question="sqft">
+      <button class="opt" type="button" data-value="s1">Under 2,000 sqft</button>
+      <button class="opt" type="button" data-value="s2">2,000 to 3,000 sqft</button>
+      <button class="opt" type="button" data-value="s3">3,000 to 4,500 sqft</button>
+      <button class="opt" type="button" data-value="s4">4,500+ sqft</button>
+    </div>
+    <button class="backbtn" type="button" data-action="back">← Back</button>
+  </section>
+
+  <!-- SCREEN: Q4 FINISH -->
+  <section class="screen" data-screen="q4">
+    <p class="eyebrow">Question 4 of 6</p>
+    <h2>How would you describe the finish level you want?</h2>
+    <p class="sub">Finish level is the number one cost driver in any build.</p>
+    <div class="options" data-question="finish">
+      <button class="opt" type="button" data-value="quality">Clean and quality, nothing extravagant</button>
+      <button class="opt" type="button" data-value="highend">High-end, this is a home I want to love daily</button>
+      <button class="opt" type="button" data-value="luxury">Luxury, no compromises</button>
+    </div>
+    <button class="backbtn" type="button" data-action="back">← Back</button>
+  </section>
+
+  <!-- SCREEN: Q5 TIMELINE -->
+  <section class="screen" data-screen="q5">
+    <p class="eyebrow">Question 5 of 6</p>
+    <h2>When do you want to be moved in?</h2>
+    <p class="sub">Design and permits alone run 3 to 6 months. Honest timelines help us plan.</p>
+    <div class="options" data-question="timeline">
+      <button class="opt" type="button" data-value="t1">Within 12 months</button>
+      <button class="opt" type="button" data-value="t2">12 to 18 months</button>
+      <button class="opt" type="button" data-value="t3">18 to 24 months</button>
+      <button class="opt" type="button" data-value="t4">Just exploring, no timeline</button>
+    </div>
+    <button class="backbtn" type="button" data-action="back">← Back</button>
+  </section>
+
+  <!-- SCREEN: Q6 MUST-HAVE -->
+  <section class="screen" data-screen="q6">
+    <p class="eyebrow">Question 6 of 6</p>
+    <h2>What's the one thing the home has to have?</h2>
+    <p class="sub">A wall of glass facing the view. A kitchen built for Sunday mornings. A workshop. Whatever it is, tell us in your own words.</p>
+    <textarea id="musthaveInput" placeholder="The one thing this home has to have is..." maxlength="500"></textarea>
+    <p class="error" id="q6Error"></p>
+    <div class="row">
+      <button class="cta" type="button" data-action="toCapture">Continue</button>
+    </div>
+    <button class="backbtn" type="button" data-action="back">← Back</button>
+  </section>
+
+  <!-- SCREEN: EMAIL CAPTURE -->
+  <section class="screen" data-screen="capture">
+    <p class="eyebrow">Almost there</p>
+    <h2>Where should we send your build profile?</h2>
+    <p class="sub">Your profile is ready on the next screen. Tell us where to send a copy, and we will follow up personally.</p>
+    <input type="text" id="nameInput" placeholder="Your name" autocomplete="name" maxlength="100">
+    <input type="email" id="emailInput" placeholder="Email address" autocomplete="email" maxlength="150">
+    <p class="hint">A real person reads every response. No automated drip, no spam.</p>
+    <p class="error" id="captureError"></p>
+    <div class="row">
+      <button class="cta" type="button" data-action="submit">See my build profile</button>
+    </div>
+    <button class="backbtn" type="button" data-action="back">← Back</button>
+  </section>
+
+  <!-- SCREEN: RESULT -->
+  <section class="screen" data-screen="result">
+    <p class="eyebrow">Your build profile</p>
+    <div class="profile-card">
+      <h2 id="resultTitle"></h2>
+      <p id="resultBody"></p>
+      <p id="resultFit"></p>
+      <p class="musthave" id="resultMustHave"></p>
+    </div>
+    <p class="sub" id="resultNext"></p>
+    <div class="row">
+      <button type="button" class="cta" id="ctaBtn">Talk it through with us</button>
+    </div>
+    <p class="sub" id="ctaNote" hidden>Request noted. We will reach out to the email you gave us to set up the conversation.</p>
+    <p class="fineprint">Ranges reflect 2026 Sullivan County project costs. Every build is different. The conversation is where the real numbers start.</p>
+    <p class="fineprint">Corestone Developers · 845-747-0244 · info@corestonedevelopers.com · corestonedevelopers.com</p>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var STORE_KEY = "corestone-quiz-v1";
+  var SUBMIT_KEY = "corestone-quiz-submission";
+
+  var SCREENS = ["welcome", "q1", "q2", "q3", "q4", "q5", "q6", "capture", "result"];
+  var QUESTION_SCREENS = ["q1", "q2", "q3", "q4", "q5", "q6"];
+
+  var state = {
+    screen: "welcome",
+    answers: { budget: "", lot: "", sqft: "", finish: "", timeline: "", musthave: "" },
+    name: "",
+    email: "",
+    done: false
+  };
+
+  // ----- Result tiers: keyed by Q1 budget value -----
+  var TIERS = {
+    b1: {
+      title: "The Smart Custom Build",
+      body: "At $500K to $800K all in, a quality custom build on a straightforward lot is realistic and achievable. At this budget, the lot choice matters most."
+    },
+    b2: {
+      title: "The Classic Second Home",
+      body: "At $800K to $1.2M, you are in the classic second-home build. High-end finishes in the main living areas, smart savings in the secondary spaces. Very buildable."
+    },
+    b3: {
+      title: "The Serious Custom Home",
+      body: "At $1.2M to $2M, this is serious custom home territory. You have likely built or renovated before and know what you want. You respond to detail and process, not salesmanship."
+    },
+    b4: {
+      title: "The Estate Build",
+      body: "At $2M to $3M and beyond, this is an estate-level build. At this level, you are evaluating the builder as much as the numbers. You want to see proof: past projects, process, and references."
+    }
+  };
+
+  var LOT_LINES = {
+    own: "You already own your lot, which puts you ahead of most. The next step is a site read: perc, well, setbacks, and where the house actually wants to sit.",
+    contract: "You are under contract on a lot, which means timing matters. A site read before closing can save you from buying someone else's problem.",
+    shopping: "Since you are actively shopping for land, lot selection is the highest-leverage decision you will make. The right lot makes the build easy. The wrong one makes it expensive.",
+    none: "You have not started lot shopping yet, and that is fine. Many of our clients find the land with our input, which keeps the lot and the build budget in the same conversation."
+  };
+
+  var FINISH_LINES = {
+    quality: "You chose quality finishes without the extravagance, which keeps the per-square-foot number honest and the budget pointed at structure and space.",
+    highend: "You want high-end finishes you will love daily. That usually means spending up in the kitchen, baths, and main living areas, and staying disciplined everywhere else.",
+    luxury: "You want luxury with no compromises. Plan on the top per-square-foot tier, and know that the details, not the square footage, are what will drive the final number."
+  };
+
+  var TIMELINE_LINES = {
+    t1: "You want to be in within 12 months. That is aggressive but possible if design starts now and decisions stay ahead of the crew.",
+    t2: "A 12 to 18 month horizon is the realistic sweet spot for a custom build of this size.",
+    t3: "An 18 to 24 month horizon gives design room to breathe and lets us sequence the build properly.",
+    t4: "You are exploring with no fixed timeline, which is the smartest way to start. The numbers you get now will still be useful when you are ready."
+  };
+
+  var SQFT_LABELS = {
+    s1: "under 2,000 square feet",
+    s2: "2,000 to 3,000 square feet",
+    s3: "3,000 to 4,500 square feet",
+    s4: "4,500 square feet or more"
+  };
+
+  // ----- Persistence -----
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (!raw) return;
+      var parsed = JSON.parse(raw);
+      if (parsed && parsed.answers) {
+        state = parsed;
+      }
+    } catch (e) {}
+  }
+  function reset() {
+    state = {
+      screen: "welcome",
+      answers: { budget: "", lot: "", sqft: "", finish: "", timeline: "", musthave: "" },
+      name: "",
+      email: "",
+      done: false
+    };
+    try {
+      localStorage.removeItem(STORE_KEY);
+      localStorage.removeItem(SUBMIT_KEY);
+    } catch (e) {}
+    document.getElementById("musthaveInput").value = "";
+    document.getElementById("nameInput").value = "";
+    document.getElementById("emailInput").value = "";
+    show("welcome");
+  }
+
+  // ----- Navigation -----
+  function show(name) {
+    state.screen = name;
+    var sections = document.querySelectorAll(".screen");
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].classList.toggle("active", sections[i].getAttribute("data-screen") === name);
+    }
+    var idx = SCREENS.indexOf(name);
+    var pct = Math.round((idx / (SCREENS.length - 1)) * 100);
+    document.getElementById("progressFill").style.width = pct + "%";
+    var label = "";
+    if (QUESTION_SCREENS.indexOf(name) !== -1) {
+      label = "Question " + (QUESTION_SCREENS.indexOf(name) + 1) + " of 6";
+    } else if (name === "capture") {
+      label = "Your build profile";
+    } else if (name === "result") {
+      label = "Done";
+    }
+    document.getElementById("progressLabel").textContent = label;
+    markSelections();
+    window.scrollTo(0, 0);
+    save();
+  }
+
+  function next() {
+    var idx = SCREENS.indexOf(state.screen);
+    if (idx < SCREENS.length - 1) show(SCREENS[idx + 1]);
+  }
+  function back() {
+    var idx = SCREENS.indexOf(state.screen);
+    if (idx > 0) show(SCREENS[idx - 1]);
+  }
+
+  function markSelections() {
+    var groups = document.querySelectorAll(".options");
+    for (var i = 0; i < groups.length; i++) {
+      var q = groups[i].getAttribute("data-question");
+      var opts = groups[i].querySelectorAll(".opt");
+      for (var j = 0; j < opts.length; j++) {
+        opts[j].classList.toggle("selected", state.answers[q] === opts[j].getAttribute("data-value"));
+      }
+    }
+  }
+
+  // ----- Result -----
+  function computeTier() {
+    // Primary match: budget. All four budget options map to a tier.
+    return TIERS[state.answers.budget] || TIERS.b1;
+  }
+
+  function renderResult() {
+    var tier = computeTier();
+    document.getElementById("resultTitle").textContent = tier.title;
+    document.getElementById("resultBody").textContent = tier.body;
+
+    var fit = "";
+    if (SQFT_LABELS[state.answers.sqft]) {
+      fit += "You are picturing " + SQFT_LABELS[state.answers.sqft] + ". ";
+    }
+    if (FINISH_LINES[state.answers.finish]) fit += FINISH_LINES[state.answers.finish] + " ";
+    if (LOT_LINES[state.answers.lot]) fit += LOT_LINES[state.answers.lot];
+    document.getElementById("resultFit").textContent = fit.trim();
+
+    var mh = document.getElementById("resultMustHave");
+    if (state.answers.musthave) {
+      mh.textContent = "Your non-negotiable: \u201C" + state.answers.musthave + "\u201D We will start the design conversation there.";
+    } else {
+      mh.textContent = "";
+    }
+
+    var nextLine = TIMELINE_LINES[state.answers.timeline] || "";
+    document.getElementById("resultNext").textContent =
+      (nextLine ? nextLine + " " : "") +
+      "Every completion gets a personal response mapping your answers to a realistic build profile, not an automated PDF. That is what makes it convert.";
+  }
+
+  // ----- Validation + submit (front-end only, no network call) -----
+  function validEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  }
+
+  function submit() {
+    var name = document.getElementById("nameInput").value.trim();
+    var email = document.getElementById("emailInput").value.trim();
+    var err = document.getElementById("captureError");
+    if (!name) { err.textContent = "Please add your name so we know who we are writing to."; return; }
+    if (!validEmail(email)) { err.textContent = "That email does not look right. Mind checking it?"; return; }
+    err.textContent = "";
+    state.name = name;
+    state.email = email;
+    state.done = true;
+
+    var submission = {
+      name: name,
+      email: email,
+      answers: state.answers,
+      tier: computeTier().title,
+      submittedAt: new Date().toISOString()
+    };
+    try { localStorage.setItem(SUBMIT_KEY, JSON.stringify(submission)); } catch (e) {}
+
+    renderResult();
+    show("result");
+  }
+
+  // ----- Wire up -----
+  document.addEventListener("click", function (e) {
+    var opt = e.target.closest ? e.target.closest(".opt") : null;
+    if (opt) {
+      var group = opt.closest(".options");
+      var q = group.getAttribute("data-question");
+      state.answers[q] = opt.getAttribute("data-value");
+      save();
+      markSelections();
+      setTimeout(next, 180);
+      return;
+    }
+    var btn = e.target.closest ? e.target.closest("[data-action]") : null;
+    if (!btn) return;
+    var action = btn.getAttribute("data-action");
+    if (action === "start") next();
+    else if (action === "back") back();
+    else if (action === "toCapture") {
+      var mh = document.getElementById("musthaveInput").value.trim();
+      var q6err = document.getElementById("q6Error");
+      if (!mh) { q6err.textContent = "Give us the one thing. Even a few words helps."; return; }
+      q6err.textContent = "";
+      state.answers.musthave = mh;
+      save();
+      next();
+    } else if (action === "submit") {
+      submit();
+    }
+  });
+
+  document.getElementById("ctaBtn").addEventListener("click", function () {
+    document.getElementById("ctaNote").hidden = false;
+  });
+
+  document.getElementById("startOverBtn").addEventListener("click", function () {
+    if (window.confirm("Start over? Your answers on this device will be cleared.")) reset();
+  });
+
+  document.getElementById("musthaveInput").addEventListener("input", function (e) {
+    state.answers.musthave = e.target.value;
+    save();
+  });
+
+  // ----- Init: resume where they left off -----
+  load();
+  if (state.answers.musthave) document.getElementById("musthaveInput").value = state.answers.musthave;
+  if (state.name) document.getElementById("nameInput").value = state.name;
+  if (state.email) document.getElementById("emailInput").value = state.email;
+  if (state.done && state.answers.budget) {
+    renderResult();
+    show("result");
+  } else if (state.screen && state.screen !== "welcome") {
+    show(state.screen);
+  } else {
+    show("welcome");
+  }
+})();
+</script>
+</body>
+</html>
