@@ -185,6 +185,20 @@
     nav.main{display:none;}
     footer.site .cols{grid-template-columns:1fr;}
   }
+
+  .gate{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:20px;}
+  .gate[hidden]{display:none;}
+  .gate-bg{position:absolute;inset:0;background:rgba(10,10,10,.7);}
+  .gate-card{position:relative;background:#1a1a1a;color:#fff;max-width:420px;width:100%;border-radius:14px;padding:32px 28px;box-shadow:0 24px 80px rgba(0,0,0,.5);}
+  .gate-card h3{margin:0 0 8px;font-size:24px;}
+  .gate-card h3 .t{color:#00C4C4;}
+  .gate-card p{color:#c9c9c9;font-size:15px;margin:0 0 20px;}
+  .gate-card label{display:block;font-size:13px;color:#c9c9c9;margin:0 0 6px;}
+  .gate-card input{width:100%;box-sizing:border-box;background:#262626;border:1px solid #3a3a3a;color:#fff;border-radius:8px;padding:12px 14px;font-size:16px;margin:0 0 14px;}
+  .gate-card input:focus{outline:none;border-color:#00C4C4;}
+  .gate-err{color:#ff8a8a;font-size:14px;margin:-6px 0 12px;min-height:20px;}
+  .gate-x{position:absolute;top:12px;right:16px;background:none;border:none;color:#888;font-size:24px;cursor:pointer;}
+  .gate-note{font-size:12px;color:#888;margin:14px 0 0;}
 </style>
 </head>
 <body>
@@ -432,7 +446,7 @@
         <div class="p-body"><p class="p-tag">Commercial</p><h3>Teiberg Pizza Store</h3><p class="loc">Swan Lake, NY</p><p>A branded pizzeria build-out in Swan Lake: counter, kitchen line, and dining room ready for opening day.</p>
           <p class="gal-link"><a href="projects.html#p-teiberg">View full gallery &#8594;</a></p></div>
       </div>
-      <a class="proj-link" href="lead-magnets/dirt-to-dream.pdf">
+      <a class="proj-link" href="lead-magnets/dirt-to-dream.pdf" data-gate="Dirt to Dream: 579 Shore Drive">
       <div class="proj">
         <img src="images/proj-diary.jpg" alt="The A-frame at 579 Shore Drive going up">
         <div class="p-body"><p class="p-tag">Build diary</p><h3>Dirt to Dream: The Build Diary</h3><p class="loc">579 Shore Drive · In progress photos</p><p>Framing at 579 Shore Drive, mid-build. The diary shows every phase, month by month.</p></div>
@@ -449,7 +463,7 @@
         <div class="p-body" style="padding:28px;">
           <h3 style="color:#fff;">Price it before you call</h3>
           <p style="color:#c9c9c9;margin:10px 0 18px;">Real 2026 numbers for land, site work, and construction, free in the Cost Guide.</p>
-          <a class="btn" href="lead-magnets/cost-guide.pdf">Get the Cost Guide</a>
+          <a class="btn" href="lead-magnets/cost-guide.pdf" data-gate="2026 Sullivan County Build Cost Guide">Get the Cost Guide</a>
         </div>
       </div>
     </div>
@@ -484,7 +498,7 @@
         <p class="tag">The flagship guide</p>
         <h3>2026 Sullivan County Build Cost Guide</h3>
         <p>Real numbers: land, site work, and construction cost per square foot at three finish levels, plus three full build scenarios from $650K to $3M (build budgets; all-in runs higher with land and site work).</p>
-        <a class="btn" href="lead-magnets/cost-guide.pdf">Download the guide</a>
+        <a class="btn" href="lead-magnets/cost-guide.pdf" data-gate="2026 Sullivan County Build Cost Guide">Download the guide</a>
       </div>
       <div class="res">
         <p class="tag">Interactive</p>
@@ -496,19 +510,19 @@
         <p class="tag">Before you buy land</p>
         <h3>The Land Buyer's Checklist</h3>
         <p>Twelve things to check before you buy a lot, from perc tests to resale logic. Print it and take it to lot visits.</p>
-        <a class="btn alt" href="lead-magnets/land-checklist.pdf">Download the checklist</a>
+        <a class="btn alt" href="lead-magnets/land-checklist.pdf" data-gate="The Land Buyer's Checklist">Download the checklist</a>
       </div>
       <div class="res">
         <p class="tag">Interview any builder</p>
         <h3>10 Questions to Ask Any Builder</h3>
         <p>The vetting guide: why each question matters and what a strong answer sounds like. Use it on us, use it on everyone.</p>
-        <a class="btn alt" href="lead-magnets/ten-questions.pdf">Download the questions</a>
+        <a class="btn alt" href="lead-magnets/ten-questions.pdf" data-gate="10 Questions to Ask Any Builder">Download the questions</a>
       </div>
       <div class="res">
         <p class="tag">A real build, start to finish</p>
         <h3>Dirt to Dream: 579 Shore Drive</h3>
         <p>One of our builds followed month by month, raw land to move-in, with real photos from the lot, the foundation, the framing, and the finished home.</p>
-        <a class="btn alt" href="lead-magnets/dirt-to-dream.pdf">Read the build diary</a>
+        <a class="btn alt" href="lead-magnets/dirt-to-dream.pdf" data-gate="Dirt to Dream: 579 Shore Drive">Read the build diary</a>
       </div>
       <div class="res">
         <p class="tag">Talk it through</p>
@@ -630,6 +644,105 @@ document.querySelectorAll('.ss').forEach(function(box){
   dots.forEach(function(d,k){d.addEventListener('click',function(){go(k)})});
   box.querySelector('.ss-track').addEventListener('click',function(){location.href=box.dataset.gal;});
 });
+</script>
+<div class="gate" id="gate" hidden>
+  <div class="gate-bg" id="gateBg"></div>
+  <div class="gate-card">
+    <button class="gate-x" id="gateX" aria-label="Close">&times;</button>
+    <h3>Get the <span class="t">guide</span></h3>
+    <p id="gateSub">Enter your details and your download starts right away.</p>
+    <form id="gateForm" novalidate>
+      <label for="gateName">Name</label>
+      <input id="gateName" type="text" autocomplete="name" placeholder="Your name">
+      <label for="gateEmail">Email</label>
+      <input id="gateEmail" type="email" autocomplete="email" placeholder="you@email.com">
+      <p class="gate-err" id="gateErr"></p>
+      <button class="btn" type="submit" id="gateBtn" style="width:100%;">Download now</button>
+    </form>
+    <p class="gate-note">One email from our team, no spam. Unsubscribe anytime.</p>
+  </div>
+</div>
+<script>
+(function(){
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzT6_-2harIBANSlYox_FgMnjkj3VeXt_p16IhQyoxPIVBGGo7-1j9JO_XezbO6dq9S/exec';
+  var TOKEN = '08ee3b92e3a5ce90feabef7e339008119a7776c22e424f3d';
+  var KEY = 'corestone_lead_v1';
+  var gate = document.getElementById('gate');
+  var form = document.getElementById('gateForm');
+  var err = document.getElementById('gateErr');
+  var btn = document.getElementById('gateBtn');
+  var pending = null;
+
+  function savedLead(){
+    try {
+      var l = JSON.parse(localStorage.getItem(KEY));
+      if (l && l.email && (Date.now() - l.ts) < 90*24*3600*1000) return l;
+    } catch(e){}
+    return null;
+  }
+  function openGate(href, guide){
+    pending = {href: href, guide: guide};
+    err.textContent = '';
+    form.reset();
+    gate.hidden = false;
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){ document.getElementById('gateName').focus(); }, 50);
+  }
+  function closeGate(){
+    gate.hidden = true;
+    document.body.style.overflow = '';
+    pending = null;
+  }
+  function download(){
+    var a = document.createElement('a');
+    a.href = pending.href;
+    a.download = '';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+  document.querySelectorAll('a[data-gate]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var href = a.getAttribute('href');
+      var guide = a.getAttribute('data-gate');
+      if (savedLead()) { pending = {href: href, guide: guide}; download(); pending = null; return; }
+      openGate(href, guide);
+    });
+  });
+  document.getElementById('gateX').addEventListener('click', closeGate);
+  document.getElementById('gateBg').addEventListener('click', closeGate);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !gate.hidden) closeGate(); });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('gateName').value.trim();
+    var email = document.getElementById('gateEmail').value.trim();
+    if (!name) { err.textContent = 'Please enter your name.'; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'Please enter a valid email.'; return; }
+    err.textContent = '';
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type': 'text/plain'},
+      body: JSON.stringify({token: TOKEN, name: name, email: email, guide: pending.guide})
+    }).then(function(r){ return r.json(); }).then(function(d){
+      btn.textContent = 'Download now';
+      btn.disabled = false;
+      if (d && d.ok) {
+        try { localStorage.setItem(KEY, JSON.stringify({name: name, email: email, ts: Date.now()})); } catch(e){}
+        download();
+        closeGate();
+      } else {
+        err.textContent = 'That did not go through. Check your connection and try again.';
+      }
+    }).catch(function(){
+      btn.textContent = 'Download now';
+      btn.disabled = false;
+      err.textContent = 'That did not go through. Check your connection and try again.';
+    });
+  });
+})();
 </script>
 </body>
 </html>
