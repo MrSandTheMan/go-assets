@@ -5,8 +5,8 @@
   function fix() {
     var spans = document.querySelectorAll('.meta span');
     for (var i = 0; i < spans.length; i++) {
-      if (/landing page rebuild/i.test(spans[i].textContent)) {
-        spans[i].textContent = '4 new trims';
+      if (/landing page rebuild|new trims/i.test(spans[i].textContent)) {
+        spans[i].textContent = '3 new edits';
       }
     }
     var lis = document.querySelectorAll('li');
