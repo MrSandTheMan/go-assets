@@ -49,10 +49,64 @@
       img.style.width = '100%';
       img.style.borderRadius = '12px';
       img.style.display = 'block';
+      img.style.cursor = 'zoom-in';
+      img.title = 'Tap to view fullscreen';
+      img.addEventListener('click', function () { openBALightbox(ba.img); });
+      var cap = document.createElement('div');
+      cap.textContent = 'Tap the image to view fullscreen';
+      cap.style.fontSize = '13px';
+      cap.style.color = '#8a8a8e';
+      cap.style.textAlign = 'center';
+      cap.style.marginTop = '8px';
       sec.appendChild(h);
       sec.appendChild(img);
+      sec.appendChild(cap);
       pri.appendChild(sec);
     }).catch(function () { fetched = false; });
+  }
+  function openBALightbox(src) {
+    if (document.querySelector('.ba-lightbox')) return;
+    var ov = document.createElement('div');
+    ov.className = 'ba-lightbox';
+    ov.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;overflow:auto;padding:16px;box-sizing:border-box;';
+    var im = document.createElement('img');
+    im.src = src;
+    im.alt = 'Before and after, fullscreen';
+    im.style.cssText = 'max-width:96vw;max-height:96vh;object-fit:contain;border-radius:8px;cursor:zoom-in;';
+    var zoomed = false;
+    im.addEventListener('click', function (e) {
+      e.stopPropagation();
+      zoomed = !zoomed;
+      if (zoomed) {
+        im.style.maxWidth = 'none';
+        im.style.maxHeight = 'none';
+        im.style.width = '200%';
+        im.style.cursor = 'zoom-out';
+      } else {
+        im.style.maxWidth = '96vw';
+        im.style.maxHeight = '96vh';
+        im.style.width = 'auto';
+        im.style.cursor = 'zoom-in';
+      }
+    });
+    var x = document.createElement('button');
+    x.type = 'button';
+    x.textContent = '✕';
+    x.setAttribute('aria-label', 'Close');
+    x.style.cssText = 'position:fixed;top:14px;right:16px;z-index:10000;background:#fff;color:#111;border:0;border-radius:50%;width:40px;height:40px;font-size:20px;font-weight:700;cursor:pointer;line-height:1;';
+    function close() {
+      if (ov.parentNode) ov.parentNode.removeChild(ov);
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKey);
+    }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    x.addEventListener('click', close);
+    ov.addEventListener('click', close);
+    document.addEventListener('keydown', onKey);
+    ov.appendChild(im);
+    ov.appendChild(x);
+    document.body.appendChild(ov);
+    document.body.style.overflow = 'hidden';
   }
   renderBA();
   var tries = 0;
@@ -105,14 +159,16 @@
       row.style.flexWrap = 'wrap';
       row.style.gap = '10px';
       var docBtn = document.createElement('a');
-      docBtn.className = 'go-btn yellow';
+      docBtn.className = 'btn yellow';
       docBtn.href = d.doc_url;
       docBtn.target = '_blank';
       docBtn.rel = 'noopener';
       docBtn.textContent = d.doc_label || 'Open the transcript doc';
+      docBtn.style.cssText = 'display:inline-block;background:#FFD60A;color:#111;border-radius:999px;padding:12px 26px;font-weight:700;font-size:15px;text-decoration:none;text-transform:none;cursor:pointer;';
       var apBtn = document.createElement('button');
-      apBtn.className = 'go-btn';
+      apBtn.className = 'btn';
       apBtn.type = 'button';
+      apBtn.style.cssText = 'display:inline-block;background:#E00020;color:#fff;border:0;border-radius:999px;padding:12px 26px;font-weight:700;font-size:15px;text-transform:none;cursor:pointer;';
       var approveLabel = d.approve_label || 'Approve the dialogue as-is';
       var stamp = null;
       try { stamp = JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch (e) {}
