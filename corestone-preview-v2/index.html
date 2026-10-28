@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corestone Developers | Luxury Home Builders, Sullivan & Orange County NY</title>
+<meta name="description" content="Luxury custom home builder in Sullivan County and Orange County NY. Custom home builds, development, and commercial projects with open-book pricing.">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a; --ink2:#242424; --teal:#00c4c4; --teal-deep:#007a7a;
+    --paper:#fafafa; --mist:#f0f0f0; --line:#d9d9d9; --muted:#6e6e6e; --soft:#3a3a3a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Cormorant Garamond',Georgia,serif;color:var(--ink);background:var(--paper);line-height:1.55;}
+  h1,h2,h3,.disp{font-family:'Cinzel',Georgia,serif;font-weight:600;line-height:1.18;}
+  a{color:var(--teal-deep);}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+  .eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--teal-deep);font-weight:700;margin-bottom:12px;}
+  .eyebrow.on-dark{color:var(--teal);}
+  section{padding:84px 0;}
+  section[id]{scroll-margin-top:88px;}
+  .sec-head{max-width:720px;margin-bottom:44px;}
+  .sec-head h2{font-size:34px;margin-bottom:12px;}
+  .sec-head p{color:var(--soft);font-size:17px;}
+
+  /* topbar + header */
+  .topbar{background:#111;color:#cfcfcf;font-size:13.5px;padding:8px 0;}
+  .topbar .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .topbar a{color:#cfcfcf;text-decoration:none;}
+  .topbar a:hover{color:var(--teal);}
+  header.site{position:sticky;top:0;z-index:50;background:var(--ink);border-bottom:1px solid #333;}
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;gap:20px;}
+  header.site img.logo{height:42px;width:auto;display:block;}
+  nav.main{display:flex;gap:26px;align-items:center;}
+  nav.main a{color:#f0f0f0;text-decoration:none;font-size:15px;font-weight:600;letter-spacing:.02em;}
+  nav.main a:hover{color:var(--teal);}
+  .btn{display:inline-block;background:var(--teal);color:#0d2222;text-decoration:none;font-weight:700;
+       padding:13px 24px;border-radius:3px;font-size:15.5px;border:none;cursor:pointer;}
+  .btn:hover{background:#00d8d8;}
+  .btn.ghost{background:transparent;color:#fff;border:1.5px solid #fff;}
+  .btn.ghost:hover{border-color:var(--teal);color:var(--teal);}
+  .btn.dark{background:var(--ink);color:#fff;}
+  .btn.dark:hover{background:#333;}
+
+  /* hero */
+  .hero{background:var(--ink);color:#fff;padding:0;}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding-top:72px;padding-bottom:72px;}
+  .hero .hero-head{grid-column:1;grid-row:1;}
+  .hero .hero-tail{grid-column:1;grid-row:2;}
+  .hero figure{grid-column:2;grid-row:1/3;align-self:center;}
+  .hero h1{font-size:44px;margin-bottom:18px;}
+  .hero h1 .t{color:var(--teal);}
+  .hero p.lede{font-size:18.5px;color:#d9d9d9;max-width:34em;margin-bottom:30px;}
+  .hero .ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero .proof{margin-top:34px;font-size:14.5px;color:#9a9a9a;letter-spacing:.02em;}
+  .hero .proof b{color:#fff;}
+  .hero figure{border-radius:4px;overflow:hidden;}
+  .hero figure img{width:100%;height:520px;object-fit:cover;display:block;}
+  .hero .hs-track{position:relative;height:520px;}
+  .hero .hs-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease;}
+  .hero .hs-slide.on{opacity:1;}
+  .hero figcaption{font-size:13px;color:#9a9a9a;padding-top:10px;}
+
+  /* offers */
+  .offers{background:var(--paper);}
+  .offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .offer{background:#fff;border:1px solid var(--line);border-top:4px solid var(--teal);padding:30px 28px;border-radius:3px;}
+  .offer h3{font-size:22px;margin-bottom:10px;}
+  .offer p{color:var(--soft);font-size:15.5px;margin-bottom:16px;}
+  .offer ul{list-style:none;}
+  .offer li{font-size:15px;padding:7px 0 7px 22px;position:relative;border-top:1px solid var(--mist);}
+  .offer li:before{content:"";position:absolute;left:2px;top:14px;width:8px;height:8px;background:var(--teal);border-radius:50%;}
+  .offer .note{margin-top:16px;font-size:14px;color:var(--muted);font-style:italic;border-top:1px solid var(--mist);padding-top:12px;}
+
+  /* included */
+  .included{background:var(--ink);color:#fff;}
+  .included .sec-head p{color:#c9c9c9;}
+  .inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .inc{background:var(--ink2);border:1px solid #383838;padding:26px;border-radius:3px;}
+  .inc h3{font-size:17px;color:var(--teal);margin-bottom:12px;letter-spacing:.02em;}
+  .inc ul{list-style:none;columns:1;}
+  .inc li{font-size:15px;color:#e8e8e8;padding:5px 0;border-top:1px solid #333;}
+  .inc li:first-child{border-top:none;}
+  .included .foot-note{margin-top:30px;color:#9a9a9a;font-size:15px;}
+
+  /* process */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .step{border:1px solid var(--line);background:#fff;padding:26px;border-radius:3px;}
+  .step .n{display:inline-flex;width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--teal);
+           align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:700;margin-bottom:14px;}
+  .step h3{font-size:18px;margin-bottom:4px;}
+  .step .months{font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-deep);font-weight:700;margin-bottom:10px;}
+  .step p{font-size:15px;color:var(--soft);}
+  .pricing{margin-top:26px;background:var(--mist);border-left:4px solid var(--teal);padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .pricing h3{font-size:19px;margin-bottom:8px;}
+  .pricing p{font-size:15.5px;color:var(--soft);}
+
+  /* projects */
+  .projects{background:var(--paper);}
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .proj{background:#fff;border:1px solid var(--line);border-radius:3px;overflow:hidden;}
+  .proj img{width:100%;height:220px;object-fit:cover;display:block;}
+  .p-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#007A7A;font-weight:700;margin:0 0 6px;}
+  .ss{position:relative;height:220px;overflow:hidden;}
+  .ss-track{cursor:pointer;}
+  .proj-link{display:block;color:inherit;text-decoration:none;}
+  .gal-link{margin:10px 0 0;}
+  .gal-link a{color:#007A7A;font-weight:700;text-decoration:none;font-size:15px;}
+  .gal-link a:hover{text-decoration:underline;}
+  .ss-track{position:relative;height:100%;}
+  .ss-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease;}
+  .ss-slide.on{opacity:1;}
+  .ss-prev,.ss-next{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,.45);color:#fff;font-size:18px;line-height:1;cursor:pointer;z-index:2;}
+  .ss-prev{left:8px;} .ss-next{right:8px;}
+  .ss-dots{position:absolute;bottom:10px;left:0;right:0;text-align:center;z-index:2;}
+  .ss-dots button{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,.55);margin:0 3px;padding:0;cursor:pointer;}
+  .ss-dots button.on{background:#fff;}
+  .proj .p-body{padding:20px 22px;}
+  .projects .p-body{background:#111;color:#fff;}
+  .projects .p-body h3{color:#fff;}
+  .projects .p-body p{color:#c9c9c9;}
+  .projects .p-body .loc{color:var(--teal);}
+  .projects .p-body a{color:#fff;}
+  .proj h3{font-size:18.5px;margin-bottom:4px;}
+  .proj .loc{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-deep);font-weight:700;margin-bottom:8px;}
+  .proj p{font-size:14.5px;color:var(--soft);}
+
+  /* reviews */
+  .reviews{background:var(--mist);}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .rev{background:#fff;border:1px solid var(--line);padding:28px;border-radius:3px;}
+  .rev .stars{color:var(--teal-deep);letter-spacing:3px;font-size:15px;margin-bottom:12px;}
+  .rev p{font-size:15.5px;color:var(--soft);font-style:italic;}
+  .rev .who{margin-top:16px;font-style:normal;font-weight:700;font-size:14.5px;color:var(--ink);}
+
+  /* resources / lead magnets */
+  .resources{background:var(--ink);color:#fff;}
+  .resources .sec-head p{color:#c9c9c9;}
+  .res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .res{background:var(--ink2);border:1px solid #383838;border-top:4px solid var(--teal);padding:28px;border-radius:3px;display:flex;flex-direction:column;}
+  .res .tag{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:10px;}
+  .res h3{font-size:20px;margin-bottom:10px;}
+  .res p{font-size:15px;color:#d5d5d5;flex:1;}
+  .res .btn{margin-top:20px;text-align:center;}
+  .res .btn.alt{background:transparent;border:1.5px solid var(--teal);color:var(--teal);}
+  .res .btn.alt:hover{background:var(--teal);color:#0d2222;}
+
+  /* faq */
+  .faq-list{max-width:820px;}
+  details{border:1px solid var(--line);background:#fff;border-radius:3px;margin-bottom:12px;}
+  summary{cursor:pointer;font-family:'Cinzel',serif;font-weight:600;font-size:17px;padding:20px 24px;list-style:none;}
+  summary::-webkit-details-marker{display:none;}
+  summary:after{content:"+";float:right;color:var(--teal-deep);font-size:22px;line-height:1;}
+  details[open ] summary:after{content:"–";}
+  details .a{padding:0 24px 22px;color:var(--soft);font-size:15.5px;max-width:44em;}
+
+  /* contact */
+  .contact{background:var(--paper);padding-top:0;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;background:#fff;border:1px solid var(--line);border-radius:4px;padding:40px;}
+  .contact h2{font-size:30px;margin-bottom:14px;}
+  .contact .info p{font-size:16px;color:var(--soft);margin-bottom:10px;}
+  .contact .info b{color:var(--ink);}
+  form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  form label{display:block;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin:14px 0 6px;}
+  form label .opt{text-transform:none;letter-spacing:0;color:var(--muted);font-weight:500;}
+  form input,form textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:3px;font:inherit;font-size:15.5px;background:var(--paper);}
+  form input:focus,form textarea:focus{outline:2px solid var(--teal);border-color:transparent;}
+  form .btn{margin-top:20px;width:100%;}
+  form .fine{font-size:13px;color:var(--muted);margin-top:12px;}
+
+  footer.site{background:#111;color:#bdbdbd;padding:52px 0 30px;font-size:14.5px;}
+  footer.site .cols{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;margin-bottom:34px;}
+  footer.site img.logo{height:38px;margin-bottom:14px;}
+  footer.site h4{color:#fff;font-size:15px;margin-bottom:12px;font-family:'Cinzel',serif;}
+  footer.site a{color:#bdbdbd;text-decoration:none;display:block;padding:3px 0;}
+  footer.site a:hover{color:var(--teal);}
+  footer.site .legal{border-top:1px solid #2c2c2c;padding-top:20px;color:#7a7a7a;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  @media (max-width: 900px){
+    section{padding:58px 0;}
+    .hero .wrap{grid-template-columns:1fr;padding-top:48px;padding-bottom:48px;display:flex;flex-direction:column;}
+    .hero .hero-head{order:1;}
+    .hero figure{order:2;margin-top:14px;}
+    .hero .hero-tail{order:3;}
+    .hero h1{font-size:33px;}
+    .hero figure img{height:320px;}
+    .hero .hs-track{height:320px;}
+    .offer-grid,.inc-grid,.steps,.proj-grid,.rev-grid,.res-grid{grid-template-columns:1fr;}
+    .pricing{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;padding:26px;}
+    form .row{grid-template-columns:1fr;}
+    nav.main{display:none;}
+    footer.site .cols{grid-template-columns:1fr;}
+  }
+
+  .gate{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:20px;}
+  .gate[hidden]{display:none;}
+  .gate-bg{position:absolute;inset:0;background:rgba(10,10,10,.7);}
+  .gate-card{position:relative;background:#1a1a1a;color:#fff;max-width:420px;width:100%;border-radius:14px;padding:32px 28px;box-shadow:0 24px 80px rgba(0,0,0,.5);}
+  .gate-card h3{margin:0 0 8px;font-size:24px;}
+  .gate-card h3 .t{color:#00C4C4;}
+  .gate-card p{color:#c9c9c9;font-size:15px;margin:0 0 20px;}
+  .gate-card label{display:block;font-size:13px;color:#c9c9c9;margin:0 0 6px;}
+  .gate-card input{width:100%;box-sizing:border-box;background:#262626;border:1px solid #3a3a3a;color:#fff;border-radius:8px;padding:12px 14px;font-size:16px;margin:0 0 14px;}
+  .gate-card input:focus{outline:none;border-color:#00C4C4;}
+  .gate-err{color:#ff8a8a;font-size:14px;margin:-6px 0 12px;min-height:20px;}
+  .gate-x{position:absolute;top:12px;right:16px;background:none;border:none;color:#888;font-size:24px;cursor:pointer;}
+  .gate-note{font-size:12px;color:#888;margin:14px 0 0;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>1619 NY-52, Liberty, NY 12754</span>
+    <span><a href="tel:+18457470244">845-747-0244</a> &nbsp;·&nbsp; <a href="mailto:info@corestonedevelopers.com">info@corestonedevelopers.com</a></span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a href="#top"><img class="logo" src="images/corestone-logo-teal.svg" alt="Corestone Developers"></a>
+    <nav class="main">
+      <a href="#offers">What We Do</a>
+      <a href="#included">What's Included</a>
+      <a href="#process">Process</a>
+      <a href="#projects">Projects</a>
+      <a href="#resources">Resources</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn" href="#contact">Request a quote</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-head">
+      <p class="eyebrow on-dark">Sullivan County · Orange County · Upstate NY</p>
+      <h1>Every cost on the table. <span class="t">Every day's work on your phone.</span></h1>
+    </div>
+    <div class="hero-tail">
+      <p class="lede">Corestone Developers designs and builds luxury custom homes across Sullivan County and Orange County. One team from the first sketch to the final walkthrough, with open-book pricing the whole way.</p>
+      <div class="ctas">
+        <a class="btn" href="lead-magnets/build-quiz.html">See what your budget builds</a>
+        <a class="btn ghost" href="#projects">View our projects</a>
+      </div>
+      <p class="proof"><b>$500K to $10M</b> build budgets &nbsp;·&nbsp; <b>8 to 20 months</b> start to finish &nbsp;·&nbsp; <b>Open-book</b> cost-plus pricing</p>
+    </div>
+    <figure>
+      <div class="hs-track">
+        <img src="images/hero-finished.jpg" class="hs-slide on" alt="Twilight aerial of the finished A-frame at 579 Shore Drive">
+        <img src="images/proj-579.jpg" class="hs-slide" alt="Front exterior of the A-frame at 579 Shore Drive">
+        <img src="images/gal-579-1.jpg" class="hs-slide" alt="Front exterior of the finished A-frame at 579 Shore Drive">
+        <img src="images/gal-579-4.jpg" class="hs-slide" alt="Twilight aerial of the finished A-frame at 579 Shore Drive">
+        <img src="images/proj-rte17.jpg" class="hs-slide" alt="Exterior of the home at 1268 Old Route 17">
+        <img src="images/gal-736-1.jpg" class="hs-slide" alt="Backyard pool at 736 Harris Rd">
+      </div>
+      <figcaption>Exterior elevations from recent Corestone builds.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- OFFERS -->
+<section class="offers" id="offers">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">What we do</p>
+      <h2>Three ways to hire Corestone</h2>
+      <p>Everything we do falls into three offers. No 27-item service menu, no guesswork about what you can actually hire us for.</p>
+    </div>
+    <div class="offer-grid">
+      <div class="offer">
+        <h3>Custom Home Builds</h3>
+        <p>Your home, designed and built by one team on your land or on a lot we help you evaluate.</p>
+        <ul>
+          <li>Full design and permitting handled in-house</li>
+          <li>Every trade included, start to finish (see below)</li>
+          <li>Daily photo and video updates through our client portal</li>
+          <li>Typical build budgets: $500K to $10M</li>
+        </ul>
+        <p class="note">Major renovations and rebuilds are taken on selectively, when the project fits. Ask us.</p>
+      </div>
+      <div class="offer">
+        <h3>Development</h3>
+        <p>Residential development for landowners and partners who want a builder that runs the whole job.</p>
+        <ul>
+          <li>Single-lot and multi-home residential projects</li>
+          <li>Site work, infrastructure, and vertical construction</li>
+          <li>One accountable partner from raw land to sold homes</li>
+        </ul>
+      </div>
+      <div class="offer">
+        <h3>Commercial</h3>
+        <p>Commercial builds and renovations for local businesses, delivered with the same rigor, craftsmanship, and accountability as our custom homes.</p>
+        <ul>
+          <li>Restaurants, retail, and storefronts</li>
+          <li>Full renovations and build-outs for established local businesses</li>
+          <li>Experienced project management with deep local permitting knowledge, from first filing to final inspection</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="included" id="included">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow on-dark">One contract, one team</p>
+      <h2>What's included in a Corestone build</h2>
+      <p>Every trade below is part of a Corestone build. You are not hiring and coordinating 27 separate contractors. We are.</p>
+    </div>
+    <div class="inc-grid">
+      <div class="inc">
+        <h3>Design & Approvals</h3>
+        <ul><li>Project planning</li><li>Permits</li></ul>
+      </div>
+      <div class="inc">
+        <h3>Site & Structure</h3>
+        <ul><li>Site work, excavation & asphalt</li><li>Foundation</li><li>Concrete</li><li>Waterproofing</li><li>Well</li></ul>
+      </div>
+      <div class="inc">
+        <h3>The Shell</h3>
+        <ul><li>Framing</li><li>Windows</li><li>Exterior crafts, roofing & siding</li><li>Garage doors</li><li>Decks</li></ul>
+      </div>
+      <div class="inc">
+        <h3>Systems</h3>
+        <ul><li>HVAC</li><li>Plumbing</li><li>Electricity</li><li>Low voltage</li><li>Insulation</li></ul>
+      </div>
+      <div class="inc">
+        <h3>Interiors</h3>
+        <ul><li>Sheetrocking</li><li>Interior stairs</li><li>Railing</li><li>Trimming</li><li>Flooring</li></ul>
+      </div>
+      <div class="inc">
+        <h3>Finishes</h3>
+        <ul><li>Kitchen</li><li>Painting</li><li>Wallpapers</li><li>Glass shower</li><li>Finishings</li></ul>
+      </div>
+    </div>
+    <p class="foot-note">All 27 trades, one accountable builder. If it is on this list, it is in your build and in your price.</p>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">How it works</p>
+      <h2>From first sketch to keys</h2>
+      <p>579 Shore Drive ran 16 months. Plan on 8 to 20 from first sketch to keys. Here is the road, phase by phase, straight from our Dirt to Dream diary.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h3>Design & permits</h3><p class="months">3 to 6 months</p><p>Plans, engineering, septic design, and permits. Slow on paper, and it saves ten times the time in the field.</p></div>
+      <div class="step"><span class="n">2</span><h3>Site work & foundation</h3><p class="months">2 months</p><p>Clearing, driveway, well, septic, and the foundation pour. The lot becomes a building site.</p></div>
+      <div class="step"><span class="n">3</span><h3>Framing</h3><p class="months">1 to 2 months</p><p>Walls up, roof on. The house takes shape in weeks, and it is the most dramatic phase to watch.</p></div>
+      <div class="step"><span class="n">4</span><h3>Rough-ins</h3><p class="months">1 month</p><p>Plumbing, electric, HVAC, and insulation. Invisible work that decides how the house lives.</p></div>
+      <div class="step"><span class="n">5</span><h3>Finishes</h3><p class="months">2 to 4 months</p><p>Sheetrock, floors, millwork, tile, counters, fixtures, paint. The house becomes a home.</p></div>
+      <div class="step"><span class="n">6</span><h3>Final stretch</h3><p class="months">1 to 2 months</p><p>Punch list, inspections, certificate of occupancy, deep clean, walkthrough. Then keys.</p></div>
+    </div>
+    <div class="pricing">
+      <div>
+        <h3>Open-book pricing</h3>
+        <p>We build on a transparent cost-plus model. You see the real costs, and our fee is one clear number on top: 20%. No padded line items, no mystery allowances.</p>
+      </div>
+      <div>
+        <h3>You always know where it stands</h3>
+        <p>Every client gets portal access with daily photo and video updates, invoices, and the payment schedule. Our clients say it is the reason building with us felt stress-free.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Recent work</p>
+      <h2>Projects</h2>
+      <p>Custom homes and commercial builds across Sullivan County and the surrounding region.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="proj">
+        <div class="ss" data-gal="projects.html#p-579">
+          <div class="ss-track">
+            <img src="images/ss-579-1.jpg" class="ss-slide on" alt="Front exterior of the finished A-frame at 579 Shore Drive">
+            <img src="images/ss-579-2.jpg" class="ss-slide" alt="Great room of the finished A-frame">
+            <img src="images/ss-579-3.jpg" class="ss-slide" alt="Finished bathroom at 579 Shore Drive">
+            <img src="images/ss-579-4.jpg" class="ss-slide" alt="Twilight aerial of the finished A-frame at 579 Shore Drive">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button><button aria-label="Photo 4"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Custom home</p><h3>Modern A-Frame Home</h3><p class="loc">579 Shore Drive · Sullivan County</p><p>A lakeside A-frame taken from raw wooded lot to finished home. Follow the whole build in our Dirt to Dream diary below.</p>
+          <p class="gal-link"><a href="projects.html#p-579">View full gallery &#8594;</a></p></div>
+      </div>
+      <div class="proj">
+        <div class="ss" data-gal="projects.html#p-736">
+          <div class="ss-track">
+            <img src="images/ss-736-1.jpg" class="ss-slide on" alt="Backyard pool at 736 Harris Rd">
+            <img src="images/ss-736-2.jpg" class="ss-slide" alt="Spa bathroom at 736 Harris Rd">
+            <img src="images/ss-736-3.jpg" class="ss-slide" alt="Open kitchen at 736 Harris Rd">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Custom home</p><h3>736 Harris Rd</h3><p class="loc">736 Harris Rd</p><p>Custom home with a finished backyard built for evenings outside: pool, spa bath, and an open kitchen at the center.</p>
+          <p class="gal-link"><a href="projects.html#p-736">View full gallery &#8594;</a></p></div>
+      </div>
+      <div class="proj">
+        <div class="ss" data-gal="projects.html#p-1268">
+          <div class="ss-track">
+            <img src="images/ss-1268-3.jpg" class="ss-slide on" alt="Kitchen island at 1268 Old Route 17">
+            <img src="images/ss-1268-2.jpg" class="ss-slide" alt="Kitchen at 1268 Old Route 17">
+            <img src="images/ss-1268-1.jpg" class="ss-slide" alt="Bedroom at 1268 Old Route 17">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Custom home</p><h3>1268 Old Route 17</h3><p class="loc">1268 Old Rte 17</p><p>Custom home build on Old Route 17, designed and built by Corestone end to end.</p>
+          <p class="gal-link"><a href="projects.html#p-1268">View full gallery &#8594;</a></p></div>
+      </div>
+      <div class="proj">
+        <div class="ss" data-gal="projects.html#p-perfection">
+          <div class="ss-track">
+            <img src="images/ss-perfection-1.jpg" class="ss-slide on" alt="Dining room of the Modern Perfection home">
+            <img src="images/ss-perfection-2.jpg" class="ss-slide" alt="Living room under a glass gable in the Modern Perfection home">
+            <img src="images/ss-perfection-3.jpg" class="ss-slide" alt="Powder bath in the Modern Perfection home">
+            <img src="images/ss-perfection-4.jpg" class="ss-slide" alt="Marble kitchen counter in the Modern Perfection home">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button><button aria-label="Photo 4"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Custom home</p><h3>Modern Perfection Home</h3><p class="loc">Spring Valley, NY</p><p>A modern custom home finished to a high standard: glass gable living room, cove-lit dining, and marble throughout.</p>
+          <p class="gal-link"><a href="projects.html#p-perfection">View full gallery &#8594;</a></p></div>
+      </div>
+      <div class="proj">
+        <div class="ss" data-gal="projects.html#p-shelys">
+          <div class="ss-track">
+            <img src="images/proj-shelys.jpg" class="ss-slide on" alt="Dining room of Shely's Pizza">
+            <img src="images/ss-shelys-2.jpg" class="ss-slide" alt="Window seating at Shely's Pizza">
+            <img src="images/ss-shelys-3.jpg" class="ss-slide" alt="Dining room at Shely's Pizza">
+            <img src="images/ss-shelys-4.jpg" class="ss-slide" alt="Wall detail at Shely's Pizza">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button><button aria-label="Photo 4"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Commercial</p><h3>Shely's Pizza Store</h3><p class="loc">Route 59 · Monsey, NY</p><p>A full restaurant build-out, completed to a high standard and ready for opening day.</p>
+          <p class="gal-link"><a href="projects.html#p-shelys">View full gallery &#8594;</a></p></div>
+      </div>
+      <div class="proj">
+        <div class="ss" data-gal="projects.html#p-teiberg">
+          <div class="ss-track">
+            <img src="images/ss-teiberg-1.jpg" class="ss-slide on" alt="Pizzeria counter at Teiberg Pizza">
+            <img src="images/ss-teiberg-2.jpg" class="ss-slide" alt="Counter detail at Teiberg Pizza">
+            <img src="images/ss-teiberg-3.jpg" class="ss-slide" alt="Dining room at Teiberg Pizza">
+          </div>
+          <button class="ss-prev" aria-label="Previous photo">&#8249;</button><button class="ss-next" aria-label="Next photo">&#8250;</button>
+          <div class="ss-dots"><button class="on" aria-label="Photo 1"></button><button aria-label="Photo 2"></button><button aria-label="Photo 3"></button></div>
+        </div>
+        <div class="p-body"><p class="p-tag">Commercial</p><h3>Teiberg Pizza Store</h3><p class="loc">Swan Lake, NY</p><p>A branded pizzeria build-out in Swan Lake: counter, kitchen line, and dining room ready for opening day.</p>
+          <p class="gal-link"><a href="projects.html#p-teiberg">View full gallery &#8594;</a></p></div>
+      </div>
+      <a class="proj-link" href="lead-magnets/dirt-to-dream.pdf" data-gate="Dirt to Dream: 579 Shore Drive">
+      <div class="proj">
+        <img src="images/proj-diary.jpg" alt="The A-frame at 579 Shore Drive going up">
+        <div class="p-body"><p class="p-tag">Build diary</p><h3>Dirt to Dream: The Build Diary</h3><p class="loc">579 Shore Drive · In progress photos</p><p>Framing at 579 Shore Drive, mid-build. The diary shows every phase, month by month.</p></div>
+      </div>
+      </a>
+      <div class="proj" style="background:#1a1a1a;border-color:#1a1a1a;">
+        <div class="p-body" style="padding:28px;">
+          <h3 style="color:#fff;">The next Corestone build could be yours</h3>
+          <p style="color:#c9c9c9;margin:10px 0 18px;">Custom homes, development, and commercial work across Sullivan and Orange County.</p>
+          <a class="btn" href="#contact">Request a quote</a>
+        </div>
+      </div>
+      <div class="proj" style="background:#1a1a1a;border-color:#1a1a1a;">
+        <div class="p-body" style="padding:28px;">
+          <h3 style="color:#fff;">Price it before you call</h3>
+          <p style="color:#c9c9c9;margin:10px 0 18px;">Real 2026 numbers for land, site work, and construction, free in the Cost Guide.</p>
+          <a class="btn" href="lead-magnets/cost-guide.pdf" data-gate="2026 Sullivan County Build Cost Guide">Get the Cost Guide</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Reviews</p>
+      <h2>Trusted by the people who built with us</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev"><p class="stars">★★★★★</p><p>"Corestone Developers built my dream home in upstate NY. He made himself available for questions both in person and remotely, finished ahead of schedule, and the online system let us track every step with daily pictures and videos."</p><p class="who">Mitra Reyhani Ghadim, homeowner</p></div>
+      <div class="rev"><p class="stars">★★★★★</p><p>"Construction was done in the quickest time frame possible. Whoever walks in marvels at how beautiful this house is."</p><p class="who">Gitty Feldman, homeowner</p></div>
+      <div class="rev"><p class="stars">★★★★★</p><p>"The communication was outstanding. Moshe gave us access to a system where we could track every step, see daily updates, and clearly understand what payments were due and when. The entire process was smooth and beyond anything I imagined."</p><p class="who">Sara D, homeowner</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES / LEAD MAGNETS -->
+<section class="resources" id="resources">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow on-dark">Free resources</p>
+      <h2>Plan your build before you spend a dollar</h2>
+      <p>Everything we wish every client knew before they started. Free, no sales pitch attached.</p>
+    </div>
+    <div class="res-grid">
+      <div class="res">
+        <p class="tag">The flagship guide</p>
+        <h3>2026 Sullivan County Build Cost Guide</h3>
+        <p>Real numbers: land, site work, and construction cost per square foot at three finish levels, plus three full build scenarios from $650K to $3M (build budgets; all-in runs higher with land and site work).</p>
+        <a class="btn" href="lead-magnets/cost-guide.pdf" data-gate="2026 Sullivan County Build Cost Guide">Download the guide</a>
+      </div>
+      <div class="res">
+        <p class="tag">Interactive</p>
+        <h3>What Can Your Budget Build?</h3>
+        <p>Six questions, sixty seconds. Get a realistic build profile for your budget, lot, and timeline, matched to real 2026 Sullivan County costs.</p>
+        <a class="btn" href="lead-magnets/build-quiz.html">Take the quiz</a>
+      </div>
+      <div class="res">
+        <p class="tag">Before you buy land</p>
+        <h3>The Land Buyer's Checklist</h3>
+        <p>Twelve things to check before you buy a lot, from perc tests to resale logic. Print it and take it to lot visits.</p>
+        <a class="btn alt" href="lead-magnets/land-checklist.pdf" data-gate="The Land Buyer's Checklist">Download the checklist</a>
+      </div>
+      <div class="res">
+        <p class="tag">Interview any builder</p>
+        <h3>10 Questions to Ask Any Builder</h3>
+        <p>The vetting guide: why each question matters and what a strong answer sounds like. Use it on us, use it on everyone.</p>
+        <a class="btn alt" href="lead-magnets/ten-questions.pdf" data-gate="10 Questions to Ask Any Builder">Download the questions</a>
+      </div>
+      <div class="res">
+        <p class="tag">A real build, start to finish</p>
+        <h3>Dirt to Dream: 579 Shore Drive</h3>
+        <p>One of our builds followed month by month, raw land to move-in, with real photos from the lot, the foundation, the framing, and the finished home.</p>
+        <a class="btn alt" href="lead-magnets/dirt-to-dream.pdf" data-gate="Dirt to Dream: 579 Shore Drive">Read the build diary</a>
+      </div>
+      <div class="res">
+        <p class="tag">Talk it through</p>
+        <h3>Not sure where to start?</h3>
+        <p>Bring us your lot, your budget, or just your questions. The first conversation costs nothing and we will give you straight numbers either way.</p>
+        <a class="btn" href="#contact">Request a quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">FAQ</p>
+      <h2>Questions every buyer asks</h2>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary>How much does it cost to build a custom home in Sullivan County?</summary>
+        <div class="a">Construction runs about $300 to $400 per square foot at a quality custom level, $450 to $600 high-end, and $650 to $900+ for luxury. Land typically adds $50K to $500K+ and site work $40K to $200K depending on the lot. As an all-in figure, a $650K build budget typically lands around $775K to $900K once land and site work are added. Our free Cost Guide breaks down every number.</div>
+      </details>
+      <details>
+        <summary>How long does a build take, start to finish?</summary>
+        <div class="a">Plan on 8 to 20 months from first sketch to move-in: roughly 3 to 6 months for design and permits, then 7 to 11 months of construction depending on size and complexity.</div>
+      </details>
+      <details>
+        <summary>How does your pricing work?</summary>
+        <div class="a">Open book, cost-plus. You see the actual costs of your build, and our fee is one fixed number, agreed in writing before you sign. No padded line items, no mystery allowances.</div>
+      </details>
+      <details>
+        <summary>What's included in a Corestone build?</summary>
+        <div class="a">Everything in the "What's included" section above: design, permits, site work, structure, systems, interiors, and finishes, all under one contract with one team. If it is on that list, it is in your price.</div>
+      </details>
+      <details>
+        <summary>I don't own land yet. Where do I start?</summary>
+        <div class="a">Start with the lot, because the lot sets the ceiling for everything after it. Download our Land Buyer's Checklist, and before you commit to a parcel, talk to us. A second set of eyes on perc, well, setbacks, and access can save you from the most expensive mistake in the whole process.</div>
+      </details>
+      <details>
+        <summary>Do you take on renovations?</summary>
+        <div class="a">Selectively. Our focus is custom home builds, development, and commercial work, and we take on major renovations and rebuilds when the project fits. Tell us about yours and we will give you a straight answer.</div>
+      </details>
+      <details>
+        <summary>Where do you build?</summary>
+        <div class="a">Sullivan County and Orange County, NY, and the surrounding Upstate region. Our office is at 1619 NY-52 in Liberty.</div>
+      </details>
+      <details>
+        <summary>What kind of warranty does Corestone provide?</summary>
+        <div class="a">Corestone stands behind the quality of its craftsmanship and provides a one-year workmanship warranty covering work performed in accordance with the construction contract. In addition, our clients benefit from applicable warranties provided by the manufacturers and vendors supplying the materials and products used throughout their projects. We are committed to delivering quality construction and standing behind the work we perform.</div>
+      </details>
+      <details>
+        <summary>Is Corestone fully insured?</summary>
+        <div class="a"><b>FULLY INSURED. FULLY COMMITTED. BUILT ON TRUST.</b><br><br>Corestone is fully insured, carrying comprehensive insurance coverage, including general liability, workers&rsquo; compensation, and disability insurance. We take our responsibility to protect our clients, employees, and projects seriously, maintaining appropriate insurance coverage throughout the construction process.</div>
+      </details>
+      <details>
+        <summary>How does your payment schedule work?</summary>
+        <div class="a">At Corestone, we believe in complete financial transparency throughout the construction process. Every client receives access to our project management software through a dedicated client login, where they can view their construction schedule, payment schedule, invoices, and project progress. Our payment schedules are structured around the construction calendar and the actual progress of work being performed. Whenever possible, we prepare and upload the anticipated invoices before construction begins. This allows our clients to understand their upcoming financial obligations, plan accordingly, and ensure funds are available when needed. Our goal is to give every client a clear financial roadmap from the very beginning, minimizing unexpected expenses and surprises throughout the construction process.</div>
+      </details>
+      <details>
+        <summary>How are change orders and upgrades handled?</summary>
+        <div class="a">Throughout the construction process, clients have access to a dedicated Change Order section within our project management software. Clients can request changes, upgrades, or modifications to their project directly through the platform. Every change order is documented in detail, including the requested changes, associated costs, and required approvals. This ensures that all adjustments are clearly communicated, properly recorded, and accessible to both the client and our team. By keeping everything organized within one centralized system, we eliminate the confusion and misunderstandings that can arise from verbal communication.</div>
+      </details>
+      <details>
+        <summary>Do you work with clients who already own land?</summary>
+        <div class="a">Absolutely. In fact, most of our clients already own their land before coming to us. Corestone primarily specializes in building custom homes for clients who have already purchased their property. While we do not typically provide or sell land directly, we are happy to assist clients in identifying suitable properties when needed. Whether you already own your lot or are still exploring options, our team can help guide you through the next steps toward building your custom home.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="info">
+        <p class="eyebrow">Get a quote</p>
+        <h2>Let's talk about your build</h2>
+        <p>Tell us where you are in the process: land owned, land shopping, or just an idea. We reply personally, with real numbers where we can give them.</p>
+        <p><b>Phone:</b> <a href="tel:+18457470244">845-747-0244</a></p>
+        <p><b>Email:</b> <a href="mailto:info@corestonedevelopers.com">info@corestonedevelopers.com</a></p>
+        <p><b>Office:</b> 1619 NY-52, Liberty, NY 12754</p>
+        <p><b>WhatsApp:</b> <a href="https://wa.me/9294201008?text=Hi,%20I%20wanna%20inquire%20about%20my%20new%20construction%20project">Message us</a></p>
+      </div>
+      <!-- Preview only: wire this form to the lead inbox + tracker before launch, same pattern as the Beatrice landing page. -->
+      <form onsubmit="event.preventDefault(); document.getElementById('formDone').hidden=false; this.reset();">
+        <div class="row">
+          <div><label for="f-name">Name</label><input id="f-name" type="text" required autocomplete="name"></div>
+          <div><label for="f-phone">Phone</label><input id="f-phone" type="tel" required autocomplete="tel"></div>
+        </div>
+        <label for="f-email">Email</label><input id="f-email" type="email" required autocomplete="email">
+        <label for="f-company">Company <span class="opt">(optional)</span></label><input id="f-company" type="text" autocomplete="organization">
+        <label for="f-msg">About your project</label><textarea id="f-msg" rows="4" placeholder="Lot location, rough size, budget range, timeline..."></textarea>
+        <button class="btn" type="submit">Request a quote</button>
+        <p class="fine" id="formDone" hidden>Thanks, we have it. A real person replies to every request.</p>
+        <p class="fine">No spam, no obligation. Your details go to the Corestone team only.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <img class="logo" src="images/corestone-logo-teal.svg" alt="Corestone Developers">
+        <p>Luxury custom home builders for Sullivan County and Orange County, NY. Open-book pricing, one team from design to keys.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#offers">What We Do</a>
+        <a href="#included">What's Included</a>
+        <a href="#process">Process & Pricing</a>
+        <a href="#projects">Projects</a>
+        <a href="#resources">Free Resources</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:+18457470244">845-747-0244</a>
+        <a href="mailto:info@corestonedevelopers.com">info@corestonedevelopers.com</a>
+        <a href="#contact">1619 NY-52, Liberty, NY 12754</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Corestone Developers. All rights reserved.</span>
+      <span>Preview v2 build (Oct 28 updates), not yet live.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- published 2026-10-21: triggers Pages rebuild -->
+<script>
+document.querySelectorAll('.ss').forEach(function(box){
+  var slides=box.querySelectorAll('.ss-slide'),dots=box.querySelectorAll('.ss-dots button'),i=0;
+  function go(n){i=(n+slides.length)%slides.length;slides.forEach(function(s2,k){s2.classList.toggle('on',k===i)});dots.forEach(function(d,k){d.classList.toggle('on',k===i)});}
+  box.querySelector('.ss-prev').addEventListener('click',function(){go(i-1)});
+  box.querySelector('.ss-next').addEventListener('click',function(){go(i+1)});
+  dots.forEach(function(d,k){d.addEventListener('click',function(){go(k)})});
+  box.querySelector('.ss-track').addEventListener('click',function(){location.href=box.dataset.gal;});
+});
+</script>
+<div class="gate" id="gate" hidden>
+  <div class="gate-bg" id="gateBg"></div>
+  <div class="gate-card">
+    <button class="gate-x" id="gateX" aria-label="Close">&times;</button>
+    <h3>Get the <span class="t">guide</span></h3>
+    <p id="gateSub">Enter your details and your download starts right away.</p>
+    <form id="gateForm" novalidate>
+      <label for="gateName">Name</label>
+      <input id="gateName" type="text" autocomplete="name" placeholder="Your name">
+      <label for="gateEmail">Email</label>
+      <input id="gateEmail" type="email" autocomplete="email" placeholder="you@email.com">
+      <p class="gate-err" id="gateErr"></p>
+      <button class="btn" type="submit" id="gateBtn" style="width:100%;">Download now</button>
+    </form>
+    <p class="gate-note">One email from our team, no spam. Unsubscribe anytime.</p>
+  </div>
+</div>
+<script>
+(function(){
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzT6_-2harIBANSlYox_FgMnjkj3VeXt_p16IhQyoxPIVBGGo7-1j9JO_XezbO6dq9S/exec';
+  var TOKEN = '08ee3b92e3a5ce90feabef7e339008119a7776c22e424f3d';
+  var KEY = 'corestone_lead_v1';
+  var gate = document.getElementById('gate');
+  var form = document.getElementById('gateForm');
+  var err = document.getElementById('gateErr');
+  var btn = document.getElementById('gateBtn');
+  var pending = null;
+
+  function savedLead(){
+    try {
+      var l = JSON.parse(localStorage.getItem(KEY));
+      if (l && l.email && (Date.now() - l.ts) < 90*24*3600*1000) return l;
+    } catch(e){}
+    return null;
+  }
+  function openGate(href, guide){
+    pending = {href: href, guide: guide};
+    err.textContent = '';
+    form.reset();
+    gate.hidden = false;
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){ document.getElementById('gateName').focus(); }, 50);
+  }
+  function closeGate(){
+    gate.hidden = true;
+    document.body.style.overflow = '';
+    pending = null;
+  }
+  function download(){
+    var a = document.createElement('a');
+    a.href = pending.href;
+    a.download = '';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+  document.querySelectorAll('a[data-gate]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var href = a.getAttribute('href');
+      var guide = a.getAttribute('data-gate');
+      if (savedLead()) { pending = {href: href, guide: guide}; download(); pending = null; return; }
+      openGate(href, guide);
+    });
+  });
+  document.getElementById('gateX').addEventListener('click', closeGate);
+  document.getElementById('gateBg').addEventListener('click', closeGate);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !gate.hidden) closeGate(); });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('gateName').value.trim();
+    var email = document.getElementById('gateEmail').value.trim();
+    if (!name) { err.textContent = 'Please enter your name.'; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'Please enter a valid email.'; return; }
+    err.textContent = '';
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {'Content-Type': 'text/plain'},
+      body: JSON.stringify({token: TOKEN, name: name, email: email, guide: pending.guide})
+    }).then(function(r){ return r.json(); }).then(function(d){
+      btn.textContent = 'Download now';
+      btn.disabled = false;
+      if (d && d.ok) {
+        try { localStorage.setItem(KEY, JSON.stringify({name: name, email: email, ts: Date.now()})); } catch(e){}
+        download();
+        closeGate();
+      } else {
+        err.textContent = 'That did not go through. Check your connection and try again.';
+      }
+    }).catch(function(){
+      btn.textContent = 'Download now';
+      btn.disabled = false;
+      err.textContent = 'That did not go through. Check your connection and try again.';
+    });
+  });
+})();
+</script>
+<script>
+/* v2: homepage hero slideshow, rotates every 2s */
+(function(){
+  var slides=document.querySelectorAll('.hs-slide'),i=0;
+  if(!slides.length) return;
+  setInterval(function(){
+    slides[i].classList.remove('on');
+    i=(i+1)%slides.length;
+    slides[i].classList.add('on');
+  },2000);
+})();
+</script>
+</body>
+</html>

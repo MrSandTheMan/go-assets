@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dirt to Dream: 579 Shore Drive | Corestone</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#1a1a1a;
+    --paper:#fafafa;
+    --brass:#00c4c4;
+    --ink:#242424;
+    --muted:#6e6e6e;
+    --line:#d9d9d9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{
+    background:#d9d9d9;
+    font-family:'Urbanist','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color:var(--ink);
+  }
+  .doc{
+    width:8.5in;
+    margin:28px auto;
+    background:var(--paper);
+    box-shadow:0 6px 32px rgba(28,26,23,.28);
+    padding-bottom:0.7in;
+  }
+
+  /* ---------- Header ---------- */
+  .masthead{
+    background:var(--charcoal);
+    color:var(--paper);
+    padding:0.6in 0.75in 0.5in;
+  }
+  .wordmark{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-size:12.5pt;
+    letter-spacing:0.42em;
+    text-transform:uppercase;
+  }
+  .wordmark .rule{
+    display:block;
+    width:56px;height:2px;
+    background:var(--brass);
+    margin-top:12px;
+  }
+  .masthead h1{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-weight:normal;
+    font-size:34pt;
+    line-height:1.15;
+    margin-top:34px;
+  }
+  .masthead h1 .accent{color:var(--brass);}
+  .masthead .sub{
+    margin-top:14px;
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-style:italic;
+    font-size:13.5pt;
+    color:#d9d9d9;
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline{padding:0.15in 0.75in 0;}
+  .entry{
+    display:flex;
+    gap:0;
+    page-break-inside:avoid;
+  }
+  .rail{
+    flex:0 0 1.05in;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    position:relative;
+  }
+  .rail::before{
+    content:"";
+    position:absolute;
+    top:0;bottom:0;
+    left:50%;
+    width:2px;
+    margin-left:-1px;
+    background:var(--line);
+  }
+  .entry:first-child .rail::before{top:34px;}
+  .entry:last-child .rail::before{bottom:auto;height:34px;}
+  .node{
+    position:relative;
+    z-index:1;
+    width:52px;height:52px;
+    border-radius:50%;
+    background:var(--charcoal);
+    border:2px solid var(--brass);
+    color:var(--paper);
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-size:17pt;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:22px;
+  }
+  .months{
+    position:relative;
+    z-index:1;
+    margin-top:9px;
+    background:var(--paper);
+    padding:2px 4px;
+    font-size:7.5pt;
+    font-weight:bold;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:#007a7a;
+    text-align:center;
+    line-height:1.5;
+  }
+  .entry-body{
+    flex:1;
+    padding:22px 0 26px 26px;
+    border-bottom:1px solid var(--line);
+  }
+  .entry:last-child .entry-body{border-bottom:none;}
+  .phase-title{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-size:17pt;
+    font-weight:normal;
+    color:var(--charcoal);
+    margin-bottom:12px;
+  }
+  .split{
+    display:flex;
+    gap:22px;
+    align-items:flex-start;
+  }
+  .entry.flip .split{flex-direction:row-reverse;}
+  .photo-slot{
+    flex:0 0 2.55in;
+    height:1.7in;
+    border:1.5px dashed var(--brass);
+    background:
+      repeating-linear-gradient(45deg,#e9e9e9 0 14px,#f2f2f2 14px 28px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10px;
+  }
+  .photo-slot.has-photo{padding:0;border:none;background:none;overflow:hidden;}
+  .photo-slot img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-slot .ph-main{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-size:10.5pt;
+    color:var(--charcoal);
+    line-height:1.45;
+  }
+  .photo-slot .ph-sub{
+    margin-top:6px;
+    font-size:8pt;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .entry-text{flex:1;}
+  .entry-text .lbl{
+    font-size:8pt;
+    font-weight:bold;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:#007a7a;
+    display:block;
+    margin-bottom:5px;
+  }
+  .entry-text .happened{
+    font-size:10.5pt;
+    line-height:1.55;
+    margin-bottom:10px;
+  }
+  .mindset{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-style:italic;
+    font-size:10.5pt;
+    line-height:1.55;
+    color:#4a4a4a;
+    border-left:3px solid var(--brass);
+    padding-left:12px;
+  }
+  .mindset .m-lbl{
+    font-style:italic;
+    color:#007a7a;
+  }
+
+  /* ---------- Closing ---------- */
+  .closing{
+    margin:0.35in 0.75in 0;
+    border-top:2px solid var(--charcoal);
+    padding-top:30px;
+    text-align:center;
+    page-break-inside:avoid;
+  }
+  .takeaway{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-size:16.5pt;
+    line-height:1.5;
+    color:var(--charcoal);
+    max-width:6.2in;
+    margin:0 auto;
+  }
+  .contact{margin-top:30px;}
+  .contact .c-brand{
+    font-family:'Montserrat Alternates','Helvetica Neue',sans-serif;
+    font-size:12pt;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--charcoal);
+    margin-bottom:10px;
+  }
+  .contact p{
+    font-size:11pt;
+    line-height:1.7;
+  }
+  .contact .lbl{
+    font-size:8pt;
+    font-weight:bold;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:#007a7a;
+    margin-right:8px;
+  }
+
+  @page{size:Letter;margin:0;}
+  @media print{
+    body{background:#fff;}
+    .doc{margin:0;box-shadow:none;width:100%;}
+  }
+  @media screen and (max-width:900px){
+    .doc{width:100%;margin:0;}
+    .masthead{padding:34px 22px 28px;}
+    .masthead h1{font-size:26pt;margin-top:24px;}
+    .timeline{padding:10px 18px 0;}
+    .rail{flex-basis:64px;}
+    .split,.entry.flip .split{flex-direction:column;}
+    .photo-slot{flex:none;width:100%;height:150px;}
+    .entry-body{padding-left:16px;}
+    .closing{margin-left:18px;margin-right:18px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <!-- ================= HEADER ================= -->
+  <header class="masthead">
+    <div class="wordmark"><img src="images/corestone-logo-teal.svg" alt="Corestone Developers" style="height:40px;width:auto;display:block;"></div>
+    <h1>Dirt to Dream:<br><span class="accent">579 Shore Drive</span></h1>
+    <p class="sub">Raw land to move-in, month by month.</p>
+  </header>
+
+  <!-- ================= TIMELINE ================= -->
+  <div class="timeline">
+
+    <div class="entry">
+      <div class="rail">
+        <div class="node">1</div>
+        <div class="months">Months<br>1 to 4</div>
+      </div>
+      <div class="entry-body">
+        <h2 class="phase-title">Design and Permits</h2>
+        <div class="split">
+          <div class="photo-slot has-photo"><img src="images/phase1-design.jpg" alt="The raw 579 Shore Drive lot before clearing" style="object-position:center"></div>
+          <div class="entry-text">
+            <p class="happened"><span class="lbl">What happened</span>The lot is cleared on paper before it's cleared in person. Architectural plans, engineering, septic design, and permit applications. This phase feels slow and it's the most important one. Every hour spent here saves ten in the field.</p>
+            <p class="mindset"><span class="m-lbl">Homeowner mindset:</span> Excitement mixed with impatience. This is when having a builder who communicates matters most.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry flip">
+      <div class="rail">
+        <div class="node">2</div>
+        <div class="months">Months<br>5 to 6</div>
+      </div>
+      <div class="entry-body">
+        <h2 class="phase-title">Site Work and Foundation</h2>
+        <div class="split">
+          <div class="photo-slot has-photo"><img src="images/phase2-sitework.jpg" alt="Foundation pour at 579 Shore Drive" style="object-position:center"></div>
+          <div class="entry-text">
+            <p class="happened"><span class="lbl">What happened</span>Clearing, driveway, well, septic, foundation pour. The lot transforms fast. For the first time, you can stand where your kitchen will be.</p>
+            <p class="mindset"><span class="m-lbl">Homeowner mindset:</span> It gets real. The money starts moving and the abstract becomes concrete.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="rail">
+        <div class="node">3</div>
+        <div class="months">Months<br>7 to 8</div>
+      </div>
+      <div class="entry-body">
+        <h2 class="phase-title">Framing</h2>
+        <div class="split">
+          <div class="photo-slot has-photo"><img src="images/phase3-framing.jpg" alt="Framing up at 579 Shore Drive" style="object-position:center 25%"></div>
+          <div class="entry-text">
+            <p class="happened"><span class="lbl">What happened</span>Walls go up, roof goes on. The house takes shape in weeks. This is the most visually dramatic phase and the most fun to visit.</p>
+            <p class="mindset"><span class="m-lbl">Homeowner mindset:</span> Pure excitement. Bring friends. Take photos. This is the phase everyone remembers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry flip">
+      <div class="rail">
+        <div class="node">4</div>
+        <div class="months">Months<br>9 to 10</div>
+      </div>
+      <div class="entry-body">
+        <h2 class="phase-title">Rough-Ins</h2>
+        <div class="split">
+          <div class="photo-slot">
+            <div class="ph-main">579 Shore Drive photo: Phase 4</div>
+            <div class="ph-sub">Photo being added from the build archive</div>
+          </div>
+          <div class="entry-text">
+            <p class="happened"><span class="lbl">What happened</span>Plumbing, electric, HVAC, insulation. Invisible work that determines how the house lives. Not photogenic, absolutely critical.</p>
+            <p class="mindset"><span class="m-lbl">Homeowner mindset:</span> &ldquo;Is anything happening?&rdquo; Yes. The most important things happening are the ones you can't see.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="rail">
+        <div class="node">5</div>
+        <div class="months">Months<br>11 to 14</div>
+      </div>
+      <div class="entry-body">
+        <h2 class="phase-title">Finishes</h2>
+        <div class="split">
+          <div class="photo-slot has-photo"><img src="images/phase5-finishes.jpg" alt="Finished bathroom at 579 Shore Drive" style="object-position:center"></div>
+          <div class="entry-text">
+            <p class="happened"><span class="lbl">What happened</span>Drywall, flooring, millwork, tile, counters, fixtures, paint. The house becomes a home. Selections you made months ago arrive and get installed. This is where finish level shows.</p>
+            <p class="mindset"><span class="m-lbl">Homeowner mindset:</span> Decision fatigue is real. A builder with a clear selection process carries you through this.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry flip">
+      <div class="rail">
+        <div class="node">6</div>
+        <div class="months">Months<br>15 to 16</div>
+      </div>
+      <div class="entry-body">
+        <h2 class="phase-title">Final Stretch</h2>
+        <div class="split">
+          <div class="photo-slot has-photo"><img src="images/phase6-final.jpg" alt="The finished entry at 579 Shore Drive" style="object-position:center"></div>
+          <div class="entry-text">
+            <p class="happened"><span class="lbl">What happened</span>Punch list, final inspections, certificate of occupancy, deep clean, walkthrough. The last 5 percent takes real focus.</p>
+            <p class="mindset"><span class="m-lbl">Homeowner mindset:</span> So close. A good builder doesn't coast here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= CLOSING ================= -->
+  <div class="closing">
+    <p class="takeaway">Sixteen months from first sketch to keys. No drama, no disappeared contractors, no mystery invoices. That's what a real process looks like.</p>
+    <div class="contact">
+      <div class="c-brand">Corestone</div>
+      <p><span class="lbl">Phone</span>845-747-0244</p>
+      <p><span class="lbl">Email</span>info@corestonedevelopers.com</p>
+      <p><span class="lbl">Web</span>corestonedevelopers.com</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
