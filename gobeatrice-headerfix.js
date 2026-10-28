@@ -136,6 +136,7 @@
     }
     return fetch(BACKEND.url, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(p) }).then(function (r) { return r.json(); });
   }
+  var baWait = 0;
   function renderDialogue() {
     if (document.querySelector('.dialogue-section')) return;
     var pri = document.querySelector('.priority');
@@ -143,6 +144,13 @@
     fetch(GIST_URL + '?t=' + Date.now()).then(function (r) { return r.json(); }).then(function (data) {
       var d = data && data.card && data.card.dialogue_review;
       if (!d || !d.doc_url || document.querySelector('.dialogue-section')) return;
+      /* Deterministic order: when the gist carries a before/after, wait for
+         .ba-section to exist before inserting, so dialogue always lands
+         after it (both sections race on separate fetches otherwise). After
+         ~10s of waiting, fall back to appending, so a BA failure can never
+         hide the dialogue section. */
+      var hasBA = !!(data && data.card && data.card.before_after && data.card.before_after.img);
+      if (hasBA && !document.querySelector('.ba-section') && baWait++ < 20) return;
       var sec = document.createElement('div');
       sec.className = 'dialogue-section';
       sec.style.marginTop = '18px';
