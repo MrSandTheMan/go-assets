@@ -181,11 +181,11 @@
       docBtn.target = '_blank';
       docBtn.rel = 'noopener';
       docBtn.textContent = d.doc_label || 'Open the transcript doc';
-      docBtn.style.cssText = 'display:inline-block;background:#FFD60A;color:#111;border-radius:999px;padding:12px 26px;font-weight:700;font-size:15px;text-decoration:none;text-transform:none;cursor:pointer;';
+      docBtn.style.cssText = 'display:inline-block;background:#FFD60A;color:#111 !important;border-radius:999px;padding:12px 26px;font-weight:700;font-size:15px;text-decoration:none;text-transform:none !important;letter-spacing:normal !important;cursor:pointer;';
       var apBtn = document.createElement('button');
       apBtn.className = 'btn';
       apBtn.type = 'button';
-      apBtn.style.cssText = 'display:inline-block;background:#E00020;color:#fff;border:0;border-radius:999px;padding:12px 26px;font-weight:700;font-size:15px;text-transform:none;cursor:pointer;';
+      apBtn.style.cssText = 'display:inline-block;background:#E00020;color:#fff;border:0;border-radius:999px;padding:12px 26px;font-weight:700;font-size:15px;text-transform:none !important;letter-spacing:normal !important;cursor:pointer;';
       var approveLabel = d.approve_label || 'Approve the dialogue as-is';
       var stamp = null;
       try { stamp = JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch (e) {}
