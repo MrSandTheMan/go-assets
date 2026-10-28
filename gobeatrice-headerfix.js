@@ -61,7 +61,16 @@
       sec.appendChild(h);
       sec.appendChild(img);
       sec.appendChild(cap);
-      pri.appendChild(sec);
+      /* Deterministic order from this side too: if the dialogue section
+         already rendered (it appends to .priority when BA is absent), insert
+         BA before it, so BA always lands above dialogue no matter which
+         section renders first. */
+      var dlg = document.querySelector('.dialogue-section');
+      if (dlg && dlg.parentNode) {
+        dlg.parentNode.insertBefore(sec, dlg);
+      } else {
+        pri.appendChild(sec);
+      }
     }).catch(function () { fetched = false; });
   }
   function openBALightbox(src) {
