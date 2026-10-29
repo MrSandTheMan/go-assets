@@ -5,7 +5,7 @@
    Hosted: https://mrsandtheman.github.io/go-assets/gosocrates-injection.js */
 (function () {
   var GIST_URL = "https://gist.githubusercontent.com/MrSandTheMan/da159eda983749226ce7aab264199ed0/raw/gosocrates-tracker.json";
-  var BACKEND = {url: "https://script.google.com/macros/s/AKfycbzrvhRFd9K-zLO_BtmUBAgdWoYlvoKUlcuIF-dInAQ8wwxMLkK4hqiJXCtofsi1wHht/exec", token: "0e5da46e84e4f69a55f413afaed8d348"};
+  var BACKEND = {url: "https://script.google.com/macros/s/AKfycbxwZ-7s1vGnN7tXljEyHFU4j_ihmCLA7Mq02Lp2JuGM4cLiNaZJ2tgxAAxiyvu3iznC/exec", token: "0e5da46e84e4f69a55f413afaed8d348"};
   var CLIENT_NAME = "Socrates Gomez";
   var LS = "gosocrates";
   var RED = "#E00020";
