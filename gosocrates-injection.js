@@ -84,7 +84,6 @@
     "padding:16px;margin:0 0 10px;display:flex;align-items:center;justify-content:space-between;gap:12px;}" +
     "#go-root .go-vrow b{font-size:15px;}" +
     "#go-root .go-vrow span{font-size:13px;color:#999;}" +
-    "#go-root .go-vrow .go-btn{margin:0;flex-shrink:0;}" +
     "#go-root .go-testbanner{background:" + RED + ";color:#fff;font-weight:700;text-align:center;padding:10px 16px;font-size:14px;border-radius:8px;margin:0 0 16px;}" +
     "#go-root .go-footer{text-align:center;color:#888;font-size:13px;line-height:1.8;margin:32px 0 8px;}" +
     "#go-root .go-footer a{color:#ddd;}" +
@@ -302,8 +301,7 @@
       pending.forEach(function (v) {
         var stamp = getStamp(v.n);
         h += '<div class="go-vrow"><div><b>' + esc(v.label) + ' - ' + esc(v.title) + '</b><br>' +
-          '<span>' + (stamp ? "Approved on " + esc(fmtDate(stamp.date)) : "Awaiting your review") + '</span></div>' +
-          '<button class="go-btn ghost go-vrow-review" type="button" data-open="1">Review</button></div>';
+          '<span>' + (stamp ? "Approved on " + esc(fmtDate(stamp.date)) : "Awaiting your review") + '</span></div></div>';
       });
     }
     if (card.homescreen && card.homescreen.enabled) {
@@ -321,8 +319,6 @@
 
     var reviewBtn = document.getElementById("go-review-btn");
     if (reviewBtn) { reviewBtn.addEventListener("click", function () { openModal(card); }); }
-    var rowBtns = root.querySelectorAll(".go-vrow-review");
-    rowBtns.forEach(function (b) { b.addEventListener("click", function () { openModal(card); }); });
     var hsImg = document.getElementById("go-hs-img");
     if (hsImg) {
       root.querySelectorAll("[data-hs]").forEach(function (b) {
