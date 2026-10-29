@@ -113,6 +113,11 @@
     ".go-rv-progress{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.25);cursor:pointer;}" +
     ".go-rv-progress-fill{height:100%;width:0%;background:#fff;}" +
     ".go-rv .go-btn.rv-approve{margin-top:12px;}" +
+    ".go-modal .go-btn{display:inline-block;background:transparent;border:1.5px solid #4ade80;color:#4ade80;" +
+    "border-radius:999px;padding:12px 26px;font-size:15px;font-weight:700;cursor:pointer;}" +
+    ".go-modal .go-btn.approve.armed{background:#4ade80;border-color:#4ade80;color:#0b0b0c;}" +
+    ".go-modal .go-btn.approve.done{border-color:#232327;color:#8a8a8e;cursor:default;}" +
+    ".go-modal .go-btn:disabled{opacity:.6;cursor:default;}" +
     ".go-rv textarea{width:100%;padding:10px 12px;border-radius:10px;font:inherit;font-size:14px;" +
     "background:#0b0b0c;border:1px solid #232327;color:#f5f5f5;resize:vertical;box-sizing:border-box;}" +
     ".go-rv .go-btn.rv-notes-btn{margin-top:8px;background:transparent;border:1.5px solid #3a3a3f;color:#c9c9cd;}" +
