@@ -1,4 +1,3 @@
-<script>
 /* GoSocrates: The Go page for Socrates Gomez (@socratesgomez).
    Renders the video review page natively from the public gist; all copy
    updates are data-only (edit state, run go-tracker.py update gosocrates).
@@ -352,4 +351,3 @@
     init();
   }
 })();
-</script>
