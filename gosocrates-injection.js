@@ -300,6 +300,9 @@
     if (card.button_enabled !== false) {
       h += '<button class="go-btn" id="go-review-btn" type="button">' + esc(card.button_label || "Review the videos") + '</button>';
     }
+    if (card.landing_page && card.landing_page.url) {
+      h += '<div style="margin-top:12px"><a class="go-btn ghost" href="' + esc(card.landing_page.url) + '" target="_blank" rel="noopener">' + esc(card.landing_page.label || "View your landing page draft") + '</a></div>';
+    }
     h += '</div>';
     var pending = (card.review_videos || []).filter(function (v) { return v.status !== "approved"; });
     if (pending.length) {
