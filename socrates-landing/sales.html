@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 Deals | Socrates Gomez</title>
+<meta name="description" content="Every deal Socrates Gomez closed or put in contract in 2026, with photos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#121276;
+    --navy-dark:#0d0d5c;
+    --ink:#1c1c1c;
+    --muted:#5c5c5c;
+    --paper:#f7f5f2;
+    --line:#e4e0da;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Liebling",Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--white);line-height:1.6}
+  h1,h2,h3{font-family:"Didot","Linotype Didot","Playfair Display",Georgia,serif;line-height:1.15;margin:0;font-weight:400}
+  a{color:var(--navy)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  .topbar{background:var(--navy);padding:22px 0 20px;text-align:center}
+  .topbar img.logo{height:96px;width:auto;display:block;margin:0 auto 16px}
+  .topbar a.back{color:#fff;text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border:1px solid rgba(255,255,255,.45);border-radius:999px;display:inline-block}
+  section{padding:56px 0}
+  section.tint{background:var(--paper)}
+  h1{font-size:clamp(34px,5vw,52px);margin-bottom:12px}
+  h2{font-size:clamp(28px,4vw,38px);margin-bottom:8px}
+  .lede{font-size:17px;color:var(--muted);max-width:680px;margin:0 0 30px}
+  .rows{display:grid;gap:14px}
+  .row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;cursor:pointer;font-family:inherit}
+  .row:hover{border-color:var(--navy)}
+  .row h3{font-size:22px;margin-bottom:4px}
+  .row .meta{font-size:14px;color:var(--muted);margin:0}
+  .row .right{text-align:right}
+  .row .price{font-family:"Didot","Linotype Didot","Playfair Display",Georgia,serif;font-size:24px;color:var(--navy)}
+  .badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);margin-top:6px}
+  .badge.contract{background:var(--navy);color:#fff;padding:4px 10px;border-radius:999px}
+  .hint{font-size:14px;color:var(--muted);margin:22px 0 0}
+  footer{background:var(--navy-dark);color:#fff;padding:36px 0;text-align:center}
+  footer img{height:40px;width:auto;margin:0 auto 16px;display:block}
+  footer p{margin:0 0 6px;font-size:13px;color:#d9d9f2}
+  footer p:last-child{margin-bottom:0}
+  /* Modal */
+  .modal{display:none;position:fixed;inset:0;background:rgba(10,10,60,.88);z-index:50;align-items:center;justify-content:center;padding:18px}
+  .modal.open{display:flex}
+  .modal-box{background:#fff;border-radius:16px;max-width:680px;width:100%;padding:20px;position:relative}
+  .modal-box h3{font-size:24px;margin-bottom:4px;padding-right:36px}
+  .modal-box .meta{font-size:14px;color:var(--muted);margin:0 0 14px}
+  .modal-box .price{font-family:"Didot","Linotype Didot","Playfair Display",Georgia,serif;font-size:24px;color:var(--navy);margin:0 0 14px}
+  .slide{position:relative}
+  .slide img{width:100%;height:auto;max-height:62vh;object-fit:cover;border-radius:12px;display:block;background:#eceaf6}
+  .slide button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(18,18,118,.85);color:#fff;border:0;width:42px;height:42px;border-radius:50%;font-size:20px;cursor:pointer}
+  .slide .prev{left:10px}
+  .slide .next{right:10px}
+  .counter{text-align:center;font-size:13px;color:var(--muted);margin:10px 0 0}
+  .close{position:absolute;top:12px;right:12px;background:none;border:0;font-size:26px;cursor:pointer;color:var(--ink);line-height:1}
+  @media (max-width:600px){
+    .row{grid-template-columns:1fr}
+    .row .right{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <img class="logo" src="https://mrsandtheman.github.io/go-assets/socrates-landing/socrates-logo-white-vertical.png" alt="Socrates Gomez Real Estate">
+    <a class="back" href="https://mrsandtheman.github.io/go-assets/socrates-landing/index.html">Back to main page</a>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h1>2026 Deals</h1>
+    <p class="lede">Fourteen closings and three more in contract, all from this year. Tap any deal to see photos from the home.</p>
+    <h2>Closed in 2026</h2>
+    <div class="rows" id="closed-rows"></div>
+  </div>
+</section>
+
+<section class="tint">
+  <div class="wrap">
+    <h2>In Contract</h2>
+    <p class="lede">On the way to the closing table. Prices shown are list prices.</p>
+    <div class="rows" id="contract-rows"></div>
+    <p class="hint">Closed prices shown are final sale prices. In contract prices are list prices.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/socrates-logo-white-horizontal.png" alt="Socrates Gomez Real Estate">
+    <p>Socrates Gomez, Licensed Associate Real Estate Broker, R New York.</p>
+    <p>Equal Housing Opportunity. &copy; 2026 Socrates Gomez.</p>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="close" id="modal-close" aria-label="Close">&times;</button>
+    <h3 id="modal-title"></h3>
+    <p class="meta" id="modal-meta"></p>
+    <p class="price" id="modal-price"></p>
+    <div class="slide">
+      <img id="slide-img" src="" alt="">
+      <button class="prev" id="slide-prev" aria-label="Previous photo">&#8249;</button>
+      <button class="next" id="slide-next" aria-label="Next photo">&#8250;</button>
+    </div>
+    <p class="counter" id="slide-counter"></p>
+  </div>
+</div>
+
+<script>
+var BASE = "https://mrsandtheman.github.io/go-assets/socrates-landing/sales/";
+function ph(name){ return BASE + name; }
+var CLOSED = [
+  {id:"568", title:"568 Grand Street, J1803", meta:"Lower East Side | 2 beds, 1 bath | October 2026 | Represented the Buyer", price:"$999,999", photos:["568grand-j1803-01.webp","568grand-j1803-02.webp","568grand-j1803-03.webp","568grand-j1803-04.webp","568grand-j1803-05.webp"]},
+  {id:"231", title:"231 West 21st Street, 5C", meta:"Chelsea | 2 beds, 1 bath | September 2026 | Represented the Buyer", price:"$899,000", photos:["231w21st-5c-01.webp","231w21st-5c-02.webp","231w21st-5c-03.webp","231w21st-5c-04.webp","231w21st-5c-05.webp"]},
+  {id:"240", title:"240 East 24th Street, 2E", meta:"Kips Bay | 1 bed, 1 bath | September 2026 | Represented the Buyer", price:"$499,000", photos:["240e24th-2e-01.webp","240e24th-2e-02.webp","240e24th-2e-03.webp","240e24th-2e-04.webp","240e24th-2e-05.webp"]},
+  {id:"535", title:"535 West 110th Street, 10J", meta:"Morningside Heights | 1 bed, 1 bath | August 2026 | Represented the Buyer", price:"$549,000", photos:["535w110th-10j-02.webp","535w110th-10j-01.webp","535w110th-10j-03.webp","535w110th-10j-04.webp","535w110th-10j-05.webp"]},
+  {id:"622b", title:"622 West 114th Street, 22A", meta:"Morningside Heights | 1 bed, 1 bath | August 2026 | Represented the Buyer", price:"$550,000", photos:["622w114th-22a-01.webp","622w114th-22a-02.webp","622w114th-22a-03.webp","622w114th-22a-04.webp","622w114th-22a-05.webp"]},
+  {id:"622s", title:"622 West 114th Street, 22A", meta:"Morningside Heights | 1 bed, 1 bath | August 2026 | Represented the Seller", price:"$550,000", photos:["622w114th-22a-01.webp","622w114th-22a-02.webp","622w114th-22a-03.webp","622w114th-22a-04.webp","622w114th-22a-05.webp"]},
+  {id:"350", title:"350 West 14th Street, 5C", meta:"West Village | 1 bed, 1 bath | July 2026 | Represented the Seller", price:"$1,200,000", photos:["350w14th-5c-01.webp","350w14th-5c-02.webp","350w14th-5c-03.webp","350w14th-5c-04.webp","350w14th-5c-05.webp"]},
+  {id:"327e3", title:"327 East 3rd Street, 3E", meta:"East Village | 1 bed, 1 bath | July 2026 | Represented the Buyer", price:"$510,000", photos:["327e3rd-3e-01.webp"]},
+  {id:"603", title:"603 West 148th Street, 5D", meta:"Hamilton Heights | 2 beds, 2 baths | June 2026 | Represented the Buyer", price:"$780,000", photos:["603w148th-5d-01.webp","603w148th-5d-02.webp","603w148th-5d-03.webp","603w148th-5d-04.webp","603w148th-5d-05.webp"]},
+  {id:"313", title:"313 West 119th Street, 4F", meta:"South Harlem | 2 beds, 2 baths | May 2026 | Represented the Buyer", price:"$915,000", photos:["313w119th-4f-01.webp","313w119th-4f-02.webp","313w119th-4f-03.webp"]},
+  {id:"16e98", title:"16 East 98th Street, 7A", meta:"Carnegie Hill | 2 beds, 1 bath | May 2026 | Represented the Buyer", price:"$875,000", photos:["16e98th-7a-01.webp","16e98th-7a-02.webp","16e98th-7a-03.webp","16e98th-7a-04.webp","16e98th-7a-05.webp"]},
+  {id:"390", title:"390 Riverside Drive, 5G", meta:"Morningside Heights | 1 bed, 1 bath | April 2026 | Represented the Seller", price:"$685,000", photos:["390riverside-5g-01.webp","390riverside-5g-02.webp","390riverside-5g-03.webp","390riverside-5g-04.webp","390riverside-5g-05.webp"]},
+  {id:"311", title:"311 East 3rd Street, 33", meta:"East Village | 2 beds, 1 bath | March 2026 | Represented the Buyer", price:"$545,000", photos:["311e3rd-33-01.webp","311e3rd-33-02.webp","311e3rd-33-03.webp","311e3rd-33-04.webp","311e3rd-33-05.webp"]},
+  {id:"327e2", title:"327 East 3rd Street, 2A", meta:"East Village | 2 beds, 1 bath | February 2026 | Represented the Buyer", price:"$580,000", photos:["327e3rd-2a-01.webp"]}
+];
+var CONTRACT = [
+  {id:"8g", title:"77 Fulton Street, 8G", meta:"Fulton/Seaport | Studio, 1 bath | In contract August 2026", price:"$580,000", photos:["77fulton-8g-01.webp","77fulton-8g-02.webp","77fulton-8g-03.webp","77fulton-8g-04.webp","77fulton-8g-05.webp"]},
+  {id:"6f", title:"77 Fulton Street, 6F", meta:"Fulton/Seaport | 1 bed, 1 bath | In contract August 2026", price:"$735,500", photos:["77fulton-6f-01.webp","77fulton-6f-02.webp","77fulton-6f-03.webp","77fulton-6f-04.webp","77fulton-6f-05.webp"]},
+  {id:"333", title:"333 Pearl Street, 12B", meta:"Fulton/Seaport | 1 bed, 1 bath | In contract July 2026", price:"$780,000", photos:["333pearl-12b-01.webp","333pearl-12b-02.webp","333pearl-12b-03.webp","333pearl-12b-04.webp","333pearl-12b-05.webp"]}
+];
+var ALL = {};
+CLOSED.concat(CONTRACT).forEach(function(d){ ALL[d.id] = d; });
+function sideBadge(meta, isContract){
+  if(isContract) return '<span class="badge contract">In Contract</span>';
+  if(meta.indexOf("Represented the Seller") > -1) return '<span class="badge">Represented the Seller</span>';
+  return '<span class="badge">Represented the Buyer</span>';
+}
+function renderRows(list, elId, isContract){
+  var el = document.getElementById(elId);
+  list.forEach(function(d){
+    var b = document.createElement("button");
+    b.className = "row";
+    b.setAttribute("data-id", d.id);
+    b.innerHTML = '<span><h3>' + d.title + '</h3><p class="meta">' + d.meta + '</p></span>' +
+      '<span class="right"><span class="price">' + d.price + '</span><br>' + sideBadge(d.meta, isContract) + '</span>';
+    b.addEventListener("click", function(){ openDeal(d.id); });
+    el.appendChild(b);
+  });
+}
+renderRows(CLOSED, "closed-rows", false);
+renderRows(CONTRACT, "contract-rows", true);
+var modal = document.getElementById("modal");
+var cur = null, idx = 0;
+function showSlide(){
+  var d = ALL[cur];
+  document.getElementById("slide-img").src = ph(d.photos[idx]);
+  document.getElementById("slide-img").alt = d.title + " photo " + (idx + 1);
+  document.getElementById("slide-counter").textContent = (idx + 1) + " / " + d.photos.length;
+  var multi = d.photos.length > 1;
+  document.getElementById("slide-prev").style.display = multi ? "block" : "none";
+  document.getElementById("slide-next").style.display = multi ? "block" : "none";
+}
+function openDeal(id){
+  cur = id; idx = 0;
+  var d = ALL[id];
+  document.getElementById("modal-title").textContent = d.title;
+  document.getElementById("modal-meta").textContent = d.meta;
+  document.getElementById("modal-price").textContent = d.price;
+  showSlide();
+  modal.classList.add("open");
+}
+function closeDeal(){ modal.classList.remove("open"); }
+function step(n){
+  var d = ALL[cur];
+  idx = (idx + n + d.photos.length) % d.photos.length;
+  showSlide();
+}
+document.getElementById("modal-close").addEventListener("click", closeDeal);
+document.getElementById("slide-prev").addEventListener("click", function(){ step(-1); });
+document.getElementById("slide-next").addEventListener("click", function(){ step(1); });
+modal.addEventListener("click", function(e){ if(e.target === modal) closeDeal(); });
+document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeDeal(); });
+</script>
+
+</body>
+</html>
