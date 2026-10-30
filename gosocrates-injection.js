@@ -8,6 +8,10 @@
   var BACKEND = {url: "https://script.google.com/macros/s/AKfycbxwZ-7s1vGnN7tXljEyHFU4j_ihmCLA7Mq02Lp2JuGM4cLiNaZJ2tgxAAxiyvu3iznC/exec", token: "0e5da46e84e4f69a55f413afaed8d348"};
   var CLIENT_NAME = "Socrates Gomez";
   var LS = "gosocrates";
+  /* Approval stamps are keyed by card version (see render): bumping
+     card.version in the gist resets approve/note options on every
+     new-version update, so old approvals never carry over to new cuts. */
+  var STAMP_VER = "v1";
   var RED = "#E00020";
   var YELLOW = "#FFD60A";
 
@@ -39,7 +43,7 @@
     return fetch(BACKEND.url, {method: "POST", headers: {"Content-Type": "text/plain"}, body: JSON.stringify(p)}).then(function (r) { return r.json(); });
   }
 
-  function stampKey(n) { return LS + "_approval_video" + n; }
+  function stampKey(n) { return LS + "_approval_" + STAMP_VER + "_video" + n; }
   function getStamp(n) {
     try { return JSON.parse(localStorage.getItem(stampKey(n)) || "null"); } catch (e) { return null; }
   }
@@ -134,6 +138,7 @@
 
   function openModal(card) {
     closeModal();
+    STAMP_VER = (card && card.version) || STAMP_VER;
     var pending = (card.review_videos || []).filter(function (v) { return v.status !== "approved"; });
     var overlay = document.createElement("div");
     overlay.className = "go-modal";
@@ -273,6 +278,7 @@
   function render(d) {
     var card = d && d.card;
     if (!card) { return; }
+    STAMP_VER = card.version || "v1";
     var root = document.createElement("div");
     root.id = "go-root";
     var h = "";
