@@ -61,6 +61,8 @@
   .card h3{font-size:24px;margin-bottom:8px}
   .card p{margin:0;color:var(--muted);font-size:15px}
   .card .price{font-family:"Didot","Linotype Didot","Playfair Display",Georgia,serif;font-size:26px;color:var(--navy);margin:6px 0 10px}
+  .card-photo{width:100%;height:200px;object-fit:cover;border-radius:12px;display:block;cursor:pointer;margin-bottom:8px}
+  .photo-hint{font-size:13px;color:var(--muted)}
   .tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);margin-bottom:10px}
   .feature{border:1px solid var(--line);border-radius:16px;padding:30px;background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:28px}
   .feature h3{font-size:30px;margin-bottom:10px}
@@ -170,24 +172,32 @@
     <p class="lede">Buyer and seller representation across Manhattan, from first tours to final signatures.</p>
     <div class="grid">
       <div class="card">
+        <img class="card-photo" data-deal="231w21st-5c" src="https://mrsandtheman.github.io/go-assets/socrates-landing/sales/231w21st-5c-01.webp" alt="231 West 21st Street, 5C">
+        <span class="photo-hint">Tap photo to view photos</span>
         <span class="tag">Chelsea | Represented the Buyer</span>
         <h3>231 West 21st Street, 5C</h3>
         <div class="price">$899,000</div>
         <p>Two beds, one bath. Closed September 2026. A Chelsea address to call their own.</p>
       </div>
       <div class="card">
+        <img class="card-photo" data-deal="350w14th-5c" src="https://mrsandtheman.github.io/go-assets/socrates-landing/sales/350w14th-5c-01.webp" alt="350 West 14th Street, 5C">
+        <span class="photo-hint">Tap photo to view photos</span>
         <span class="tag">West Village | Represented the Seller</span>
         <h3>350 West 14th Street, 5C</h3>
         <div class="price">$1,200,000</div>
         <p>One bed, one bath. Closed July 2026. Sunlit, and sold with a client relationship he is grateful for.</p>
       </div>
       <div class="card">
+        <img class="card-photo" data-deal="313w119th-4f" src="https://mrsandtheman.github.io/go-assets/socrates-landing/sales/313w119th-4f-01.webp" alt="313 West 119th Street, 4F">
+        <span class="photo-hint">Tap photo to view photos</span>
         <span class="tag">South Harlem | Represented the Buyers</span>
         <h3>313 West 119th Street, 4F</h3>
         <div class="price">$915,000</div>
         <p>Two beds, two baths. Closed May 2026. Bright and spacious, with room to grow. A closing made meaningful by the family it serves.</p>
       </div>
       <div class="card">
+        <img class="card-photo" data-deal="568grand-j1803" src="https://mrsandtheman.github.io/go-assets/socrates-landing/sales/568grand-j1803-01.webp" alt="568 Grand Street, J1803">
+        <span class="photo-hint">Tap photo to view photos</span>
         <span class="tag">Lower East Side | Represented the Buyer</span>
         <h3>568 Grand Street, J1803</h3>
         <div class="price">$999,999</div>
@@ -371,18 +381,29 @@ var GPHOTOS = [
     "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-23.webp",
     "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-24.webp"
 ];
+var DEALS = {
+  "231w21st-5c": ['https://mrsandtheman.github.io/go-assets/socrates-landing/sales/231w21st-5c-01.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/231w21st-5c-02.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/231w21st-5c-03.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/231w21st-5c-04.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/231w21st-5c-05.webp'],
+  "350w14th-5c": ['https://mrsandtheman.github.io/go-assets/socrates-landing/sales/350w14th-5c-01.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/350w14th-5c-02.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/350w14th-5c-03.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/350w14th-5c-04.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/350w14th-5c-05.webp'],
+  "313w119th-4f": ['https://mrsandtheman.github.io/go-assets/socrates-landing/sales/313w119th-4f-01.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/313w119th-4f-02.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/313w119th-4f-03.webp'],
+  "568grand-j1803": ['https://mrsandtheman.github.io/go-assets/socrates-landing/sales/568grand-j1803-01.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/568grand-j1803-02.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/568grand-j1803-03.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/568grand-j1803-04.webp', 'https://mrsandtheman.github.io/go-assets/socrates-landing/sales/568grand-j1803-05.webp']
+};
+var GARR = GPHOTOS;
+var GALT = "477 FDR Drive M1602 photo";
 var gmodal = document.getElementById("gallery-modal");
 var gidx = 0;
 function gshow(){
-  document.getElementById("gallery-img").src = GPHOTOS[gidx];
-  document.getElementById("gallery-img").alt = "477 FDR Drive M1602 photo " + (gidx + 1);
-  document.getElementById("gallery-counter").textContent = (gidx + 1) + " / " + GPHOTOS.length;
+  document.getElementById("gallery-img").src = GARR[gidx];
+  document.getElementById("gallery-img").alt = GALT + " " + (gidx + 1);
+  document.getElementById("gallery-counter").textContent = (gidx + 1) + " / " + GARR.length;
 }
 function gopen(i){ gidx = i; gshow(); gmodal.classList.add("open"); }
 function gclose(){ gmodal.classList.remove("open"); }
-function gstep(n){ gidx = (gidx + n + GPHOTOS.length) % GPHOTOS.length; gshow(); }
+function gstep(n){ gidx = (gidx + n + GARR.length) % GARR.length; gshow(); }
 document.querySelectorAll(".gallery img").forEach(function(img, i){
-  img.addEventListener("click", function(){ gopen(i); });
+  img.addEventListener("click", function(){ GARR = GPHOTOS; GALT = "477 FDR Drive M1602 photo"; gopen(i); });
+});
+document.querySelectorAll(".card-photo").forEach(function(img){
+  img.addEventListener("click", function(){ GARR = DEALS[img.dataset.deal]; GALT = img.alt + " photo"; gopen(0); });
 });
 document.getElementById("gallery-close").addEventListener("click", gclose);
 document.getElementById("gallery-prev").addEventListener("click", function(){ gstep(-1); });
