@@ -69,7 +69,7 @@
   .specs li{font-size:15px;border-top:1px solid var(--line);padding-top:8px}
   .specs li b{display:block;font-size:13px;color:var(--muted);font-weight:600}
   .gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;margin-top:26px}
-  .gallery img{height:220px;width:auto;flex:0 0 auto;border-radius:12px;scroll-snap-align:start}
+  .gallery img{height:220px;width:auto;flex:0 0 auto;border-radius:12px;scroll-snap-align:start;cursor:pointer}
   .gallery-label{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:26px 0 0}
   .sales-link{display:inline-block;margin-top:28px;font-weight:600}
   /* Steps */
@@ -80,25 +80,41 @@
   /* Neighborhoods */
   .hoods{display:flex;flex-wrap:wrap;gap:10px}
   .hoods span{border:1px solid var(--line);border-radius:999px;padding:9px 18px;font-size:14px;font-weight:500;background:#fff}
-  /* Watch */
-  .watch{display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:center}
-  .watch video{width:100%;height:auto;border-radius:16px;background:#000;display:block;aspect-ratio:9/16;object-fit:cover}
   /* Contact */
   .contact{background:var(--navy);color:#fff;text-align:center}
   .contact h2{color:#fff}
   .contact p{color:#d9d9f2;max-width:560px;margin:0 auto 26px}
+  /* Gallery modal (same viewer style as the 2026 deals page) */
+  .modal{display:none;position:fixed;inset:0;background:rgba(10,10,60,.88);z-index:50;align-items:center;justify-content:center;padding:18px}
+  .modal.open{display:flex}
+  .modal-box{background:#fff;border-radius:16px;max-width:680px;width:100%;padding:20px;position:relative}
+  .slide{position:relative}
+  .slide img{width:100%;height:auto;max-height:62vh;object-fit:cover;border-radius:12px;display:block;background:#eceaf6}
+  .slide button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(18,18,118,.85);color:#fff;border:0;width:42px;height:42px;border-radius:50%;font-size:20px;cursor:pointer}
+  .slide .prev{left:10px}
+  .slide .next{right:10px}
+  .counter{text-align:center;font-size:13px;color:var(--muted);margin:10px 0 0}
+  .close{position:absolute;top:12px;right:12px;background:none;border:0;font-size:26px;cursor:pointer;color:var(--ink);line-height:1}
+  /* Longform video */
+  .longform{margin-top:36px}
+  .longform video{width:100%;height:auto;border-radius:16px;background:#000;display:block}
+  /* Contact form */
+  .contact form{max-width:480px;margin:0 auto 26px;text-align:left}
+  .contact label{display:block;font-size:14px;font-weight:600;margin:0 0 6px;color:#fff}
+  .contact input{width:100%;padding:13px 18px;border:0;border-radius:999px;font-size:16px;font-family:inherit;margin:0 0 16px;background:#fff;color:var(--ink)}
+  .contact button.send{width:100%;padding:13px 18px;border:0;border-radius:999px;font-size:16px;font-weight:600;background:#fff;color:var(--navy);cursor:pointer}
+  .contact .thanks{display:none;font-size:17px;color:#fff;text-align:center}
   /* Footer */
   footer{background:var(--navy-dark);color:#fff;padding:36px 0;text-align:center}
   footer img{height:40px;width:auto;margin:0 auto 16px;display:block}
   footer p{margin:0 0 6px;font-size:13px;color:#d9d9f2}
   footer p:last-child{margin-bottom:0}
   @media (max-width:760px){
-    .about,.feature,.watch{grid-template-columns:1fr}
+    .about,.feature{grid-template-columns:1fr}
     .grid,.steps{grid-template-columns:1fr}
     section{padding:52px 0}
     .hero .wrap{padding:72px 22px 64px}
     .about img{max-width:320px}
-    .watch video{max-width:320px}
     .gallery img{height:170px}
     .topbar img.logo{height:104px}
   }
@@ -110,7 +126,7 @@
   <div class="wrap">
     <img class="logo" src="https://mrsandtheman.github.io/go-assets/socrates-landing/socrates-logo-white-vertical.png" alt="Socrates Gomez Real Estate">
     <nav>
-      <a href="tel:+19173305532">Call Socrates</a>
+      <a href="#contact">Get in touch</a>
       <a class="solid" href="https://www.instagram.com/socratesgomez" target="_blank" rel="noopener">Instagram</a>
     </nav>
   </div>
@@ -123,7 +139,7 @@
     <h1>Find your place in the city you love.</h1>
     <p>Socrates Gomez guides buyers and sellers across Manhattan and Brooklyn with patience, honest advice, and neighborhood knowledge earned from living here himself.</p>
     <div class="cta-row">
-      <a class="btn light" href="tel:+19173305532">Call 917.330.5532</a>
+      <a class="btn light" href="#contact">Get in touch</a>
       <a class="btn ghost" href="https://www.instagram.com/socratesgomez" target="_blank" rel="noopener">See him on Instagram</a>
     </div>
   </div>
@@ -154,56 +170,6 @@
 
 <section class="tint">
   <div class="wrap">
-    <h2>Featured Listing</h2>
-    <p class="lede">A meticulously renovated home in the neighborhood Socrates knows best.</p>
-    <div class="feature">
-      <div>
-        <span class="tag">Lower East Side</span>
-        <h3>477 FDR Drive, M1602</h3>
-        <p>A bright, meticulously renovated two bedroom in an East River cooperative, with Williamsburg Bridge, Midtown skyline, and East River views.</p>
-        <a class="btn" href="tel:+19173305532">Ask about this home</a>
-      </div>
-      <ul class="specs">
-        <li><b>Price</b>$899,000</li>
-        <li><b>Layout</b>2 beds, 1 bath</li>
-        <li><b>Size</b>About 800 sq ft</li>
-        <li><b>Maintenance</b>$1,164 / month</li>
-        <li><b>Views</b>Williamsburg Bridge, Midtown skyline, East River</li>
-        <li><b>Neighborhood</b>Lower East Side, Manhattan</li>
-      </ul>
-    </div>
-    <p class="gallery-label">Inside 477 FDR Drive, M1602, scroll for more photos</p>
-    <div class="gallery">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-01.webp" alt="477 FDR Drive M1602 photo 1" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-02.webp" alt="477 FDR Drive M1602 photo 2" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-03.webp" alt="477 FDR Drive M1602 photo 3" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-04.webp" alt="477 FDR Drive M1602 photo 4" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-05.webp" alt="477 FDR Drive M1602 photo 5" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-06.webp" alt="477 FDR Drive M1602 photo 6" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-07.webp" alt="477 FDR Drive M1602 photo 7" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-08.webp" alt="477 FDR Drive M1602 photo 8" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-09.webp" alt="477 FDR Drive M1602 photo 9" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-10.webp" alt="477 FDR Drive M1602 photo 10" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-11.webp" alt="477 FDR Drive M1602 photo 11" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-12.webp" alt="477 FDR Drive M1602 photo 12" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-13.webp" alt="477 FDR Drive M1602 photo 13" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-14.webp" alt="477 FDR Drive M1602 photo 14" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-15.webp" alt="477 FDR Drive M1602 photo 15" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-16.webp" alt="477 FDR Drive M1602 photo 16" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-17.webp" alt="477 FDR Drive M1602 photo 17" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-18.webp" alt="477 FDR Drive M1602 photo 18" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-19.webp" alt="477 FDR Drive M1602 photo 19" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-20.webp" alt="477 FDR Drive M1602 photo 20" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-21.webp" alt="477 FDR Drive M1602 photo 21" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-22.webp" alt="477 FDR Drive M1602 photo 22" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-23.webp" alt="477 FDR Drive M1602 photo 23" loading="lazy">
-      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-24.webp" alt="477 FDR Drive M1602 photo 24" loading="lazy">
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
     <h2>Recent Results</h2>
     <p class="lede">Buyer and seller representation across Manhattan, from first tours to final signatures.</p>
     <div class="grid">
@@ -233,6 +199,56 @@
       </div>
     </div>
     <a class="sales-link" href="https://mrsandtheman.github.io/go-assets/socrates-landing/sales.html">See all 17 deals from 2026, 14 closed and 3 in contract</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Featured Listing</h2>
+    <p class="lede">A meticulously renovated home in the neighborhood Socrates knows best.</p>
+    <div class="feature">
+      <div>
+        <span class="tag">Lower East Side</span>
+        <h3>477 FDR Drive, M1602</h3>
+        <p>A bright, meticulously renovated two bedroom in an East River cooperative, with Williamsburg Bridge, Midtown skyline, and East River views.</p>
+        <a class="btn" href="tel:+19173305532">Ask about this home</a>
+      </div>
+      <ul class="specs">
+        <li><b>Price</b>$899,000</li>
+        <li><b>Layout</b>2 beds, 1 bath</li>
+        <li><b>Size</b>About 800 sq ft</li>
+        <li><b>Maintenance</b>$1,164 / month</li>
+        <li><b>Views</b>Williamsburg Bridge, Midtown skyline, East River</li>
+        <li><b>Neighborhood</b>Lower East Side, Manhattan</li>
+      </ul>
+    </div>
+    <p class="gallery-label">Inside 477 FDR Drive, M1602, tap a photo to view full screen</p>
+    <div class="gallery">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-01.webp" alt="477 FDR Drive M1602 photo 1" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-02.webp" alt="477 FDR Drive M1602 photo 2" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-03.webp" alt="477 FDR Drive M1602 photo 3" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-04.webp" alt="477 FDR Drive M1602 photo 4" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-05.webp" alt="477 FDR Drive M1602 photo 5" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-06.webp" alt="477 FDR Drive M1602 photo 6" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-07.webp" alt="477 FDR Drive M1602 photo 7" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-08.webp" alt="477 FDR Drive M1602 photo 8" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-09.webp" alt="477 FDR Drive M1602 photo 9" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-10.webp" alt="477 FDR Drive M1602 photo 10" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-11.webp" alt="477 FDR Drive M1602 photo 11" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-12.webp" alt="477 FDR Drive M1602 photo 12" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-13.webp" alt="477 FDR Drive M1602 photo 13" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-14.webp" alt="477 FDR Drive M1602 photo 14" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-15.webp" alt="477 FDR Drive M1602 photo 15" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-16.webp" alt="477 FDR Drive M1602 photo 16" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-17.webp" alt="477 FDR Drive M1602 photo 17" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-18.webp" alt="477 FDR Drive M1602 photo 18" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-19.webp" alt="477 FDR Drive M1602 photo 19" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-20.webp" alt="477 FDR Drive M1602 photo 20" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-21.webp" alt="477 FDR Drive M1602 photo 21" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-22.webp" alt="477 FDR Drive M1602 photo 22" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-23.webp" alt="477 FDR Drive M1602 photo 23" loading="lazy">
+      <img src="https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-24.webp" alt="477 FDR Drive M1602 photo 24" loading="lazy">
+    </div>
   </div>
 </section>
 
@@ -288,21 +304,18 @@
   </div>
 </section>
 
-<section class="tint">
-  <div class="wrap watch">
-    <video controls playsinline preload="metadata" src="https://mrsandtheman.github.io/go-assets/gosocrates/02-les-park.mp4"></video>
-    <div>
-      <h2>Walk the Lower East Side with Socrates</h2>
-      <p class="lede">A minute on the streets, the river, and the neighborhood he calls home. This is the Lower East Side the way a neighbor sees it.</p>
-      <a class="btn" href="https://www.instagram.com/socratesgomez" target="_blank" rel="noopener">More on Instagram</a>
-    </div>
-  </div>
-</section>
-
-<section class="contact">
+<section class="contact" id="contact">
   <div class="wrap">
     <h2>Let's talk about your next move.</h2>
     <p>Buying, selling, or just figuring out what is possible. One conversation, no pressure, and an honest read on your options.</p>
+    <form id="contact-form">
+      <label for="cf-name">Your name</label>
+      <input id="cf-name" name="name" type="text" required autocomplete="name">
+      <label for="cf-email">Your email</label>
+      <input id="cf-email" name="email" type="email" required autocomplete="email">
+      <button class="send" type="submit">Send</button>
+    </form>
+    <p class="thanks" id="contact-thanks">Thanks, we will be in touch.</p>
     <div class="cta-row" style="justify-content:center">
       <a class="btn light" href="tel:+19173305532">Call 917.330.5532</a>
       <a class="btn ghost" href="https://www.instagram.com/socratesgomez" target="_blank" rel="noopener">@socratesgomez</a>
@@ -317,6 +330,70 @@
     <p>Equal Housing Opportunity. &copy; 2026 Socrates Gomez.</p>
   </div>
 </footer>
+
+<div class="modal" id="gallery-modal">
+  <div class="modal-box">
+    <button class="close" id="gallery-close" aria-label="Close">&times;</button>
+    <div class="slide">
+      <img id="gallery-img" src="" alt="">
+      <button class="prev" id="gallery-prev" aria-label="Previous photo">&#8249;</button>
+      <button class="next" id="gallery-next" aria-label="Next photo">&#8250;</button>
+    </div>
+    <p class="counter" id="gallery-counter"></p>
+  </div>
+</div>
+
+<script>
+var GPHOTOS = [
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-01.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-02.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-03.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-04.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-05.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-06.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-07.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-08.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-09.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-10.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-11.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-12.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-13.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-14.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-15.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-16.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-17.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-18.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-19.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-20.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-21.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-22.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-23.webp",
+    "https://mrsandtheman.github.io/go-assets/socrates-landing/477/477-24.webp"
+];
+var gmodal = document.getElementById("gallery-modal");
+var gidx = 0;
+function gshow(){
+  document.getElementById("gallery-img").src = GPHOTOS[gidx];
+  document.getElementById("gallery-img").alt = "477 FDR Drive M1602 photo " + (gidx + 1);
+  document.getElementById("gallery-counter").textContent = (gidx + 1) + " / " + GPHOTOS.length;
+}
+function gopen(i){ gidx = i; gshow(); gmodal.classList.add("open"); }
+function gclose(){ gmodal.classList.remove("open"); }
+function gstep(n){ gidx = (gidx + n + GPHOTOS.length) % GPHOTOS.length; gshow(); }
+document.querySelectorAll(".gallery img").forEach(function(img, i){
+  img.addEventListener("click", function(){ gopen(i); });
+});
+document.getElementById("gallery-close").addEventListener("click", gclose);
+document.getElementById("gallery-prev").addEventListener("click", function(){ gstep(-1); });
+document.getElementById("gallery-next").addEventListener("click", function(){ gstep(1); });
+gmodal.addEventListener("click", function(e){ if(e.target === gmodal) gclose(); });
+document.addEventListener("keydown", function(e){ if(e.key === "Escape") gclose(); });
+document.getElementById("contact-form").addEventListener("submit", function(e){
+  e.preventDefault();
+  document.getElementById("contact-form").style.display = "none";
+  document.getElementById("contact-thanks").style.display = "block";
+});
+</script>
 
 </body>
 </html>
