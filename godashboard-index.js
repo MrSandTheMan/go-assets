@@ -22,8 +22,10 @@
   var css = [
     'html,body{background:#0b0b0c !important;}',
     'main.Main,.Main-content,.Site,.page-section,section,.sqs-layout{background:#0b0b0c !important;}',
+    'main.Main{display:none !important;}',
     'footer.Footer{display:none;}',
-    '#go-root{max-width:760px;margin:0 auto;padding:56px 20px 80px;font-family:Inter,-apple-system,"Segoe UI",sans-serif;color:#fff;text-transform:none;}',
+    '#go-root{width:100vw;margin-left:calc(50% - 50vw);box-sizing:border-box;background:#0b0b0c;padding:56px 20px 80px;font-family:Inter,-apple-system,"Segoe UI",sans-serif;color:#fff;text-transform:none;}',
+    '#go-root .wrap{max-width:720px;margin:0 auto;}',
     '#go-root .eyebrow{font-family:Archivo,Inter,sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;color:#FFD60A;margin:0 0 14px;text-transform:none;}',
     '#go-root h1{font-family:Archivo,Inter,sans-serif;font-size:42px;line-height:1.1;margin:0 0 10px;color:#fff;text-transform:none;letter-spacing:normal;}',
     '#go-root p{font-family:Inter,-apple-system,"Segoe UI",sans-serif;text-transform:none;}',
@@ -52,7 +54,7 @@
     document.head.appendChild(style);
     var root = document.createElement('div');
     root.id = 'go-root';
-    var html = '<p class="eyebrow">ANOMALOUS · INTERNAL</p>' +
+    var html = '<div class="wrap"><p class="eyebrow">ANOMALOUS · INTERNAL</p>' +
       '<h1>Go Dashboard</h1>' +
       '<p class="sub"><b>9 live pages.</b> Every client Go page, in one place. Tap a client to open their page.</p>';
     PAGES.forEach(function (p) {
@@ -64,7 +66,7 @@
         '<span class="url" style="display:block;">' + url + '</span></span>' +
         '<span class="arrow">→</span></a>';
     });
-    html += '<p class="foot">Internal index. Not linked in the site navigation.</p>';
+    html += '<p class="foot">Internal index. Not linked in the site navigation.</p></div>';
     root.innerHTML = html;
     document.body.appendChild(root);
   }
