@@ -441,7 +441,7 @@ document.getElementById("contact-form").addEventListener("submit", function(e){
   var btn = this.querySelector(".send");
   btn.disabled = true;
   btn.textContent = "Sending...";
-  fetch("https://script.google.com/macros/s/AKfycbyHat2gAof3hEoD5xMwqAEQywScLZlrPXquUdNww-JBjCfimveqx0-TGG2G7olpE_vxCQ/exec", {method: "POST", headers: {"Content-Type": "text/plain"}, body: JSON.stringify({name: document.getElementById("cf-name").value, email: document.getElementById("cf-email").value, token: "bf3574cecfa311d043fc1c4cea161f00"})}).then(function(r){ return r.json(); }).then(function(d){ if(d && d.ok){ document.getElementById("contact-form").style.display = "none"; document.getElementById("contact-thanks").style.display = "block"; } else { btn.disabled = false; btn.textContent = "Try again"; } }).catch(function(){ btn.disabled = false; btn.textContent = "Try again"; });
+  fetch("https://script.google.com/macros/s/AKfycbxrJWV7e5QTwydXA1Px5eidyWiFTbgSt12YXE01YgBpbMVPSXKZ2Df9LdpM3JQ_b6H-5A/exec", {method: "POST", headers: {"Content-Type": "text/plain"}, body: JSON.stringify({name: document.getElementById("cf-name").value, email: document.getElementById("cf-email").value, token: "bf3574cecfa311d043fc1c4cea161f00"})}).then(function(r){ return r.json(); }).then(function(d){ if(d && d.ok){ document.getElementById("contact-form").style.display = "none"; document.getElementById("contact-thanks").style.display = "block"; } else { btn.disabled = false; btn.textContent = "Try again"; } }).catch(function(){ btn.disabled = false; btn.textContent = "Try again"; });
 });
 </script>
 
