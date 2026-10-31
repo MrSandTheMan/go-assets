@@ -20,9 +20,8 @@
   ];
 
   var css = [
-    'body{background:#0b0b0c;}',
-    'main.Main{background:#0b0b0c;}',
-    '.Main-content{background:#0b0b0c;}',
+    'html,body{background:#0b0b0c !important;}',
+    'main.Main,.Main-content,.Site,.page-section,section,.sqs-layout{background:#0b0b0c !important;}',
     'footer.Footer{display:none;}',
     '#go-root{max-width:760px;margin:0 auto;padding:56px 20px 80px;font-family:Inter,-apple-system,"Segoe UI",sans-serif;color:#fff;text-transform:none;}',
     '#go-root .eyebrow{font-family:Archivo,Inter,sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;color:#FFD60A;margin:0 0 14px;text-transform:none;}',
