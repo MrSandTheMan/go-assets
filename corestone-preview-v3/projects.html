@@ -28,16 +28,31 @@
   .proj-sec h2{font-size:30px;margin-bottom:6px;}
   .loc{color:#007A7A;font-weight:600;margin-bottom:10px;}
   .proj-sec .desc{color:#444;max-width:680px;margin-bottom:24px;}
-  .gal-grid{columns:2;column-gap:16px;}
-  .gal-grid img{width:100%;margin-bottom:16px;border-radius:10px;display:block;}
+  .gal-carousel{margin-top:8px;}
+  .gal-chapters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+  .gal-chap{border:2px solid #00C4C4;background:#fff;color:#007A7A;border-radius:999px;padding:6px 14px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;}
+  .gal-chap.on{background:#00C4C4;color:#0a1420;border-color:#00C4C4;}
+  .gal-stage{position:relative;background:#111;border-radius:10px;overflow:hidden;aspect-ratio:16/10;max-height:70vh;}
+  .gal-photo{width:100%;height:100%;object-fit:contain;display:block;cursor:zoom-in;}
+  .gal-arrow{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:none;background:rgba(0,0,0,.55);color:#fff;font-size:26px;line-height:1;cursor:pointer;z-index:2;}
+  .gal-arrow:hover{background:#00C4C4;color:#0a1420;}
+  .gal-prev{left:14px;}
+  .gal-next{right:14px;}
+  .gal-meta{display:flex;justify-content:space-between;align-items:baseline;margin:12px 2px 10px;}
+  .gal-chapter{font-family:'Cinzel',serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#007A7A;}
+  .gal-counter{font-weight:700;color:#555;font-size:14px;}
+  .gal-thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;}
+  .gal-thumb{flex:0 0 auto;width:76px;height:56px;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;cursor:pointer;background:#eee;}
+  .gal-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .gal-thumb.on{border-color:#00C4C4;}
   .cta{background:#1a1a1a;color:#fff;padding:64px 0;text-align:center;}
   .cta h2{margin-bottom:10px;}
   .cta p{color:#c9c9c9;margin-bottom:24px;}
   .btn{display:inline-block;background:#00C4C4;color:#0a1420;font-weight:700;padding:14px 30px;border-radius:8px;text-decoration:none;}
   footer{background:#111;color:#888;font-size:13px;padding:28px 0;text-align:center;}
   footer a{color:#00C4C4;text-decoration:none;}
-  @media (max-width:700px){.gal-grid{columns:1;}.gal-head h1{font-size:30px;}.proj-sec h2{font-size:24px;}}
-  .gal-grid img{cursor:zoom-in;}
+  @media (max-width:700px){.gal-stage{aspect-ratio:4/3;}.gal-thumb{width:64px;height:48px;}.gal-arrow{width:40px;height:40px;}.gal-head h1{font-size:30px;}.proj-sec h2{font-size:24px;}}
+
   .lb{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;}
   .lb[hidden]{display:none;}
   .lb-bg{position:absolute;inset:0;background:rgba(10,10,10,.92);}
@@ -81,20 +96,35 @@
     <h2>Modern A-Frame Home</h2>
     <p class="loc">579 Shore Drive · Sullivan County</p>
     <p class="desc">A lakeside A-frame taken from raw wooded lot to finished home. The full story of this build, phase by phase, is in our Dirt to Dream project diary.</p>
-    <div class="gal-grid">
-      <img src="images/gal-579-1.jpg" alt="Front exterior of the finished A-frame at 579 Shore Drive, lakeside view" loading="lazy">
-      <img src="images/gal-579-2.jpg" alt="Great room of the finished A-frame" loading="lazy">
-      <img src="images/gal-579-3.jpg" alt="Finished bathroom at 579 Shore Drive" loading="lazy">
-      <img src="images/gal-579-4.jpg" alt="Twilight aerial of the finished A-frame at 579 Shore Drive" loading="lazy">
-      <img src="images/gal-579-5.jpg" alt="Front exterior of the finished A-frame at 579 Shore Drive" loading="lazy">
-      <img src="images/gal-579-6.jpg" alt="579 Shore Drive, photo 6" loading="lazy">
-      <img src="images/gal-579-7.jpg" alt="579 Shore Drive, photo 7" loading="lazy">
-      <img src="images/gal-579-8.jpg" alt="579 Shore Drive, photo 8" loading="lazy">
-      <img src="images/gal-579-9.jpg" alt="579 Shore Drive, photo 9" loading="lazy">
-      <img src="images/gal-579-10.jpg" alt="579 Shore Drive, photo 10" loading="lazy">
-      <img src="images/gal-579-11.jpg" alt="579 Shore Drive, photo 11" loading="lazy">
-      <img src="images/gal-579-12.jpg" alt="579 Shore Drive, photo 12" loading="lazy">
-      <img src="images/gal-579-13.jpg" alt="579 Shore Drive, photo 13" loading="lazy">
+    <div class="gal-carousel" data-total="13">
+      <div class="gal-chapters">
+      <button type="button" class="gal-chap on" data-cat="Exterior">Exterior (4)</button>
+      <button type="button" class="gal-chap" data-cat="Living">Living (2)</button>
+      <button type="button" class="gal-chap" data-cat="Kitchen">Kitchen (2)</button>
+      <button type="button" class="gal-chap" data-cat="Bathroom">Bathroom (4)</button>
+      <button type="button" class="gal-chap" data-cat="Hallway">Hallway (1)</button>
+      </div>
+      <div class="gal-stage">
+        <button type="button" class="gal-arrow gal-prev" aria-label="Previous photo">&#8249;</button>
+        <img class="gal-photo" src="images/gal-579-1.jpg" alt="Front exterior of the finished A-frame at 579 Shore Drive, lakeside view">
+        <button type="button" class="gal-arrow gal-next" aria-label="Next photo">&#8250;</button>
+      </div>
+      <div class="gal-meta"><span class="gal-chapter">Exterior</span><span class="gal-counter">1 / 13</span></div>
+      <div class="gal-thumbs">
+      <button type="button" class="gal-thumb on" data-i="0" data-full="images/gal-579-1.jpg" data-alt="Front exterior of the finished A-frame at 579 Shore Drive, lakeside view" data-cat="Exterior" aria-label="Photo 1"><img src="images/gal-579-1.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="1" data-full="images/gal-579-4.jpg" data-alt="Twilight aerial of the finished A-frame at 579 Shore Drive" data-cat="Exterior" aria-label="Photo 2"><img src="images/gal-579-4.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="2" data-full="images/gal-579-5.jpg" data-alt="Front exterior of the finished A-frame at 579 Shore Drive" data-cat="Exterior" aria-label="Photo 3"><img src="images/gal-579-5.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="3" data-full="images/gal-579-6.jpg" data-alt="579 Shore Drive, photo 6" data-cat="Exterior" aria-label="Photo 4"><img src="images/gal-579-6.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="4" data-full="images/gal-579-2.jpg" data-alt="Great room of the finished A-frame" data-cat="Living" aria-label="Photo 5"><img src="images/gal-579-2.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="5" data-full="images/gal-579-10.jpg" data-alt="579 Shore Drive, photo 10" data-cat="Living" aria-label="Photo 6"><img src="images/gal-579-10.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="6" data-full="images/gal-579-8.jpg" data-alt="579 Shore Drive, photo 8" data-cat="Kitchen" aria-label="Photo 7"><img src="images/gal-579-8.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="7" data-full="images/gal-579-9.jpg" data-alt="579 Shore Drive, photo 9" data-cat="Kitchen" aria-label="Photo 8"><img src="images/gal-579-9.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="8" data-full="images/gal-579-3.jpg" data-alt="Finished bathroom at 579 Shore Drive" data-cat="Bathroom" aria-label="Photo 9"><img src="images/gal-579-3.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="9" data-full="images/gal-579-7.jpg" data-alt="579 Shore Drive, photo 7" data-cat="Bathroom" aria-label="Photo 10"><img src="images/gal-579-7.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="10" data-full="images/gal-579-12.jpg" data-alt="579 Shore Drive, photo 12" data-cat="Bathroom" aria-label="Photo 11"><img src="images/gal-579-12.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="11" data-full="images/gal-579-13.jpg" data-alt="579 Shore Drive, photo 13" data-cat="Bathroom" aria-label="Photo 12"><img src="images/gal-579-13.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="12" data-full="images/gal-579-11.jpg" data-alt="579 Shore Drive, photo 11" data-cat="Hallway" aria-label="Photo 13"><img src="images/gal-579-11.jpg" alt="" loading="lazy"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -105,117 +135,136 @@
     <h2>736 Harris Rd</h2>
     <p class="loc">736 Harris Rd</p>
     <p class="desc">Custom home with a finished backyard built for evenings outside: pool, spa bath, and an open kitchen at the center.</p>
-    <div class="gal-grid">
-      <img src="images/gal-736-1.jpg" alt="Backyard pool at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-2.jpg" alt="Spa bathroom at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-3.jpg" alt="Open kitchen at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-4.jpg" alt="Backyard pool with red lounge chairs at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-5.jpg" alt="Front exterior of the home at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-6.jpg" alt="Backyard pool and pool house at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-7.jpg" alt="Backyard pool at 736 Harris Rd, viewed from the patio" loading="lazy">
-      <img src="images/gal-736-8.jpg" alt="Side exterior of the home at 736 Harris Rd with garage and stone stairs" loading="lazy">
-      <img src="images/gal-736-9.jpg" alt="Kitchen island at 736 Harris Rd with bar stools" loading="lazy">
-      <img src="images/gal-736-10.jpg" alt="Open kitchen and dining room at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-11.jpg" alt="Living room at 736 Harris Rd with white sofas and picture windows" loading="lazy">
-      <img src="images/gal-736-12.jpg" alt="Sitting room at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-13.jpg" alt="Upper living room at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-14.jpg" alt="Dining room at 736 Harris Rd with a long table" loading="lazy">
-      <img src="images/gal-736-15.jpg" alt="Entry hall and staircase at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-16.jpg" alt="Upper landing at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-17.jpg" alt="Primary bedroom at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-18.jpg" alt="Twin bedroom at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-19.jpg" alt="Powder room vanity at 736 Harris Rd" loading="lazy">
-      <img src="images/gal-736-20.jpg" alt="Primary bathroom at 736 Harris Rd with soaking tub" loading="lazy">
-      <img src="images/gal-736-21.jpg" alt="736 Harris Rd, photo 21" loading="lazy">
-      <img src="images/gal-736-22.jpg" alt="736 Harris Rd, photo 22" loading="lazy">
-      <img src="images/gal-736-23.jpg" alt="736 Harris Rd, photo 23" loading="lazy">
-      <img src="images/gal-736-24.jpg" alt="736 Harris Rd, photo 24" loading="lazy">
-      <img src="images/gal-736-25.jpg" alt="736 Harris Rd, photo 25" loading="lazy">
-      <img src="images/gal-736-26.jpg" alt="736 Harris Rd, photo 26" loading="lazy">
-      <img src="images/gal-736-27.jpg" alt="736 Harris Rd, photo 27" loading="lazy">
-      <img src="images/gal-736-28.jpg" alt="736 Harris Rd, photo 28" loading="lazy">
-      <img src="images/gal-736-29.jpg" alt="736 Harris Rd, photo 29" loading="lazy">
-      <img src="images/gal-736-30.jpg" alt="736 Harris Rd, photo 30" loading="lazy">
-      <img src="images/gal-736-31.jpg" alt="736 Harris Rd, photo 31" loading="lazy">
-      <img src="images/gal-736-32.jpg" alt="736 Harris Rd, photo 32" loading="lazy">
-      <img src="images/gal-736-33.jpg" alt="736 Harris Rd, photo 33" loading="lazy">
-      <img src="images/gal-736-34.jpg" alt="736 Harris Rd, photo 34" loading="lazy">
-      <img src="images/gal-736-35.jpg" alt="736 Harris Rd, photo 35" loading="lazy">
-      <img src="images/gal-736-36.jpg" alt="736 Harris Rd, photo 36" loading="lazy">
-      <img src="images/gal-736-37.jpg" alt="736 Harris Rd, photo 37" loading="lazy">
-      <img src="images/gal-736-38.jpg" alt="736 Harris Rd, photo 38" loading="lazy">
-      <img src="images/gal-736-39.jpg" alt="736 Harris Rd, photo 39" loading="lazy">
-      <img src="images/gal-736-40.jpg" alt="736 Harris Rd, photo 40" loading="lazy">
-      <img src="images/gal-736-41.jpg" alt="736 Harris Rd, photo 41" loading="lazy">
-      <img src="images/gal-736-42.jpg" alt="736 Harris Rd, photo 42" loading="lazy">
-      <img src="images/gal-736-43.jpg" alt="736 Harris Rd, photo 43" loading="lazy">
-      <img src="images/gal-736-44.jpg" alt="736 Harris Rd, photo 44" loading="lazy">
-      <img src="images/gal-736-45.jpg" alt="736 Harris Rd, photo 45" loading="lazy">
-      <img src="images/gal-736-46.jpg" alt="736 Harris Rd, photo 46" loading="lazy">
-      <img src="images/gal-736-47.jpg" alt="736 Harris Rd, photo 47" loading="lazy">
-      <img src="images/gal-736-48.jpg" alt="736 Harris Rd, photo 48" loading="lazy">
-      <img src="images/gal-736-49.jpg" alt="736 Harris Rd, photo 49" loading="lazy">
-      <img src="images/gal-736-50.jpg" alt="736 Harris Rd, photo 50" loading="lazy">
-      <img src="images/gal-736-51.jpg" alt="736 Harris Rd, photo 51" loading="lazy">
-      <img src="images/gal-736-52.jpg" alt="736 Harris Rd, photo 52" loading="lazy">
-      <img src="images/gal-736-53.jpg" alt="736 Harris Rd, photo 53" loading="lazy">
-      <img src="images/gal-736-54.jpg" alt="736 Harris Rd, photo 54" loading="lazy">
-      <img src="images/gal-736-55.jpg" alt="736 Harris Rd, photo 55" loading="lazy">
-      <img src="images/gal-736-56.jpg" alt="736 Harris Rd, photo 56" loading="lazy">
-      <img src="images/gal-736-57.jpg" alt="736 Harris Rd, photo 57" loading="lazy">
-      <img src="images/gal-736-58.jpg" alt="736 Harris Rd, photo 58" loading="lazy">
-      <img src="images/gal-736-59.jpg" alt="736 Harris Rd, photo 59" loading="lazy">
-      <img src="images/gal-736-60.jpg" alt="736 Harris Rd, photo 60" loading="lazy">
-      <img src="images/gal-736-61.jpg" alt="736 Harris Rd, photo 61" loading="lazy">
-      <img src="images/gal-736-62.jpg" alt="736 Harris Rd, photo 62" loading="lazy">
-      <img src="images/gal-736-63.jpg" alt="736 Harris Rd, photo 63" loading="lazy">
-      <img src="images/gal-736-64.jpg" alt="736 Harris Rd, photo 64" loading="lazy">
-      <img src="images/gal-736-65.jpg" alt="736 Harris Rd, photo 65" loading="lazy">
-      <img src="images/gal-736-66.jpg" alt="736 Harris Rd, photo 66" loading="lazy">
-      <img src="images/gal-736-67.jpg" alt="736 Harris Rd, photo 67" loading="lazy">
-      <img src="images/gal-736-68.jpg" alt="736 Harris Rd, photo 68" loading="lazy">
-      <img src="images/gal-736-69.jpg" alt="736 Harris Rd, photo 69" loading="lazy">
-      <img src="images/gal-736-70.jpg" alt="736 Harris Rd, photo 70" loading="lazy">
-      <img src="images/gal-736-71.jpg" alt="736 Harris Rd, photo 71" loading="lazy">
-      <img src="images/gal-736-72.jpg" alt="736 Harris Rd, photo 72" loading="lazy">
-      <img src="images/gal-736-73.jpg" alt="736 Harris Rd, photo 73" loading="lazy">
-      <img src="images/gal-736-74.jpg" alt="736 Harris Rd, photo 74" loading="lazy">
-      <img src="images/gal-736-75.jpg" alt="736 Harris Rd, photo 75" loading="lazy">
-      <img src="images/gal-736-76.jpg" alt="736 Harris Rd, photo 76" loading="lazy">
-      <img src="images/gal-736-77.jpg" alt="736 Harris Rd, photo 77" loading="lazy">
-      <img src="images/gal-736-78.jpg" alt="736 Harris Rd, photo 78" loading="lazy">
-      <img src="images/gal-736-79.jpg" alt="736 Harris Rd, photo 79" loading="lazy">
-      <img src="images/gal-736-80.jpg" alt="736 Harris Rd, photo 80" loading="lazy">
-      <img src="images/gal-736-81.jpg" alt="736 Harris Rd, photo 81" loading="lazy">
-      <img src="images/gal-736-82.jpg" alt="736 Harris Rd, photo 82" loading="lazy">
-      <img src="images/gal-736-83.jpg" alt="736 Harris Rd, photo 83" loading="lazy">
-      <img src="images/gal-736-84.jpg" alt="736 Harris Rd, photo 84" loading="lazy">
-      <img src="images/gal-736-85.jpg" alt="736 Harris Rd, photo 85" loading="lazy">
-      <img src="images/gal-736-86.jpg" alt="736 Harris Rd, photo 86" loading="lazy">
-      <img src="images/gal-736-87.jpg" alt="736 Harris Rd, photo 87" loading="lazy">
-      <img src="images/gal-736-88.jpg" alt="736 Harris Rd, photo 88" loading="lazy">
-      <img src="images/gal-736-89.jpg" alt="736 Harris Rd, photo 89" loading="lazy">
-      <img src="images/gal-736-90.jpg" alt="736 Harris Rd, photo 90" loading="lazy">
-      <img src="images/gal-736-91.jpg" alt="736 Harris Rd, photo 91" loading="lazy">
-      <img src="images/gal-736-92.jpg" alt="736 Harris Rd, photo 92" loading="lazy">
-      <img src="images/gal-736-93.jpg" alt="736 Harris Rd, photo 93" loading="lazy">
-      <img src="images/gal-736-94.jpg" alt="736 Harris Rd, photo 94" loading="lazy">
-      <img src="images/gal-736-95.jpg" alt="736 Harris Rd, photo 95" loading="lazy">
-      <img src="images/gal-736-96.jpg" alt="736 Harris Rd, photo 96" loading="lazy">
-      <img src="images/gal-736-97.jpg" alt="736 Harris Rd, photo 97" loading="lazy">
-      <img src="images/gal-736-98.jpg" alt="736 Harris Rd, photo 98" loading="lazy">
-      <img src="images/gal-736-99.jpg" alt="736 Harris Rd, photo 99" loading="lazy">
-      <img src="images/gal-736-100.jpg" alt="736 Harris Rd, photo 100" loading="lazy">
-      <img src="images/gal-736-101.jpg" alt="736 Harris Rd, photo 101" loading="lazy">
-      <img src="images/gal-736-102.jpg" alt="736 Harris Rd, photo 102" loading="lazy">
-      <img src="images/gal-736-103.jpg" alt="736 Harris Rd, photo 103" loading="lazy">
-      <img src="images/gal-736-104.jpg" alt="736 Harris Rd, photo 104" loading="lazy">
-      <img src="images/gal-736-105.jpg" alt="736 Harris Rd, photo 105" loading="lazy">
-      <img src="images/gal-736-106.jpg" alt="736 Harris Rd, photo 106" loading="lazy">
-      <img src="images/gal-736-107.jpg" alt="736 Harris Rd, photo 107" loading="lazy">
-      <img src="images/gal-736-108.jpg" alt="736 Harris Rd, photo 108" loading="lazy">
-      <img src="images/gal-736-109.jpg" alt="736 Harris Rd, photo 109" loading="lazy">
-      <img src="images/gal-736-110.jpg" alt="736 Harris Rd, photo 110" loading="lazy">
+    <div class="gal-carousel" data-total="110">
+      <div class="gal-chapters">
+      <button type="button" class="gal-chap on" data-cat="Exterior">Exterior (8)</button>
+      <button type="button" class="gal-chap" data-cat="Living">Living (19)</button>
+      <button type="button" class="gal-chap" data-cat="Dining">Dining (6)</button>
+      <button type="button" class="gal-chap" data-cat="Kitchen">Kitchen (8)</button>
+      <button type="button" class="gal-chap" data-cat="Bedroom">Bedroom (14)</button>
+      <button type="button" class="gal-chap" data-cat="Bathroom">Bathroom (17)</button>
+      <button type="button" class="gal-chap" data-cat="Hallway">Hallway (13)</button>
+      <button type="button" class="gal-chap" data-cat="Pool">Pool (4)</button>
+      <button type="button" class="gal-chap" data-cat="Construction">Construction (21)</button>
+      </div>
+      <div class="gal-stage">
+        <button type="button" class="gal-arrow gal-prev" aria-label="Previous photo">&#8249;</button>
+        <img class="gal-photo" src="images/gal-736-5.jpg" alt="Front exterior of the home at 736 Harris Rd">
+        <button type="button" class="gal-arrow gal-next" aria-label="Next photo">&#8250;</button>
+      </div>
+      <div class="gal-meta"><span class="gal-chapter">Exterior</span><span class="gal-counter">1 / 110</span></div>
+      <div class="gal-thumbs">
+      <button type="button" class="gal-thumb on" data-i="0" data-full="images/gal-736-5.jpg" data-alt="Front exterior of the home at 736 Harris Rd" data-cat="Exterior" aria-label="Photo 1"><img src="images/gal-736-5.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="1" data-full="images/gal-736-8.jpg" data-alt="Side exterior of the home at 736 Harris Rd with garage and stone stairs" data-cat="Exterior" aria-label="Photo 2"><img src="images/gal-736-8.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="2" data-full="images/gal-736-21.jpg" data-alt="736 Harris Rd, photo 21" data-cat="Exterior" aria-label="Photo 3"><img src="images/gal-736-21.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="3" data-full="images/gal-736-38.jpg" data-alt="736 Harris Rd, photo 38" data-cat="Exterior" aria-label="Photo 4"><img src="images/gal-736-38.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="4" data-full="images/gal-736-39.jpg" data-alt="736 Harris Rd, photo 39" data-cat="Exterior" aria-label="Photo 5"><img src="images/gal-736-39.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="5" data-full="images/gal-736-40.jpg" data-alt="736 Harris Rd, photo 40" data-cat="Exterior" aria-label="Photo 6"><img src="images/gal-736-40.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="6" data-full="images/gal-736-88.jpg" data-alt="736 Harris Rd, photo 88" data-cat="Exterior" aria-label="Photo 7"><img src="images/gal-736-88.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="7" data-full="images/gal-736-109.jpg" data-alt="736 Harris Rd, photo 109" data-cat="Exterior" aria-label="Photo 8"><img src="images/gal-736-109.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="8" data-full="images/gal-736-11.jpg" data-alt="Living room at 736 Harris Rd with white sofas and picture windows" data-cat="Living" aria-label="Photo 9"><img src="images/gal-736-11.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="9" data-full="images/gal-736-12.jpg" data-alt="Sitting room at 736 Harris Rd" data-cat="Living" aria-label="Photo 10"><img src="images/gal-736-12.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="10" data-full="images/gal-736-13.jpg" data-alt="Upper living room at 736 Harris Rd" data-cat="Living" aria-label="Photo 11"><img src="images/gal-736-13.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="11" data-full="images/gal-736-15.jpg" data-alt="Entry hall and staircase at 736 Harris Rd" data-cat="Living" aria-label="Photo 12"><img src="images/gal-736-15.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="12" data-full="images/gal-736-22.jpg" data-alt="736 Harris Rd, photo 22" data-cat="Living" aria-label="Photo 13"><img src="images/gal-736-22.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="13" data-full="images/gal-736-23.jpg" data-alt="736 Harris Rd, photo 23" data-cat="Living" aria-label="Photo 14"><img src="images/gal-736-23.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="14" data-full="images/gal-736-31.jpg" data-alt="736 Harris Rd, photo 31" data-cat="Living" aria-label="Photo 15"><img src="images/gal-736-31.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="15" data-full="images/gal-736-32.jpg" data-alt="736 Harris Rd, photo 32" data-cat="Living" aria-label="Photo 16"><img src="images/gal-736-32.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="16" data-full="images/gal-736-34.jpg" data-alt="736 Harris Rd, photo 34" data-cat="Living" aria-label="Photo 17"><img src="images/gal-736-34.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="17" data-full="images/gal-736-42.jpg" data-alt="736 Harris Rd, photo 42" data-cat="Living" aria-label="Photo 18"><img src="images/gal-736-42.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="18" data-full="images/gal-736-45.jpg" data-alt="736 Harris Rd, photo 45" data-cat="Living" aria-label="Photo 19"><img src="images/gal-736-45.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="19" data-full="images/gal-736-46.jpg" data-alt="736 Harris Rd, photo 46" data-cat="Living" aria-label="Photo 20"><img src="images/gal-736-46.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="20" data-full="images/gal-736-55.jpg" data-alt="736 Harris Rd, photo 55" data-cat="Living" aria-label="Photo 21"><img src="images/gal-736-55.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="21" data-full="images/gal-736-56.jpg" data-alt="736 Harris Rd, photo 56" data-cat="Living" aria-label="Photo 22"><img src="images/gal-736-56.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="22" data-full="images/gal-736-72.jpg" data-alt="736 Harris Rd, photo 72" data-cat="Living" aria-label="Photo 23"><img src="images/gal-736-72.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="23" data-full="images/gal-736-73.jpg" data-alt="736 Harris Rd, photo 73" data-cat="Living" aria-label="Photo 24"><img src="images/gal-736-73.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="24" data-full="images/gal-736-74.jpg" data-alt="736 Harris Rd, photo 74" data-cat="Living" aria-label="Photo 25"><img src="images/gal-736-74.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="25" data-full="images/gal-736-75.jpg" data-alt="736 Harris Rd, photo 75" data-cat="Living" aria-label="Photo 26"><img src="images/gal-736-75.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="26" data-full="images/gal-736-82.jpg" data-alt="736 Harris Rd, photo 82" data-cat="Living" aria-label="Photo 27"><img src="images/gal-736-82.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="27" data-full="images/gal-736-14.jpg" data-alt="Dining room at 736 Harris Rd with a long table" data-cat="Dining" aria-label="Photo 28"><img src="images/gal-736-14.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="28" data-full="images/gal-736-29.jpg" data-alt="736 Harris Rd, photo 29" data-cat="Dining" aria-label="Photo 29"><img src="images/gal-736-29.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="29" data-full="images/gal-736-33.jpg" data-alt="736 Harris Rd, photo 33" data-cat="Dining" aria-label="Photo 30"><img src="images/gal-736-33.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="30" data-full="images/gal-736-47.jpg" data-alt="736 Harris Rd, photo 47" data-cat="Dining" aria-label="Photo 31"><img src="images/gal-736-47.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="31" data-full="images/gal-736-48.jpg" data-alt="736 Harris Rd, photo 48" data-cat="Dining" aria-label="Photo 32"><img src="images/gal-736-48.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="32" data-full="images/gal-736-53.jpg" data-alt="736 Harris Rd, photo 53" data-cat="Dining" aria-label="Photo 33"><img src="images/gal-736-53.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="33" data-full="images/gal-736-3.jpg" data-alt="Open kitchen at 736 Harris Rd" data-cat="Kitchen" aria-label="Photo 34"><img src="images/gal-736-3.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="34" data-full="images/gal-736-9.jpg" data-alt="Kitchen island at 736 Harris Rd with bar stools" data-cat="Kitchen" aria-label="Photo 35"><img src="images/gal-736-9.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="35" data-full="images/gal-736-10.jpg" data-alt="Open kitchen and dining room at 736 Harris Rd" data-cat="Kitchen" aria-label="Photo 36"><img src="images/gal-736-10.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="36" data-full="images/gal-736-25.jpg" data-alt="736 Harris Rd, photo 25" data-cat="Kitchen" aria-label="Photo 37"><img src="images/gal-736-25.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="37" data-full="images/gal-736-27.jpg" data-alt="736 Harris Rd, photo 27" data-cat="Kitchen" aria-label="Photo 38"><img src="images/gal-736-27.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="38" data-full="images/gal-736-43.jpg" data-alt="736 Harris Rd, photo 43" data-cat="Kitchen" aria-label="Photo 39"><img src="images/gal-736-43.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="39" data-full="images/gal-736-44.jpg" data-alt="736 Harris Rd, photo 44" data-cat="Kitchen" aria-label="Photo 40"><img src="images/gal-736-44.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="40" data-full="images/gal-736-49.jpg" data-alt="736 Harris Rd, photo 49" data-cat="Kitchen" aria-label="Photo 41"><img src="images/gal-736-49.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="41" data-full="images/gal-736-17.jpg" data-alt="Primary bedroom at 736 Harris Rd" data-cat="Bedroom" aria-label="Photo 42"><img src="images/gal-736-17.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="42" data-full="images/gal-736-18.jpg" data-alt="Twin bedroom at 736 Harris Rd" data-cat="Bedroom" aria-label="Photo 43"><img src="images/gal-736-18.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="43" data-full="images/gal-736-24.jpg" data-alt="736 Harris Rd, photo 24" data-cat="Bedroom" aria-label="Photo 44"><img src="images/gal-736-24.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="44" data-full="images/gal-736-36.jpg" data-alt="736 Harris Rd, photo 36" data-cat="Bedroom" aria-label="Photo 45"><img src="images/gal-736-36.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="45" data-full="images/gal-736-37.jpg" data-alt="736 Harris Rd, photo 37" data-cat="Bedroom" aria-label="Photo 46"><img src="images/gal-736-37.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="46" data-full="images/gal-736-59.jpg" data-alt="736 Harris Rd, photo 59" data-cat="Bedroom" aria-label="Photo 47"><img src="images/gal-736-59.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="47" data-full="images/gal-736-60.jpg" data-alt="736 Harris Rd, photo 60" data-cat="Bedroom" aria-label="Photo 48"><img src="images/gal-736-60.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="48" data-full="images/gal-736-61.jpg" data-alt="736 Harris Rd, photo 61" data-cat="Bedroom" aria-label="Photo 49"><img src="images/gal-736-61.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="49" data-full="images/gal-736-62.jpg" data-alt="736 Harris Rd, photo 62" data-cat="Bedroom" aria-label="Photo 50"><img src="images/gal-736-62.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="50" data-full="images/gal-736-63.jpg" data-alt="736 Harris Rd, photo 63" data-cat="Bedroom" aria-label="Photo 51"><img src="images/gal-736-63.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="51" data-full="images/gal-736-64.jpg" data-alt="736 Harris Rd, photo 64" data-cat="Bedroom" aria-label="Photo 52"><img src="images/gal-736-64.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="52" data-full="images/gal-736-80.jpg" data-alt="736 Harris Rd, photo 80" data-cat="Bedroom" aria-label="Photo 53"><img src="images/gal-736-80.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="53" data-full="images/gal-736-81.jpg" data-alt="736 Harris Rd, photo 81" data-cat="Bedroom" aria-label="Photo 54"><img src="images/gal-736-81.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="54" data-full="images/gal-736-86.jpg" data-alt="736 Harris Rd, photo 86" data-cat="Bedroom" aria-label="Photo 55"><img src="images/gal-736-86.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="55" data-full="images/gal-736-2.jpg" data-alt="Spa bathroom at 736 Harris Rd" data-cat="Bathroom" aria-label="Photo 56"><img src="images/gal-736-2.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="56" data-full="images/gal-736-19.jpg" data-alt="Powder room vanity at 736 Harris Rd" data-cat="Bathroom" aria-label="Photo 57"><img src="images/gal-736-19.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="57" data-full="images/gal-736-20.jpg" data-alt="Primary bathroom at 736 Harris Rd with soaking tub" data-cat="Bathroom" aria-label="Photo 58"><img src="images/gal-736-20.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="58" data-full="images/gal-736-28.jpg" data-alt="736 Harris Rd, photo 28" data-cat="Bathroom" aria-label="Photo 59"><img src="images/gal-736-28.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="59" data-full="images/gal-736-30.jpg" data-alt="736 Harris Rd, photo 30" data-cat="Bathroom" aria-label="Photo 60"><img src="images/gal-736-30.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="60" data-full="images/gal-736-35.jpg" data-alt="736 Harris Rd, photo 35" data-cat="Bathroom" aria-label="Photo 61"><img src="images/gal-736-35.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="61" data-full="images/gal-736-41.jpg" data-alt="736 Harris Rd, photo 41" data-cat="Bathroom" aria-label="Photo 62"><img src="images/gal-736-41.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="62" data-full="images/gal-736-54.jpg" data-alt="736 Harris Rd, photo 54" data-cat="Bathroom" aria-label="Photo 63"><img src="images/gal-736-54.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="63" data-full="images/gal-736-65.jpg" data-alt="736 Harris Rd, photo 65" data-cat="Bathroom" aria-label="Photo 64"><img src="images/gal-736-65.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="64" data-full="images/gal-736-70.jpg" data-alt="736 Harris Rd, photo 70" data-cat="Bathroom" aria-label="Photo 65"><img src="images/gal-736-70.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="65" data-full="images/gal-736-76.jpg" data-alt="736 Harris Rd, photo 76" data-cat="Bathroom" aria-label="Photo 66"><img src="images/gal-736-76.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="66" data-full="images/gal-736-77.jpg" data-alt="736 Harris Rd, photo 77" data-cat="Bathroom" aria-label="Photo 67"><img src="images/gal-736-77.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="67" data-full="images/gal-736-78.jpg" data-alt="736 Harris Rd, photo 78" data-cat="Bathroom" aria-label="Photo 68"><img src="images/gal-736-78.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="68" data-full="images/gal-736-79.jpg" data-alt="736 Harris Rd, photo 79" data-cat="Bathroom" aria-label="Photo 69"><img src="images/gal-736-79.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="69" data-full="images/gal-736-83.jpg" data-alt="736 Harris Rd, photo 83" data-cat="Bathroom" aria-label="Photo 70"><img src="images/gal-736-83.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="70" data-full="images/gal-736-84.jpg" data-alt="736 Harris Rd, photo 84" data-cat="Bathroom" aria-label="Photo 71"><img src="images/gal-736-84.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="71" data-full="images/gal-736-85.jpg" data-alt="736 Harris Rd, photo 85" data-cat="Bathroom" aria-label="Photo 72"><img src="images/gal-736-85.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="72" data-full="images/gal-736-16.jpg" data-alt="Upper landing at 736 Harris Rd" data-cat="Hallway" aria-label="Photo 73"><img src="images/gal-736-16.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="73" data-full="images/gal-736-26.jpg" data-alt="736 Harris Rd, photo 26" data-cat="Hallway" aria-label="Photo 74"><img src="images/gal-736-26.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="74" data-full="images/gal-736-50.jpg" data-alt="736 Harris Rd, photo 50" data-cat="Hallway" aria-label="Photo 75"><img src="images/gal-736-50.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="75" data-full="images/gal-736-51.jpg" data-alt="736 Harris Rd, photo 51" data-cat="Hallway" aria-label="Photo 76"><img src="images/gal-736-51.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="76" data-full="images/gal-736-52.jpg" data-alt="736 Harris Rd, photo 52" data-cat="Hallway" aria-label="Photo 77"><img src="images/gal-736-52.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="77" data-full="images/gal-736-57.jpg" data-alt="736 Harris Rd, photo 57" data-cat="Hallway" aria-label="Photo 78"><img src="images/gal-736-57.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="78" data-full="images/gal-736-58.jpg" data-alt="736 Harris Rd, photo 58" data-cat="Hallway" aria-label="Photo 79"><img src="images/gal-736-58.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="79" data-full="images/gal-736-66.jpg" data-alt="736 Harris Rd, photo 66" data-cat="Hallway" aria-label="Photo 80"><img src="images/gal-736-66.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="80" data-full="images/gal-736-67.jpg" data-alt="736 Harris Rd, photo 67" data-cat="Hallway" aria-label="Photo 81"><img src="images/gal-736-67.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="81" data-full="images/gal-736-68.jpg" data-alt="736 Harris Rd, photo 68" data-cat="Hallway" aria-label="Photo 82"><img src="images/gal-736-68.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="82" data-full="images/gal-736-69.jpg" data-alt="736 Harris Rd, photo 69" data-cat="Hallway" aria-label="Photo 83"><img src="images/gal-736-69.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="83" data-full="images/gal-736-71.jpg" data-alt="736 Harris Rd, photo 71" data-cat="Hallway" aria-label="Photo 84"><img src="images/gal-736-71.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="84" data-full="images/gal-736-87.jpg" data-alt="736 Harris Rd, photo 87" data-cat="Hallway" aria-label="Photo 85"><img src="images/gal-736-87.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="85" data-full="images/gal-736-1.jpg" data-alt="Backyard pool at 736 Harris Rd" data-cat="Pool" aria-label="Photo 86"><img src="images/gal-736-1.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="86" data-full="images/gal-736-4.jpg" data-alt="Backyard pool with red lounge chairs at 736 Harris Rd" data-cat="Pool" aria-label="Photo 87"><img src="images/gal-736-4.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="87" data-full="images/gal-736-6.jpg" data-alt="Backyard pool and pool house at 736 Harris Rd" data-cat="Pool" aria-label="Photo 88"><img src="images/gal-736-6.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="88" data-full="images/gal-736-7.jpg" data-alt="Backyard pool at 736 Harris Rd, viewed from the patio" data-cat="Pool" aria-label="Photo 89"><img src="images/gal-736-7.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="89" data-full="images/gal-736-89.jpg" data-alt="736 Harris Rd, photo 89" data-cat="Construction" aria-label="Photo 90"><img src="images/gal-736-89.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="90" data-full="images/gal-736-90.jpg" data-alt="736 Harris Rd, photo 90" data-cat="Construction" aria-label="Photo 91"><img src="images/gal-736-90.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="91" data-full="images/gal-736-91.jpg" data-alt="736 Harris Rd, photo 91" data-cat="Construction" aria-label="Photo 92"><img src="images/gal-736-91.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="92" data-full="images/gal-736-92.jpg" data-alt="736 Harris Rd, photo 92" data-cat="Construction" aria-label="Photo 93"><img src="images/gal-736-92.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="93" data-full="images/gal-736-93.jpg" data-alt="736 Harris Rd, photo 93" data-cat="Construction" aria-label="Photo 94"><img src="images/gal-736-93.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="94" data-full="images/gal-736-94.jpg" data-alt="736 Harris Rd, photo 94" data-cat="Construction" aria-label="Photo 95"><img src="images/gal-736-94.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="95" data-full="images/gal-736-95.jpg" data-alt="736 Harris Rd, photo 95" data-cat="Construction" aria-label="Photo 96"><img src="images/gal-736-95.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="96" data-full="images/gal-736-96.jpg" data-alt="736 Harris Rd, photo 96" data-cat="Construction" aria-label="Photo 97"><img src="images/gal-736-96.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="97" data-full="images/gal-736-97.jpg" data-alt="736 Harris Rd, photo 97" data-cat="Construction" aria-label="Photo 98"><img src="images/gal-736-97.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="98" data-full="images/gal-736-98.jpg" data-alt="736 Harris Rd, photo 98" data-cat="Construction" aria-label="Photo 99"><img src="images/gal-736-98.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="99" data-full="images/gal-736-99.jpg" data-alt="736 Harris Rd, photo 99" data-cat="Construction" aria-label="Photo 100"><img src="images/gal-736-99.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="100" data-full="images/gal-736-100.jpg" data-alt="736 Harris Rd, photo 100" data-cat="Construction" aria-label="Photo 101"><img src="images/gal-736-100.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="101" data-full="images/gal-736-101.jpg" data-alt="736 Harris Rd, photo 101" data-cat="Construction" aria-label="Photo 102"><img src="images/gal-736-101.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="102" data-full="images/gal-736-102.jpg" data-alt="736 Harris Rd, photo 102" data-cat="Construction" aria-label="Photo 103"><img src="images/gal-736-102.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="103" data-full="images/gal-736-103.jpg" data-alt="736 Harris Rd, photo 103" data-cat="Construction" aria-label="Photo 104"><img src="images/gal-736-103.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="104" data-full="images/gal-736-104.jpg" data-alt="736 Harris Rd, photo 104" data-cat="Construction" aria-label="Photo 105"><img src="images/gal-736-104.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="105" data-full="images/gal-736-105.jpg" data-alt="736 Harris Rd, photo 105" data-cat="Construction" aria-label="Photo 106"><img src="images/gal-736-105.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="106" data-full="images/gal-736-106.jpg" data-alt="736 Harris Rd, photo 106" data-cat="Construction" aria-label="Photo 107"><img src="images/gal-736-106.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="107" data-full="images/gal-736-107.jpg" data-alt="736 Harris Rd, photo 107" data-cat="Construction" aria-label="Photo 108"><img src="images/gal-736-107.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="108" data-full="images/gal-736-108.jpg" data-alt="736 Harris Rd, photo 108" data-cat="Construction" aria-label="Photo 109"><img src="images/gal-736-108.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="109" data-full="images/gal-736-110.jpg" data-alt="736 Harris Rd, photo 110" data-cat="Construction" aria-label="Photo 110"><img src="images/gal-736-110.jpg" alt="" loading="lazy"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -226,47 +275,64 @@
     <h2>1268 Old Route 17</h2>
     <p class="loc">1268 Old Rte 17</p>
     <p class="desc">Custom home build on Old Route 17, designed and built by Corestone end to end.</p>
-    <div class="gal-grid">
-      <img src="images/gal-1268-1.jpg" alt="Kitchen island at 1268 Old Route 17" loading="lazy">
-      <img src="images/gal-1268-2.jpg" alt="Kitchen at 1268 Old Route 17" loading="lazy">
-      <img src="images/gal-1268-3.jpg" alt="Bedroom at 1268 Old Route 17" loading="lazy">
-      <img src="images/gal-1268-4.jpg" alt="1268 Old Route 17, photo 4" loading="lazy">
-      <img src="images/gal-1268-5.jpg" alt="1268 Old Route 17, photo 5" loading="lazy">
-      <img src="images/gal-1268-6.jpg" alt="1268 Old Route 17, photo 6" loading="lazy">
-      <img src="images/gal-1268-7.jpg" alt="1268 Old Route 17, photo 7" loading="lazy">
-      <img src="images/gal-1268-8.jpg" alt="1268 Old Route 17, photo 8" loading="lazy">
-      <img src="images/gal-1268-9.jpg" alt="1268 Old Route 17, photo 9" loading="lazy">
-      <img src="images/gal-1268-10.jpg" alt="1268 Old Route 17, photo 10" loading="lazy">
-      <img src="images/gal-1268-11.jpg" alt="1268 Old Route 17, photo 11" loading="lazy">
-      <img src="images/gal-1268-12.jpg" alt="1268 Old Route 17, photo 12" loading="lazy">
-      <img src="images/gal-1268-13.jpg" alt="1268 Old Route 17, photo 13" loading="lazy">
-      <img src="images/gal-1268-14.jpg" alt="1268 Old Route 17, photo 14" loading="lazy">
-      <img src="images/gal-1268-15.jpg" alt="1268 Old Route 17, photo 15" loading="lazy">
-      <img src="images/gal-1268-16.jpg" alt="1268 Old Route 17, photo 16" loading="lazy">
-      <img src="images/gal-1268-17.jpg" alt="1268 Old Route 17, photo 17" loading="lazy">
-      <img src="images/gal-1268-18.jpg" alt="1268 Old Route 17, photo 18" loading="lazy">
-      <img src="images/gal-1268-19.jpg" alt="1268 Old Route 17, photo 19" loading="lazy">
-      <img src="images/gal-1268-20.jpg" alt="1268 Old Route 17, photo 20" loading="lazy">
-      <img src="images/gal-1268-21.jpg" alt="1268 Old Route 17, photo 21" loading="lazy">
-      <img src="images/gal-1268-22.jpg" alt="1268 Old Route 17, photo 22" loading="lazy">
-      <img src="images/gal-1268-23.jpg" alt="1268 Old Route 17, photo 23" loading="lazy">
-      <img src="images/gal-1268-24.jpg" alt="1268 Old Route 17, photo 24" loading="lazy">
-      <img src="images/gal-1268-25.jpg" alt="1268 Old Route 17, photo 25" loading="lazy">
-      <img src="images/gal-1268-26.jpg" alt="1268 Old Route 17, photo 26" loading="lazy">
-      <img src="images/gal-1268-27.jpg" alt="1268 Old Route 17, photo 27" loading="lazy">
-      <img src="images/gal-1268-28.jpg" alt="1268 Old Route 17, photo 28" loading="lazy">
-      <img src="images/gal-1268-29.jpg" alt="1268 Old Route 17, photo 29" loading="lazy">
-      <img src="images/gal-1268-30.jpg" alt="1268 Old Route 17, photo 30" loading="lazy">
-      <img src="images/gal-1268-31.jpg" alt="1268 Old Route 17, photo 31" loading="lazy">
-      <img src="images/gal-1268-32.jpg" alt="1268 Old Route 17, photo 32" loading="lazy">
-      <img src="images/gal-1268-33.jpg" alt="1268 Old Route 17, photo 33" loading="lazy">
-      <img src="images/gal-1268-34.jpg" alt="1268 Old Route 17, photo 34" loading="lazy">
-      <img src="images/gal-1268-35.jpg" alt="1268 Old Route 17, photo 35" loading="lazy">
-      <img src="images/gal-1268-36.jpg" alt="1268 Old Route 17, photo 36" loading="lazy">
-      <img src="images/gal-1268-37.jpg" alt="1268 Old Route 17, photo 37" loading="lazy">
-      <img src="images/gal-1268-38.jpg" alt="1268 Old Route 17, photo 38" loading="lazy">
-      <img src="images/gal-1268-39.jpg" alt="1268 Old Route 17, photo 39" loading="lazy">
-      <img src="images/gal-1268-40.jpg" alt="1268 Old Route 17, photo 40" loading="lazy">
+    <div class="gal-carousel" data-total="40">
+      <div class="gal-chapters">
+      <button type="button" class="gal-chap on" data-cat="Exterior">Exterior (9)</button>
+      <button type="button" class="gal-chap" data-cat="Living">Living (1)</button>
+      <button type="button" class="gal-chap" data-cat="Kitchen">Kitchen (6)</button>
+      <button type="button" class="gal-chap" data-cat="Bedroom">Bedroom (7)</button>
+      <button type="button" class="gal-chap" data-cat="Bathroom">Bathroom (3)</button>
+      <button type="button" class="gal-chap" data-cat="Hallway">Hallway (1)</button>
+      <button type="button" class="gal-chap" data-cat="Construction">Construction (13)</button>
+      </div>
+      <div class="gal-stage">
+        <button type="button" class="gal-arrow gal-prev" aria-label="Previous photo">&#8249;</button>
+        <img class="gal-photo" src="images/gal-1268-14.jpg" alt="1268 Old Route 17, photo 14">
+        <button type="button" class="gal-arrow gal-next" aria-label="Next photo">&#8250;</button>
+      </div>
+      <div class="gal-meta"><span class="gal-chapter">Exterior</span><span class="gal-counter">1 / 40</span></div>
+      <div class="gal-thumbs">
+      <button type="button" class="gal-thumb on" data-i="0" data-full="images/gal-1268-14.jpg" data-alt="1268 Old Route 17, photo 14" data-cat="Exterior" aria-label="Photo 1"><img src="images/gal-1268-14.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="1" data-full="images/gal-1268-20.jpg" data-alt="1268 Old Route 17, photo 20" data-cat="Exterior" aria-label="Photo 2"><img src="images/gal-1268-20.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="2" data-full="images/gal-1268-21.jpg" data-alt="1268 Old Route 17, photo 21" data-cat="Exterior" aria-label="Photo 3"><img src="images/gal-1268-21.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="3" data-full="images/gal-1268-22.jpg" data-alt="1268 Old Route 17, photo 22" data-cat="Exterior" aria-label="Photo 4"><img src="images/gal-1268-22.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="4" data-full="images/gal-1268-23.jpg" data-alt="1268 Old Route 17, photo 23" data-cat="Exterior" aria-label="Photo 5"><img src="images/gal-1268-23.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="5" data-full="images/gal-1268-24.jpg" data-alt="1268 Old Route 17, photo 24" data-cat="Exterior" aria-label="Photo 6"><img src="images/gal-1268-24.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="6" data-full="images/gal-1268-30.jpg" data-alt="1268 Old Route 17, photo 30" data-cat="Exterior" aria-label="Photo 7"><img src="images/gal-1268-30.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="7" data-full="images/gal-1268-33.jpg" data-alt="1268 Old Route 17, photo 33" data-cat="Exterior" aria-label="Photo 8"><img src="images/gal-1268-33.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="8" data-full="images/gal-1268-35.jpg" data-alt="1268 Old Route 17, photo 35" data-cat="Exterior" aria-label="Photo 9"><img src="images/gal-1268-35.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="9" data-full="images/gal-1268-12.jpg" data-alt="1268 Old Route 17, photo 12" data-cat="Living" aria-label="Photo 10"><img src="images/gal-1268-12.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="10" data-full="images/gal-1268-1.jpg" data-alt="Kitchen island at 1268 Old Route 17" data-cat="Kitchen" aria-label="Photo 11"><img src="images/gal-1268-1.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="11" data-full="images/gal-1268-2.jpg" data-alt="Kitchen at 1268 Old Route 17" data-cat="Kitchen" aria-label="Photo 12"><img src="images/gal-1268-2.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="12" data-full="images/gal-1268-5.jpg" data-alt="1268 Old Route 17, photo 5" data-cat="Kitchen" aria-label="Photo 13"><img src="images/gal-1268-5.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="13" data-full="images/gal-1268-9.jpg" data-alt="1268 Old Route 17, photo 9" data-cat="Kitchen" aria-label="Photo 14"><img src="images/gal-1268-9.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="14" data-full="images/gal-1268-13.jpg" data-alt="1268 Old Route 17, photo 13" data-cat="Kitchen" aria-label="Photo 15"><img src="images/gal-1268-13.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="15" data-full="images/gal-1268-16.jpg" data-alt="1268 Old Route 17, photo 16" data-cat="Kitchen" aria-label="Photo 16"><img src="images/gal-1268-16.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="16" data-full="images/gal-1268-3.jpg" data-alt="Bedroom at 1268 Old Route 17" data-cat="Bedroom" aria-label="Photo 17"><img src="images/gal-1268-3.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="17" data-full="images/gal-1268-4.jpg" data-alt="1268 Old Route 17, photo 4" data-cat="Bedroom" aria-label="Photo 18"><img src="images/gal-1268-4.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="18" data-full="images/gal-1268-7.jpg" data-alt="1268 Old Route 17, photo 7" data-cat="Bedroom" aria-label="Photo 19"><img src="images/gal-1268-7.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="19" data-full="images/gal-1268-10.jpg" data-alt="1268 Old Route 17, photo 10" data-cat="Bedroom" aria-label="Photo 20"><img src="images/gal-1268-10.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="20" data-full="images/gal-1268-11.jpg" data-alt="1268 Old Route 17, photo 11" data-cat="Bedroom" aria-label="Photo 21"><img src="images/gal-1268-11.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="21" data-full="images/gal-1268-15.jpg" data-alt="1268 Old Route 17, photo 15" data-cat="Bedroom" aria-label="Photo 22"><img src="images/gal-1268-15.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="22" data-full="images/gal-1268-18.jpg" data-alt="1268 Old Route 17, photo 18" data-cat="Bedroom" aria-label="Photo 23"><img src="images/gal-1268-18.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="23" data-full="images/gal-1268-8.jpg" data-alt="1268 Old Route 17, photo 8" data-cat="Bathroom" aria-label="Photo 24"><img src="images/gal-1268-8.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="24" data-full="images/gal-1268-17.jpg" data-alt="1268 Old Route 17, photo 17" data-cat="Bathroom" aria-label="Photo 25"><img src="images/gal-1268-17.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="25" data-full="images/gal-1268-19.jpg" data-alt="1268 Old Route 17, photo 19" data-cat="Bathroom" aria-label="Photo 26"><img src="images/gal-1268-19.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="26" data-full="images/gal-1268-6.jpg" data-alt="1268 Old Route 17, photo 6" data-cat="Hallway" aria-label="Photo 27"><img src="images/gal-1268-6.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="27" data-full="images/gal-1268-25.jpg" data-alt="1268 Old Route 17, photo 25" data-cat="Construction" aria-label="Photo 28"><img src="images/gal-1268-25.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="28" data-full="images/gal-1268-26.jpg" data-alt="1268 Old Route 17, photo 26" data-cat="Construction" aria-label="Photo 29"><img src="images/gal-1268-26.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="29" data-full="images/gal-1268-27.jpg" data-alt="1268 Old Route 17, photo 27" data-cat="Construction" aria-label="Photo 30"><img src="images/gal-1268-27.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="30" data-full="images/gal-1268-28.jpg" data-alt="1268 Old Route 17, photo 28" data-cat="Construction" aria-label="Photo 31"><img src="images/gal-1268-28.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="31" data-full="images/gal-1268-29.jpg" data-alt="1268 Old Route 17, photo 29" data-cat="Construction" aria-label="Photo 32"><img src="images/gal-1268-29.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="32" data-full="images/gal-1268-31.jpg" data-alt="1268 Old Route 17, photo 31" data-cat="Construction" aria-label="Photo 33"><img src="images/gal-1268-31.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="33" data-full="images/gal-1268-32.jpg" data-alt="1268 Old Route 17, photo 32" data-cat="Construction" aria-label="Photo 34"><img src="images/gal-1268-32.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="34" data-full="images/gal-1268-34.jpg" data-alt="1268 Old Route 17, photo 34" data-cat="Construction" aria-label="Photo 35"><img src="images/gal-1268-34.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="35" data-full="images/gal-1268-36.jpg" data-alt="1268 Old Route 17, photo 36" data-cat="Construction" aria-label="Photo 36"><img src="images/gal-1268-36.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="36" data-full="images/gal-1268-37.jpg" data-alt="1268 Old Route 17, photo 37" data-cat="Construction" aria-label="Photo 37"><img src="images/gal-1268-37.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="37" data-full="images/gal-1268-38.jpg" data-alt="1268 Old Route 17, photo 38" data-cat="Construction" aria-label="Photo 38"><img src="images/gal-1268-38.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="38" data-full="images/gal-1268-39.jpg" data-alt="1268 Old Route 17, photo 39" data-cat="Construction" aria-label="Photo 39"><img src="images/gal-1268-39.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="39" data-full="images/gal-1268-40.jpg" data-alt="1268 Old Route 17, photo 40" data-cat="Construction" aria-label="Photo 40"><img src="images/gal-1268-40.jpg" alt="" loading="lazy"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -277,32 +343,48 @@
     <h2>Modern Perfection Home</h2>
     <p class="loc">Spring Valley, NY</p>
     <p class="desc">A modern custom home finished to a high standard: glass gable living room, cove-lit dining, and marble throughout.</p>
-    <div class="gal-grid">
-      <img src="images/gal-perfection-1.jpg" alt="Dining room of the Modern Perfection home" loading="lazy">
-      <img src="images/gal-perfection-2.jpg" alt="Living room under a glass gable in the Modern Perfection home" loading="lazy">
-      <img src="images/gal-perfection-3.jpg" alt="Powder bath in the Modern Perfection home" loading="lazy">
-      <img src="images/gal-perfection-4.jpg" alt="Marble kitchen counter in the Modern Perfection home" loading="lazy">
-      <img src="images/gal-perfection-5.jpg" alt="Modern Perfection Home, photo 5" loading="lazy">
-      <img src="images/gal-perfection-6.jpg" alt="Modern Perfection Home, photo 6" loading="lazy">
-      <img src="images/gal-perfection-7.jpg" alt="Modern Perfection Home, photo 7" loading="lazy">
-      <img src="images/gal-perfection-8.jpg" alt="Modern Perfection Home, photo 8" loading="lazy">
-      <img src="images/gal-perfection-9.jpg" alt="Modern Perfection Home, photo 9" loading="lazy">
-      <img src="images/gal-perfection-10.jpg" alt="Modern Perfection Home, photo 10" loading="lazy">
-      <img src="images/gal-perfection-11.jpg" alt="Modern Perfection Home, photo 11" loading="lazy">
-      <img src="images/gal-perfection-12.jpg" alt="Modern Perfection Home, photo 12" loading="lazy">
-      <img src="images/gal-perfection-13.jpg" alt="Modern Perfection Home, photo 13" loading="lazy">
-      <img src="images/gal-perfection-14.jpg" alt="Modern Perfection Home, photo 14" loading="lazy">
-      <img src="images/gal-perfection-15.jpg" alt="Modern Perfection Home, photo 15" loading="lazy">
-      <img src="images/gal-perfection-16.jpg" alt="Modern Perfection Home, photo 16" loading="lazy">
-      <img src="images/gal-perfection-17.jpg" alt="Modern Perfection Home, photo 17" loading="lazy">
-      <img src="images/gal-perfection-18.jpg" alt="Modern Perfection Home, photo 18" loading="lazy">
-      <img src="images/gal-perfection-19.jpg" alt="Modern Perfection Home, photo 19" loading="lazy">
-      <img src="images/gal-perfection-20.jpg" alt="Modern Perfection Home, photo 20" loading="lazy">
-      <img src="images/gal-perfection-21.jpg" alt="Modern Perfection Home, photo 21" loading="lazy">
-      <img src="images/gal-perfection-22.jpg" alt="Modern Perfection Home, photo 22" loading="lazy">
-      <img src="images/gal-perfection-23.jpg" alt="Modern Perfection Home, photo 23" loading="lazy">
-      <img src="images/gal-perfection-24.jpg" alt="Modern Perfection Home, photo 24" loading="lazy">
-      <img src="images/gal-perfection-25.jpg" alt="Modern Perfection Home, photo 25" loading="lazy">
+    <div class="gal-carousel" data-total="25">
+      <div class="gal-chapters">
+      <button type="button" class="gal-chap on" data-cat="Living">Living (8)</button>
+      <button type="button" class="gal-chap" data-cat="Dining">Dining (1)</button>
+      <button type="button" class="gal-chap" data-cat="Kitchen">Kitchen (5)</button>
+      <button type="button" class="gal-chap" data-cat="Bedroom">Bedroom (3)</button>
+      <button type="button" class="gal-chap" data-cat="Bathroom">Bathroom (4)</button>
+      <button type="button" class="gal-chap" data-cat="Hallway">Hallway (4)</button>
+      </div>
+      <div class="gal-stage">
+        <button type="button" class="gal-arrow gal-prev" aria-label="Previous photo">&#8249;</button>
+        <img class="gal-photo" src="images/gal-perfection-2.jpg" alt="Living room under a glass gable in the Modern Perfection home">
+        <button type="button" class="gal-arrow gal-next" aria-label="Next photo">&#8250;</button>
+      </div>
+      <div class="gal-meta"><span class="gal-chapter">Living</span><span class="gal-counter">1 / 25</span></div>
+      <div class="gal-thumbs">
+      <button type="button" class="gal-thumb on" data-i="0" data-full="images/gal-perfection-2.jpg" data-alt="Living room under a glass gable in the Modern Perfection home" data-cat="Living" aria-label="Photo 1"><img src="images/gal-perfection-2.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="1" data-full="images/gal-perfection-9.jpg" data-alt="Modern Perfection Home, photo 9" data-cat="Living" aria-label="Photo 2"><img src="images/gal-perfection-9.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="2" data-full="images/gal-perfection-11.jpg" data-alt="Modern Perfection Home, photo 11" data-cat="Living" aria-label="Photo 3"><img src="images/gal-perfection-11.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="3" data-full="images/gal-perfection-12.jpg" data-alt="Modern Perfection Home, photo 12" data-cat="Living" aria-label="Photo 4"><img src="images/gal-perfection-12.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="4" data-full="images/gal-perfection-14.jpg" data-alt="Modern Perfection Home, photo 14" data-cat="Living" aria-label="Photo 5"><img src="images/gal-perfection-14.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="5" data-full="images/gal-perfection-17.jpg" data-alt="Modern Perfection Home, photo 17" data-cat="Living" aria-label="Photo 6"><img src="images/gal-perfection-17.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="6" data-full="images/gal-perfection-22.jpg" data-alt="Modern Perfection Home, photo 22" data-cat="Living" aria-label="Photo 7"><img src="images/gal-perfection-22.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="7" data-full="images/gal-perfection-25.jpg" data-alt="Modern Perfection Home, photo 25" data-cat="Living" aria-label="Photo 8"><img src="images/gal-perfection-25.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="8" data-full="images/gal-perfection-1.jpg" data-alt="Dining room of the Modern Perfection home" data-cat="Dining" aria-label="Photo 9"><img src="images/gal-perfection-1.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="9" data-full="images/gal-perfection-4.jpg" data-alt="Marble kitchen counter in the Modern Perfection home" data-cat="Kitchen" aria-label="Photo 10"><img src="images/gal-perfection-4.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="10" data-full="images/gal-perfection-6.jpg" data-alt="Modern Perfection Home, photo 6" data-cat="Kitchen" aria-label="Photo 11"><img src="images/gal-perfection-6.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="11" data-full="images/gal-perfection-8.jpg" data-alt="Modern Perfection Home, photo 8" data-cat="Kitchen" aria-label="Photo 12"><img src="images/gal-perfection-8.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="12" data-full="images/gal-perfection-13.jpg" data-alt="Modern Perfection Home, photo 13" data-cat="Kitchen" aria-label="Photo 13"><img src="images/gal-perfection-13.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="13" data-full="images/gal-perfection-16.jpg" data-alt="Modern Perfection Home, photo 16" data-cat="Kitchen" aria-label="Photo 14"><img src="images/gal-perfection-16.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="14" data-full="images/gal-perfection-20.jpg" data-alt="Modern Perfection Home, photo 20" data-cat="Bedroom" aria-label="Photo 15"><img src="images/gal-perfection-20.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="15" data-full="images/gal-perfection-21.jpg" data-alt="Modern Perfection Home, photo 21" data-cat="Bedroom" aria-label="Photo 16"><img src="images/gal-perfection-21.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="16" data-full="images/gal-perfection-23.jpg" data-alt="Modern Perfection Home, photo 23" data-cat="Bedroom" aria-label="Photo 17"><img src="images/gal-perfection-23.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="17" data-full="images/gal-perfection-3.jpg" data-alt="Powder bath in the Modern Perfection home" data-cat="Bathroom" aria-label="Photo 18"><img src="images/gal-perfection-3.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="18" data-full="images/gal-perfection-7.jpg" data-alt="Modern Perfection Home, photo 7" data-cat="Bathroom" aria-label="Photo 19"><img src="images/gal-perfection-7.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="19" data-full="images/gal-perfection-15.jpg" data-alt="Modern Perfection Home, photo 15" data-cat="Bathroom" aria-label="Photo 20"><img src="images/gal-perfection-15.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="20" data-full="images/gal-perfection-24.jpg" data-alt="Modern Perfection Home, photo 24" data-cat="Bathroom" aria-label="Photo 21"><img src="images/gal-perfection-24.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="21" data-full="images/gal-perfection-5.jpg" data-alt="Modern Perfection Home, photo 5" data-cat="Hallway" aria-label="Photo 22"><img src="images/gal-perfection-5.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="22" data-full="images/gal-perfection-10.jpg" data-alt="Modern Perfection Home, photo 10" data-cat="Hallway" aria-label="Photo 23"><img src="images/gal-perfection-10.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="23" data-full="images/gal-perfection-18.jpg" data-alt="Modern Perfection Home, photo 18" data-cat="Hallway" aria-label="Photo 24"><img src="images/gal-perfection-18.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="24" data-full="images/gal-perfection-19.jpg" data-alt="Modern Perfection Home, photo 19" data-cat="Hallway" aria-label="Photo 25"><img src="images/gal-perfection-19.jpg" alt="" loading="lazy"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -313,39 +395,54 @@
     <h2>Shely's Pizza Store</h2>
     <p class="loc">Route 59 · Monsey, NY</p>
     <p class="desc">A full restaurant build-out. Commercial work with the same crew, the same standard, and a business that could open on schedule.</p>
-    <div class="gal-grid">
-      <img src="images/gal-shelys-1.jpg" alt="Dining room of Shely's Pizza" loading="lazy">
-      <img src="images/gal-shelys-2.jpg" alt="Window seating at Shely's Pizza" loading="lazy">
-      <img src="images/gal-shelys-3.jpg" alt="Dining room at Shely's Pizza" loading="lazy">
-      <img src="images/gal-shelys-4.jpg" alt="Wall detail at Shely's Pizza" loading="lazy">
-      <img src="images/gal-shelys-5.jpg" alt="Shely's Pizza Store, photo 5" loading="lazy">
-      <img src="images/gal-shelys-6.jpg" alt="Shely's Pizza Store, photo 6" loading="lazy">
-      <img src="images/gal-shelys-7.jpg" alt="Shely's Pizza Store, photo 7" loading="lazy">
-      <img src="images/gal-shelys-8.jpg" alt="Shely's Pizza Store, photo 8" loading="lazy">
-      <img src="images/gal-shelys-9.jpg" alt="Shely's Pizza Store, photo 9" loading="lazy">
-      <img src="images/gal-shelys-10.jpg" alt="Shely's Pizza Store, photo 10" loading="lazy">
-      <img src="images/gal-shelys-11.jpg" alt="Shely's Pizza Store, photo 11" loading="lazy">
-      <img src="images/gal-shelys-12.jpg" alt="Shely's Pizza Store, photo 12" loading="lazy">
-      <img src="images/gal-shelys-13.jpg" alt="Shely's Pizza Store, photo 13" loading="lazy">
-      <img src="images/gal-shelys-14.jpg" alt="Shely's Pizza Store, photo 14" loading="lazy">
-      <img src="images/gal-shelys-15.jpg" alt="Shely's Pizza Store, photo 15" loading="lazy">
-      <img src="images/gal-shelys-16.jpg" alt="Shely's Pizza Store, photo 16" loading="lazy">
-      <img src="images/gal-shelys-17.jpg" alt="Shely's Pizza Store, photo 17" loading="lazy">
-      <img src="images/gal-shelys-18.jpg" alt="Shely's Pizza Store, photo 18" loading="lazy">
-      <img src="images/gal-shelys-19.jpg" alt="Shely's Pizza Store, photo 19" loading="lazy">
-      <img src="images/gal-shelys-20.jpg" alt="Shely's Pizza Store, photo 20" loading="lazy">
-      <img src="images/gal-shelys-21.jpg" alt="Shely's Pizza Store, photo 21" loading="lazy">
-      <img src="images/gal-shelys-22.jpg" alt="Shely's Pizza Store, photo 22" loading="lazy">
-      <img src="images/gal-shelys-23.jpg" alt="Shely's Pizza Store, photo 23" loading="lazy">
-      <img src="images/gal-shelys-24.jpg" alt="Shely's Pizza Store, photo 24" loading="lazy">
-      <img src="images/gal-shelys-25.jpg" alt="Shely's Pizza Store, photo 25" loading="lazy">
-      <img src="images/gal-shelys-26.jpg" alt="Shely's Pizza Store, photo 26" loading="lazy">
-      <img src="images/gal-shelys-27.jpg" alt="Shely's Pizza Store, photo 27" loading="lazy">
-      <img src="images/gal-shelys-28.jpg" alt="Shely's Pizza Store, photo 28" loading="lazy">
-      <img src="images/gal-shelys-29.jpg" alt="Shely's Pizza Store, photo 29" loading="lazy">
-      <img src="images/gal-shelys-30.jpg" alt="Shely's Pizza Store, photo 30" loading="lazy">
-      <img src="images/gal-shelys-31.jpg" alt="Shely's Pizza Store, photo 31" loading="lazy">
-      <img src="images/gal-shelys-32.jpg" alt="Shely's Pizza Store, photo 32" loading="lazy">
+    <div class="gal-carousel" data-total="32">
+      <div class="gal-chapters">
+      <button type="button" class="gal-chap on" data-cat="Exterior">Exterior (1)</button>
+      <button type="button" class="gal-chap" data-cat="Dining">Dining (8)</button>
+      <button type="button" class="gal-chap" data-cat="Counter">Counter (3)</button>
+      <button type="button" class="gal-chap" data-cat="Food">Food (8)</button>
+      <button type="button" class="gal-chap" data-cat="Construction">Construction (12)</button>
+      </div>
+      <div class="gal-stage">
+        <button type="button" class="gal-arrow gal-prev" aria-label="Previous photo">&#8249;</button>
+        <img class="gal-photo" src="images/gal-shelys-32.jpg" alt="Shely's Pizza Store, photo 32">
+        <button type="button" class="gal-arrow gal-next" aria-label="Next photo">&#8250;</button>
+      </div>
+      <div class="gal-meta"><span class="gal-chapter">Exterior</span><span class="gal-counter">1 / 32</span></div>
+      <div class="gal-thumbs">
+      <button type="button" class="gal-thumb on" data-i="0" data-full="images/gal-shelys-32.jpg" data-alt="Shely's Pizza Store, photo 32" data-cat="Exterior" aria-label="Photo 1"><img src="images/gal-shelys-32.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="1" data-full="images/gal-shelys-1.jpg" data-alt="Dining room of Shely's Pizza" data-cat="Dining" aria-label="Photo 2"><img src="images/gal-shelys-1.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="2" data-full="images/gal-shelys-2.jpg" data-alt="Window seating at Shely's Pizza" data-cat="Dining" aria-label="Photo 3"><img src="images/gal-shelys-2.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="3" data-full="images/gal-shelys-3.jpg" data-alt="Dining room at Shely's Pizza" data-cat="Dining" aria-label="Photo 4"><img src="images/gal-shelys-3.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="4" data-full="images/gal-shelys-4.jpg" data-alt="Wall detail at Shely's Pizza" data-cat="Dining" aria-label="Photo 5"><img src="images/gal-shelys-4.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="5" data-full="images/gal-shelys-5.jpg" data-alt="Shely's Pizza Store, photo 5" data-cat="Dining" aria-label="Photo 6"><img src="images/gal-shelys-5.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="6" data-full="images/gal-shelys-7.jpg" data-alt="Shely's Pizza Store, photo 7" data-cat="Dining" aria-label="Photo 7"><img src="images/gal-shelys-7.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="7" data-full="images/gal-shelys-8.jpg" data-alt="Shely's Pizza Store, photo 8" data-cat="Dining" aria-label="Photo 8"><img src="images/gal-shelys-8.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="8" data-full="images/gal-shelys-10.jpg" data-alt="Shely's Pizza Store, photo 10" data-cat="Dining" aria-label="Photo 9"><img src="images/gal-shelys-10.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="9" data-full="images/gal-shelys-12.jpg" data-alt="Shely's Pizza Store, photo 12" data-cat="Counter" aria-label="Photo 10"><img src="images/gal-shelys-12.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="10" data-full="images/gal-shelys-15.jpg" data-alt="Shely's Pizza Store, photo 15" data-cat="Counter" aria-label="Photo 11"><img src="images/gal-shelys-15.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="11" data-full="images/gal-shelys-16.jpg" data-alt="Shely's Pizza Store, photo 16" data-cat="Counter" aria-label="Photo 12"><img src="images/gal-shelys-16.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="12" data-full="images/gal-shelys-6.jpg" data-alt="Shely's Pizza Store, photo 6" data-cat="Food" aria-label="Photo 13"><img src="images/gal-shelys-6.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="13" data-full="images/gal-shelys-9.jpg" data-alt="Shely's Pizza Store, photo 9" data-cat="Food" aria-label="Photo 14"><img src="images/gal-shelys-9.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="14" data-full="images/gal-shelys-11.jpg" data-alt="Shely's Pizza Store, photo 11" data-cat="Food" aria-label="Photo 15"><img src="images/gal-shelys-11.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="15" data-full="images/gal-shelys-13.jpg" data-alt="Shely's Pizza Store, photo 13" data-cat="Food" aria-label="Photo 16"><img src="images/gal-shelys-13.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="16" data-full="images/gal-shelys-14.jpg" data-alt="Shely's Pizza Store, photo 14" data-cat="Food" aria-label="Photo 17"><img src="images/gal-shelys-14.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="17" data-full="images/gal-shelys-17.jpg" data-alt="Shely's Pizza Store, photo 17" data-cat="Food" aria-label="Photo 18"><img src="images/gal-shelys-17.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="18" data-full="images/gal-shelys-18.jpg" data-alt="Shely's Pizza Store, photo 18" data-cat="Food" aria-label="Photo 19"><img src="images/gal-shelys-18.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="19" data-full="images/gal-shelys-20.jpg" data-alt="Shely's Pizza Store, photo 20" data-cat="Food" aria-label="Photo 20"><img src="images/gal-shelys-20.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="20" data-full="images/gal-shelys-19.jpg" data-alt="Shely's Pizza Store, photo 19" data-cat="Construction" aria-label="Photo 21"><img src="images/gal-shelys-19.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="21" data-full="images/gal-shelys-21.jpg" data-alt="Shely's Pizza Store, photo 21" data-cat="Construction" aria-label="Photo 22"><img src="images/gal-shelys-21.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="22" data-full="images/gal-shelys-22.jpg" data-alt="Shely's Pizza Store, photo 22" data-cat="Construction" aria-label="Photo 23"><img src="images/gal-shelys-22.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="23" data-full="images/gal-shelys-23.jpg" data-alt="Shely's Pizza Store, photo 23" data-cat="Construction" aria-label="Photo 24"><img src="images/gal-shelys-23.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="24" data-full="images/gal-shelys-24.jpg" data-alt="Shely's Pizza Store, photo 24" data-cat="Construction" aria-label="Photo 25"><img src="images/gal-shelys-24.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="25" data-full="images/gal-shelys-25.jpg" data-alt="Shely's Pizza Store, photo 25" data-cat="Construction" aria-label="Photo 26"><img src="images/gal-shelys-25.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="26" data-full="images/gal-shelys-26.jpg" data-alt="Shely's Pizza Store, photo 26" data-cat="Construction" aria-label="Photo 27"><img src="images/gal-shelys-26.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="27" data-full="images/gal-shelys-27.jpg" data-alt="Shely's Pizza Store, photo 27" data-cat="Construction" aria-label="Photo 28"><img src="images/gal-shelys-27.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="28" data-full="images/gal-shelys-28.jpg" data-alt="Shely's Pizza Store, photo 28" data-cat="Construction" aria-label="Photo 29"><img src="images/gal-shelys-28.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="29" data-full="images/gal-shelys-29.jpg" data-alt="Shely's Pizza Store, photo 29" data-cat="Construction" aria-label="Photo 30"><img src="images/gal-shelys-29.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="30" data-full="images/gal-shelys-30.jpg" data-alt="Shely's Pizza Store, photo 30" data-cat="Construction" aria-label="Photo 31"><img src="images/gal-shelys-30.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="31" data-full="images/gal-shelys-31.jpg" data-alt="Shely's Pizza Store, photo 31" data-cat="Construction" aria-label="Photo 32"><img src="images/gal-shelys-31.jpg" alt="" loading="lazy"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -356,35 +453,50 @@
     <h2>Teiberg Pizza Store</h2>
     <p class="loc">Swan Lake, NY</p>
     <p class="desc">A branded pizzeria build-out in Swan Lake: counter, kitchen line, and dining room ready for opening day.</p>
-    <div class="gal-grid">
-      <img src="images/gal-teiberg-1.jpg" alt="Pizzeria counter at Teiberg Pizza" loading="lazy">
-      <img src="images/gal-teiberg-2.jpg" alt="Counter detail at Teiberg Pizza" loading="lazy">
-      <img src="images/gal-teiberg-3.jpg" alt="Dining room at Teiberg Pizza" loading="lazy">
-      <img src="images/gal-teiberg-4.jpg" alt="Teiberg Pizza Store, photo 4" loading="lazy">
-      <img src="images/gal-teiberg-5.jpg" alt="Teiberg Pizza Store, photo 5" loading="lazy">
-      <img src="images/gal-teiberg-6.jpg" alt="Teiberg Pizza Store, photo 6" loading="lazy">
-      <img src="images/gal-teiberg-7.jpg" alt="Teiberg Pizza Store, photo 7" loading="lazy">
-      <img src="images/gal-teiberg-8.jpg" alt="Teiberg Pizza Store, photo 8" loading="lazy">
-      <img src="images/gal-teiberg-9.jpg" alt="Teiberg Pizza Store, photo 9" loading="lazy">
-      <img src="images/gal-teiberg-10.jpg" alt="Teiberg Pizza Store, photo 10" loading="lazy">
-      <img src="images/gal-teiberg-11.jpg" alt="Teiberg Pizza Store, photo 11" loading="lazy">
-      <img src="images/gal-teiberg-12.jpg" alt="Teiberg Pizza Store, photo 12" loading="lazy">
-      <img src="images/gal-teiberg-13.jpg" alt="Teiberg Pizza Store, photo 13" loading="lazy">
-      <img src="images/gal-teiberg-14.jpg" alt="Teiberg Pizza Store, photo 14" loading="lazy">
-      <img src="images/gal-teiberg-15.jpg" alt="Teiberg Pizza Store, photo 15" loading="lazy">
-      <img src="images/gal-teiberg-16.jpg" alt="Teiberg Pizza Store, photo 16" loading="lazy">
-      <img src="images/gal-teiberg-17.jpg" alt="Teiberg Pizza Store, photo 17" loading="lazy">
-      <img src="images/gal-teiberg-18.jpg" alt="Teiberg Pizza Store, photo 18" loading="lazy">
-      <img src="images/gal-teiberg-19.jpg" alt="Teiberg Pizza Store, photo 19" loading="lazy">
-      <img src="images/gal-teiberg-20.jpg" alt="Teiberg Pizza Store, photo 20" loading="lazy">
-      <img src="images/gal-teiberg-21.jpg" alt="Teiberg Pizza Store, photo 21" loading="lazy">
-      <img src="images/gal-teiberg-22.jpg" alt="Teiberg Pizza Store, photo 22" loading="lazy">
-      <img src="images/gal-teiberg-23.jpg" alt="Teiberg Pizza Store, photo 23" loading="lazy">
-      <img src="images/gal-teiberg-24.jpg" alt="Teiberg Pizza Store, photo 24" loading="lazy">
-      <img src="images/gal-teiberg-25.jpg" alt="Teiberg Pizza Store, photo 25" loading="lazy">
-      <img src="images/gal-teiberg-26.jpg" alt="Teiberg Pizza Store, photo 26" loading="lazy">
-      <img src="images/gal-teiberg-27.jpg" alt="Teiberg Pizza Store, photo 27" loading="lazy">
-      <img src="images/gal-teiberg-28.jpg" alt="Teiberg Pizza Store, photo 28" loading="lazy">
+    <div class="gal-carousel" data-total="28">
+      <div class="gal-chapters">
+      <button type="button" class="gal-chap on" data-cat="Exterior">Exterior (1)</button>
+      <button type="button" class="gal-chap" data-cat="Counter">Counter (8)</button>
+      <button type="button" class="gal-chap" data-cat="Dining">Dining (7)</button>
+      <button type="button" class="gal-chap" data-cat="Detail">Detail (2)</button>
+      <button type="button" class="gal-chap" data-cat="Construction">Construction (10)</button>
+      </div>
+      <div class="gal-stage">
+        <button type="button" class="gal-arrow gal-prev" aria-label="Previous photo">&#8249;</button>
+        <img class="gal-photo" src="images/gal-teiberg-26.jpg" alt="Teiberg Pizza Store, photo 26">
+        <button type="button" class="gal-arrow gal-next" aria-label="Next photo">&#8250;</button>
+      </div>
+      <div class="gal-meta"><span class="gal-chapter">Exterior</span><span class="gal-counter">1 / 28</span></div>
+      <div class="gal-thumbs">
+      <button type="button" class="gal-thumb on" data-i="0" data-full="images/gal-teiberg-26.jpg" data-alt="Teiberg Pizza Store, photo 26" data-cat="Exterior" aria-label="Photo 1"><img src="images/gal-teiberg-26.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="1" data-full="images/gal-teiberg-1.jpg" data-alt="Pizzeria counter at Teiberg Pizza" data-cat="Counter" aria-label="Photo 2"><img src="images/gal-teiberg-1.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="2" data-full="images/gal-teiberg-2.jpg" data-alt="Counter detail at Teiberg Pizza" data-cat="Counter" aria-label="Photo 3"><img src="images/gal-teiberg-2.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="3" data-full="images/gal-teiberg-4.jpg" data-alt="Teiberg Pizza Store, photo 4" data-cat="Counter" aria-label="Photo 4"><img src="images/gal-teiberg-4.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="4" data-full="images/gal-teiberg-5.jpg" data-alt="Teiberg Pizza Store, photo 5" data-cat="Counter" aria-label="Photo 5"><img src="images/gal-teiberg-5.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="5" data-full="images/gal-teiberg-7.jpg" data-alt="Teiberg Pizza Store, photo 7" data-cat="Counter" aria-label="Photo 6"><img src="images/gal-teiberg-7.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="6" data-full="images/gal-teiberg-10.jpg" data-alt="Teiberg Pizza Store, photo 10" data-cat="Counter" aria-label="Photo 7"><img src="images/gal-teiberg-10.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="7" data-full="images/gal-teiberg-14.jpg" data-alt="Teiberg Pizza Store, photo 14" data-cat="Counter" aria-label="Photo 8"><img src="images/gal-teiberg-14.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="8" data-full="images/gal-teiberg-16.jpg" data-alt="Teiberg Pizza Store, photo 16" data-cat="Counter" aria-label="Photo 9"><img src="images/gal-teiberg-16.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="9" data-full="images/gal-teiberg-3.jpg" data-alt="Dining room at Teiberg Pizza" data-cat="Dining" aria-label="Photo 10"><img src="images/gal-teiberg-3.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="10" data-full="images/gal-teiberg-6.jpg" data-alt="Teiberg Pizza Store, photo 6" data-cat="Dining" aria-label="Photo 11"><img src="images/gal-teiberg-6.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="11" data-full="images/gal-teiberg-9.jpg" data-alt="Teiberg Pizza Store, photo 9" data-cat="Dining" aria-label="Photo 12"><img src="images/gal-teiberg-9.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="12" data-full="images/gal-teiberg-11.jpg" data-alt="Teiberg Pizza Store, photo 11" data-cat="Dining" aria-label="Photo 13"><img src="images/gal-teiberg-11.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="13" data-full="images/gal-teiberg-12.jpg" data-alt="Teiberg Pizza Store, photo 12" data-cat="Dining" aria-label="Photo 14"><img src="images/gal-teiberg-12.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="14" data-full="images/gal-teiberg-13.jpg" data-alt="Teiberg Pizza Store, photo 13" data-cat="Dining" aria-label="Photo 15"><img src="images/gal-teiberg-13.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="15" data-full="images/gal-teiberg-15.jpg" data-alt="Teiberg Pizza Store, photo 15" data-cat="Dining" aria-label="Photo 16"><img src="images/gal-teiberg-15.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="16" data-full="images/gal-teiberg-8.jpg" data-alt="Teiberg Pizza Store, photo 8" data-cat="Detail" aria-label="Photo 17"><img src="images/gal-teiberg-8.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="17" data-full="images/gal-teiberg-18.jpg" data-alt="Teiberg Pizza Store, photo 18" data-cat="Detail" aria-label="Photo 18"><img src="images/gal-teiberg-18.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="18" data-full="images/gal-teiberg-17.jpg" data-alt="Teiberg Pizza Store, photo 17" data-cat="Construction" aria-label="Photo 19"><img src="images/gal-teiberg-17.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="19" data-full="images/gal-teiberg-19.jpg" data-alt="Teiberg Pizza Store, photo 19" data-cat="Construction" aria-label="Photo 20"><img src="images/gal-teiberg-19.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="20" data-full="images/gal-teiberg-20.jpg" data-alt="Teiberg Pizza Store, photo 20" data-cat="Construction" aria-label="Photo 21"><img src="images/gal-teiberg-20.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="21" data-full="images/gal-teiberg-21.jpg" data-alt="Teiberg Pizza Store, photo 21" data-cat="Construction" aria-label="Photo 22"><img src="images/gal-teiberg-21.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="22" data-full="images/gal-teiberg-22.jpg" data-alt="Teiberg Pizza Store, photo 22" data-cat="Construction" aria-label="Photo 23"><img src="images/gal-teiberg-22.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="23" data-full="images/gal-teiberg-23.jpg" data-alt="Teiberg Pizza Store, photo 23" data-cat="Construction" aria-label="Photo 24"><img src="images/gal-teiberg-23.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="24" data-full="images/gal-teiberg-24.jpg" data-alt="Teiberg Pizza Store, photo 24" data-cat="Construction" aria-label="Photo 25"><img src="images/gal-teiberg-24.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="25" data-full="images/gal-teiberg-25.jpg" data-alt="Teiberg Pizza Store, photo 25" data-cat="Construction" aria-label="Photo 26"><img src="images/gal-teiberg-25.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="26" data-full="images/gal-teiberg-27.jpg" data-alt="Teiberg Pizza Store, photo 27" data-cat="Construction" aria-label="Photo 27"><img src="images/gal-teiberg-27.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="27" data-full="images/gal-teiberg-28.jpg" data-alt="Teiberg Pizza Store, photo 28" data-cat="Construction" aria-label="Photo 28"><img src="images/gal-teiberg-28.jpg" alt="" loading="lazy"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -395,25 +507,40 @@
     <h2>Six family multi unit</h2>
     <p class="loc">Poughkeepsie, NY</p>
     <p class="desc">Residential · 3,500 sq ft indoor · 1,500 sq ft outdoor · 3 stories · 2024</p>
-    <div class="gal-grid">
-      <img src="images/gal-contemporary-1.jpg" alt="Six family multi unit, photo 1" loading="lazy">
-      <img src="images/gal-contemporary-2.jpg" alt="Six family multi unit, photo 2" loading="lazy">
-      <img src="images/gal-contemporary-3.jpg" alt="Six family multi unit, photo 3" loading="lazy">
-      <img src="images/gal-contemporary-4.jpg" alt="Six family multi unit, photo 4" loading="lazy">
-      <img src="images/gal-contemporary-5.jpg" alt="Six family multi unit, photo 5" loading="lazy">
-      <img src="images/gal-contemporary-6.jpg" alt="Six family multi unit, photo 6" loading="lazy">
-      <img src="images/gal-contemporary-7.jpg" alt="Six family multi unit, photo 7" loading="lazy">
-      <img src="images/gal-contemporary-8.jpg" alt="Six family multi unit, photo 8" loading="lazy">
-      <img src="images/gal-contemporary-9.jpg" alt="Six family multi unit, photo 9" loading="lazy">
-      <img src="images/gal-contemporary-10.jpg" alt="Six family multi unit, photo 10" loading="lazy">
-      <img src="images/gal-contemporary-11.jpg" alt="Six family multi unit, photo 11" loading="lazy">
-      <img src="images/gal-contemporary-12.jpg" alt="Six family multi unit, photo 12" loading="lazy">
-      <img src="images/gal-contemporary-13.jpg" alt="Six family multi unit, photo 13" loading="lazy">
-      <img src="images/gal-contemporary-14.jpg" alt="Six family multi unit, photo 14" loading="lazy">
-      <img src="images/gal-contemporary-15.jpg" alt="Six family multi unit, photo 15" loading="lazy">
-      <img src="images/gal-contemporary-16.jpg" alt="Six family multi unit, photo 16" loading="lazy">
-      <img src="images/gal-contemporary-17.jpg" alt="Six family multi unit, photo 17" loading="lazy">
-      <img src="images/gal-contemporary-18.jpg" alt="Six family multi unit, photo 18" loading="lazy">
+    <div class="gal-carousel" data-total="18">
+      <div class="gal-chapters">
+      <button type="button" class="gal-chap on" data-cat="Exterior">Exterior (3)</button>
+      <button type="button" class="gal-chap" data-cat="Living">Living (6)</button>
+      <button type="button" class="gal-chap" data-cat="Kitchen">Kitchen (4)</button>
+      <button type="button" class="gal-chap" data-cat="Bathroom">Bathroom (3)</button>
+      <button type="button" class="gal-chap" data-cat="Hallway">Hallway (2)</button>
+      </div>
+      <div class="gal-stage">
+        <button type="button" class="gal-arrow gal-prev" aria-label="Previous photo">&#8249;</button>
+        <img class="gal-photo" src="images/gal-contemporary-1.jpg" alt="Six family multi unit, photo 1">
+        <button type="button" class="gal-arrow gal-next" aria-label="Next photo">&#8250;</button>
+      </div>
+      <div class="gal-meta"><span class="gal-chapter">Exterior</span><span class="gal-counter">1 / 18</span></div>
+      <div class="gal-thumbs">
+      <button type="button" class="gal-thumb on" data-i="0" data-full="images/gal-contemporary-1.jpg" data-alt="Six family multi unit, photo 1" data-cat="Exterior" aria-label="Photo 1"><img src="images/gal-contemporary-1.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="1" data-full="images/gal-contemporary-2.jpg" data-alt="Six family multi unit, photo 2" data-cat="Exterior" aria-label="Photo 2"><img src="images/gal-contemporary-2.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="2" data-full="images/gal-contemporary-14.jpg" data-alt="Six family multi unit, photo 14" data-cat="Exterior" aria-label="Photo 3"><img src="images/gal-contemporary-14.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="3" data-full="images/gal-contemporary-3.jpg" data-alt="Six family multi unit, photo 3" data-cat="Living" aria-label="Photo 4"><img src="images/gal-contemporary-3.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="4" data-full="images/gal-contemporary-10.jpg" data-alt="Six family multi unit, photo 10" data-cat="Living" aria-label="Photo 5"><img src="images/gal-contemporary-10.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="5" data-full="images/gal-contemporary-11.jpg" data-alt="Six family multi unit, photo 11" data-cat="Living" aria-label="Photo 6"><img src="images/gal-contemporary-11.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="6" data-full="images/gal-contemporary-12.jpg" data-alt="Six family multi unit, photo 12" data-cat="Living" aria-label="Photo 7"><img src="images/gal-contemporary-12.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="7" data-full="images/gal-contemporary-13.jpg" data-alt="Six family multi unit, photo 13" data-cat="Living" aria-label="Photo 8"><img src="images/gal-contemporary-13.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="8" data-full="images/gal-contemporary-15.jpg" data-alt="Six family multi unit, photo 15" data-cat="Living" aria-label="Photo 9"><img src="images/gal-contemporary-15.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="9" data-full="images/gal-contemporary-5.jpg" data-alt="Six family multi unit, photo 5" data-cat="Kitchen" aria-label="Photo 10"><img src="images/gal-contemporary-5.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="10" data-full="images/gal-contemporary-16.jpg" data-alt="Six family multi unit, photo 16" data-cat="Kitchen" aria-label="Photo 11"><img src="images/gal-contemporary-16.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="11" data-full="images/gal-contemporary-17.jpg" data-alt="Six family multi unit, photo 17" data-cat="Kitchen" aria-label="Photo 12"><img src="images/gal-contemporary-17.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="12" data-full="images/gal-contemporary-18.jpg" data-alt="Six family multi unit, photo 18" data-cat="Kitchen" aria-label="Photo 13"><img src="images/gal-contemporary-18.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="13" data-full="images/gal-contemporary-7.jpg" data-alt="Six family multi unit, photo 7" data-cat="Bathroom" aria-label="Photo 14"><img src="images/gal-contemporary-7.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="14" data-full="images/gal-contemporary-8.jpg" data-alt="Six family multi unit, photo 8" data-cat="Bathroom" aria-label="Photo 15"><img src="images/gal-contemporary-8.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="15" data-full="images/gal-contemporary-9.jpg" data-alt="Six family multi unit, photo 9" data-cat="Bathroom" aria-label="Photo 16"><img src="images/gal-contemporary-9.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="16" data-full="images/gal-contemporary-4.jpg" data-alt="Six family multi unit, photo 4" data-cat="Hallway" aria-label="Photo 17"><img src="images/gal-contemporary-4.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="17" data-full="images/gal-contemporary-6.jpg" data-alt="Six family multi unit, photo 6" data-cat="Hallway" aria-label="Photo 18"><img src="images/gal-contemporary-6.jpg" alt="" loading="lazy"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -421,31 +548,49 @@
 <section class="proj-sec" id="p-heaven">
   <div class="wrap">
     <h2>Modern Heaven Home</h2>
-    <div class="gal-grid">
-      <img src="images/gal-heaven-1.jpg" alt="Modern Heaven Home, photo 1" loading="lazy">
-      <img src="images/gal-heaven-2.jpg" alt="Modern Heaven Home, photo 2" loading="lazy">
-      <img src="images/gal-heaven-3.jpg" alt="Modern Heaven Home, photo 3" loading="lazy">
-      <img src="images/gal-heaven-4.jpg" alt="Modern Heaven Home, photo 4" loading="lazy">
-      <img src="images/gal-heaven-5.jpg" alt="Modern Heaven Home, photo 5" loading="lazy">
-      <img src="images/gal-heaven-6.jpg" alt="Modern Heaven Home, photo 6" loading="lazy">
-      <img src="images/gal-heaven-7.jpg" alt="Modern Heaven Home, photo 7" loading="lazy">
-      <img src="images/gal-heaven-8.jpg" alt="Modern Heaven Home, photo 8" loading="lazy">
-      <img src="images/gal-heaven-9.jpg" alt="Modern Heaven Home, photo 9" loading="lazy">
-      <img src="images/gal-heaven-10.jpg" alt="Modern Heaven Home, photo 10" loading="lazy">
-      <img src="images/gal-heaven-11.jpg" alt="Modern Heaven Home, photo 11" loading="lazy">
-      <img src="images/gal-heaven-12.jpg" alt="Modern Heaven Home, photo 12" loading="lazy">
-      <img src="images/gal-heaven-13.jpg" alt="Modern Heaven Home, photo 13" loading="lazy">
-      <img src="images/gal-heaven-14.jpg" alt="Modern Heaven Home, photo 14" loading="lazy">
-      <img src="images/gal-heaven-15.jpg" alt="Modern Heaven Home, photo 15" loading="lazy">
-      <img src="images/gal-heaven-16.jpg" alt="Modern Heaven Home, photo 16" loading="lazy">
-      <img src="images/gal-heaven-17.jpg" alt="Modern Heaven Home, photo 17" loading="lazy">
-      <img src="images/gal-heaven-18.jpg" alt="Modern Heaven Home, photo 18" loading="lazy">
-      <img src="images/gal-heaven-19.jpg" alt="Modern Heaven Home, photo 19" loading="lazy">
-      <img src="images/gal-heaven-20.jpg" alt="Modern Heaven Home, photo 20" loading="lazy">
-      <img src="images/gal-heaven-21.jpg" alt="Modern Heaven Home, photo 21" loading="lazy">
-      <img src="images/gal-heaven-22.jpg" alt="Modern Heaven Home, photo 22" loading="lazy">
-      <img src="images/gal-heaven-23.jpg" alt="Modern Heaven Home, photo 23" loading="lazy">
-      <img src="images/gal-heaven-24.jpg" alt="Modern Heaven Home, photo 24" loading="lazy">
+    <div class="gal-carousel" data-total="24">
+      <div class="gal-chapters">
+      <button type="button" class="gal-chap on" data-cat="Living">Living (3)</button>
+      <button type="button" class="gal-chap" data-cat="Kitchen">Kitchen (4)</button>
+      <button type="button" class="gal-chap" data-cat="Bedroom">Bedroom (7)</button>
+      <button type="button" class="gal-chap" data-cat="Bathroom">Bathroom (4)</button>
+      <button type="button" class="gal-chap" data-cat="Hallway">Hallway (2)</button>
+      <button type="button" class="gal-chap" data-cat="Laundry">Laundry (1)</button>
+      <button type="button" class="gal-chap" data-cat="Detail">Detail (2)</button>
+      <button type="button" class="gal-chap" data-cat="Construction">Construction (1)</button>
+      </div>
+      <div class="gal-stage">
+        <button type="button" class="gal-arrow gal-prev" aria-label="Previous photo">&#8249;</button>
+        <img class="gal-photo" src="images/gal-heaven-1.jpg" alt="Modern Heaven Home, photo 1">
+        <button type="button" class="gal-arrow gal-next" aria-label="Next photo">&#8250;</button>
+      </div>
+      <div class="gal-meta"><span class="gal-chapter">Living</span><span class="gal-counter">1 / 24</span></div>
+      <div class="gal-thumbs">
+      <button type="button" class="gal-thumb on" data-i="0" data-full="images/gal-heaven-1.jpg" data-alt="Modern Heaven Home, photo 1" data-cat="Living" aria-label="Photo 1"><img src="images/gal-heaven-1.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="1" data-full="images/gal-heaven-17.jpg" data-alt="Modern Heaven Home, photo 17" data-cat="Living" aria-label="Photo 2"><img src="images/gal-heaven-17.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="2" data-full="images/gal-heaven-21.jpg" data-alt="Modern Heaven Home, photo 21" data-cat="Living" aria-label="Photo 3"><img src="images/gal-heaven-21.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="3" data-full="images/gal-heaven-2.jpg" data-alt="Modern Heaven Home, photo 2" data-cat="Kitchen" aria-label="Photo 4"><img src="images/gal-heaven-2.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="4" data-full="images/gal-heaven-7.jpg" data-alt="Modern Heaven Home, photo 7" data-cat="Kitchen" aria-label="Photo 5"><img src="images/gal-heaven-7.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="5" data-full="images/gal-heaven-8.jpg" data-alt="Modern Heaven Home, photo 8" data-cat="Kitchen" aria-label="Photo 6"><img src="images/gal-heaven-8.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="6" data-full="images/gal-heaven-13.jpg" data-alt="Modern Heaven Home, photo 13" data-cat="Kitchen" aria-label="Photo 7"><img src="images/gal-heaven-13.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="7" data-full="images/gal-heaven-6.jpg" data-alt="Modern Heaven Home, photo 6" data-cat="Bedroom" aria-label="Photo 8"><img src="images/gal-heaven-6.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="8" data-full="images/gal-heaven-9.jpg" data-alt="Modern Heaven Home, photo 9" data-cat="Bedroom" aria-label="Photo 9"><img src="images/gal-heaven-9.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="9" data-full="images/gal-heaven-10.jpg" data-alt="Modern Heaven Home, photo 10" data-cat="Bedroom" aria-label="Photo 10"><img src="images/gal-heaven-10.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="10" data-full="images/gal-heaven-11.jpg" data-alt="Modern Heaven Home, photo 11" data-cat="Bedroom" aria-label="Photo 11"><img src="images/gal-heaven-11.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="11" data-full="images/gal-heaven-14.jpg" data-alt="Modern Heaven Home, photo 14" data-cat="Bedroom" aria-label="Photo 12"><img src="images/gal-heaven-14.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="12" data-full="images/gal-heaven-22.jpg" data-alt="Modern Heaven Home, photo 22" data-cat="Bedroom" aria-label="Photo 13"><img src="images/gal-heaven-22.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="13" data-full="images/gal-heaven-24.jpg" data-alt="Modern Heaven Home, photo 24" data-cat="Bedroom" aria-label="Photo 14"><img src="images/gal-heaven-24.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="14" data-full="images/gal-heaven-5.jpg" data-alt="Modern Heaven Home, photo 5" data-cat="Bathroom" aria-label="Photo 15"><img src="images/gal-heaven-5.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="15" data-full="images/gal-heaven-12.jpg" data-alt="Modern Heaven Home, photo 12" data-cat="Bathroom" aria-label="Photo 16"><img src="images/gal-heaven-12.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="16" data-full="images/gal-heaven-18.jpg" data-alt="Modern Heaven Home, photo 18" data-cat="Bathroom" aria-label="Photo 17"><img src="images/gal-heaven-18.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="17" data-full="images/gal-heaven-23.jpg" data-alt="Modern Heaven Home, photo 23" data-cat="Bathroom" aria-label="Photo 18"><img src="images/gal-heaven-23.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="18" data-full="images/gal-heaven-16.jpg" data-alt="Modern Heaven Home, photo 16" data-cat="Hallway" aria-label="Photo 19"><img src="images/gal-heaven-16.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="19" data-full="images/gal-heaven-20.jpg" data-alt="Modern Heaven Home, photo 20" data-cat="Hallway" aria-label="Photo 20"><img src="images/gal-heaven-20.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="20" data-full="images/gal-heaven-19.jpg" data-alt="Modern Heaven Home, photo 19" data-cat="Laundry" aria-label="Photo 21"><img src="images/gal-heaven-19.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="21" data-full="images/gal-heaven-3.jpg" data-alt="Modern Heaven Home, photo 3" data-cat="Detail" aria-label="Photo 22"><img src="images/gal-heaven-3.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="22" data-full="images/gal-heaven-15.jpg" data-alt="Modern Heaven Home, photo 15" data-cat="Detail" aria-label="Photo 23"><img src="images/gal-heaven-15.jpg" alt="" loading="lazy"></button>
+      <button type="button" class="gal-thumb" data-i="23" data-full="images/gal-heaven-4.jpg" data-alt="Modern Heaven Home, photo 4" data-cat="Construction" aria-label="Photo 24"><img src="images/gal-heaven-4.jpg" alt="" loading="lazy"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -473,32 +618,71 @@
 </div>
 <script>
 (function(){
-  var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap');
-  var list=[],i=0;
-  function show(n){
-    i=(n+list.length)%list.length;
-    img.src=list[i].src;img.alt=list[i].alt;cap.textContent=list[i].alt;
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap');
+  var lbList=[],lbIdx=0,lbOpen=false;
+  function lbShow(n){
+    lbIdx=(n+lbList.length)%lbList.length;
+    var s=lbList[lbIdx];
+    lbImg.src=s.src;lbImg.alt=s.alt;
+    lbCap.textContent=s.alt+' \u00b7 '+s.cat+' \u00b7 '+(lbIdx+1)+' / '+lbList.length;
   }
-  document.querySelectorAll('.proj-sec').forEach(function(sec){
-    var imgs=sec.querySelectorAll('.gal-grid img');
-    imgs.forEach(function(im,k){
-      im.addEventListener('click',function(){
-        list=Array.prototype.slice.call(imgs);
-        lb.hidden=false;document.body.style.overflow='hidden';
-        show(k);
+  function lbClose(){lb.hidden=true;lbOpen=false;document.body.style.overflow='';}
+  function lbOpenAt(list,n){lbList=list;lbOpen=true;lb.hidden=false;document.body.style.overflow='hidden';lbShow(n);}
+  document.getElementById('lbX').addEventListener('click',lbClose);
+  document.getElementById('lbBg').addEventListener('click',lbClose);
+  document.getElementById('lbPrev').addEventListener('click',function(e){e.stopPropagation();lbShow(lbIdx-1);});
+  document.getElementById('lbNext').addEventListener('click',function(e){e.stopPropagation();lbShow(lbIdx+1);});
+
+  var activeCar=null;
+  document.querySelectorAll('.gal-carousel').forEach(function(car){
+    var thumbs=Array.prototype.slice.call(car.querySelectorAll('.gal-thumb'));
+    var slides=thumbs.map(function(t){return {src:t.dataset.full,alt:t.dataset.alt,cat:t.dataset.cat};});
+    var photo=car.querySelector('.gal-photo');
+    var chapter=car.querySelector('.gal-chapter');
+    var counter=car.querySelector('.gal-counter');
+    var pills=Array.prototype.slice.call(car.querySelectorAll('.gal-chap'));
+    var cur=0;
+    function show(n){
+      cur=(n+slides.length)%slides.length;
+      car._galCur=cur;
+      var s=slides[cur];
+      photo.src=s.src;photo.alt=s.alt;
+      chapter.textContent=s.cat;
+      counter.textContent=(cur+1)+' / '+slides.length;
+      thumbs.forEach(function(t,k){t.classList.toggle('on',k===cur);});
+      pills.forEach(function(p){p.classList.toggle('on',p.dataset.cat===s.cat);});
+      var at=thumbs[cur];
+      if(at&&at.scrollIntoView){at.scrollIntoView({block:'nearest',inline:'nearest'});}
+    }
+    car._galShow=show;car._galCur=0;
+    car.querySelector('.gal-prev').addEventListener('click',function(){activeCar=car;show(cur-1);});
+    car.querySelector('.gal-next').addEventListener('click',function(){activeCar=car;show(cur+1);});
+    thumbs.forEach(function(t,k){t.addEventListener('click',function(){activeCar=car;show(k);});});
+    pills.forEach(function(p){
+      p.addEventListener('click',function(){
+        activeCar=car;
+        for(var k=0;k<slides.length;k++){if(slides[k].cat===p.dataset.cat){show(k);break;}}
       });
     });
+    photo.addEventListener('click',function(){activeCar=car;lbOpenAt(slides,cur);});
+    var stage=car.querySelector('.gal-stage'),sx=0,sy=0;
+    stage.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+    stage.addEventListener('touchend',function(e){
+      var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+      if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){activeCar=car;show(cur+(dx<0?1:-1));}
+    },{passive:true});
+    car.addEventListener('click',function(){activeCar=car;});
   });
-  function close(){lb.hidden=true;document.body.style.overflow='';}
-  document.getElementById('lbX').addEventListener('click',close);
-  document.getElementById('lbBg').addEventListener('click',close);
-  document.getElementById('lbPrev').addEventListener('click',function(e){e.stopPropagation();show(i-1)});
-  document.getElementById('lbNext').addEventListener('click',function(e){e.stopPropagation();show(i+1)});
   document.addEventListener('keydown',function(e){
-    if(lb.hidden)return;
-    if(e.key==='Escape')close();
-    if(e.key==='ArrowLeft')show(i-1);
-    if(e.key==='ArrowRight')show(i+1);
+    if(lbOpen){
+      if(e.key==='Escape')lbClose();
+      if(e.key==='ArrowLeft')lbShow(lbIdx-1);
+      if(e.key==='ArrowRight')lbShow(lbIdx+1);
+      return;
+    }
+    if(!activeCar)return;
+    if(e.key==='ArrowLeft')activeCar._galShow(activeCar._galCur-1);
+    if(e.key==='ArrowRight')activeCar._galShow(activeCar._galCur+1);
   });
 })();
 </script>
