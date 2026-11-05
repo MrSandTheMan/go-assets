@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Portfolio - Corestone Developers</title>
+<meta name="description" content="Every Corestone project in full detail: custom homes and commercial builds across Sullivan County and Orange County, NY.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Cormorant Garamond',Georgia,serif;color:#1a1a1a;line-height:1.6;background:#fff;}
+  h1,h2,h3{font-family:'Cinzel',Georgia,serif;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .topbar{background:#1a1a1a;color:#fff;padding:14px 0;position:sticky;top:0;z-index:50;}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .topbar img{height:44px;}
+  .topbar a.back{color:#fff;text-decoration:none;font-weight:600;font-size:15px;}
+  .gal-head{padding:64px 0 32px;}
+  .eyebrow{color:#007A7A;font-weight:700;letter-spacing:3px;font-size:13px;text-transform:uppercase;margin-bottom:10px;}
+  .gal-head h1{font-size:40px;line-height:1.15;margin-bottom:12px;}
+  .gal-head p.lede{font-size:18px;color:#444;max-width:640px;}
+  .gal-nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+  .gal-nav a{display:inline-block;padding:9px 18px;border:2px solid #00C4C4;border-radius:999px;color:#007A7A;text-decoration:none;font-weight:700;font-size:14px;}
+  .gal-nav a:hover{background:#00C4C4;color:#0a1420;}
+  .proj-sec{padding:56px 0;border-top:1px solid #eee;scroll-margin-top:80px;}
+  .p-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#007A7A;font-weight:700;margin:0 0 6px;}
+  .proj-sec h2{font-size:30px;margin-bottom:6px;}
+  .loc{color:#007A7A;font-weight:600;margin-bottom:10px;}
+  .proj-sec .desc{color:#444;max-width:680px;margin-bottom:24px;}
+  .gal-grid{columns:2;column-gap:16px;}
+  .gal-grid img{width:100%;margin-bottom:16px;border-radius:10px;display:block;}
+  .cta{background:#1a1a1a;color:#fff;padding:64px 0;text-align:center;}
+  .cta h2{margin-bottom:10px;}
+  .cta p{color:#c9c9c9;margin-bottom:24px;}
+  .btn{display:inline-block;background:#00C4C4;color:#0a1420;font-weight:700;padding:14px 30px;border-radius:8px;text-decoration:none;}
+  footer{background:#111;color:#888;font-size:13px;padding:28px 0;text-align:center;}
+  footer a{color:#00C4C4;text-decoration:none;}
+  @media (max-width:700px){.gal-grid{columns:1;}.gal-head h1{font-size:30px;}.proj-sec h2{font-size:24px;}}
+  .gal-grid img{cursor:zoom-in;}
+  .lb{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;}
+  .lb[hidden]{display:none;}
+  .lb-bg{position:absolute;inset:0;background:rgba(10,10,10,.92);}
+  .lb-img{position:relative;max-width:92vw;max-height:82vh;border-radius:8px;box-shadow:0 20px 80px rgba(0,0,0,.6);}
+  .lb-cap{position:relative;color:#ddd;margin-top:12px;font-size:15px;}
+  .lb button{position:absolute;background:rgba(0,0,0,.55);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:22px;cursor:pointer;line-height:1;z-index:2;}
+  .lb-x{top:18px;right:18px;}
+  .lb-prev{left:18px;top:50%;transform:translateY(-50%);}
+  .lb-next{right:18px;top:50%;transform:translateY(-50%);}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a href="index.html"><img src="images/corestone-logo-teal.svg" alt="Corestone Developers"></a>
+    <a class="back" href="index.html">&#8249; Back to site</a>
+  </div>
+</header>
+
+<section class="gal-head">
+  <div class="wrap">
+    <p class="eyebrow">Project portfolio</p>
+    <h1>Every Corestone project,<br>in full detail.</h1>
+    <p class="lede">Eight builds, every room, full resolution. This is the standard every Corestone project is held to.</p>
+    <nav class="gal-nav">
+      <a href="#p-579">579 Shore Drive</a>
+      <a href="#p-736">736 Harris Rd</a>
+      <a href="#p-1268">1268 Old Route 17</a>
+      <a href="#p-perfection">Modern Perfection</a>
+      <a href="#p-shelys">Shely's Pizza</a>
+      <a href="#p-teiberg">Teiberg Pizza</a>
+      <a href="#p-contemporary">Six family multi unit</a>
+      <a href="#p-heaven">Modern Heaven Home</a>
+    </nav>
+  </div>
+</section>
+
+<section class="proj-sec" id="p-579">
+  <div class="wrap">
+    <p class="p-tag">Custom home</p>
+    <h2>Modern A-Frame Home</h2>
+    <p class="loc">579 Shore Drive · Sullivan County</p>
+    <p class="desc">A lakeside A-frame taken from raw wooded lot to finished home. The full story of this build, phase by phase, is in our Dirt to Dream project diary.</p>
+    <div class="gal-grid">
+      <img src="images/gal-579-1.jpg" alt="Front exterior of the finished A-frame at 579 Shore Drive, lakeside view" loading="lazy">
+      <img src="images/gal-579-2.jpg" alt="Great room of the finished A-frame" loading="lazy">
+      <img src="images/gal-579-3.jpg" alt="Finished bathroom at 579 Shore Drive" loading="lazy">
+      <img src="images/gal-579-4.jpg" alt="Twilight aerial of the finished A-frame at 579 Shore Drive" loading="lazy">
+      <img src="images/gal-579-5.jpg" alt="Front exterior of the finished A-frame at 579 Shore Drive" loading="lazy">
+      <img src="images/gal-579-6.jpg" alt="579 Shore Drive, photo 6" loading="lazy">
+      <img src="images/gal-579-7.jpg" alt="579 Shore Drive, photo 7" loading="lazy">
+      <img src="images/gal-579-8.jpg" alt="579 Shore Drive, photo 8" loading="lazy">
+      <img src="images/gal-579-9.jpg" alt="579 Shore Drive, photo 9" loading="lazy">
+      <img src="images/gal-579-10.jpg" alt="579 Shore Drive, photo 10" loading="lazy">
+      <img src="images/gal-579-11.jpg" alt="579 Shore Drive, photo 11" loading="lazy">
+      <img src="images/gal-579-12.jpg" alt="579 Shore Drive, photo 12" loading="lazy">
+      <img src="images/gal-579-13.jpg" alt="579 Shore Drive, photo 13" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="proj-sec" id="p-736">
+  <div class="wrap">
+    <p class="p-tag">Custom home</p>
+    <h2>736 Harris Rd</h2>
+    <p class="loc">736 Harris Rd</p>
+    <p class="desc">Custom home with a finished backyard built for evenings outside: pool, spa bath, and an open kitchen at the center.</p>
+    <div class="gal-grid">
+      <img src="images/gal-736-1.jpg" alt="Backyard pool at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-2.jpg" alt="Spa bathroom at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-3.jpg" alt="Open kitchen at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-4.jpg" alt="Backyard pool with red lounge chairs at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-5.jpg" alt="Front exterior of the home at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-6.jpg" alt="Backyard pool and pool house at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-7.jpg" alt="Backyard pool at 736 Harris Rd, viewed from the patio" loading="lazy">
+      <img src="images/gal-736-8.jpg" alt="Side exterior of the home at 736 Harris Rd with garage and stone stairs" loading="lazy">
+      <img src="images/gal-736-9.jpg" alt="Kitchen island at 736 Harris Rd with bar stools" loading="lazy">
+      <img src="images/gal-736-10.jpg" alt="Open kitchen and dining room at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-11.jpg" alt="Living room at 736 Harris Rd with white sofas and picture windows" loading="lazy">
+      <img src="images/gal-736-12.jpg" alt="Sitting room at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-13.jpg" alt="Upper living room at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-14.jpg" alt="Dining room at 736 Harris Rd with a long table" loading="lazy">
+      <img src="images/gal-736-15.jpg" alt="Entry hall and staircase at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-16.jpg" alt="Upper landing at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-17.jpg" alt="Primary bedroom at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-18.jpg" alt="Twin bedroom at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-19.jpg" alt="Powder room vanity at 736 Harris Rd" loading="lazy">
+      <img src="images/gal-736-20.jpg" alt="Primary bathroom at 736 Harris Rd with soaking tub" loading="lazy">
+      <img src="images/gal-736-21.jpg" alt="736 Harris Rd, photo 21" loading="lazy">
+      <img src="images/gal-736-22.jpg" alt="736 Harris Rd, photo 22" loading="lazy">
+      <img src="images/gal-736-23.jpg" alt="736 Harris Rd, photo 23" loading="lazy">
+      <img src="images/gal-736-24.jpg" alt="736 Harris Rd, photo 24" loading="lazy">
+      <img src="images/gal-736-25.jpg" alt="736 Harris Rd, photo 25" loading="lazy">
+      <img src="images/gal-736-26.jpg" alt="736 Harris Rd, photo 26" loading="lazy">
+      <img src="images/gal-736-27.jpg" alt="736 Harris Rd, photo 27" loading="lazy">
+      <img src="images/gal-736-28.jpg" alt="736 Harris Rd, photo 28" loading="lazy">
+      <img src="images/gal-736-29.jpg" alt="736 Harris Rd, photo 29" loading="lazy">
+      <img src="images/gal-736-30.jpg" alt="736 Harris Rd, photo 30" loading="lazy">
+      <img src="images/gal-736-31.jpg" alt="736 Harris Rd, photo 31" loading="lazy">
+      <img src="images/gal-736-32.jpg" alt="736 Harris Rd, photo 32" loading="lazy">
+      <img src="images/gal-736-33.jpg" alt="736 Harris Rd, photo 33" loading="lazy">
+      <img src="images/gal-736-34.jpg" alt="736 Harris Rd, photo 34" loading="lazy">
+      <img src="images/gal-736-35.jpg" alt="736 Harris Rd, photo 35" loading="lazy">
+      <img src="images/gal-736-36.jpg" alt="736 Harris Rd, photo 36" loading="lazy">
+      <img src="images/gal-736-37.jpg" alt="736 Harris Rd, photo 37" loading="lazy">
+      <img src="images/gal-736-38.jpg" alt="736 Harris Rd, photo 38" loading="lazy">
+      <img src="images/gal-736-39.jpg" alt="736 Harris Rd, photo 39" loading="lazy">
+      <img src="images/gal-736-40.jpg" alt="736 Harris Rd, photo 40" loading="lazy">
+      <img src="images/gal-736-41.jpg" alt="736 Harris Rd, photo 41" loading="lazy">
+      <img src="images/gal-736-42.jpg" alt="736 Harris Rd, photo 42" loading="lazy">
+      <img src="images/gal-736-43.jpg" alt="736 Harris Rd, photo 43" loading="lazy">
+      <img src="images/gal-736-44.jpg" alt="736 Harris Rd, photo 44" loading="lazy">
+      <img src="images/gal-736-45.jpg" alt="736 Harris Rd, photo 45" loading="lazy">
+      <img src="images/gal-736-46.jpg" alt="736 Harris Rd, photo 46" loading="lazy">
+      <img src="images/gal-736-47.jpg" alt="736 Harris Rd, photo 47" loading="lazy">
+      <img src="images/gal-736-48.jpg" alt="736 Harris Rd, photo 48" loading="lazy">
+      <img src="images/gal-736-49.jpg" alt="736 Harris Rd, photo 49" loading="lazy">
+      <img src="images/gal-736-50.jpg" alt="736 Harris Rd, photo 50" loading="lazy">
+      <img src="images/gal-736-51.jpg" alt="736 Harris Rd, photo 51" loading="lazy">
+      <img src="images/gal-736-52.jpg" alt="736 Harris Rd, photo 52" loading="lazy">
+      <img src="images/gal-736-53.jpg" alt="736 Harris Rd, photo 53" loading="lazy">
+      <img src="images/gal-736-54.jpg" alt="736 Harris Rd, photo 54" loading="lazy">
+      <img src="images/gal-736-55.jpg" alt="736 Harris Rd, photo 55" loading="lazy">
+      <img src="images/gal-736-56.jpg" alt="736 Harris Rd, photo 56" loading="lazy">
+      <img src="images/gal-736-57.jpg" alt="736 Harris Rd, photo 57" loading="lazy">
+      <img src="images/gal-736-58.jpg" alt="736 Harris Rd, photo 58" loading="lazy">
+      <img src="images/gal-736-59.jpg" alt="736 Harris Rd, photo 59" loading="lazy">
+      <img src="images/gal-736-60.jpg" alt="736 Harris Rd, photo 60" loading="lazy">
+      <img src="images/gal-736-61.jpg" alt="736 Harris Rd, photo 61" loading="lazy">
+      <img src="images/gal-736-62.jpg" alt="736 Harris Rd, photo 62" loading="lazy">
+      <img src="images/gal-736-63.jpg" alt="736 Harris Rd, photo 63" loading="lazy">
+      <img src="images/gal-736-64.jpg" alt="736 Harris Rd, photo 64" loading="lazy">
+      <img src="images/gal-736-65.jpg" alt="736 Harris Rd, photo 65" loading="lazy">
+      <img src="images/gal-736-66.jpg" alt="736 Harris Rd, photo 66" loading="lazy">
+      <img src="images/gal-736-67.jpg" alt="736 Harris Rd, photo 67" loading="lazy">
+      <img src="images/gal-736-68.jpg" alt="736 Harris Rd, photo 68" loading="lazy">
+      <img src="images/gal-736-69.jpg" alt="736 Harris Rd, photo 69" loading="lazy">
+      <img src="images/gal-736-70.jpg" alt="736 Harris Rd, photo 70" loading="lazy">
+      <img src="images/gal-736-71.jpg" alt="736 Harris Rd, photo 71" loading="lazy">
+      <img src="images/gal-736-72.jpg" alt="736 Harris Rd, photo 72" loading="lazy">
+      <img src="images/gal-736-73.jpg" alt="736 Harris Rd, photo 73" loading="lazy">
+      <img src="images/gal-736-74.jpg" alt="736 Harris Rd, photo 74" loading="lazy">
+      <img src="images/gal-736-75.jpg" alt="736 Harris Rd, photo 75" loading="lazy">
+      <img src="images/gal-736-76.jpg" alt="736 Harris Rd, photo 76" loading="lazy">
+      <img src="images/gal-736-77.jpg" alt="736 Harris Rd, photo 77" loading="lazy">
+      <img src="images/gal-736-78.jpg" alt="736 Harris Rd, photo 78" loading="lazy">
+      <img src="images/gal-736-79.jpg" alt="736 Harris Rd, photo 79" loading="lazy">
+      <img src="images/gal-736-80.jpg" alt="736 Harris Rd, photo 80" loading="lazy">
+      <img src="images/gal-736-81.jpg" alt="736 Harris Rd, photo 81" loading="lazy">
+      <img src="images/gal-736-82.jpg" alt="736 Harris Rd, photo 82" loading="lazy">
+      <img src="images/gal-736-83.jpg" alt="736 Harris Rd, photo 83" loading="lazy">
+      <img src="images/gal-736-84.jpg" alt="736 Harris Rd, photo 84" loading="lazy">
+      <img src="images/gal-736-85.jpg" alt="736 Harris Rd, photo 85" loading="lazy">
+      <img src="images/gal-736-86.jpg" alt="736 Harris Rd, photo 86" loading="lazy">
+      <img src="images/gal-736-87.jpg" alt="736 Harris Rd, photo 87" loading="lazy">
+      <img src="images/gal-736-88.jpg" alt="736 Harris Rd, photo 88" loading="lazy">
+      <img src="images/gal-736-89.jpg" alt="736 Harris Rd, photo 89" loading="lazy">
+      <img src="images/gal-736-90.jpg" alt="736 Harris Rd, photo 90" loading="lazy">
+      <img src="images/gal-736-91.jpg" alt="736 Harris Rd, photo 91" loading="lazy">
+      <img src="images/gal-736-92.jpg" alt="736 Harris Rd, photo 92" loading="lazy">
+      <img src="images/gal-736-93.jpg" alt="736 Harris Rd, photo 93" loading="lazy">
+      <img src="images/gal-736-94.jpg" alt="736 Harris Rd, photo 94" loading="lazy">
+      <img src="images/gal-736-95.jpg" alt="736 Harris Rd, photo 95" loading="lazy">
+      <img src="images/gal-736-96.jpg" alt="736 Harris Rd, photo 96" loading="lazy">
+      <img src="images/gal-736-97.jpg" alt="736 Harris Rd, photo 97" loading="lazy">
+      <img src="images/gal-736-98.jpg" alt="736 Harris Rd, photo 98" loading="lazy">
+      <img src="images/gal-736-99.jpg" alt="736 Harris Rd, photo 99" loading="lazy">
+      <img src="images/gal-736-100.jpg" alt="736 Harris Rd, photo 100" loading="lazy">
+      <img src="images/gal-736-101.jpg" alt="736 Harris Rd, photo 101" loading="lazy">
+      <img src="images/gal-736-102.jpg" alt="736 Harris Rd, photo 102" loading="lazy">
+      <img src="images/gal-736-103.jpg" alt="736 Harris Rd, photo 103" loading="lazy">
+      <img src="images/gal-736-104.jpg" alt="736 Harris Rd, photo 104" loading="lazy">
+      <img src="images/gal-736-105.jpg" alt="736 Harris Rd, photo 105" loading="lazy">
+      <img src="images/gal-736-106.jpg" alt="736 Harris Rd, photo 106" loading="lazy">
+      <img src="images/gal-736-107.jpg" alt="736 Harris Rd, photo 107" loading="lazy">
+      <img src="images/gal-736-108.jpg" alt="736 Harris Rd, photo 108" loading="lazy">
+      <img src="images/gal-736-109.jpg" alt="736 Harris Rd, photo 109" loading="lazy">
+      <img src="images/gal-736-110.jpg" alt="736 Harris Rd, photo 110" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="proj-sec" id="p-1268">
+  <div class="wrap">
+    <p class="p-tag">Custom home</p>
+    <h2>1268 Old Route 17</h2>
+    <p class="loc">1268 Old Rte 17</p>
+    <p class="desc">Custom home build on Old Route 17, designed and built by Corestone end to end.</p>
+    <div class="gal-grid">
+      <img src="images/gal-1268-1.jpg" alt="Kitchen island at 1268 Old Route 17" loading="lazy">
+      <img src="images/gal-1268-2.jpg" alt="Kitchen at 1268 Old Route 17" loading="lazy">
+      <img src="images/gal-1268-3.jpg" alt="Bedroom at 1268 Old Route 17" loading="lazy">
+      <img src="images/gal-1268-4.jpg" alt="1268 Old Route 17, photo 4" loading="lazy">
+      <img src="images/gal-1268-5.jpg" alt="1268 Old Route 17, photo 5" loading="lazy">
+      <img src="images/gal-1268-6.jpg" alt="1268 Old Route 17, photo 6" loading="lazy">
+      <img src="images/gal-1268-7.jpg" alt="1268 Old Route 17, photo 7" loading="lazy">
+      <img src="images/gal-1268-8.jpg" alt="1268 Old Route 17, photo 8" loading="lazy">
+      <img src="images/gal-1268-9.jpg" alt="1268 Old Route 17, photo 9" loading="lazy">
+      <img src="images/gal-1268-10.jpg" alt="1268 Old Route 17, photo 10" loading="lazy">
+      <img src="images/gal-1268-11.jpg" alt="1268 Old Route 17, photo 11" loading="lazy">
+      <img src="images/gal-1268-12.jpg" alt="1268 Old Route 17, photo 12" loading="lazy">
+      <img src="images/gal-1268-13.jpg" alt="1268 Old Route 17, photo 13" loading="lazy">
+      <img src="images/gal-1268-14.jpg" alt="1268 Old Route 17, photo 14" loading="lazy">
+      <img src="images/gal-1268-15.jpg" alt="1268 Old Route 17, photo 15" loading="lazy">
+      <img src="images/gal-1268-16.jpg" alt="1268 Old Route 17, photo 16" loading="lazy">
+      <img src="images/gal-1268-17.jpg" alt="1268 Old Route 17, photo 17" loading="lazy">
+      <img src="images/gal-1268-18.jpg" alt="1268 Old Route 17, photo 18" loading="lazy">
+      <img src="images/gal-1268-19.jpg" alt="1268 Old Route 17, photo 19" loading="lazy">
+      <img src="images/gal-1268-20.jpg" alt="1268 Old Route 17, photo 20" loading="lazy">
+      <img src="images/gal-1268-21.jpg" alt="1268 Old Route 17, photo 21" loading="lazy">
+      <img src="images/gal-1268-22.jpg" alt="1268 Old Route 17, photo 22" loading="lazy">
+      <img src="images/gal-1268-23.jpg" alt="1268 Old Route 17, photo 23" loading="lazy">
+      <img src="images/gal-1268-24.jpg" alt="1268 Old Route 17, photo 24" loading="lazy">
+      <img src="images/gal-1268-25.jpg" alt="1268 Old Route 17, photo 25" loading="lazy">
+      <img src="images/gal-1268-26.jpg" alt="1268 Old Route 17, photo 26" loading="lazy">
+      <img src="images/gal-1268-27.jpg" alt="1268 Old Route 17, photo 27" loading="lazy">
+      <img src="images/gal-1268-28.jpg" alt="1268 Old Route 17, photo 28" loading="lazy">
+      <img src="images/gal-1268-29.jpg" alt="1268 Old Route 17, photo 29" loading="lazy">
+      <img src="images/gal-1268-30.jpg" alt="1268 Old Route 17, photo 30" loading="lazy">
+      <img src="images/gal-1268-31.jpg" alt="1268 Old Route 17, photo 31" loading="lazy">
+      <img src="images/gal-1268-32.jpg" alt="1268 Old Route 17, photo 32" loading="lazy">
+      <img src="images/gal-1268-33.jpg" alt="1268 Old Route 17, photo 33" loading="lazy">
+      <img src="images/gal-1268-34.jpg" alt="1268 Old Route 17, photo 34" loading="lazy">
+      <img src="images/gal-1268-35.jpg" alt="1268 Old Route 17, photo 35" loading="lazy">
+      <img src="images/gal-1268-36.jpg" alt="1268 Old Route 17, photo 36" loading="lazy">
+      <img src="images/gal-1268-37.jpg" alt="1268 Old Route 17, photo 37" loading="lazy">
+      <img src="images/gal-1268-38.jpg" alt="1268 Old Route 17, photo 38" loading="lazy">
+      <img src="images/gal-1268-39.jpg" alt="1268 Old Route 17, photo 39" loading="lazy">
+      <img src="images/gal-1268-40.jpg" alt="1268 Old Route 17, photo 40" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="proj-sec" id="p-perfection">
+  <div class="wrap">
+    <p class="p-tag">Custom home</p>
+    <h2>Modern Perfection Home</h2>
+    <p class="loc">Spring Valley, NY</p>
+    <p class="desc">A modern custom home finished to a high standard: glass gable living room, cove-lit dining, and marble throughout.</p>
+    <div class="gal-grid">
+      <img src="images/gal-perfection-1.jpg" alt="Dining room of the Modern Perfection home" loading="lazy">
+      <img src="images/gal-perfection-2.jpg" alt="Living room under a glass gable in the Modern Perfection home" loading="lazy">
+      <img src="images/gal-perfection-3.jpg" alt="Powder bath in the Modern Perfection home" loading="lazy">
+      <img src="images/gal-perfection-4.jpg" alt="Marble kitchen counter in the Modern Perfection home" loading="lazy">
+      <img src="images/gal-perfection-5.jpg" alt="Modern Perfection Home, photo 5" loading="lazy">
+      <img src="images/gal-perfection-6.jpg" alt="Modern Perfection Home, photo 6" loading="lazy">
+      <img src="images/gal-perfection-7.jpg" alt="Modern Perfection Home, photo 7" loading="lazy">
+      <img src="images/gal-perfection-8.jpg" alt="Modern Perfection Home, photo 8" loading="lazy">
+      <img src="images/gal-perfection-9.jpg" alt="Modern Perfection Home, photo 9" loading="lazy">
+      <img src="images/gal-perfection-10.jpg" alt="Modern Perfection Home, photo 10" loading="lazy">
+      <img src="images/gal-perfection-11.jpg" alt="Modern Perfection Home, photo 11" loading="lazy">
+      <img src="images/gal-perfection-12.jpg" alt="Modern Perfection Home, photo 12" loading="lazy">
+      <img src="images/gal-perfection-13.jpg" alt="Modern Perfection Home, photo 13" loading="lazy">
+      <img src="images/gal-perfection-14.jpg" alt="Modern Perfection Home, photo 14" loading="lazy">
+      <img src="images/gal-perfection-15.jpg" alt="Modern Perfection Home, photo 15" loading="lazy">
+      <img src="images/gal-perfection-16.jpg" alt="Modern Perfection Home, photo 16" loading="lazy">
+      <img src="images/gal-perfection-17.jpg" alt="Modern Perfection Home, photo 17" loading="lazy">
+      <img src="images/gal-perfection-18.jpg" alt="Modern Perfection Home, photo 18" loading="lazy">
+      <img src="images/gal-perfection-19.jpg" alt="Modern Perfection Home, photo 19" loading="lazy">
+      <img src="images/gal-perfection-20.jpg" alt="Modern Perfection Home, photo 20" loading="lazy">
+      <img src="images/gal-perfection-21.jpg" alt="Modern Perfection Home, photo 21" loading="lazy">
+      <img src="images/gal-perfection-22.jpg" alt="Modern Perfection Home, photo 22" loading="lazy">
+      <img src="images/gal-perfection-23.jpg" alt="Modern Perfection Home, photo 23" loading="lazy">
+      <img src="images/gal-perfection-24.jpg" alt="Modern Perfection Home, photo 24" loading="lazy">
+      <img src="images/gal-perfection-25.jpg" alt="Modern Perfection Home, photo 25" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="proj-sec" id="p-shelys">
+  <div class="wrap">
+    <p class="p-tag">Commercial</p>
+    <h2>Shely's Pizza Store</h2>
+    <p class="loc">Route 59 · Monsey, NY</p>
+    <p class="desc">A full restaurant build-out. Commercial work with the same crew, the same standard, and a business that could open on schedule.</p>
+    <div class="gal-grid">
+      <img src="images/gal-shelys-1.jpg" alt="Dining room of Shely's Pizza" loading="lazy">
+      <img src="images/gal-shelys-2.jpg" alt="Window seating at Shely's Pizza" loading="lazy">
+      <img src="images/gal-shelys-3.jpg" alt="Dining room at Shely's Pizza" loading="lazy">
+      <img src="images/gal-shelys-4.jpg" alt="Wall detail at Shely's Pizza" loading="lazy">
+      <img src="images/gal-shelys-5.jpg" alt="Shely's Pizza Store, photo 5" loading="lazy">
+      <img src="images/gal-shelys-6.jpg" alt="Shely's Pizza Store, photo 6" loading="lazy">
+      <img src="images/gal-shelys-7.jpg" alt="Shely's Pizza Store, photo 7" loading="lazy">
+      <img src="images/gal-shelys-8.jpg" alt="Shely's Pizza Store, photo 8" loading="lazy">
+      <img src="images/gal-shelys-9.jpg" alt="Shely's Pizza Store, photo 9" loading="lazy">
+      <img src="images/gal-shelys-10.jpg" alt="Shely's Pizza Store, photo 10" loading="lazy">
+      <img src="images/gal-shelys-11.jpg" alt="Shely's Pizza Store, photo 11" loading="lazy">
+      <img src="images/gal-shelys-12.jpg" alt="Shely's Pizza Store, photo 12" loading="lazy">
+      <img src="images/gal-shelys-13.jpg" alt="Shely's Pizza Store, photo 13" loading="lazy">
+      <img src="images/gal-shelys-14.jpg" alt="Shely's Pizza Store, photo 14" loading="lazy">
+      <img src="images/gal-shelys-15.jpg" alt="Shely's Pizza Store, photo 15" loading="lazy">
+      <img src="images/gal-shelys-16.jpg" alt="Shely's Pizza Store, photo 16" loading="lazy">
+      <img src="images/gal-shelys-17.jpg" alt="Shely's Pizza Store, photo 17" loading="lazy">
+      <img src="images/gal-shelys-18.jpg" alt="Shely's Pizza Store, photo 18" loading="lazy">
+      <img src="images/gal-shelys-19.jpg" alt="Shely's Pizza Store, photo 19" loading="lazy">
+      <img src="images/gal-shelys-20.jpg" alt="Shely's Pizza Store, photo 20" loading="lazy">
+      <img src="images/gal-shelys-21.jpg" alt="Shely's Pizza Store, photo 21" loading="lazy">
+      <img src="images/gal-shelys-22.jpg" alt="Shely's Pizza Store, photo 22" loading="lazy">
+      <img src="images/gal-shelys-23.jpg" alt="Shely's Pizza Store, photo 23" loading="lazy">
+      <img src="images/gal-shelys-24.jpg" alt="Shely's Pizza Store, photo 24" loading="lazy">
+      <img src="images/gal-shelys-25.jpg" alt="Shely's Pizza Store, photo 25" loading="lazy">
+      <img src="images/gal-shelys-26.jpg" alt="Shely's Pizza Store, photo 26" loading="lazy">
+      <img src="images/gal-shelys-27.jpg" alt="Shely's Pizza Store, photo 27" loading="lazy">
+      <img src="images/gal-shelys-28.jpg" alt="Shely's Pizza Store, photo 28" loading="lazy">
+      <img src="images/gal-shelys-29.jpg" alt="Shely's Pizza Store, photo 29" loading="lazy">
+      <img src="images/gal-shelys-30.jpg" alt="Shely's Pizza Store, photo 30" loading="lazy">
+      <img src="images/gal-shelys-31.jpg" alt="Shely's Pizza Store, photo 31" loading="lazy">
+      <img src="images/gal-shelys-32.jpg" alt="Shely's Pizza Store, photo 32" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="proj-sec" id="p-teiberg">
+  <div class="wrap">
+    <p class="p-tag">Commercial</p>
+    <h2>Teiberg Pizza Store</h2>
+    <p class="loc">Swan Lake, NY</p>
+    <p class="desc">A branded pizzeria build-out in Swan Lake: counter, kitchen line, and dining room ready for opening day.</p>
+    <div class="gal-grid">
+      <img src="images/gal-teiberg-1.jpg" alt="Pizzeria counter at Teiberg Pizza" loading="lazy">
+      <img src="images/gal-teiberg-2.jpg" alt="Counter detail at Teiberg Pizza" loading="lazy">
+      <img src="images/gal-teiberg-3.jpg" alt="Dining room at Teiberg Pizza" loading="lazy">
+      <img src="images/gal-teiberg-4.jpg" alt="Teiberg Pizza Store, photo 4" loading="lazy">
+      <img src="images/gal-teiberg-5.jpg" alt="Teiberg Pizza Store, photo 5" loading="lazy">
+      <img src="images/gal-teiberg-6.jpg" alt="Teiberg Pizza Store, photo 6" loading="lazy">
+      <img src="images/gal-teiberg-7.jpg" alt="Teiberg Pizza Store, photo 7" loading="lazy">
+      <img src="images/gal-teiberg-8.jpg" alt="Teiberg Pizza Store, photo 8" loading="lazy">
+      <img src="images/gal-teiberg-9.jpg" alt="Teiberg Pizza Store, photo 9" loading="lazy">
+      <img src="images/gal-teiberg-10.jpg" alt="Teiberg Pizza Store, photo 10" loading="lazy">
+      <img src="images/gal-teiberg-11.jpg" alt="Teiberg Pizza Store, photo 11" loading="lazy">
+      <img src="images/gal-teiberg-12.jpg" alt="Teiberg Pizza Store, photo 12" loading="lazy">
+      <img src="images/gal-teiberg-13.jpg" alt="Teiberg Pizza Store, photo 13" loading="lazy">
+      <img src="images/gal-teiberg-14.jpg" alt="Teiberg Pizza Store, photo 14" loading="lazy">
+      <img src="images/gal-teiberg-15.jpg" alt="Teiberg Pizza Store, photo 15" loading="lazy">
+      <img src="images/gal-teiberg-16.jpg" alt="Teiberg Pizza Store, photo 16" loading="lazy">
+      <img src="images/gal-teiberg-17.jpg" alt="Teiberg Pizza Store, photo 17" loading="lazy">
+      <img src="images/gal-teiberg-18.jpg" alt="Teiberg Pizza Store, photo 18" loading="lazy">
+      <img src="images/gal-teiberg-19.jpg" alt="Teiberg Pizza Store, photo 19" loading="lazy">
+      <img src="images/gal-teiberg-20.jpg" alt="Teiberg Pizza Store, photo 20" loading="lazy">
+      <img src="images/gal-teiberg-21.jpg" alt="Teiberg Pizza Store, photo 21" loading="lazy">
+      <img src="images/gal-teiberg-22.jpg" alt="Teiberg Pizza Store, photo 22" loading="lazy">
+      <img src="images/gal-teiberg-23.jpg" alt="Teiberg Pizza Store, photo 23" loading="lazy">
+      <img src="images/gal-teiberg-24.jpg" alt="Teiberg Pizza Store, photo 24" loading="lazy">
+      <img src="images/gal-teiberg-25.jpg" alt="Teiberg Pizza Store, photo 25" loading="lazy">
+      <img src="images/gal-teiberg-26.jpg" alt="Teiberg Pizza Store, photo 26" loading="lazy">
+      <img src="images/gal-teiberg-27.jpg" alt="Teiberg Pizza Store, photo 27" loading="lazy">
+      <img src="images/gal-teiberg-28.jpg" alt="Teiberg Pizza Store, photo 28" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="proj-sec" id="p-contemporary">
+  <div class="wrap">
+    <p class="p-tag">Residential</p>
+    <h2>Six family multi unit</h2>
+    <p class="loc">Poughkeepsie, NY</p>
+    <p class="desc">Residential · 3,500 sq ft indoor · 1,500 sq ft outdoor · 3 stories · 2024</p>
+    <div class="gal-grid">
+      <img src="images/gal-contemporary-1.jpg" alt="Six family multi unit, photo 1" loading="lazy">
+      <img src="images/gal-contemporary-2.jpg" alt="Six family multi unit, photo 2" loading="lazy">
+      <img src="images/gal-contemporary-3.jpg" alt="Six family multi unit, photo 3" loading="lazy">
+      <img src="images/gal-contemporary-4.jpg" alt="Six family multi unit, photo 4" loading="lazy">
+      <img src="images/gal-contemporary-5.jpg" alt="Six family multi unit, photo 5" loading="lazy">
+      <img src="images/gal-contemporary-6.jpg" alt="Six family multi unit, photo 6" loading="lazy">
+      <img src="images/gal-contemporary-7.jpg" alt="Six family multi unit, photo 7" loading="lazy">
+      <img src="images/gal-contemporary-8.jpg" alt="Six family multi unit, photo 8" loading="lazy">
+      <img src="images/gal-contemporary-9.jpg" alt="Six family multi unit, photo 9" loading="lazy">
+      <img src="images/gal-contemporary-10.jpg" alt="Six family multi unit, photo 10" loading="lazy">
+      <img src="images/gal-contemporary-11.jpg" alt="Six family multi unit, photo 11" loading="lazy">
+      <img src="images/gal-contemporary-12.jpg" alt="Six family multi unit, photo 12" loading="lazy">
+      <img src="images/gal-contemporary-13.jpg" alt="Six family multi unit, photo 13" loading="lazy">
+      <img src="images/gal-contemporary-14.jpg" alt="Six family multi unit, photo 14" loading="lazy">
+      <img src="images/gal-contemporary-15.jpg" alt="Six family multi unit, photo 15" loading="lazy">
+      <img src="images/gal-contemporary-16.jpg" alt="Six family multi unit, photo 16" loading="lazy">
+      <img src="images/gal-contemporary-17.jpg" alt="Six family multi unit, photo 17" loading="lazy">
+      <img src="images/gal-contemporary-18.jpg" alt="Six family multi unit, photo 18" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="proj-sec" id="p-heaven">
+  <div class="wrap">
+    <h2>Modern Heaven Home</h2>
+    <div class="gal-grid">
+      <img src="images/gal-heaven-1.jpg" alt="Modern Heaven Home, photo 1" loading="lazy">
+      <img src="images/gal-heaven-2.jpg" alt="Modern Heaven Home, photo 2" loading="lazy">
+      <img src="images/gal-heaven-3.jpg" alt="Modern Heaven Home, photo 3" loading="lazy">
+      <img src="images/gal-heaven-4.jpg" alt="Modern Heaven Home, photo 4" loading="lazy">
+      <img src="images/gal-heaven-5.jpg" alt="Modern Heaven Home, photo 5" loading="lazy">
+      <img src="images/gal-heaven-6.jpg" alt="Modern Heaven Home, photo 6" loading="lazy">
+      <img src="images/gal-heaven-7.jpg" alt="Modern Heaven Home, photo 7" loading="lazy">
+      <img src="images/gal-heaven-8.jpg" alt="Modern Heaven Home, photo 8" loading="lazy">
+      <img src="images/gal-heaven-9.jpg" alt="Modern Heaven Home, photo 9" loading="lazy">
+      <img src="images/gal-heaven-10.jpg" alt="Modern Heaven Home, photo 10" loading="lazy">
+      <img src="images/gal-heaven-11.jpg" alt="Modern Heaven Home, photo 11" loading="lazy">
+      <img src="images/gal-heaven-12.jpg" alt="Modern Heaven Home, photo 12" loading="lazy">
+      <img src="images/gal-heaven-13.jpg" alt="Modern Heaven Home, photo 13" loading="lazy">
+      <img src="images/gal-heaven-14.jpg" alt="Modern Heaven Home, photo 14" loading="lazy">
+      <img src="images/gal-heaven-15.jpg" alt="Modern Heaven Home, photo 15" loading="lazy">
+      <img src="images/gal-heaven-16.jpg" alt="Modern Heaven Home, photo 16" loading="lazy">
+      <img src="images/gal-heaven-17.jpg" alt="Modern Heaven Home, photo 17" loading="lazy">
+      <img src="images/gal-heaven-18.jpg" alt="Modern Heaven Home, photo 18" loading="lazy">
+      <img src="images/gal-heaven-19.jpg" alt="Modern Heaven Home, photo 19" loading="lazy">
+      <img src="images/gal-heaven-20.jpg" alt="Modern Heaven Home, photo 20" loading="lazy">
+      <img src="images/gal-heaven-21.jpg" alt="Modern Heaven Home, photo 21" loading="lazy">
+      <img src="images/gal-heaven-22.jpg" alt="Modern Heaven Home, photo 22" loading="lazy">
+      <img src="images/gal-heaven-23.jpg" alt="Modern Heaven Home, photo 23" loading="lazy">
+      <img src="images/gal-heaven-24.jpg" alt="Modern Heaven Home, photo 24" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>The next Corestone build could be yours</h2>
+    <p>Custom homes, development, and commercial work across Sullivan and Orange County.</p>
+    <a class="btn" href="index.html#contact">Request a quote</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Corestone Developers · 43 Sullivan Ave, Liberty, NY 12754 · <a href="tel:+18457470244">845-747-0244</a> · <a href="mailto:info@corestonedevelopers.com">info@corestonedevelopers.com</a></p>
+  </div>
+</footer>
+<div class="lb" id="lb" hidden>
+  <div class="lb-bg" id="lbBg"></div>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+  <button class="lb-x" id="lbX" aria-label="Close">&times;</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous photo">&#8249;</button>
+  <button class="lb-next" id="lbNext" aria-label="Next photo">&#8250;</button>
+</div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap');
+  var list=[],i=0;
+  function show(n){
+    i=(n+list.length)%list.length;
+    img.src=list[i].src;img.alt=list[i].alt;cap.textContent=list[i].alt;
+  }
+  document.querySelectorAll('.proj-sec').forEach(function(sec){
+    var imgs=sec.querySelectorAll('.gal-grid img');
+    imgs.forEach(function(im,k){
+      im.addEventListener('click',function(){
+        list=Array.prototype.slice.call(imgs);
+        lb.hidden=false;document.body.style.overflow='hidden';
+        show(k);
+      });
+    });
+  });
+  function close(){lb.hidden=true;document.body.style.overflow='';}
+  document.getElementById('lbX').addEventListener('click',close);
+  document.getElementById('lbBg').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',function(e){e.stopPropagation();show(i-1)});
+  document.getElementById('lbNext').addEventListener('click',function(e){e.stopPropagation();show(i+1)});
+  document.addEventListener('keydown',function(e){
+    if(lb.hidden)return;
+    if(e.key==='Escape')close();
+    if(e.key==='ArrowLeft')show(i-1);
+    if(e.key==='ArrowRight')show(i+1);
+  });
+})();
+</script>
+</body>
+</html>
