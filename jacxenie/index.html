@@ -34,7 +34,7 @@ h2{font-size:clamp(34px,5vw,56px);margin:14px 0 12px}
 .hand{font-family:Caveat,cursive;font-size:clamp(24px,3vw,30px);color:var(--magenta);font-weight:700}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.marquee-track{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 /* top bar */
 .top{position:sticky;top:0;z-index:20;background:rgba(250,245,239,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
@@ -64,12 +64,6 @@ h2{font-size:clamp(34px,5vw,56px);margin:14px 0 12px}
 .stat b span{font-size:inherit}
 .stat .lbl{font-size:13px;color:var(--muted);font-weight:600}
 .fine{font-size:12px;color:var(--muted);margin-top:14px}
-/* marquee ribbon */
-.ribbon{background:var(--plum);color:#fff;overflow:hidden;padding:12px 0;transform:rotate(-1deg);margin:8px -4px}
-.marquee-track{display:flex;gap:0;width:max-content;animation:scroll 22s linear infinite}
-.marquee-track span{font-family:Fraunces,Georgia,serif;font-size:18px;font-weight:600;padding:0 18px;white-space:nowrap}
-.marquee-track span i{color:var(--peach);font-style:normal;padding-right:18px}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 /* wavy divider */
 .wave{display:block;width:100%;height:34px;margin:-1px 0}
 /* sections */
@@ -102,10 +96,7 @@ section.lilac{background:var(--lilac);border-top:1px solid var(--line);border-bo
 .bio-card{background:#fff;border:2px solid var(--plum);border-radius:28px;padding:36px;box-shadow:6px 6px 0 var(--peach);max-width:860px;margin:0 auto}
 .bio-card p{font-size:clamp(16px,2vw,18px);color:#3a2f36;margin-bottom:16px}
 .bio-card p:last-child{margin-bottom:0}
-.bio-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
-.bio-tags span{background:var(--mint);border:1.5px solid var(--plum);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700}
-.bio-tags span:nth-child(2n){background:var(--peach)}
-.bio-tags span:nth-child(3n){background:var(--lilac)}
+.bio-photo{display:block;width:240px;height:320px;object-fit:cover;object-position:center 20%;border-radius:20px;border:2px solid var(--plum);box-shadow:5px 5px 0 var(--peach);margin:0 auto 24px}
 /* client work */
 .client-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .client-card{border:2px solid var(--line);border-radius:24px;padding:28px;background:#fff;transition:transform .2s ease}
@@ -202,13 +193,6 @@ footer .socials{justify-content:flex-start}
   <p class="fine">Play and like counts checked November 6, 2026.</p>
 </div>
 
-<div class="ribbon" aria-hidden="true">
-  <div class="marquee-track">
-    <span>viral <i>&#10022;</i></span><span>creative <i>&#10022;</i></span><span>real <i>&#10022;</i></span><span>fun <i>&#10022;</i></span><span>whimsical <i>&#10022;</i></span><span>professional <i>&#10022;</i></span>
-    <span>viral <i>&#10022;</i></span><span>creative <i>&#10022;</i></span><span>real <i>&#10022;</i></span><span>fun <i>&#10022;</i></span><span>whimsical <i>&#10022;</i></span><span>professional <i>&#10022;</i></span>
-  </div>
-</div>
-
 <section class="lilac" id="bio">
   <div class="wrap">
     <div class="reveal">
@@ -216,16 +200,9 @@ footer .socials{justify-content:flex-start}
       <h2>Hi, I'm Jacxenie.</h2>
     </div>
     <div class="bio-card reveal">
+      <img class="bio-photo" src="https://mrsandtheman.github.io/go-assets/jacxenie/bio-DSC00030.jpg" alt="Jacxenie smiling, knees up, against a blue evening sky" width="1400" height="2100">
       <p>Jacxenie has spent the last 4 years working alongside a group of amazing creators and clients. She shifted from her early beginnings as a day care teacher, to creative director at Anomalous, leading production and strategy. In addition to her work at Anomalous, Jacxenie has also taken on management of the social media accounts of Judy Zhou, a successful real estate agent with Douglas Elliman in New York City.</p>
       <p>Outside of work, Jacxenie is passionate about creating content for her own personal accounts, and loves to share her hobbies and activities with her followers. On weekends, you'll find Jacxenie working on a loaf of sourdough bread, hiking upstate NY with her dog &amp; fianc&eacute;, playing Catan with her friends, watching old home movies with her family, or cuddling with her two cats!</p>
-      <div class="bio-tags">
-        <span>Creative Director, Anomalous</span>
-        <span>Ex day care teacher</span>
-        <span>Sourdough baker</span>
-        <span>Upstate hiker</span>
-        <span>Catan player</span>
-        <span>Cat mom x2</span>
-      </div>
     </div>
   </div>
 </section>
@@ -361,16 +338,6 @@ footer .socials{justify-content:flex-start}
 
 <footer>
   <div class="wrap">
-    <p class="eyebrow" style="color:#f0a8c0">Follow the work</p>
-    <h2>See what she makes next.</h2>
-    <p>New videos land on her own feed first, and client work shows up on the pages she manages.</p>
-    <div class="socials">
-      <a href="https://www.tiktok.com/@jacxenie" target="_blank" rel="noopener">TikTok @jacxenie</a>
-      <a href="https://www.instagram.com/jacxenie/" target="_blank" rel="noopener">Instagram @jacxenie</a>
-      <a href="https://www.linkedin.com/in/jacxenie-espinal-020955244/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.youtube.com/@jacxenie" target="_blank" rel="noopener">YouTube</a>
-      <a href="https://www.goanomalous.com/portfolio" target="_blank" rel="noopener">Anomalous portfolio</a>
-    </div>
     <p class="foot-fine">&copy; 2026 Jacxenie. Proof of work, with links to the originals.</p>
   </div>
 </footer>
