@@ -93,10 +93,11 @@ section.lilac{background:var(--lilac);border-top:1px solid var(--line);border-bo
 .watch{font-weight:700;font-size:14px;color:var(--magenta);text-decoration:none}
 .watch:hover{text-decoration:underline}
 /* bio */
-.bio-card{background:#fff;border:2px solid var(--plum);border-radius:28px;padding:36px;box-shadow:6px 6px 0 var(--peach);max-width:860px;margin:0 auto}
+.bio-card{background:#fff;border:2px solid var(--plum);border-radius:28px;padding:40px;box-shadow:6px 6px 0 var(--peach);max-width:1080px;margin:0 auto;display:flex;gap:36px;align-items:center}
 .bio-card p{font-size:clamp(16px,2vw,18px);color:#3a2f36;margin-bottom:16px}
 .bio-card p:last-child{margin-bottom:0}
-.bio-photo{display:block;width:240px;height:320px;object-fit:cover;object-position:center 20%;border-radius:20px;border:2px solid var(--plum);box-shadow:5px 5px 0 var(--peach);margin:0 auto 24px}
+.bio-text{flex:1;min-width:0}
+.bio-photo{flex:0 0 420px;width:420px;height:520px;object-fit:cover;object-position:center 25%;border-radius:20px;border:2px solid var(--plum);box-shadow:5px 5px 0 var(--peach)}
 /* client work */
 .client-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .client-card{border:2px solid var(--line);border-radius:24px;padding:28px;background:#fff;transition:transform .2s ease}
@@ -134,7 +135,8 @@ footer .socials{justify-content:flex-start}
   .hero-photo img{height:480px}
   .cards{grid-template-columns:1fr 1fr}
   .client-grid{grid-template-columns:1fr}
-  .bio-card{padding:28px}
+  .bio-card{padding:28px;flex-direction:column;gap:24px;align-items:stretch}
+  .bio-photo{flex:none;width:100%;height:420px}
 }
 @media (max-width:600px){
   .nav-toggle{display:block}
@@ -200,9 +202,11 @@ footer .socials{justify-content:flex-start}
       <h2>Hi, I'm Jacxenie.</h2>
     </div>
     <div class="bio-card reveal">
-      <img class="bio-photo" src="https://mrsandtheman.github.io/go-assets/jacxenie/bio-DSC00030.jpg" alt="Jacxenie smiling, knees up, against a blue evening sky" width="1400" height="2100">
+      <img class="bio-photo" src="https://mrsandtheman.github.io/go-assets/jacxenie/bio-IMG_6684.jpg" alt="Jacxenie standing by a river in a red top and white pants" width="1400" height="1867">
+      <div class="bio-text">
       <p>Jacxenie has spent the last 4 years working alongside a group of amazing creators and clients. She shifted from her early beginnings as a day care teacher, to creative director at Anomalous, leading production and strategy. In addition to her work at Anomalous, Jacxenie has also taken on management of the social media accounts of Judy Zhou, a successful real estate agent with Douglas Elliman in New York City.</p>
       <p>Outside of work, Jacxenie is passionate about creating content for her own personal accounts, and loves to share her hobbies and activities with her followers. On weekends, you'll find Jacxenie working on a loaf of sourdough bread, hiking upstate NY with her dog &amp; fianc&eacute;, playing Catan with her friends, watching old home movies with her family, or cuddling with her two cats!</p>
+      </div>
     </div>
   </div>
 </section>
