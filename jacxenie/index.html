@@ -13,11 +13,12 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234a1030'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --ivory:#faf5ef; --ink:#221a20; --plum:#4a1030; --magenta:#c2275c;
-  --rose:#f6e3ea; --line:#e8dcd4; --muted:#6f5f68;
+  --rose:#f6e3ea; --lilac:#e7d6f5; --peach:#ffe3c8; --mint:#d8f0e4;
+  --line:#e8dcd4; --muted:#6f5f68;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -26,14 +27,16 @@ img{display:block;max-width:100%}
 a{color:inherit}
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--magenta)}
+.eyebrow .spark{color:var(--magenta);font-size:14px}
 h1,h2,.serif{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.05;letter-spacing:-.01em}
 h2{font-size:clamp(34px,5vw,56px);margin:14px 0 12px}
 .lede{font-size:clamp(16px,2.2vw,19px);color:var(--muted);max-width:56ch}
+.hand{font-family:Caveat,cursive;font-size:clamp(24px,3vw,30px);color:var(--magenta);font-weight:700}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.marquee-track{animation:none!important}}
 /* top bar */
-.top{position:sticky;top:0;z-index:20;background:rgba(250,245,239,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top{position:sticky;top:0;z-index:20;background:rgba(250,245,239,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
 .wordmark{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:22px;letter-spacing:.14em;text-decoration:none}
 .wordmark span{color:var(--magenta)}
@@ -42,83 +45,105 @@ h2{font-size:clamp(34px,5vw,56px);margin:14px 0 12px}
 .nav a:hover{opacity:1;color:var(--magenta)}
 .nav a.active{opacity:1;color:var(--magenta);border-bottom-color:var(--magenta)}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;font-size:20px;line-height:1;padding:8px 12px;cursor:pointer;color:var(--plum)}
-.btn{display:inline-block;background:var(--plum);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:12px 22px;border-radius:999px}
-.btn:hover{background:var(--magenta)}
-.btn.ghost{background:transparent;color:var(--plum);border:2px solid var(--plum)}
+.btn{display:inline-block;background:var(--plum);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:12px 22px;border-radius:999px;box-shadow:3px 3px 0 var(--magenta)}
+.btn:hover{background:var(--magenta);box-shadow:3px 3px 0 var(--plum)}
+.btn.ghost{background:transparent;color:var(--plum);border:2px solid var(--plum);box-shadow:3px 3px 0 var(--lilac)}
 /* hero */
 .hero{padding:72px 0 56px}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
 .hero h1{font-size:clamp(46px,7.2vw,88px);margin:16px 0 20px}
 .hero h1 em{font-style:italic;color:var(--magenta)}
-.hero-photo{border-radius:28px;overflow:hidden;box-shadow:0 24px 60px rgba(74,16,48,.22);cursor:zoom-in;background:var(--rose)}
-.hero-photo img{width:100%;height:640px;object-fit:cover;object-position:center 30%;transition:transform .6s ease}
-.hero-photo:hover img{transform:scale(1.03)}
+.hero-frame{position:relative}
+.hero-frame::before{content:"";position:absolute;inset:-14px 14px 14px -14px;background:var(--peach);border-radius:28px;transform:rotate(2deg);z-index:0}
+.hero-frame::after{content:"";position:absolute;inset:14px -14px -14px 14px;background:var(--lilac);border-radius:28px;transform:rotate(-2deg);z-index:0}
+.hero-photo{position:relative;z-index:1;border-radius:28px;overflow:hidden;box-shadow:0 24px 60px rgba(74,16,48,.22);background:var(--rose)}
+.hero-photo img{width:100%;height:640px;object-fit:cover;object-position:center 30%}
 .hero-cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:64px;border-top:1px solid var(--line);padding-top:28px}
 .stat b{font-family:Fraunces,Georgia,serif;font-size:clamp(30px,3.6vw,44px);display:block;line-height:1;color:var(--plum)}
 .stat b span{font-size:inherit}
 .stat .lbl{font-size:13px;color:var(--muted);font-weight:600}
 .fine{font-size:12px;color:var(--muted);margin-top:14px}
+/* marquee ribbon */
+.ribbon{background:var(--plum);color:#fff;overflow:hidden;padding:12px 0;transform:rotate(-1deg);margin:8px -4px}
+.marquee-track{display:flex;gap:0;width:max-content;animation:scroll 22s linear infinite}
+.marquee-track span{font-family:Fraunces,Georgia,serif;font-size:18px;font-weight:600;padding:0 18px;white-space:nowrap}
+.marquee-track span i{color:var(--peach);font-style:normal;padding-right:18px}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* wavy divider */
+.wave{display:block;width:100%;height:34px;margin:-1px 0}
 /* sections */
 section{padding:72px 0}
 section.tint{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+section.lilac{background:var(--lilac);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:36px;flex-wrap:wrap}
 /* work cards */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s ease, box-shadow .2s ease}
-.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(74,16,48,.14)}
-.card .thumb{height:180px;display:flex;align-items:center;justify-content:center;font-family:Fraunces,Georgia,serif;font-size:64px;color:#fff}
-.thumb.yt{background:linear-gradient(135deg,#8f1d3a,#c2275c)}
-.thumb.tt{background:linear-gradient(135deg,#221a20,#4a1030)}
-.thumb.ig{background:linear-gradient(135deg,#7a2d8f,#c2275c 55%,#e8703a)}
+.card{background:#fff;border:2px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s ease, box-shadow .2s ease}
+.card:hover{transform:translateY(-4px) rotate(-.4deg);box-shadow:0 18px 40px rgba(74,16,48,.16)}
+.card .thumb{position:relative;height:220px;overflow:hidden;cursor:pointer;background:var(--rose)}
+.card .thumb img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.card .thumb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.card .thumb .play i{width:58px;height:58px;border-radius:50%;background:rgba(194,39,92,.92);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-style:normal;box-shadow:0 6px 20px rgba(0,0,0,.3);transition:transform .2s ease}
+.card .thumb:hover .play i{transform:scale(1.12)}
 .card .body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
 .chiprow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.chip{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--rose);color:var(--plum);padding:4px 10px;border-radius:999px}
-.chip.client{background:#efe6f6;color:#5b2a86}
+.chip{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--rose);color:var(--plum);padding:4px 10px;border-radius:999px;border:1.5px solid var(--plum)}
+.chip.client{background:var(--lilac);color:#5b2a86;border-color:#5b2a86}
+.chip.tilt-a{transform:rotate(-2deg)}
+.chip.tilt-b{transform:rotate(1.5deg)}
 .card h3{font-family:Fraunces,Georgia,serif;font-size:21px;line-height:1.2}
 .card p{font-size:14px;color:var(--muted);flex:1}
 .card .num{font-size:14px;font-weight:700;color:var(--plum)}
 .card .num small{font-weight:600;color:var(--muted)}
 .watch{font-weight:700;font-size:14px;color:var(--magenta);text-decoration:none}
 .watch:hover{text-decoration:underline}
+/* bio */
+.bio-card{background:#fff;border:2px solid var(--plum);border-radius:28px;padding:36px;box-shadow:6px 6px 0 var(--peach);max-width:860px}
+.bio-card p{font-size:clamp(16px,2vw,18px);color:#3a2f36;margin-bottom:16px}
+.bio-card p:last-child{margin-bottom:0}
+.bio-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.bio-tags span{background:var(--mint);border:1.5px solid var(--plum);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700}
+.bio-tags span:nth-child(2n){background:var(--peach)}
+.bio-tags span:nth-child(3n){background:var(--lilac)}
 /* client work */
 .client-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.client-card{border:1px solid var(--line);border-radius:20px;padding:28px;background:#fff}
+.client-card{border:2px solid var(--line);border-radius:24px;padding:28px;background:#fff;transition:transform .2s ease}
+.client-card:hover{transform:translateY(-4px) rotate(.4deg)}
 .client-card h3{font-family:Fraunces,Georgia,serif;font-size:26px;margin:10px 0 8px}
 .client-card p{color:var(--muted);font-size:15px}
 .client-card .num{font-size:14px;font-weight:700;color:var(--plum);margin-top:12px}
-/* gallery */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.gallery figure{border-radius:16px;overflow:hidden;cursor:zoom-in;position:relative;background:var(--rose)}
-.gallery img{width:100%;height:340px;object-fit:cover;transition:transform .4s ease}
-.gallery figure:hover img{transform:scale(1.05)}
-.gallery figure.wide{grid-column:span 2}
-.gallery figure.wide img{height:340px}
-/* lightbox */
-.lb{position:fixed;inset:0;z-index:50;background:rgba(20,8,16,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
-.lb[hidden]{display:none}
-.lb img{max-width:min(1000px,94vw);max-height:78vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.lb figcaption{color:#fff;margin-top:16px;font-size:15px;text-align:center}
-.lb button{position:absolute;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;cursor:pointer;font-size:15px;font-weight:700;padding:10px 16px}
-.lb button:hover{background:var(--magenta);border-color:var(--magenta)}
-.lb .lb-close{top:18px;right:18px}
-.lb .lb-prev{left:14px;top:50%;transform:translateY(-50%)}
-.lb .lb-next{right:14px;top:50%;transform:translateY(-50%)}
+/* contact */
+.contact-card{background:var(--plum);color:#fff;border-radius:28px;padding:44px 36px;text-align:center;box-shadow:6px 6px 0 var(--magenta)}
+.contact-card h2{color:#fff}
+.contact-card p{color:#e8cdd8;max-width:52ch;margin:0 auto}
+.contact-card .mail{display:inline-block;margin-top:24px;background:#fff;color:var(--plum);font-weight:700;text-decoration:none;padding:14px 28px;border-radius:999px;font-size:16px;box-shadow:3px 3px 0 var(--peach)}
+.contact-card .mail:hover{background:var(--peach)}
+.socials{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;justify-content:center}
+.socials a{color:#fff;text-decoration:none;font-weight:700;border:1.5px solid rgba(255,255,255,.5);padding:10px 18px;border-radius:999px;font-size:14px}
+.socials a:hover{background:var(--magenta);border-color:var(--magenta)}
+/* video modal */
+.vmodal{position:fixed;inset:0;z-index:50;background:rgba(20,8,16,.92);display:flex;align-items:center;justify-content:center;padding:24px}
+.vmodal[hidden]{display:none}
+.vmodal .vbox{width:100%;max-width:900px}
+.vmodal .vbox.portrait{max-width:420px}
+.vmodal .vframe{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.vmodal .vbox.portrait .vframe{aspect-ratio:9/16;max-height:82vh}
+.vmodal iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vmodal .vclose{display:block;margin:16px auto 0;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;cursor:pointer;font-size:15px;font-weight:700;padding:10px 22px}
+.vmodal .vclose:hover{background:var(--magenta);border-color:var(--magenta)}
 /* footer */
 footer{background:var(--plum);color:#fff;padding:64px 0 40px}
 footer h2{color:#fff}
 footer p{color:#e8cdd8;max-width:52ch}
-.socials{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-.socials a{color:#fff;text-decoration:none;font-weight:700;border:1px solid rgba(255,255,255,.4);padding:10px 18px;border-radius:999px;font-size:14px}
-.socials a:hover{background:var(--magenta);border-color:var(--magenta)}
+footer .socials{justify-content:flex-start}
 .foot-fine{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.2);font-size:12px;color:#d9b8c6}
 @media (max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:32px}
   .hero-photo img{height:480px}
   .cards{grid-template-columns:1fr 1fr}
-  .gallery{grid-template-columns:1fr 1fr}
-  .gallery figure.wide{grid-column:span 2}
   .client-grid{grid-template-columns:1fr}
+  .bio-card{padding:28px}
 }
 @media (max-width:600px){
   .nav-toggle{display:block}
@@ -130,10 +155,8 @@ footer p{color:#e8cdd8;max-width:52ch}
   .hero-photo img{height:420px}
   .stats{grid-template-columns:1fr 1fr;gap:24px 16px}
   .cards{grid-template-columns:1fr}
-  .gallery img{height:280px}
-  .lb .lb-prev{left:6px}
-  .lb .lb-next{right:6px}
   section{padding:52px 0}
+  .contact-card{padding:32px 22px}
 }
 </style>
 </head>
@@ -143,9 +166,10 @@ footer p{color:#e8cdd8;max-width:52ch}
     <a class="wordmark" href="#">JACXENIE<span>.</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     <nav class="nav" id="nav">
+      <a href="#bio">Bio</a>
       <a href="#work">Viral work</a>
       <a href="#clients">Client work</a>
-      <a href="#photos">Photos</a>
+      <a href="#contact">Contact</a>
     </nav>
     <a class="btn" href="https://www.tiktok.com/@jacxenie" target="_blank" rel="noopener">Follow @jacxenie</a>
   </div>
@@ -154,16 +178,19 @@ footer p{color:#e8cdd8;max-width:52ch}
 <div class="wrap hero">
   <div class="hero-grid">
     <div class="reveal">
-      <p class="eyebrow">Creator and operator, New York</p>
+      <p class="eyebrow"><span class="spark">&#10022;</span> Creator and operator, New York</p>
       <h1>The work<br>speaks <em>first.</em></h1>
       <p class="lede">Jacxenie makes content people actually watch, and runs the machine behind it. Four years at Anomalous doing the filming, the editing, the posting, the copy, and the client strategy, and a personal feed with millions of plays to prove it.</p>
+      <p class="hand" style="margin-top:16px">made with love, and a lot of re-takes &#10022;</p>
       <div class="hero-cta">
         <a class="btn" href="#work">See the viral work</a>
-        <a class="btn ghost" href="#clients">Client work</a>
+        <a class="btn ghost" href="#contact">Say hello</a>
       </div>
     </div>
-    <div class="hero-photo reveal">
-      <img id="heroImg" src="https://mrsandtheman.github.io/go-assets/jacxenie/hero-DSC09406.jpg" alt="Jacxenie smiling in front of a flower mural" width="2000" height="3000">
+    <div class="hero-frame reveal">
+      <div class="hero-photo">
+        <img src="https://mrsandtheman.github.io/go-assets/jacxenie/hero-DSC09406.jpg" alt="Jacxenie smiling in front of a flower mural" width="2000" height="3000">
+      </div>
     </div>
   </div>
   <div class="stats reveal">
@@ -175,20 +202,50 @@ footer p{color:#e8cdd8;max-width:52ch}
   <p class="fine">Play and like counts checked November 6, 2026.</p>
 </div>
 
+<div class="ribbon" aria-hidden="true">
+  <div class="marquee-track">
+    <span>viral <i>&#10022;</i></span><span>creative <i>&#10022;</i></span><span>real <i>&#10022;</i></span><span>fun <i>&#10022;</i></span><span>whimsical <i>&#10022;</i></span><span>professional <i>&#10022;</i></span>
+    <span>viral <i>&#10022;</i></span><span>creative <i>&#10022;</i></span><span>real <i>&#10022;</i></span><span>fun <i>&#10022;</i></span><span>whimsical <i>&#10022;</i></span><span>professional <i>&#10022;</i></span>
+  </div>
+</div>
+
+<section class="lilac" id="bio">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><span class="spark">&#10022;</span> Bio</p>
+      <h2>Hi, I'm Jacxenie.</h2>
+    </div>
+    <div class="bio-card reveal">
+      <p>Jacxenie has spent the last 4 years working alongside a group of amazing creators and clients. She shifted from her early beginnings as a day care teacher, to creative director at Anomalous, leading production and strategy. In addition to her work at Anomalous, Jacxenie has also taken on management of the social media accounts of Judy Zhou, a successful real estate agent with Douglas Elliman in New York City.</p>
+      <p>Outside of work, Jacxenie is passionate about creating content for her own personal accounts, and loves to share her hobbies and activities with her followers. On weekends, you'll find Jacxenie working on a loaf of sourdough bread, hiking upstate NY with her dog &amp; fianc&eacute;, playing Catan with her friends, watching old home movies with her family, or cuddling with her two cats!</p>
+      <div class="bio-tags">
+        <span>Creative Director, Anomalous</span>
+        <span>Ex day care teacher</span>
+        <span>Sourdough baker</span>
+        <span>Upstate hiker</span>
+        <span>Catan player</span>
+        <span>Cat mom x2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 34" preserveAspectRatio="none" aria-hidden="true"><path d="M0,18 C240,34 480,2 720,18 C960,34 1200,2 1440,18 L1440,34 L0,34 Z" fill="#e7d6f5"/></svg>
+
 <section class="tint" id="work">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <p class="eyebrow">Viral links to content I have made</p>
+        <p class="eyebrow"><span class="spark">&#10022;</span> Viral links to content I have made</p>
         <h2>Videos that traveled.</h2>
-        <p class="lede">Her own feed and client reels, side by side. Every card links out to the original post.</p>
+        <p class="lede">Tap any video to watch it right here. Every card also links out to the original post.</p>
       </div>
     </div>
     <div class="cards">
       <article class="card reveal">
-        <div class="thumb tt">J</div>
+        <div class="thumb" data-video="tiktok" data-id="7263490906630671659"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/thumbs/tt-dog.jpg" alt="Jacxenie with a few sweet dogs" loading="lazy" width="1080" height="1920"><span class="play"><i>&#9654;</i></span></div>
         <div class="body">
-          <div class="chiprow"><span class="chip">TikTok</span><span class="chip">Her feed</span></div>
+          <div class="chiprow"><span class="chip tilt-a">TikTok</span><span class="chip tilt-b">Her feed</span></div>
           <h3>The dog video</h3>
           <p>A chance meeting with a few sweet dogs, and the inner child came out. Her biggest video by far.</p>
           <p class="num">4.3M plays <small>&middot; 783K likes &middot; 35K saves</small></p>
@@ -196,9 +253,9 @@ footer p{color:#e8cdd8;max-width:52ch}
         </div>
       </article>
       <article class="card reveal">
-        <div class="thumb yt">&#9654;</div>
+        <div class="thumb" data-video="youtube" data-id="ZbLnZYIJ3Ds"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/thumbs/yt-hair.jpg" alt="Jacxenie showing her curly hair routine" loading="lazy" width="1280" height="720"><span class="play"><i>&#9654;</i></span></div>
         <div class="body">
-          <div class="chiprow"><span class="chip">YouTube</span><span class="chip">Her feed</span></div>
+          <div class="chiprow"><span class="chip tilt-b">YouTube</span><span class="chip tilt-a">Her feed</span></div>
           <h3>Shea Moisture curly hair routine</h3>
           <p>Her natural curl journey, and learning to love the hair she was born with, heat damage and all.</p>
           <p class="num">Long form <small>&middot; hair care</small></p>
@@ -206,9 +263,9 @@ footer p{color:#e8cdd8;max-width:52ch}
         </div>
       </article>
       <article class="card reveal">
-        <div class="thumb tt">J</div>
+        <div class="thumb" data-video="tiktok" data-id="7138144123751550251"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/thumbs/tt-chicken.jpg" alt="Sweet soy sauce chicken in a pan" loading="lazy" width="1080" height="1920"><span class="play"><i>&#9654;</i></span></div>
         <div class="body">
-          <div class="chiprow"><span class="chip">TikTok</span><span class="chip">Her feed</span></div>
+          <div class="chiprow"><span class="chip tilt-a">TikTok</span><span class="chip tilt-b">Her feed</span></div>
           <h3>Sweet soy sauce chicken</h3>
           <p>A 16 second cook at home recipe, seared chicken thighs finished in a sweet soy glaze.</p>
           <p class="num">136K plays <small>&middot; 1K saves</small></p>
@@ -216,9 +273,9 @@ footer p{color:#e8cdd8;max-width:52ch}
         </div>
       </article>
       <article class="card reveal">
-        <div class="thumb ig">&#9670;</div>
+        <div class="thumb" data-video="instagram" data-id="Chsh-lHBxCP"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/thumbs/ig-Chsh-lHBxCP.jpg" alt="Jacxenie talking about how long her hair takes" loading="lazy" width="720" height="1280"><span class="play"><i>&#9654;</i></span></div>
         <div class="body">
-          <div class="chiprow"><span class="chip">Instagram</span><span class="chip">Her feed</span></div>
+          <div class="chiprow"><span class="chip tilt-b">Instagram</span><span class="chip tilt-a">Her feed</span></div>
           <h3>How long does my hair take?</h3>
           <p>Thirty to forty five minutes on a simple day, up to an hour on a complicated look. Curly hair is not easy.</p>
           <p class="num">650 likes <small>&middot; Aug 2022</small></p>
@@ -226,9 +283,9 @@ footer p{color:#e8cdd8;max-width:52ch}
         </div>
       </article>
       <article class="card reveal">
-        <div class="thumb ig">&#9670;</div>
+        <div class="thumb" data-video="instagram" data-id="DaihDK7vHwY"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/thumbs/ig-DaihDK7vHwY.jpg" alt="Judy Zhou telling a Webster Hall coat check story" loading="lazy" width="1080" height="1920"><span class="play"><i>&#9654;</i></span></div>
         <div class="body">
-          <div class="chiprow"><span class="chip">Instagram</span><span class="chip client">Judy Zhou</span></div>
+          <div class="chiprow"><span class="chip tilt-a">Instagram</span><span class="chip client tilt-b">Judy Zhou</span></div>
           <h3>The Webster Hall coat check trick</h3>
           <p>An NYU Third North memory, how to dodge the coat check line and still make the night. Made for Judy Zhou.</p>
           <p class="num">1,259 likes <small>&middot; Jul 2026</small></p>
@@ -236,9 +293,9 @@ footer p{color:#e8cdd8;max-width:52ch}
         </div>
       </article>
       <article class="card reveal">
-        <div class="thumb ig">&#9670;</div>
+        <div class="thumb" data-video="instagram" data-id="C6cuZ5euWhK"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/thumbs/ig-C6cuZ5euWhK.jpg" alt="Judy Zhou asking Manhattan or Brooklyn" loading="lazy" width="1080" height="1920"><span class="play"><i>&#9654;</i></span></div>
         <div class="body">
-          <div class="chiprow"><span class="chip">Instagram</span><span class="chip client">Judy Zhou</span></div>
+          <div class="chiprow"><span class="chip tilt-b">Instagram</span><span class="chip client tilt-a">Judy Zhou</span></div>
           <h3>Manhattan or Brooklyn?</h3>
           <p>A newlywed compromise, filmed across Manhattan, Brooklyn, and Astoria. Credited on the post as video magician.</p>
           <p class="num">190 likes <small>&middot; 35 comments &middot; May 2024</small></p>
@@ -246,9 +303,9 @@ footer p{color:#e8cdd8;max-width:52ch}
         </div>
       </article>
       <article class="card reveal">
-        <div class="thumb ig">&#9670;</div>
+        <div class="thumb" data-video="instagram" data-id="DBZeOmLPXQb"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/thumbs/ig-DBZeOmLPXQb.jpg" alt="Judy Zhou announcing her newsletter" loading="lazy" width="1080" height="1920"><span class="play"><i>&#9654;</i></span></div>
         <div class="body">
-          <div class="chiprow"><span class="chip">Instagram</span><span class="chip client">Judy Zhou</span></div>
+          <div class="chiprow"><span class="chip tilt-a">Instagram</span><span class="chip client tilt-b">Judy Zhou</span></div>
           <h3>The big announcement</h3>
           <p>Judy's newsletter announcement reel. Credited on the post for the video magic.</p>
           <p class="num">137 likes <small>&middot; 58 comments &middot; Oct 2024</small></p>
@@ -262,7 +319,7 @@ footer p{color:#e8cdd8;max-width:52ch}
 <section id="clients">
   <div class="wrap">
     <div class="reveal">
-      <p class="eyebrow">Pages I manage</p>
+      <p class="eyebrow"><span class="spark">&#10022;</span> Pages I manage</p>
       <h2>Client work, not just her own feed.</h2>
       <p class="lede">She shoots and edits for clients, and runs their pages day to day.</p>
     </div>
@@ -285,22 +342,19 @@ footer p{color:#e8cdd8;max-width:52ch}
   </div>
 </section>
 
-<section class="tint" id="photos">
+<section id="contact" style="padding-top:0">
   <div class="wrap">
-    <div class="reveal">
-      <p class="eyebrow">Best pictures of me</p>
-      <h2>The face behind the work.</h2>
-      <p class="lede">Tap any photo to see it full size.</p>
-    </div>
-    <div class="gallery" style="margin-top:32px">
-      <figure class="wide reveal"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/web-DSC06027.jpg" alt="Jacxenie in a white cardigan outside a Brooklyn cafe" loading="lazy" width="1400" height="933"></figure>
-      <figure class="reveal"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/web-DSC00577.jpg" alt="Jacxenie among pink flowers" loading="lazy" width="1400" height="2100"></figure>
-      <figure class="reveal"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/web-DSC00312.jpg" alt="Jacxenie laughing in a yellow plaid dress" loading="lazy" width="1400" height="2100"></figure>
-      <figure class="reveal"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/web-DSC00030.jpg" alt="Jacxenie smiling at dusk" loading="lazy" width="1400" height="2100"></figure>
-      <figure class="reveal"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/web-DSC06427.jpg" alt="Jacxenie on a balcony at sunset" loading="lazy" width="1400" height="2100"></figure>
-      <figure class="reveal"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/web-DSC09001.jpg" alt="Jacxenie standing by a concrete pillar in the city" loading="lazy" width="1400" height="2100"></figure>
-      <figure class="reveal"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/web-IMG_6684.jpg" alt="Jacxenie by the river in a red top" loading="lazy" width="1400" height="1867"></figure>
-      <figure class="reveal"><img src="https://mrsandtheman.github.io/go-assets/jacxenie/web-DSC00048.jpg" alt="Jacxenie looking out at dusk" loading="lazy" width="1400" height="933"></figure>
+    <div class="contact-card reveal">
+      <p class="eyebrow" style="color:#f0a8c0"><span class="spark" style="color:#f0a8c0">&#10022;</span> Contact me</p>
+      <h2>Let's work together.</h2>
+      <p>Have a project, a page that needs managing, or just want to say hi? My inbox is open.</p>
+      <a class="mail" href="mailto:jacxeniee@gmail.com">jacxeniee@gmail.com</a>
+      <div class="socials">
+        <a href="https://www.instagram.com/jacxenie/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@jacxenie" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.linkedin.com/in/jacxenie-espinal-020955244/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.youtube.com/@jacxenie" target="_blank" rel="noopener">YouTube</a>
+      </div>
     </div>
   </div>
 </section>
@@ -313,18 +367,19 @@ footer p{color:#e8cdd8;max-width:52ch}
     <div class="socials">
       <a href="https://www.tiktok.com/@jacxenie" target="_blank" rel="noopener">TikTok @jacxenie</a>
       <a href="https://www.instagram.com/jacxenie/" target="_blank" rel="noopener">Instagram @jacxenie</a>
+      <a href="https://www.linkedin.com/in/jacxenie-espinal-020955244/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.youtube.com/@jacxenie" target="_blank" rel="noopener">YouTube</a>
       <a href="https://www.goanomalous.com/portfolio" target="_blank" rel="noopener">Anomalous portfolio</a>
     </div>
     <p class="foot-fine">&copy; 2026 Jacxenie. Proof of work, with links to the originals.</p>
   </div>
 </footer>
 
-<div class="lb" id="lightbox" hidden role="dialog" aria-label="Photo viewer">
-  <button class="lb-close" id="lbClose" aria-label="Close">&times; Close</button>
-  <button class="lb-prev" id="lbPrev" aria-label="Previous photo">&larr;</button>
-  <img id="lbImg" src="" alt="">
-  <figcaption id="lbCap"></figcaption>
-  <button class="lb-next" id="lbNext" aria-label="Next photo">&rarr;</button>
+<div class="vmodal" id="videoModal" hidden role="dialog" aria-label="Video player">
+  <div class="vbox" id="vbox">
+    <div class="vframe"><iframe id="vframe" src="" title="Video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    <button class="vclose" id="vclose">&times; Close</button>
+  </div>
 </div>
 
 <script>
@@ -383,33 +438,26 @@ footer p{color:#e8cdd8;max-width:52ch}
     links.forEach(function(a,i){a.classList.toggle("active",i===current);});
   }
   window.addEventListener("scroll",spy,{passive:true}); spy();
-  /* Lightbox: gallery + hero */
-  var lb=document.getElementById("lightbox"), lbImg=document.getElementById("lbImg"),
-      lbCap=document.getElementById("lbCap"), idx=-1, items=[];
-  document.querySelectorAll(".gallery img").forEach(function(im){items.push(im);});
-  var heroImg=document.getElementById("heroImg");
-  function openLb(i){
-    idx=i; var im=items[i];
-    lbImg.src=im.src; lbImg.alt=im.alt; lbCap.textContent=im.alt;
-    lb.hidden=false; document.body.style.overflow="hidden";
+  /* Video modal: play right on the page */
+  var modal=document.getElementById("videoModal"), vbox=document.getElementById("vbox"),
+      frame=document.getElementById("vframe");
+  function openVideo(kind,id){
+    var src="", portrait=false;
+    if(kind==="youtube"){src="https://www.youtube.com/embed/"+id+"?autoplay=1&rel=0";}
+    else if(kind==="tiktok"){src="https://www.tiktok.com/player/v1/"+id+"?autoplay=1&muted=1";portrait=true;}
+    else if(kind==="instagram"){src="https://www.instagram.com/p/"+id+"/embed/";portrait=true;}
+    if(!src)return;
+    vbox.classList.toggle("portrait",portrait);
+    frame.src=src;
+    modal.hidden=false; document.body.style.overflow="hidden";
   }
-  function closeLb(){lb.hidden=true;document.body.style.overflow="";}
-  function step(d){openLb((idx+d+items.length)%items.length);}
-  items.forEach(function(im,i){im.addEventListener("click",function(){openLb(i);});});
-  if(heroImg){heroImg.addEventListener("click",function(){
-    lbImg.src=heroImg.src; lbImg.alt=heroImg.alt; lbCap.textContent=heroImg.alt;
-    idx=-1; lb.hidden=false; document.body.style.overflow="hidden";
-  });}
-  document.getElementById("lbClose").addEventListener("click",closeLb);
-  document.getElementById("lbPrev").addEventListener("click",function(){if(idx>=0)step(-1);});
-  document.getElementById("lbNext").addEventListener("click",function(){if(idx>=0)step(1);});
-  lb.addEventListener("click",function(e){if(e.target===lb)closeLb();});
-  document.addEventListener("keydown",function(e){
-    if(lb.hidden)return;
-    if(e.key==="Escape")closeLb();
-    if(e.key==="ArrowLeft"&&idx>=0)step(-1);
-    if(e.key==="ArrowRight"&&idx>=0)step(1);
+  function closeVideo(){frame.src="";modal.hidden=true;document.body.style.overflow="";}
+  document.querySelectorAll(".thumb[data-video]").forEach(function(th){
+    th.addEventListener("click",function(){openVideo(th.getAttribute("data-video"),th.getAttribute("data-id"));});
   });
+  document.getElementById("vclose").addEventListener("click",closeVideo);
+  modal.addEventListener("click",function(e){if(e.target===modal)closeVideo();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!modal.hidden)closeVideo();});
 })();
 </script>
 </body>
