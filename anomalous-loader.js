@@ -11,13 +11,13 @@
   "use strict";
   var BASE = "https://mrsandtheman.github.io/anomalous-redesign/";
   var LINKS = {
-    "index.html": "/", "portfolio.html": "/portfolio", "scripts.html": "/scripts",
-    "conversion.html": "/conversion", "getstarted.html": "/getstarted"
+    "index.html": "/", "portfolio.html": "/portfolio", "scripts.html": "/get-scripts",
+    "conversion.html": "/conversion", "getstarted.html": "/getstarted"  /* scripts.html -> /get-scripts: /scripts is a reserved Squarespace slug */
   };
   var BY_SLUG = {
     "": "index", "home": "index", "home-new": "index",
     "portfolio": "portfolio", "portfolio-new": "portfolio",
-    "scripts": "scripts", "scripts-new": "scripts",
+    "scripts": "scripts", "scripts-new": "scripts", "get-scripts": "scripts",
     "conversion": "conversion", "conversion-new": "conversion",
     "getstarted": "getstarted", "getstarted-new": "getstarted"
   };
