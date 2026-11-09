@@ -137,11 +137,24 @@
 
   /* reviews */
   .reviews{background:var(--mist);}
-  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-  .rev{background:#fff;border:1px solid var(--line);padding:28px;border-radius:3px;}
+  .reviews h2{text-wrap:balance;}
+  .rev-count{font-weight:800;font-size:17px;color:var(--ink);}
+  .rev-carousel{position:relative;padding:0 56px;}
+  .rev-viewport{overflow:hidden;}
+  .rev-track{display:flex;gap:22px;transition:transform .55s ease;will-change:transform;}
+  .rev{flex:0 0 calc((100% - 44px)/3);background:#fff;border:1px solid var(--line);padding:28px;border-radius:3px;box-sizing:border-box;}
   .rev .stars{color:var(--teal-deep);letter-spacing:3px;font-size:15px;margin-bottom:12px;}
   .rev p{font-size:15.5px;color:var(--soft);font-style:italic;}
   .rev .who{margin-top:16px;font-style:normal;font-weight:700;font-size:14.5px;color:var(--ink);}
+  .rev-arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1.5px solid var(--teal-deep);background:#fff;color:var(--teal-deep);font-size:24px;line-height:1;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.14);padding:0;}
+  .rev-arrow:hover{background:var(--teal-deep);color:#fff;}
+  .rev-prev{left:0;}
+  .rev-next{right:0;}
+  @media (max-width:700px){
+    .rev{flex-basis:100%;}
+    .rev-carousel{padding:0 44px;}
+    .rev-arrow{width:40px;height:40px;font-size:20px;}
+  }
 
   /* resources / lead magnets */
   .resources{background:var(--ink);color:#fff;}
@@ -195,7 +208,7 @@
     .hero h1{font-size:33px;}
     .hero figure img{height:320px;}
     .hero .hs-track{height:320px;}
-    .offer-grid,.inc-grid,.steps,.proj-grid,.rev-grid,.res-grid{grid-template-columns:1fr;}
+    .offer-grid,.inc-grid,.steps,.proj-grid,.res-grid{grid-template-columns:1fr;}
     .pricing{grid-template-columns:1fr;}
     .contact-grid{grid-template-columns:1fr;padding:26px;}
     form .row{grid-template-columns:1fr;}
@@ -528,9 +541,12 @@
     <div class="sec-head">
       <p class="eyebrow">Reviews</p>
       <h2>Trusted by the people who built with us</h2>
-      <p>32 five-star reviews from Google and our website.</p>
+      <p class="rev-count">32+ five-star reviews</p>
     </div>
-    <div class="rev-grid">
+    <div class="rev-carousel">
+      <button type="button" class="rev-arrow rev-prev" aria-label="Previous reviews">&#8249;</button>
+      <div class="rev-viewport">
+    <div class="rev-track">
       <div class="rev"><p class="stars">★★★★★</p><p>"Corestone Developers built my dream home in upstate NY. He made himself available for questions both in person and remotely, finished ahead of schedule, and the online system let us track every step with daily pictures and videos."</p><p class="who">Mitra Reyhani Ghadim, homeowner</p></div>
       <div class="rev"><p class="stars">★★★★★</p><p>"Construction was done in the quickest time frame possible. Whoever walks in marvels at how beautiful this house is."</p><p class="who">Gitty Feldman, homeowner</p></div>
       <div class="rev"><p class="stars">★★★★★</p><p>"The communication was outstanding. Moshe gave us access to a system where we could track every step, see daily updates, and clearly understand what payments were due and when. The entire process was smooth and beyond anything I imagined."</p><p class="who">Sara D, homeowner</p></div>
@@ -563,6 +579,9 @@
       <div class="rev"><p class="stars">★★★★★</p><p>True 5-star service from beginning to end; available, dedicated, professional, quick; work done efficiently and meticulously with high regard to detail and quality; on top of work and deadlines.</p><p class="who">Sarah Fisch · Google</p></div>
       <div class="rev"><p class="stars">★★★★★</p><p>Word meant something: timelines/commitments kept; care and respect for surrounding property and community; stood behind work day or night, took responsibility and came back to fix issues; exceptional responsiveness, accountability, commitment.</p><p class="who">sweaters in usa · Google</p></div>
       <div class="rev"><p class="stars">★★★★★</p><p>Left 5 stars with photos (no written review).</p><p class="who">Swan Lake Supermarket · Google</p></div>
+    </div>
+      </div>
+      <button type="button" class="rev-arrow rev-next" aria-label="Next reviews">&#8250;</button>
     </div>
   </div>
 </section>
@@ -856,6 +875,41 @@ document.querySelectorAll('.ss').forEach(function(box){
     i=(i+1)%slides.length;
     slides[i].classList.add('on');
   },2000);
+})();
+</script>
+<script>
+/* reviews carousel: 3-up, auto every 5s, stops on manual browse */
+(function(){
+  var car=document.querySelector('.rev-carousel');
+  if(!car) return;
+  var vp=car.querySelector('.rev-viewport');
+  var track=car.querySelector('.rev-track');
+  var cards=track.querySelectorAll('.rev');
+  var prev=car.querySelector('.rev-prev');
+  var next=car.querySelector('.rev-next');
+  var total=cards.length, idx=0, auto=true, timer=null;
+  function gap(){var g=getComputedStyle(track).columnGap||getComputedStyle(track).gap||'22px';return parseFloat(g)||22;}
+  function step(){return cards[0].offsetWidth+gap();}
+  function visible(){return Math.max(1,Math.floor((vp.offsetWidth+gap())/step()));}
+  function maxIdx(){return Math.max(0,total-visible());}
+  function go(n){var m=maxIdx();idx=((n%(m+1))+(m+1))%(m+1);track.style.transform='translateX('+(-idx*step())+'px)';}
+  function stopAuto(){if(timer){clearInterval(timer);timer=null;}auto=false;}
+  function startAuto(){if(timer)clearInterval(timer);timer=setInterval(function(){go(idx+1);},5000);}
+  prev.addEventListener('click',function(){stopAuto();go(idx-1);});
+  next.addEventListener('click',function(){stopAuto();go(idx+1);});
+  var sx=null;
+  vp.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  vp.addEventListener('touchend',function(e){
+    if(sx===null)return;
+    var dx=e.changedTouches[0].clientX-sx;sx=null;
+    if(Math.abs(dx)>40){stopAuto();go(idx+(dx<0?1:-1));}
+  },{passive:true});
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){if(timer){clearInterval(timer);timer=null;}}
+    else if(auto&&!timer){startAuto();}
+  });
+  window.addEventListener('resize',function(){go(idx);});
+  go(0);startAuto();
 })();
 </script>
 </body>
