@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liberty Homekeeper | Home upkeep audits near Liberty, New York</title>
+<style>
+  :root{
+    --pine:#1E3D2B;
+    --pine-dark:#142A1D;
+    --banner:#1E3D2B;
+    --ink:#22271F;
+    --muted:#5B655A;
+    --paper:#F7F5EC;
+    --line:#DDE2D6;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--white);line-height:1.6}
+  h1,h2,h3{font-family:"Didot","Linotype Didot","Playfair Display",Georgia,serif;line-height:1.15;margin:0;font-weight:400}
+  h1,h2,.lede{text-wrap:balance}
+  p{text-wrap:pretty}
+  a{color:var(--pine)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  /* Topbar */
+  .topbar{background:var(--banner);padding:16px 0}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand{color:#fff;font-family:"Didot","Linotype Didot","Playfair Display",Georgia,serif;font-size:24px;text-decoration:none}
+  .brand small{display:block;font-family:Inter,system-ui,sans-serif;font-size:12px;letter-spacing:.14em;color:#D6E2CE}
+  .btn{display:inline-block;background:var(--pine);color:#fff !important;text-decoration:none;font-weight:600;font-size:15px;padding:11px 22px;border-radius:999px}
+  .btn.light{background:#fff;color:var(--pine) !important}
+  .btn.ghost{background:transparent;color:#fff !important;border:1.5px solid rgba(255,255,255,.7)}
+  /* Hero */
+  .hero{position:relative;background:linear-gradient(rgba(16,32,22,.78),rgba(16,32,22,.62)),url("images/featured-work/featured-work-12.jpg") center/cover;color:#fff;overflow:hidden}
+  .hero .wrap{position:relative;padding:96px 22px 88px;max-width:820px;text-align:center}
+  .eyebrow{letter-spacing:.22em;font-size:14px;font-weight:300;color:#fff;margin:0 0 16px}
+  .hero h1{font-size:clamp(38px,6vw,64px);text-shadow:0 2px 18px rgba(0,0,0,.55)}
+  .hero p{font-size:clamp(16px,2.4vw,19px);color:#fff;max-width:640px;margin:18px auto 28px;text-shadow:0 1px 12px rgba(0,0,0,.55)}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  /* Trust strip */
+  .strip{border-bottom:1px solid var(--line);background:#fff}
+  .strip .wrap{display:flex;gap:28px;flex-wrap:wrap;padding-top:20px;padding-bottom:20px;justify-content:center}
+  .strip span{font-size:14px;font-weight:500;color:var(--ink)}
+  .strip span b{color:var(--pine);font-weight:600}
+  /* Sections */
+  section{padding:72px 0}
+  section.tint{background:var(--paper)}
+  h2{font-size:clamp(30px,4.5vw,44px);margin-bottom:14px}
+  .lede{font-size:17px;color:var(--muted);max-width:680px;margin:0 0 34px}
+  /* Steps */
+  .steps{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px}
+  .step h3{font-size:22px;margin:12px 0 8px}
+  .step p{margin:0;color:var(--muted);font-size:15px}
+  .step .num{font-family:"Didot","Linotype Didot","Playfair Display",Georgia,serif;font-size:40px;color:var(--pine);line-height:1}
+  /* Cards */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .card{border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff}
+  .card h3{font-size:24px;margin-bottom:8px}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+  .checklist{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}
+  .checklist li{font-size:16px;padding-left:26px;position:relative}
+  .checklist li::before{content:"✓";position:absolute;left:0;color:var(--pine);font-weight:700}
+  /* Gallery */
+  .gal-group{font-size:24px;margin:44px 0 16px;color:var(--pine)}
+  .gal-group:first-of-type{margin-top:8px}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .shot{margin:0}
+  .shot img{width:100%;height:220px;object-fit:cover;border-radius:12px;display:block;background:#E9EFE7}
+  .shot figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+  /* Zones */
+  .zone{border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff}
+  .zone h3{font-size:24px;margin-bottom:8px}
+  .zone p{margin:0;color:var(--muted);font-size:15px}
+  /* Contact */
+  .contact{background:var(--pine);color:#fff;text-align:center}
+  .contact h2{color:#fff}
+  .contact p{color:#D6E2CE;max-width:560px;margin:0 auto 26px}
+  .contact a.tel{color:#fff;font-family:"Didot","Linotype Didot","Playfair Display",Georgia,serif;font-size:32px;text-decoration:none}
+  .contact form{max-width:480px;margin:26px auto 0;text-align:left}
+  .contact label{display:block;font-size:14px;font-weight:600;margin:0 0 6px;color:#fff}
+  .contact label .opt{font-weight:400;color:#D6E2CE;font-size:13px}
+  .contact input,.contact textarea{width:100%;padding:13px 18px;border:0;border-radius:16px;font-size:16px;font-family:inherit;margin:0 0 16px;background:#fff;color:var(--ink)}
+  .contact textarea{min-height:110px;resize:vertical}
+  .contact button.send{display:block;margin:4px auto 0;width:auto;padding:13px 44px;border:1.5px solid rgba(255,255,255,.7);border-radius:999px;font-size:16px;font-weight:600;background:transparent;color:#fff;cursor:pointer}
+  .contact .thanks{display:none;font-size:17px;color:#fff;text-align:center}
+  .contact .preview-note{font-size:13px;color:#D6E2CE;text-align:center;margin-top:16px}
+  .waitlist{display:flex;gap:10px;align-items:flex-start;margin:0 0 16px}
+  .waitlist input{width:auto;margin:4px 0 0;padding:0}
+  .waitlist label{margin:0;font-weight:400;font-size:15px}
+  /* Footer */
+  footer{background:var(--pine-dark);color:#fff;padding:36px 0;text-align:left}
+  footer p{margin:0 0 6px;font-size:13px;color:#D6E2CE}
+  footer p:last-child{margin-bottom:0}
+  footer a{color:#fff}
+  @media (max-width:760px){
+    .steps{grid-template-columns:1fr}
+    .grid{grid-template-columns:1fr}
+    .checklist{grid-template-columns:1fr}
+    .gallery{grid-template-columns:repeat(2,1fr)}
+    .shot img{height:170px}
+    section{padding:52px 0}
+    .lede{font-size:15px}
+    .hero .wrap{padding:72px 22px 64px}
+    .eyebrow{font-size:12px}
+    .contact a.tel{font-size:26px}
+  }
+</style>
+</head>
+<body id="top">
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Liberty Homekeeper<small>By Joaquin Romero, Romero Home Service</small></a>
+    <a class="btn light" href="tel:+18454282081">Call (845) 428-2081</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Home upkeep audits · Liberty, New York</p>
+    <h1>Your house, kept up.</h1>
+    <p>One trusted person walks your home, photographs what he finds, and leaves you a clear, prioritized report. No repairs on the spot, no pressure, just a plan.</p>
+    <div class="cta-row">
+      <a class="btn light" href="#request">Request your audit</a>
+      <a class="btn ghost" href="tel:+18454282081">Call (845) 428-2081</a>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <span><b>18 years</b> in home maintenance</span>
+    <span><b>1,000+ projects</b> completed</span>
+    <span><b>50 mile radius</b> from Liberty</span>
+    <span><b>Solo operator,</b> one trusted person</span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>Recent work</h2>
+    <p class="lede">Recent work from Romero Home Service. Real jobs, real photos. 193 photos across every kind of job.</p>
+        <h3 class="gal-group">Featured work &middot; 12 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-01.jpg" alt="Deck with black railings" loading="lazy">
+        <figcaption>Deck with black railings</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-02.jpg" alt="Deck stairs with railings" loading="lazy">
+        <figcaption>Deck stairs with railings</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-03.jpg" alt="Deck boards" loading="lazy">
+        <figcaption>Deck boards</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-04.jpg" alt="Deck stairs to patio" loading="lazy">
+        <figcaption>Deck stairs to patio</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-05.jpg" alt="Soffit and siding" loading="lazy">
+        <figcaption>Soffit and siding</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-06.jpg" alt="Patio and steps" loading="lazy">
+        <figcaption>Patio and steps</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-07.jpg" alt="Finished soffit" loading="lazy">
+        <figcaption>Finished soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-08.jpg" alt="Deck framing and new sliding door" loading="lazy">
+        <figcaption>Deck framing and new sliding door</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-09.jpg" alt="Bathroom tile" loading="lazy">
+        <figcaption>Bathroom tile</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-10.jpg" alt="Finished deck" loading="lazy">
+        <figcaption>Finished deck</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-11.jpg" alt="Shower tile" loading="lazy">
+        <figcaption>Shower tile</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/featured-work/featured-work-12.jpg" alt="Foundation excavation" loading="lazy">
+        <figcaption>Foundation excavation</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Siding and exterior renovation &middot; 24 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-01.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-02.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-03.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-04.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-05.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-06.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-07.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-08.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-09.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-10.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-11.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-12.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-13.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-14.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-15.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-16.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-17.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-18.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-19.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-20.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-21.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-22.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-23.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/siding-exterior-renovation/siding-exterior-renovation-24.jpg" alt="Siding and exterior renovation" loading="lazy">
+        <figcaption>Siding and exterior renovation</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Metal roofing &middot; 17 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-01.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-02.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-03.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-04.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-05.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-06.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-07.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-08.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-09.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-10.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-11.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-12.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-13.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-14.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-15.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-16.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/metal-roofing/metal-roofing-17.jpg" alt="Metal roofing" loading="lazy">
+        <figcaption>Metal roofing</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Sliding door installation &middot; 17 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-01.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-02.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-03.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-04.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-05.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-06.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-07.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-08.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-09.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-10.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-11.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-12.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-13.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-14.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-15.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-16.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/sliding-door-installation/sliding-door-installation-17.jpg" alt="Sliding door installation" loading="lazy">
+        <figcaption>Sliding door installation</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Deck to enclosed porch &middot; 16 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-01.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-02.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-03.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-04.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-05.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-06.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-07.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-08.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-09.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-10.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-11.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-12.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-13.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-14.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-15.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-to-enclosed-porch/deck-to-enclosed-porch-16.jpg" alt="Deck to enclosed porch" loading="lazy">
+        <figcaption>Deck to enclosed porch</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Concrete driveway and drainage &middot; 16 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-01.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-02.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-03.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-04.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-05.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-06.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-07.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-08.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-09.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-10.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-11.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-12.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-13.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-14.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-15.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/concrete-driveway-drainage/concrete-driveway-drainage-16.jpg" alt="Concrete driveway and drainage" loading="lazy">
+        <figcaption>Concrete driveway and drainage</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Trex decking &middot; 14 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-01.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-02.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-03.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-04.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-05.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-06.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-07.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-08.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-09.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-10.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-11.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-12.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-13.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/trex-decking/trex-decking-14.jpg" alt="Trex decking" loading="lazy">
+        <figcaption>Trex decking</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Wood grain soffit &middot; 13 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-01.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-02.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-03.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-04.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-05.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-06.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-07.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-08.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-09.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-10.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-11.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-12.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/wood-grain-soffit/wood-grain-soffit-13.jpg" alt="Wood grain soffit" loading="lazy">
+        <figcaption>Wood grain soffit</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Basement finish &middot; 13 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-01.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-02.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-03.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-04.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-05.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-06.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-07.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-08.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-09.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-10.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-11.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-12.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/basement-finish/basement-finish-13.jpg" alt="Basement finish" loading="lazy">
+        <figcaption>Basement finish</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Window installation &middot; 13 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-01.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-02.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-03.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-04.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-05.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-06.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-07.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-08.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-09.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-10.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-11.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-12.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-installation/window-installation-13.jpg" alt="Window installation" loading="lazy">
+        <figcaption>Window installation</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Home facelift &middot; 8 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/home-facelift/home-facelift-01.jpg" alt="Home facelift" loading="lazy">
+        <figcaption>Home facelift</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/home-facelift/home-facelift-02.jpg" alt="Home facelift" loading="lazy">
+        <figcaption>Home facelift</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/home-facelift/home-facelift-03.jpg" alt="Home facelift" loading="lazy">
+        <figcaption>Home facelift</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/home-facelift/home-facelift-04.jpg" alt="Home facelift" loading="lazy">
+        <figcaption>Home facelift</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/home-facelift/home-facelift-05.jpg" alt="Home facelift" loading="lazy">
+        <figcaption>Home facelift</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/home-facelift/home-facelift-06.jpg" alt="Home facelift" loading="lazy">
+        <figcaption>Home facelift</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/home-facelift/home-facelift-07.jpg" alt="Home facelift" loading="lazy">
+        <figcaption>Home facelift</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/home-facelift/home-facelift-08.jpg" alt="Home facelift" loading="lazy">
+        <figcaption>Home facelift</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Fence &middot; 8 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/fence/fence-01.jpg" alt="Fence" loading="lazy">
+        <figcaption>Fence</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/fence/fence-02.jpg" alt="Fence" loading="lazy">
+        <figcaption>Fence</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/fence/fence-03.jpg" alt="Fence" loading="lazy">
+        <figcaption>Fence</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/fence/fence-04.jpg" alt="Fence" loading="lazy">
+        <figcaption>Fence</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/fence/fence-05.jpg" alt="Fence" loading="lazy">
+        <figcaption>Fence</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/fence/fence-06.jpg" alt="Fence" loading="lazy">
+        <figcaption>Fence</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/fence/fence-07.jpg" alt="Fence" loading="lazy">
+        <figcaption>Fence</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/fence/fence-08.jpg" alt="Fence" loading="lazy">
+        <figcaption>Fence</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Chimney and wood stove &middot; 6 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/chimney-installation/chimney-installation-01.jpg" alt="Chimney and wood stove" loading="lazy">
+        <figcaption>Chimney and wood stove</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/chimney-installation/chimney-installation-02.jpg" alt="Chimney and wood stove" loading="lazy">
+        <figcaption>Chimney and wood stove</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/chimney-installation/chimney-installation-03.jpg" alt="Chimney and wood stove" loading="lazy">
+        <figcaption>Chimney and wood stove</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/chimney-installation/chimney-installation-04.jpg" alt="Chimney and wood stove" loading="lazy">
+        <figcaption>Chimney and wood stove</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/chimney-installation/chimney-installation-05.jpg" alt="Chimney and wood stove" loading="lazy">
+        <figcaption>Chimney and wood stove</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/chimney-installation/chimney-installation-06.jpg" alt="Chimney and wood stove" loading="lazy">
+        <figcaption>Chimney and wood stove</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Window replacement &middot; 5 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/window-replacement/window-replacement-01.jpg" alt="Window replacement" loading="lazy">
+        <figcaption>Window replacement</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-replacement/window-replacement-02.jpg" alt="Window replacement" loading="lazy">
+        <figcaption>Window replacement</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-replacement/window-replacement-03.jpg" alt="Window replacement" loading="lazy">
+        <figcaption>Window replacement</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-replacement/window-replacement-04.jpg" alt="Window replacement" loading="lazy">
+        <figcaption>Window replacement</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/window-replacement/window-replacement-05.jpg" alt="Window replacement" loading="lazy">
+        <figcaption>Window replacement</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Deck framing &middot; 4 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/deck-framing/deck-framing-01.jpg" alt="Deck framing" loading="lazy">
+        <figcaption>Deck framing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-framing/deck-framing-02.jpg" alt="Deck framing" loading="lazy">
+        <figcaption>Deck framing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-framing/deck-framing-03.jpg" alt="Deck framing" loading="lazy">
+        <figcaption>Deck framing</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/deck-framing/deck-framing-04.jpg" alt="Deck framing" loading="lazy">
+        <figcaption>Deck framing</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Gutters clean up &middot; 4 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/gutters-clean-up/gutters-clean-up-01.jpg" alt="Gutters clean up" loading="lazy">
+        <figcaption>Gutters clean up</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/gutters-clean-up/gutters-clean-up-02.jpg" alt="Gutters clean up" loading="lazy">
+        <figcaption>Gutters clean up</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/gutters-clean-up/gutters-clean-up-03.jpg" alt="Gutters clean up" loading="lazy">
+        <figcaption>Gutters clean up</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/gutters-clean-up/gutters-clean-up-04.jpg" alt="Gutters clean up" loading="lazy">
+        <figcaption>Gutters clean up</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-group">Pavers &middot; 3 photos</h3>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="images/pavers/pavers-01.jpg" alt="Pavers" loading="lazy">
+        <figcaption>Pavers</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/pavers/pavers-02.jpg" alt="Pavers" loading="lazy">
+        <figcaption>Pavers</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="images/pavers/pavers-03.jpg" alt="Pavers" loading="lazy">
+        <figcaption>Pavers</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How the audit works</h2>
+    <p class="lede">An audit is not a repair visit. It is a careful look at your whole home, turned into a plan you can act on.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Send photos</h3>
+        <p>Send a few photos of your home and your to-do list, and Joaquin will start from there.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Get a flat fee</h3>
+        <p>One flat fee for the audit visit, quoted after the photo intake. No labor or materials are included, because no repairs happen on the visit.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Walkthrough visit</h3>
+        <p>Joaquin walks the home, photographs everything, and notes what needs attention.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h3>Written report</h3>
+        <p>You get a written report with a prioritized list. Bigger issues are referred to licensed trades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint">
+  <div class="wrap">
+    <h2>What the audit walks through</h2>
+    <p class="lede">Every part of the home Joaquin knows from 18 years in the trade, checked and photographed.</p>
+    <ul class="checklist">
+      <li>Gutters</li>
+      <li>Roof</li>
+      <li>Siding</li>
+      <li>Decks</li>
+      <li>Foundation</li>
+      <li>Framing</li>
+      <li>Flooring</li>
+      <li>Trim and baseboards</li>
+      <li>Accent walls</li>
+      <li>And the rest of your to-do list</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Who it is for</h2>
+    <p class="lede">Most local handymen sell per job repairs. This is the plan before the repairs.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Year-round homeowners</h3>
+        <p>You have a to-do list and want it in priority order, with photos to back it up, before you spend on the wrong job first.</p>
+      </div>
+      <div class="card">
+        <h3>Second-home owners</h3>
+        <p>Trusted eyes while you are away, with photo updates after every visit, so you always know how the house stands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint">
+  <div class="wrap">
+    <h2>Where he works</h2>
+    <p class="lede">Within 50 miles of Liberty, New York. Visits outside the core are clustered by town per day.</p>
+    <div class="grid">
+      <div class="zone">
+        <h3>Core, no trip fee</h3>
+        <p>Liberty, Monticello, and Bethel. No trip fee on audit visits in the core.</p>
+      </div>
+      <div class="zone">
+        <h3>Outer ring</h3>
+        <p>Everywhere else within 50 miles. A minimum or trip fee may apply, and visits are grouped by town per day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Seasonal Home Check</h2>
+    <p class="lede">Spring and fall, same checklist every time, one flat fee. The bridge between a single audit and a yearly plan. Ask about the next Seasonal Home Check when you request your audit.</p>
+    <div class="card">
+      <h3>Founding members, coming soon</h3>
+      <p>Later, one yearly tier only: two visits a year, priority rebooking, and a report after every visit. Capped at 20 founding members at first. Tick the box in the form below to join the waitlist.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="request">
+  <div class="wrap">
+    <h2>Request your audit</h2>
+    <p>Send this form and Joaquin will ask for a few photos of your home, then quote one flat fee for the visit.</p>
+    <a class="tel" href="tel:+18454282081">(845) 428-2081</a>
+    <p>Office hours Monday to Friday, 9 to 5. Service 7 days a week.</p>
+    <form id="audit-form">
+      <label for="f-name">Your name</label>
+      <input id="f-name" name="name" type="text" required autocomplete="name">
+      <label for="f-email">Your email</label>
+      <input id="f-email" name="email" type="email" required autocomplete="email">
+      <label for="f-phone">Phone <span class="opt">(optional)</span></label>
+      <input id="f-phone" name="phone" type="tel" placeholder="Optional" autocomplete="tel">
+      <label for="f-town">Town <span class="opt">(optional)</span></label>
+      <input id="f-town" name="town" type="text" placeholder="Optional">
+      <label for="f-message">Tell Joaquin about your home and your to-do list</label>
+      <textarea id="f-message" name="message" required></textarea>
+      <div class="waitlist">
+        <input id="f-waitlist" name="waitlist" type="checkbox">
+        <label for="f-waitlist">Also add me to the founding member waitlist.</label>
+      </div>
+      <button class="send" type="submit">Request your audit</button>
+    </form>
+    <div class="thanks" id="audit-thanks">
+      <p>Thank you. Preview only, nothing was sent. At launch, Joaquin will be in touch during office hours about photos and your flat-fee quote.</p>
+    </div>
+    <p class="preview-note">Preview only: this form is not connected yet. At launch it will send to Joaquin.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Liberty Homekeeper by Joaquin Romero, Romero Home Service.</p>
+    <p>Serving homes within 50 miles of Liberty, New York. Call <a href="tel:+18454282081">(845) 428-2081</a>.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('audit-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('audit-form').style.display = 'none';
+    document.getElementById('audit-thanks').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
