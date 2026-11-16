@@ -146,6 +146,18 @@
   .rev .stars{color:var(--teal-deep);letter-spacing:3px;font-size:15px;margin-bottom:12px;}
   .rev p{font-size:15.5px;color:var(--soft);font-style:italic;}
   .rev .who{margin-top:16px;font-style:normal;font-weight:700;font-size:14.5px;color:var(--ink);}
+  .rev-more{background:none;border:none;color:var(--teal-deep);font-weight:700;font-size:14.5px;cursor:pointer;padding:0;margin-top:10px;text-decoration:underline;text-underline-offset:3px;font-family:inherit;}
+  .rev-more:hover{color:var(--teal);}
+  .rev-modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;}
+  .rev-modal[hidden]{display:none;}
+  .rev-modal-backdrop{position:absolute;inset:0;background:rgba(13,34,34,.72);}
+  .rev-modal-box{position:relative;background:#fff;max-width:640px;width:100%;max-height:82vh;overflow-y:auto;padding:40px 36px 32px;border-radius:3px;box-shadow:0 18px 60px rgba(0,0,0,.35);box-sizing:border-box;}
+  .rev-modal-x{position:absolute;top:12px;right:14px;background:none;border:none;font-size:32px;line-height:1;color:var(--ink);cursor:pointer;padding:2px 10px;}
+  .rev-modal-x:hover{color:var(--teal-deep);}
+  .rev-modal .stars{color:var(--teal-deep);letter-spacing:3px;font-size:15px;margin-bottom:12px;}
+  .rev-modal-text{font-size:16px;line-height:1.65;color:var(--soft);font-style:italic;}
+  .rev-modal .who{margin-top:18px;font-weight:700;font-size:14.5px;color:var(--ink);}
+  @media (max-width:700px){.rev-modal-box{padding:34px 24px 26px;}}
   .rev-arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1.5px solid var(--teal-deep);background:#fff;color:var(--teal-deep);font-size:24px;line-height:1;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.14);padding:0;}
   .rev-arrow:hover{background:var(--teal-deep);color:#fff;}
   .rev-prev{left:0;}
@@ -560,9 +572,9 @@
       <button type="button" class="rev-arrow rev-prev" aria-label="Previous reviews">&#8249;</button>
       <div class="rev-viewport">
     <div class="rev-track">
-      <div class="rev"><p class="stars">★★★★★</p><p>"Corestone Developers built my dream home in upstate NY, and I could not be happier. From the very first meeting, everything felt not only professional but also personal, they really cared about my vision. The owner of Corestone Moshe Einhorn, is a kind and genuine person. He is flexible, a real problem solver, and always kept on schedule while maintaining high quality work. He made himself available for questions both in person and remotely. His team was organized, reliable, and finished my three-bedroom home in three months, which was even a little ahead of schedule, which is incredible! I really appreciated was that Cornerstone is a very organized company and they also gave me access to an online system where we could track every step of the project. This allowed me to see daily updates including pictures and videos to see updates of the progress on the house. It put my mind at ease to have this level of transparency and it was exciting to see the updates at each step. Once the home was finished, Moshe took the time to follow up and confirm that everything was as expected. What I thought would be a stressful project turned into something smooth, exciting and fun. I would highly recommend Corestone Developers to anyone for their project. Thank you to Moshe and everyone at Corestone!"</p><p class="who">Mitra Reyhani Ghadim, homeowner</p></div>
+      <div class="rev"><p class="stars">★★★★★</p><p>"Corestone Developers built my dream home in upstate NY, and I could not be happier. From the very first meeting, everything felt not only professional but also personal, they really cared about my vision..."</p><button type="button" class="rev-more" data-review="mitra">Read full review</button><p class="who">Mitra Reyhani Ghadim, homeowner</p></div>
       <div class="rev"><p class="stars">★★★★★</p><p>"Most amazing experience dealing with Moishe Einhorn, Corestone Developers. Everything that was requested was done in a most perfect way, going above and beyond to make sure we&#x27;re 100% satisfied. Construction was done in the quickest time frame possible, with a artistic touch finishing. Whoever walks in marvels how beautifully this house was reconstructed. Highly recommend for any custom home builds!"</p><p class="who">Gitty Feldman, homeowner</p></div>
-      <div class="rev"><p class="stars">★★★★★</p><p>"This is a wonderful incredible company. 5 stars is not enough!! I am extremely impressed with Corestone Developers and especially with the owner, Moshe. This company built a home for us in a short time frame exactly as outlined in the initial agreement . From start to finish, the entire process was smooth, joyful, and beyond anything I could have imagined when building a home. The communication was outstanding. Moshe was quick to respond, always available to chat, and explained everything thoroughly including costs and detailed breakdowns. He has such a kind, helpful, and pleasant demeanor, and answered any questions. One of the things that really stood out was how organized the company is. Moshe gave us access to a virtual online software system where we could track every step of the project. This allowed us to see daily picture/ video updates of the progress, keep track of invoices, and clearly understand what payments were due and when. Having that level of transparency made the process stress-free and so exciting to see the updates. What truly makes this company special is Moshe himself. He is incredibly dedicated, thoughtful, and genuinely cares about his clients and the quality of his work. It is rare to find someone who combines professionalism, efficiency, and kindness so seamlessly. Corestone Developers turned what many people see as a complicated or stressful process into an enjoyable and seamless experience. I would recommend them highly to anyone. If you are looking for a builder who delivers on their promised timeline, communicates openly, and creates an experience that is as enjoyable as it is efficient, Corestone Developers and Moshe are the ones to trust. I am happy to discuss more about my great experience with Corestone at anytime. Thank you so much!"</p><p class="who">Sara D, homeowner</p></div>
+      <div class="rev"><p class="stars">★★★★★</p><p>"This is a wonderful incredible company. 5 stars is not enough!! I am extremely impressed with Corestone Developers and especially with the owner, Moshe. This company built a home for us in a short time frame exactly as outlined in the initial agreement..."</p><button type="button" class="rev-more" data-review="sara">Read full review</button><p class="who">Sara D, homeowner</p></div>
       <div class="rev"><p class="stars">★★★★★</p><p>"I had a smooth and phenomenal experience dealing with Corstone Developers, The whole job got done with just a blink of an eye, way ahead of schedule, very professional, they didn&#x27;t leave until the last screw was tightened, Highly recommended."</p><p class="who">Avrumy Friedrich</p></div>
       <div class="rev"><p class="stars">★★★★★</p><p>"We&#x27;re absolutely thrilled with the incredible work Corestone Developers did on our home! From the initial consultation to the final walk-through, their team showed up with kindness, expertise, and a genuine passion for their craft. They listened to our dreams, offered brilliant solutions, and brought our vision to life with precision and care. The end result is a beautiful, functional space that feels like &#x27;us&#x27; - and we can&#x27;t thank them enough! If you&#x27;re looking for a construction partner who truly cares, look no further than Corestone Developers!!"</p><p class="who">MOSHE FELDMAN</p></div>
       <div class="rev"><p class="stars">★★★★★</p><p>"It was a wonderful experience working with Corestone Developers. They were reachable whenever needed and their work is impeccable!"</p><p class="who">Reizy Marton</p></div>
@@ -907,6 +919,8 @@ document.querySelectorAll('.ss').forEach(function(box){
   function maxIdx(){return Math.max(0,total-visible());}
   function go(n){var m=maxIdx();idx=((n%(m+1))+(m+1))%(m+1);track.style.transform='translateX('+(-idx*step())+'px)';}
   function stopAuto(){if(timer){clearInterval(timer);timer=null;}auto=false;}
+  car._revPause=function(){if(timer){clearInterval(timer);timer=null;}};
+  car._revResume=function(){if(auto&&!timer){startAuto();}};
   function startAuto(){if(timer)clearInterval(timer);timer=setInterval(function(){go(idx+1);},5000);}
   prev.addEventListener('click',function(){stopAuto();go(idx-1);});
   next.addEventListener('click',function(){stopAuto();go(idx+1);});
@@ -925,5 +939,53 @@ document.querySelectorAll('.ss').forEach(function(box){
   go(0);startAuto();
 })();
 </script>
+
+<div class="rev-modal" id="revModal" role="dialog" aria-modal="true" aria-labelledby="revModalText" hidden>
+  <div class="rev-modal-backdrop" data-rev-close></div>
+  <div class="rev-modal-box">
+    <button type="button" class="rev-modal-x" data-rev-close aria-label="Close review">&times;</button>
+    <p class="stars">★★★★★</p>
+    <p class="rev-modal-text" id="revModalText"></p>
+    <p class="who" id="revModalWho"></p>
+  </div>
+</div>
+<script>
+/* long-review modal: Mitra + Sara D show a preview in the card; full text in a popup */
+(function(){
+  var FULL = {
+    mitra: {who: 'Mitra Reyhani Ghadim, homeowner', text: "Corestone Developers built my dream home in upstate NY, and I could not be happier. From the very first meeting, everything felt not only professional but also personal, they really cared about my vision. The owner of Corestone Moshe Einhorn, is a kind and genuine person. He is flexible, a real problem solver, and always kept on schedule while maintaining high quality work. He made himself available for questions both in person and remotely. His team was organized, reliable, and finished my three-bedroom home in three months, which was even a little ahead of schedule, which is incredible! I really appreciated was that Cornerstone is a very organized company and they also gave me access to an online system where we could track every step of the project. This allowed me to see daily updates including pictures and videos to see updates of the progress on the house. It put my mind at ease to have this level of transparency and it was exciting to see the updates at each step. Once the home was finished, Moshe took the time to follow up and confirm that everything was as expected. What I thought would be a stressful project turned into something smooth, exciting and fun. I would highly recommend Corestone Developers to anyone for their project. Thank you to Moshe and everyone at Corestone!"},
+    sara: {who: 'Sara D, homeowner', text: "This is a wonderful incredible company. 5 stars is not enough!! I am extremely impressed with Corestone Developers and especially with the owner, Moshe. This company built a home for us in a short time frame exactly as outlined in the initial agreement . From start to finish, the entire process was smooth, joyful, and beyond anything I could have imagined when building a home. The communication was outstanding. Moshe was quick to respond, always available to chat, and explained everything thoroughly including costs and detailed breakdowns. He has such a kind, helpful, and pleasant demeanor, and answered any questions. One of the things that really stood out was how organized the company is. Moshe gave us access to a virtual online software system where we could track every step of the project. This allowed us to see daily picture/ video updates of the progress, keep track of invoices, and clearly understand what payments were due and when. Having that level of transparency made the process stress-free and so exciting to see the updates. What truly makes this company special is Moshe himself. He is incredibly dedicated, thoughtful, and genuinely cares about his clients and the quality of his work. It is rare to find someone who combines professionalism, efficiency, and kindness so seamlessly. Corestone Developers turned what many people see as a complicated or stressful process into an enjoyable and seamless experience. I would recommend them highly to anyone. If you are looking for a builder who delivers on their promised timeline, communicates openly, and creates an experience that is as enjoyable as it is efficient, Corestone Developers and Moshe are the ones to trust. I am happy to discuss more about my great experience with Corestone at anytime. Thank you so much!"}
+  };
+  var modal = document.getElementById('revModal');
+  if(!modal) return;
+  var textEl = document.getElementById('revModalText');
+  var whoEl = document.getElementById('revModalWho');
+  var car = document.querySelector('.rev-carousel');
+  function open(id){
+    var r = FULL[id];
+    if(!r) return;
+    textEl.textContent = '"' + r.text + '"';
+    whoEl.textContent = r.who;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    if(car && car._revPause) car._revPause();
+  }
+  function close(){
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if(car && car._revResume) car._revResume();
+  }
+  document.querySelectorAll('.rev-more').forEach(function(b){
+    b.addEventListener('click', function(){ open(b.getAttribute('data-review')); });
+  });
+  modal.querySelectorAll('[data-rev-close]').forEach(function(el){
+    el.addEventListener('click', close);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && !modal.hidden) close();
+  });
+})();
+</script>
+
 </body>
 </html>
