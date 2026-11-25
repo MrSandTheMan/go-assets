@@ -4,7 +4,7 @@
 // Deploy as a web app: Execute as Me, Who has access: Anyone.
 // Pages post JSON with Content-Type text/plain.
 var TOKEN = '08ee3b92e3a5ce90feabef7e339008119a7776c22e424f3d';
-var TO = 'marketing@corestonedevelopers.com';
+var TO = 'marketing@corestonedevelopers.com, moshe@corestonedevelopers.com, feishy@corestonedevelopers.com';
 
 function doPost(e) {
   try {
