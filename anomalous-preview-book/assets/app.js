@@ -122,9 +122,9 @@
   }
 
   /* Booking picker (getstarted) — date + time slots, posts type=booking.
-     BOOK_HOURS is a PLACEHOLDER until Sandy confirms his real call hours.
-     days: 0=Sunday..6=Saturday. start/end in minutes from midnight, ET. */
-  var BOOK_HOURS = { days: [0, 1, 2, 3, 4, 5, 6], start: 10 * 60, end: 16 * 60, slotMinutes: 45 };
+     Call hours set by Sandy Nov 27, 2026: Discovery calls, 30 minutes,
+     Mon-Fri, noon to 4pm ET. days: 0=Sunday..6=Saturday. */
+  var BOOK_HOURS = { days: [1, 2, 3, 4, 5], start: 12 * 60, end: 16 * 60, slotMinutes: 30 };
   var bookForm = $("#bookForm");
   if (bookForm) {
     var datesEl = $("#bookDates"), slotsEl = $("#bookSlots"), noteEl = $("#bookNote");
